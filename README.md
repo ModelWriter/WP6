@@ -4,7 +4,7 @@ Work Package 6
 
 [`Product Backlog of WP6`](https://waffle.io/ModelWriter/WP6)
 
-The product backlog itself is implemented in the [issue tracker](https://github.com/modelwriter/wp5/issues) of this repository.
+The product backlog itself is implemented in the [`issue tracker`](https://github.com/modelwriter/wp6/issues) of this repository
 
 **Objectives**
 
