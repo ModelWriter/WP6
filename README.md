@@ -6,7 +6,8 @@ Work Package 6
 
 The product backlog itself is implemented in the [`issue tracker`](https://github.com/modelwriter/wp6/issues) of this repository
 
-**Objectives**
+Objectives
+---
 
 The primary objective of this WP is to assemble and evaluate the successive yearly versions of the integrated ModelWriter. This objective is broken down into the following sub-objectives:
 
@@ -17,7 +18,8 @@ The primary objective of this WP is to assemble and evaluate the successive year
 
 There will be 1 major release a year, although partners will be invited to provide frequently minor releases of their work, to allow a continuous integration and testing of the software and `minimize the technical risk`.
 
-**Expected Results**
+Expected Results
+---
 
 * 3 major releases of ModelWriter (1 per year).
 * Performance analysis and evaluation reports, incl. recommendations for next release.
