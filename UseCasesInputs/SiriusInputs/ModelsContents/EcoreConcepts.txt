@@ -1,0 +1,487 @@
+Sirius Models Contents:
+
+Ecore Model - contribution
+	   Abstract Class - FeatureContribution 
+	  	  ref:sourceFeature (1,1)
+	  	  ref:targetFeature (1,1)
+	   Class - IgnoreFeatureContribution -> FeatureContribution 
+	   Class - SetFeatureContribution -> FeatureContribution 
+	   Class - AddFeatureContribution -> FeatureContribution 
+	   Class - RemoveFeatureContribution -> FeatureContribution 
+	   Class - ClearFeatureContribution -> FeatureContribution 
+	   Class - ResetFeatureContribution -> FeatureContribution 
+	   Interface - EObjectReference 
+	   Class - DirectEObjectReference -> EObjectReference 
+	  	  ref:value (1,1)
+	   Class - ComputedEObjectReference -> EObjectReference 
+	  	  attr:valueExpression (1,1)
+	   Class - Contribution 
+	  	  ref:source (1,1)
+	  	  ref:target (1,1)
+	  	  ref:featureMask (1,-1)
+	  	  ref:subContributions (0,-1)
+	  	  attr:description (0,1)
+	   Abstract Class - ContributionProvider 
+	  	  ref:contributions (0,-1)
+	   Class - ContributionPoint 
+	  	  ref:contributed (1,1)
+	  	  attr:origin (1,1)
+
+Ecore Model - viewpoint
+	   Class - DAnalysis 
+	  	  ref:referencedAnalysis (0,-1)
+	  	  ref:models (0,-1)
+	  	  ref:eAnnotations (0,-1)
+	  	  ref:ownedViews (0,-1)
+	  	  ref:selectedViews (0,-1)
+	  	  ref:ownedFeatureExtensions (0,-1)
+	  	  attr:version (0,1)
+	   Abstract Class - DFeatureExtension 
+	  	  ref:description (1,1)
+	   Interface - DValidable 
+	   Abstract Class - DNavigable 
+	  	  ref:ownedNavigationLinks (0,-1)
+	   Interface - DStylizable 
+	   Interface - DRefreshable 
+	   Interface - DLabelled 
+	   Interface - DMappingBased 
+	   Interface - DContainer 
+	   Class - DRepresentationContainer -> DRefreshable DView 
+	  	  ref:models (0,-1)
+	   Abstract Class - DSemanticDecorator 
+	  	  ref:target (1,1)
+	   Abstract Class - DRepresentation -> DocumentedElement DRefreshable DModelElement 
+	  	  ref:ownedRepresentationElements (0,-1)
+	  	  ref:representationElements (0,-1)
+	  	  ref:ownedAnnotationEntries (0,-1)
+	  	  attr:name (0,1)
+	   Abstract Class - DRepresentationElement -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator 
+	  	  ref:semanticElements (0,-1)
+	  	  attr:name (0,1)
+	   Class - DView -> DRefreshable 
+	  	  ref:ownedRepresentations (0,-1)
+	  	  ref:ownedExtensions (0,1)
+	  	  ref:allRepresentations (0,-1)
+	  	  ref:hiddenRepresentations (0,-1)
+	  	  ref:referencedRepresentations (0,-1)
+	  	  ref:viewpoint (1,1)
+	  	  attr:initialized (1,1)
+	   Class - MetaModelExtension 
+	  	  ref:extensionGroup (1,1)
+	   Class - Decoration 
+	  	  ref:description (1,1)
+	   Abstract Class - DNavigationLink 
+	  	  attr:targetType (0,1)
+	  	  attr:label (0,1)
+	   Class - DSourceFileLink -> DNavigationLink 
+	  	  attr:filePath (1,1)
+	  	  attr:startPosition (0,1)
+	  	  attr:endPosition (0,1)
+	   Class - DAnalysisCustomData 
+	  	  ref:data (1,1)
+	  	  attr:key (1,1)
+	   Class - LabelStyle -> Customizable BasicLabelStyle 
+	  	  attr:labelAlignment (0,1)
+	   Abstract Class - Style -> DRefreshable Customizable 
+	  	  ref:description (0,1)
+	   Class - RGBValues 
+	  	  attr:red (1,1)
+	  	  attr:green (1,1)
+	  	  attr:blue (1,1)
+	   Class - DAnalysisSessionEObject 
+	  	  ref:activatedViewpoints (0,-1)
+	  	  ref:analyses (0,-1)
+	  	  attr:open (1,1)
+	  	  attr:blocked (1,1)
+	  	  attr:resources (0,-1)
+	  	  attr:controlledResources (0,-1)
+	  	  attr:synchronizationStatus (1,1)
+	   Class - SessionManagerEObject 
+	  	  ref:ownedSessions (0,-1)
+	   Interface - DResource 
+	  	  attr:name (1,1)
+	  	  attr:path (1,1)
+	   Class - DFile -> DResource 
+	   Class - DResourceContainer -> DResource 
+	  	  ref:members (0,-1)
+	   Class - DProject -> DResource DResourceContainer 
+	   Class - DFolder -> DResource DResourceContainer 
+	   Class - DModel -> DResource DFile 
+	   Class - BasicLabelStyle -> Customizable 
+	  	  ref:labelColor (0,1)
+	  	  attr:labelSize (0,1)
+	  	  attr:labelFormat (0,1)
+	  	  attr:showIcon (0,1)
+	  	  attr:iconPath (0,1)
+	   Abstract Class - Customizable 
+	  	  attr:customFeatures (0,-1)
+
+Ecore Model - diagram
+	   Class - DDiagram -> DocumentedElement DRefreshable DModelElement DRepresentation DragAndDropTarget DValidable DContainer 
+	  	  ref:ownedDiagramElements (0,-1)
+	  	  ref:diagramElements (0,-1)
+	  	  ref:description (0,1)
+	  	  ref:edges (0,-1)
+	  	  ref:nodes (0,-1)
+	  	  ref:nodeListElements (0,-1)
+	  	  ref:containers (0,-1)
+	  	  ref:currentConcern (0,1)
+	  	  ref:activatedFilters (0,-1)
+	  	  ref:allFilters (0,-1)
+	  	  ref:activatedRules (0,-1)
+	  	  ref:activateBehaviors (0,-1)
+	  	  ref:filterVariableHistory (1,1)
+	  	  ref:activatedLayers (0,-1)
+	  	  ref:hiddenElements (0,-1)
+	  	  attr:synchronized (0,1)
+	  	  attr:isInLayoutingMode (0,1)
+	  	  attr:headerHeight (0,1)
+	   Class - DSemanticDiagram -> DocumentedElement DRefreshable DModelElement DRepresentation DragAndDropTarget DValidable DContainer DDiagram DSemanticDecorator 
+	   Abstract Class - DDiagramElement -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement DValidable DNavigable 
+	  	  ref:parentLayers (0,-1)
+	  	  ref:decorations (0,-1)
+	  	  ref:diagramElementMapping (0,1)
+	  	  ref:graphicalFilters (0,-1)
+	  	  attr:visible (0,1)
+	  	  attr:tooltipText (0,1)
+	   Interface - GraphicalFilter 
+	   Class - HideFilter -> GraphicalFilter 
+	   Class - HideLabelFilter -> GraphicalFilter 
+	   Class - FoldingPointFilter -> GraphicalFilter 
+	   Class - FoldingFilter -> GraphicalFilter 
+	   Class - AppliedCompositeFilters -> GraphicalFilter 
+	  	  ref:compositeFilterDescriptions (0,-1)
+	   Class - AbsoluteBoundsFilter -> GraphicalFilter 
+	  	  attr:x (0,1)
+	  	  attr:y (0,1)
+	  	  attr:height (0,1)
+	  	  attr:width (0,1)
+	   Interface - AbstractDNode -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement DValidable DNavigable DDiagramElement 
+	  	  ref:ownedBorderedNodes (0,-1)
+	  	  attr:arrangeConstraints (0,-1)
+	   Class - DNode -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement DValidable DNavigable DDiagramElement AbstractDNode EdgeTarget DragAndDropTarget 
+	  	  ref:ownedStyle (0,1)
+	  	  ref:originalStyle (0,1)
+	  	  ref:actualMapping (1,1)
+	  	  ref:candidatesMapping (0,-1)
+	  	  attr:width (0,1)
+	  	  attr:height (0,1)
+	  	  attr:labelPosition (0,1)
+	  	  attr:resizeKind (0,1)
+	   Abstract Class - DDiagramElementContainer -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement DValidable DNavigable DDiagramElement AbstractDNode EdgeTarget DragAndDropTarget DContainer 
+	  	  ref:nodes (0,-1)
+	  	  ref:containers (0,-1)
+	  	  ref:elements (0,-1)
+	  	  ref:ownedStyle (0,1)
+	  	  ref:originalStyle (0,1)
+	  	  ref:actualMapping (1,1)
+	  	  ref:candidatesMapping (0,-1)
+	  	  attr:width (0,1)
+	  	  attr:height (0,1)
+	   Class - DNodeContainer -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement DValidable DNavigable DDiagramElement AbstractDNode EdgeTarget DragAndDropTarget DContainer DDiagramElementContainer 
+	  	  ref:ownedDiagramElements (0,-1)
+	  	  attr:childrenPresentation (1,1)
+	   Class - DNodeList -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement DValidable DNavigable DDiagramElement AbstractDNode EdgeTarget DragAndDropTarget DContainer DDiagramElementContainer 
+	  	  ref:ownedElements (0,-1)
+	  	  attr:lineWidth (0,1)
+	   Class - DNodeListElement -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement DValidable DNavigable DDiagramElement AbstractDNode 
+	  	  ref:ownedStyle (0,1)
+	  	  ref:originalStyle (0,1)
+	  	  ref:actualMapping (1,1)
+	  	  ref:candidatesMapping (0,-1)
+	   Class - DEdge -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement DValidable DNavigable DDiagramElement EdgeTarget 
+	  	  ref:ownedStyle (0,1)
+	  	  ref:sourceNode (1,1)
+	  	  ref:targetNode (1,1)
+	  	  ref:actualMapping (1,1)
+	  	  ref:originalStyle (0,1)
+	  	  ref:path (0,-1)
+	  	  attr:size (0,1)
+	  	  attr:routingStyle (1,1)
+	  	  attr:isFold (0,1)
+	  	  attr:isMockEdge (0,1)
+	  	  attr:arrangeConstraints (0,-1)
+	  	  attr:beginLabel (0,1)
+	  	  attr:endLabel (0,1)
+	   Abstract Class - NodeStyle -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle 
+	  	  attr:labelPosition (0,1)
+	  	  attr:hideLabelByDefault (0,1)
+	   Class - Dot -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle NodeStyle 
+	  	  ref:backgroundColor (0,1)
+	  	  attr:strokeSizeComputationExpression (0,1)
+	   Class - GaugeSection -> Customizable 
+	  	  ref:backgroundColor (0,1)
+	  	  ref:foregroundColor (0,1)
+	  	  attr:min (0,1)
+	  	  attr:max (0,1)
+	  	  attr:value (0,1)
+	  	  attr:label (0,1)
+	   Abstract Class - ContainerStyle -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle 
+	   Class - FlatContainerStyle -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle ContainerStyle 
+	  	  ref:backgroundColor (0,1)
+	  	  ref:foregroundColor (0,1)
+	  	  attr:backgroundStyle (1,1)
+	   Class - ShapeContainerStyle -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle ContainerStyle 
+	  	  ref:backgroundColor (1,1)
+	  	  attr:shape (1,1)
+	   Class - Square -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle NodeStyle 
+	  	  ref:color (0,1)
+	  	  attr:width (0,1)
+	  	  attr:height (0,1)
+	   Class - Ellipse -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle NodeStyle 
+	  	  ref:color (0,1)
+	  	  attr:horizontalDiameter (0,1)
+	  	  attr:verticalDiameter (0,1)
+	   Class - Lozenge -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle NodeStyle 
+	  	  ref:color (0,1)
+	  	  attr:width (0,1)
+	  	  attr:height (0,1)
+	   Class - BundledImage -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle NodeStyle 
+	  	  ref:color (1,1)
+	  	  attr:shape (1,1)
+	   Class - WorkspaceImage -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle NodeStyle ContainerStyle 
+	  	  attr:workspacePath (1,1)
+	   Class - CustomStyle -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle NodeStyle 
+	  	  attr:id (0,1)
+	   Abstract Class - EdgeTarget 
+	  	  ref:outgoingEdges (0,-1)
+	  	  ref:incomingEdges (0,-1)
+	   Class - EdgeStyle -> DRefreshable Customizable Style 
+	  	  ref:strokeColor (0,1)
+	  	  ref:beginLabelStyle (0,1)
+	  	  ref:centerLabelStyle (0,1)
+	  	  ref:endLabelStyle (0,1)
+	  	  attr:lineStyle (0,1)
+	  	  attr:sourceArrow (1,1)
+	  	  attr:targetArrow (1,1)
+	  	  attr:foldingStyle (1,1)
+	  	  attr:size (0,1)
+	  	  attr:routingStyle (1,1)
+	  	  attr:centered (1,1)
+	   Class - GaugeCompositeStyle -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle NodeStyle 
+	  	  ref:sections (0,-1)
+	  	  attr:alignment (0,1)
+	   Class - BorderedStyle -> DRefreshable Customizable Style 
+	  	  ref:borderColor (0,1)
+	  	  attr:borderSize (1,1)
+	  	  attr:borderSizeComputationExpression (0,1)
+	   Class - Note -> Customizable BasicLabelStyle LabelStyle DRefreshable Style BorderedStyle NodeStyle 
+	  	  ref:color (0,1)
+	   Class - FilterVariableHistory 
+	  	  ref:ownedValues (0,-1)
+	   Class - FilterVariableValue 
+	  	  ref:variableDefinition (1,1)
+	  	  ref:modelElement (1,1)
+	   Class - CollapseFilter -> GraphicalFilter 
+	  	  attr:width (0,1)
+	  	  attr:height (0,1)
+	   Class - IndirectlyCollapseFilter -> GraphicalFilter CollapseFilter 
+	   Class - BeginLabelStyle -> Customizable BasicLabelStyle 
+	   Class - CenterLabelStyle -> Customizable BasicLabelStyle 
+	   Class - EndLabelStyle -> Customizable BasicLabelStyle 
+	   Class - BracketEdgeStyle -> DRefreshable Customizable Style EdgeStyle 
+	   Class - ComputedStyleDescriptionRegistry 
+	  	  ref:computedStyleDescriptions (0,-1)
+	  	  ref:cache (0,-1)
+	   Class - DiagramElementMapping2ModelElement 
+	  	  ref:key (1,1)
+	  	  ref:value (0,-1)
+	   Class - ModelElement2ViewVariable 
+	  	  ref:key (1,1)
+	  	  ref:value (0,-1)
+	   Class - ViewVariable2ContainerVariable 
+	  	  ref:key (1,1)
+	  	  ref:value (0,-1)
+	   Class - ContainerVariable2StyleDescription 
+	  	  ref:key (1,1)
+	  	  ref:value (0,1)
+	   Class - DragAndDropTarget 
+
+Ecore Model - layoutdata
+	   Abstract Class - AbstractLayoutData 
+	  	  ref:label (0,1)
+	  	  attr:id (1,1)
+	   Class - NodeLayoutData -> AbstractLayoutData 
+	  	  ref:children (0,-1)
+	  	  ref:outgoingEdges (0,-1)
+	  	  ref:location (0,1)
+	  	  attr:width (0,1)
+	  	  attr:height (0,1)
+	   Class - EdgeLayoutData -> AbstractLayoutData 
+	  	  ref:pointList (0,-1)
+	  	  ref:sourceRefPoint (0,1)
+	  	  ref:targetRefPoint (0,1)
+	  	  attr:sourceTerminal (0,1)
+	  	  attr:targetTerminal (0,1)
+	  	  attr:routing (0,1)
+	  	  attr:jumpLinkStatus (0,1)
+	  	  attr:jumpLinkType (0,1)
+	  	  attr:reverseJumpLink (0,1)
+	  	  attr:smoothness (0,1)
+	   Class - Point 
+	  	  attr:x (0,1)
+	  	  attr:y (0,1)
+
+Ecore Model - sequence
+	   Class - SequenceDDiagram -> DocumentedElement DRefreshable DModelElement DRepresentation DragAndDropTarget DValidable DContainer DDiagram DSemanticDecorator DSemanticDiagram 
+	  	  ref:semanticOrdering (0,1)
+	  	  ref:graphicalOrdering (0,1)
+	  	  ref:instanceRoleSemanticOrdering (0,1)
+
+Ecore Model - interactions
+	   Class - Model 
+	  	  ref:ownedInteractions (0,-1)
+	  	  attr:name (1,1)
+	   Class - Interaction 
+	  	  ref:participants (0,-1)
+	  	  ref:messages (0,-1)
+	  	  ref:executions (0,-1)
+	  	  ref:states (0,-1)
+	  	  ref:interactionUses (0,-1)
+	  	  ref:combinedFragments (0,-1)
+	  	  ref:ends (0,-1)
+	  	  ref:constraints (0,-1)
+	  	  attr:name (0,1)
+	   Class - Participant 
+	  	  ref:type (1,1)
+	  	  attr:name (1,1)
+	   Abstract Class - Message 
+	  	  ref:sendingEnd (1,1)
+	  	  ref:receivingEnd (1,1)
+	  	  attr:name (1,1)
+	   Class - CallMessage -> Message 
+	  	  ref:operation (1,1)
+	   Class - FeatureAccessMessage -> Message 
+	  	  ref:feature (1,1)
+	  	  attr:isWrite (1,1)
+	   Class - CreateParticipantMessage -> Message 
+	   Class - DestroyParticipantMessage -> Message 
+	   Class - ReturnMessage -> Message 
+	  	  ref:invocationMessage (1,1)
+	   Class - Execution 
+	  	  ref:owner (1,1)
+	  	  ref:start (1,1)
+	  	  ref:end (1,1)
+	  	  attr:name (1,1)
+	   Class - State 
+	  	  ref:owner (1,1)
+	  	  ref:start (1,1)
+	  	  ref:end (1,1)
+	  	  attr:name (1,1)
+	   Class - InteractionUse 
+	  	  ref:interaction (1,1)
+	  	  ref:coveredParticipants (1,-1)
+	  	  ref:start (1,1)
+	  	  ref:finish (1,1)
+	  	  attr:type (1,1)
+	   Class - CombinedFragment 
+	  	  ref:coveredParticipants (1,-1)
+	  	  ref:start (1,1)
+	  	  ref:finish (1,1)
+	  	  ref:ownedOperands (1,-1)
+	  	  attr:operator (1,1)
+	   Class - Operand 
+	  	  ref:start (1,1)
+	  	  attr:name (1,1)
+	   Abstract Class - AbstractEnd 
+	  	  ref:context (0,1)
+	  	  attr:name (1,1)
+	   Class - MessageEnd -> AbstractEnd 
+	  	  ref:message (1,1)
+	   Class - ExecutionEnd -> AbstractEnd 
+	  	  ref:execution (1,1)
+	   Class - StateEnd -> AbstractEnd 
+	  	  ref:state (1,1)
+	   Class - InteractionUseEnd -> AbstractEnd 
+	  	  ref:owner (1,1)
+	   Class - CombinedFragmentEnd -> AbstractEnd 
+	  	  ref:owner (1,1)
+	   Class - OperandEnd -> AbstractEnd 
+	  	  ref:owner (1,1)
+	   Class - MixEnd -> AbstractEnd ExecutionEnd MessageEnd 
+	   Class - Constraint 
+	  	  ref:constrainedEnds (0,-1)
+	  	  attr:expression (1,1)
+
+Ecore Model - basicfamily
+	   Abstract Class - Person 
+	  	  ref:children (0,-1)
+	  	  ref:parents (0,2)
+	  	  ref:mother (0,1)
+	  	  ref:father (0,1)
+	  	  attr:name (0,1)
+	   Class - Family 
+	  	  ref:members (0,-1)
+	  	  attr:name (0,1)
+	   Class - Man -> Person 
+	   Class - Woman -> Person
+
+Ecore Model - table
+	   Class - DTable -> DocumentedElement DRefreshable DModelElement DRepresentation DSemanticDecorator LineContainer DTableElementUpdater 
+	  	  ref:columns (0,-1)
+	  	  ref:description (0,1)
+	  	  attr:headerColumnWidth (0,1)
+	   Interface - DTableElementUpdater 
+	   Abstract Class - DTableElement -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement 
+	  	  ref:tableElementMapping (0,1)
+	   Abstract Class - LineContainer -> DSemanticDecorator 
+	  	  ref:lines (0,-1)
+	   Class - DLine -> DSemanticDecorator LineContainer DLabelled DMappingBased DStylizable DRefreshable DRepresentationElement DTableElement DTableElementUpdater 
+	  	  ref:originMapping (1,1)
+	  	  ref:cells (0,-1)
+	  	  ref:container (0,1)
+	  	  ref:orderedCells (0,-1)
+	  	  ref:currentStyle (0,1)
+	  	  attr:label (0,1)
+	  	  attr:visible (1,1)
+	  	  attr:collapsed (1,1)
+	   Class - DCell -> DSemanticDecorator DLabelled DMappingBased DStylizable DRefreshable DRepresentationElement DTableElement DTableElementUpdater 
+	  	  ref:line (0,1)
+	  	  ref:column (0,1)
+	  	  ref:currentStyle (0,1)
+	  	  ref:updater (0,1)
+	  	  ref:intersectionMapping (0,1)
+	  	  attr:label (0,1)
+	   Class - DCellStyle -> DTableElementStyle 
+	  	  ref:foregroundStyleOrigin (0,1)
+	  	  ref:backgroundStyleOrigin (0,1)
+	   Abstract Class - DColumn -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement DTableElement 
+	  	  ref:cells (0,-1)
+	  	  ref:originMapping (1,1)
+	  	  ref:table (0,1)
+	  	  ref:orderedCells (0,-1)
+	  	  ref:currentStyle (0,1)
+	  	  attr:label (0,1)
+	  	  attr:visible (1,1)
+	  	  attr:width (0,1)
+	   Class - DTargetColumn -> DSemanticDecorator DLabelled DMappingBased DStylizable DRefreshable DRepresentationElement DTableElement DColumn DTableElementUpdater 
+	   Class - DFeatureColumn -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement DTableElement DColumn 
+	  	  attr:featureName (1,1)
+	   Abstract Class - DTableElementSynchronizer 
+	   Class - DTableElementStyle 
+	  	  ref:foregroundColor (0,1)
+	  	  ref:backgroundColor (0,1)
+	  	  attr:labelSize (0,1)
+	  	  attr:labelFormat (0,1)
+	  	  attr:defaultForegroundStyle (0,1)
+	  	  attr:defaultBackgroundStyle (0,1)
+
+Ecore Model - tree
+	   Class - DTree -> DocumentedElement DRefreshable DModelElement DRepresentation DSemanticDecorator DTreeItemContainer DTreeElementUpdater 
+	  	  ref:semanticElements (0,-1)
+	  	  ref:description (1,1)
+	   Class - DTreeElementUpdater 
+	   Class - DTreeElement -> DLabelled DMappingBased DStylizable DRefreshable DSemanticDecorator DRepresentationElement 
+	  	  ref:treeElementMapping (0,1)
+	   Abstract Class - DTreeItemContainer -> DSemanticDecorator 
+	  	  ref:ownedTreeItems (0,-1)
+	   Class - DTreeItem -> DSemanticDecorator DTreeItemContainer DLabelled DMappingBased DStylizable DRefreshable DRepresentationElement DTreeElement DTreeElementUpdater 
+	  	  ref:ownedStyle (1,1)
+	  	  ref:actualMapping (1,1)
+	  	  ref:container (0,1)
+	  	  ref:styleUpdater (0,1)
+	  	  ref:updater (0,1)
+	  	  attr:expanded (1,1)
+	   Class - TreeItemStyle -> DRefreshable Customizable Style BasicLabelStyle LabelStyle 
+	  	  ref:backgroundColor (0,1)
+	   Class - DTreeElementSynchronizer 
