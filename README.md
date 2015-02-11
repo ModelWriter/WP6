@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/modelwriter/wp6.png?label=ready&title=Ready)](https://waffle.io/modelwriter/wp6)
 Work Package 6
 ===
 **Work Package 6 - ModelWriter Architecture, Integration and Evaluation (Obeo)**
