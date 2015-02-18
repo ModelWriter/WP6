@@ -26,26 +26,35 @@ public class Docx2EcoreConverter {
 
 	private static Resource resource;
 	private static int reqId = 0;
+	
+	// Requirement property keywords
 	private final static String REQUIREMENT_NAME = "Name ";
 	private final static String REQUIREMENT_DESCRIPTION = "Description ";
 	private final static String REQUIREMENT_REFINE = "Refine ";
 	private final static String REQUIREMENT_DEPENDENCY_TO = "Dependency to ";
 	private final static String REQUIREMENT_PRIORITY = "Priority ";
-
-	private static Map<Requirement,String> requirementsMap;
+ 
+	//private static Map<Requirement,String> requirementsMap;
+	
+	// Stores levels 
 	private static Stack<RequirementLevel> requirementLevelStack;
+
+	// Stores requirement level object and their levels
 	private static Map<RequirementLevel,Integer> requirementLevelMap;
+	
+	// Stores styles and their levels
 	private static Map<String,Integer> headingMap;
 
 	public static void main(String[] args)throws Exception 
 	{
-		requirementsMap = new HashMap<Requirement,String>();
+		//requirementsMap = new HashMap<Requirement,String>();
 		requirementLevelStack = new Stack<RequirementLevel>();
 
 		requirementLevelMap = new HashMap<RequirementLevel, Integer>();
 		headingMap = new HashMap<String,Integer>();
 
-		headingMap.put("NoSpacing", 0);
+		// higher level is Heading1
+		//headingMap.put("NoSpacing", 0);
 		headingMap.put("Heading1", 1);
 		headingMap.put("Heading2", 2);
 		headingMap.put("Heading3", 3);
@@ -80,7 +89,7 @@ public class Docx2EcoreConverter {
 
 			if( para != null){
 
-				// first paragraph
+				// first paragraph element
 				if(controller == 1){
 					
 					// Create a new RequirementLevel
@@ -90,6 +99,7 @@ public class Docx2EcoreConverter {
 					rl.setName(para.getText());
 					
 					// para.getStyle().equals("Heading1")
+					
 					// Only biggest headers(Heading 1) should be added Product
 					if(headingMap.get(para.getStyle()) == 1){
 						product.getOwnedRequirementLevel().add(rl);
@@ -101,11 +111,11 @@ public class Docx2EcoreConverter {
 
 				else {
 
-					// If the paragraph is in the lowest level
+					// If the paragraph is on the lowest level
 					// This paragraph is about one of requirements' properties
 					if(para.getStyle() == null){
 						
-						// If there is no object related the requirement
+						// If there is no corresponding requirement object
 						if(reqFlag == false){
 							
 							r = factory.createRequirement();
@@ -115,28 +125,28 @@ public class Docx2EcoreConverter {
 							reqFlag = true;
 						}															
 
+						// Split the propertie and the value of it
 						String[] values = para.getText().split(":");
 
-						// Set requirements' name
+						// Set requirement's name
 						if(values[0].equals(REQUIREMENT_NAME)){
 
 							r.setName(values[1]);
 						}
 
-						// Set requirements' description
+						// Set requirement's description
 						if(values[0].equals(REQUIREMENT_DESCRIPTION)){
 
 							r.setDescription(values[1]);
 						}
 
-						// Set requirements' dependency
+						// Set requirement's dependency
 						if(values[0].equals(REQUIREMENT_DEPENDENCY_TO)){
 
-							// daha tanýmlanmamýþ olan bir req olmasý durumu ?
 							// r.setDependencyTo();
 						}
 
-						// Set requirements' priority
+						// Set requirement's priority
 						if(values[0].equals(REQUIREMENT_PRIORITY)){
 
 							// to do
@@ -145,8 +155,8 @@ public class Docx2EcoreConverter {
 
 					}else{
 						
-						// this paragraph is about different level
-						// then add requirement to corresponding level
+						// The current paragraph is on different level
+						// so add requirement to peek requirement level object
 						if(reqFlag == true){
 							
 							RequirementLevel poppedReqLvl = requirementLevelStack.pop();
@@ -157,25 +167,22 @@ public class Docx2EcoreConverter {
 
 						}
 						
-						
-						
-
-						
+						// If the current paragraph's level is lower than the peek's level 
 						if(headingMap.get(para.getStyle()) > requirementLevelMap.get(requirementLevelStack.peek())){
 							
 							RequirementLevel newReqLvl = factory.createRequirementLevel();
 							newReqLvl.setName(para.getText());
 
+							/*
 							if(headingMap.get(para.getStyle()) == 1){
 								product.getOwnedRequirementLevel().add(newReqLvl);
-							}
-
+							}*/
+							
 							requirementLevelStack.push(newReqLvl);
 							requirementLevelMap.put(newReqLvl, headingMap.get(para.getStyle()));
 						}
 
-						
-
+						// If the current paragraph's level is equal to the peek's level 
 						else if(controller > 1 && (headingMap.get(para.getStyle()) == requirementLevelMap.get(requirementLevelStack.peek()))){
 							
 							RequirementLevel poppedReqLvl = requirementLevelStack.pop();
@@ -200,12 +207,16 @@ public class Docx2EcoreConverter {
 						}
 
 						
+						// If the current paragraph's level is higher than the peek's level 
+						// then pop the requirement level and add it to peek's level is higher than
+						// current paragraph's level
 						else{											
 
 							while(headingMap.get(para.getStyle()) <= requirementLevelMap.get(requirementLevelStack.peek())){
 								
 								RequirementLevel poppedReqLvl = requirementLevelStack.pop();
 								
+								// Higher level paragraph must be added to product
 								if(requirementLevelMap.get(poppedReqLvl) == 1){
 									
 									product.getOwnedRequirementLevel().add(poppedReqLvl);
@@ -219,11 +230,12 @@ public class Docx2EcoreConverter {
 
 							}
 
-							
 							RequirementLevel newReqLvl = factory.createRequirementLevel();
 							newReqLvl.setName(para.getText());
 
-							product.getOwnedRequirementLevel().add(newReqLvl);
+							if(headingMap.get(para.getStyle()) == 1){
+								product.getOwnedRequirementLevel().add(newReqLvl);
+							}
 
 							requirementLevelStack.push(newReqLvl);
 							requirementLevelMap.put(newReqLvl, headingMap.get(para.getStyle()));
@@ -239,6 +251,8 @@ public class Docx2EcoreConverter {
 
 		}
 		
+		
+		// At last, stack must be emptied
 		while(!requirementLevelStack.isEmpty()){
 			
 			RequirementLevel poppedReqLvl = requirementLevelStack.pop();	
@@ -254,37 +268,41 @@ public class Docx2EcoreConverter {
 			
 		}
 			
+		// Create and save the model instance to xmi file
 		createXMIFile(product);
 
 
 	}
 
+	/**
+	 * Saves the model instance and writes it to xmi file
+	 * 
+	 * @param product
+	 */
 	private static void createXMIFile(Product product) {
-		// TODO Auto-generated method stub
-
+		
 				ResourceSet resourceSet = new ResourceSetImpl();
-				/*
-				 * Register XML Factory implementation using DEFAULT_EXTENSION
-				 */
+		
+				// Register XML Factory implementation using xmi extension
 				resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
 						"xmi", new  XMLResourceFactoryImpl());
 
-				/*
-				 * Create empty resource with the given URI
-				 */
+			
+				// Create empty resource with the given URI
 				Resource resource = resourceSet.createResource(URI.createURI("Model/SimpleRequirementMM.xmi"));
 
-				/*
-				 * Add bookStoreObject to contents list of the resource 
-				 */
+				
+				// Add Product to contents list of the resource 
+				
 				resource.getContents().add(product);
 
 				try{
-					/*
-					 * Save the resource
-					 */
+				
+					// Save the resource	
 					resource.save(null);
+					
 				}catch (IOException e) {
+					
 					e.printStackTrace();
 				}
 	}
