@@ -20,6 +20,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Refine" eType="#//Requirement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="DependencyTo" eType="#//Requirement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="PriorityType" eType="#//Priority"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Priority">
     <eLiterals name="Mandatory"/>

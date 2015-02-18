@@ -2,6 +2,7 @@
  */
 package SimpleRequirementMM.impl;
 
+import SimpleRequirementMM.Priority;
 import SimpleRequirementMM.Requirement;
 import SimpleRequirementMM.SimpleRequirementMMPackage;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link SimpleRequirementMM.impl.RequirementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link SimpleRequirementMM.impl.RequirementImpl#getRefine <em>Refine</em>}</li>
  *   <li>{@link SimpleRequirementMM.impl.RequirementImpl#getDependencyTo <em>Dependency To</em>}</li>
+ *   <li>{@link SimpleRequirementMM.impl.RequirementImpl#getPriorityType <em>Priority Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,6 +90,26 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 	 * @ordered
 	 */
 	protected Requirement dependencyTo;
+
+	/**
+	 * The default value of the '{@link #getPriorityType() <em>Priority Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPriorityType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Priority PRÝORÝTY_TYPE_EDEFAULT = Priority.MANDATORY;
+
+	/**
+	 * The cached value of the '{@link #getPriorityType() <em>Priority Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPriorityType()
+	 * @generated
+	 * @ordered
+	 */
+	protected Priority priorityType = PRÝORÝTY_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -231,6 +253,27 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Priority getPriorityType() {
+		return priorityType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPriorityType(Priority newPriorityType) {
+		Priority oldPriorityType = priorityType;
+		priorityType = newPriorityType == null ? PRÝORÝTY_TYPE_EDEFAULT : newPriorityType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SimpleRequirementMMPackage.REQUÝREMENT__PRÝORÝTY_TYPE, oldPriorityType, priorityType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -244,6 +287,8 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 			case SimpleRequirementMMPackage.REQUÝREMENT__DEPENDENCY_TO:
 				if (resolve) return getDependencyTo();
 				return basicGetDependencyTo();
+			case SimpleRequirementMMPackage.REQUÝREMENT__PRÝORÝTY_TYPE:
+				return getPriorityType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -267,6 +312,9 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 				return;
 			case SimpleRequirementMMPackage.REQUÝREMENT__DEPENDENCY_TO:
 				setDependencyTo((Requirement)newValue);
+				return;
+			case SimpleRequirementMMPackage.REQUÝREMENT__PRÝORÝTY_TYPE:
+				setPriorityType((Priority)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -292,6 +340,9 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 			case SimpleRequirementMMPackage.REQUÝREMENT__DEPENDENCY_TO:
 				setDependencyTo((Requirement)null);
 				return;
+			case SimpleRequirementMMPackage.REQUÝREMENT__PRÝORÝTY_TYPE:
+				setPriorityType(PRÝORÝTY_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -312,6 +363,8 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 				return refine != null;
 			case SimpleRequirementMMPackage.REQUÝREMENT__DEPENDENCY_TO:
 				return dependencyTo != null;
+			case SimpleRequirementMMPackage.REQUÝREMENT__PRÝORÝTY_TYPE:
+				return priorityType != PRÝORÝTY_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -330,6 +383,8 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 		result.append(ýd);
 		result.append(", Description: ");
 		result.append(description);
+		result.append(", PriorityType: ");
+		result.append(priorityType);
 		result.append(')');
 		return result.toString();
 	}

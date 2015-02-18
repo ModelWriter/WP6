@@ -234,6 +234,15 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getRequirement_PriorityType() {
+		return (EAttribute)requirementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getPriority() {
 		return priorityEEnum;
 	}
@@ -281,6 +290,7 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 		createEAttribute(requirementEClass, REQUÝREMENT__DESCRÝPTÝON);
 		createEReference(requirementEClass, REQUÝREMENT__REFÝNE);
 		createEReference(requirementEClass, REQUÝREMENT__DEPENDENCY_TO);
+		createEAttribute(requirementEClass, REQUÝREMENT__PRÝORÝTY_TYPE);
 
 		// Create enums
 		priorityEEnum = createEEnum(PRÝORÝTY);
@@ -334,6 +344,7 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 		initEAttribute(getRequirement_Description(), ecorePackage.getEString(), "Description", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRequirement_Refine(), this.getRequirement(), null, "Refine", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRequirement_DependencyTo(), this.getRequirement(), null, "DependencyTo", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRequirement_PriorityType(), this.getPriority(), "PriorityType", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(priorityEEnum, Priority.class, "Priority");

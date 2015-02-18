@@ -22,6 +22,7 @@ Package SimpleRequirementMM <eu.modelwriter.architecture.textconnectors.docx.req
     Attribute Description : EString
     Reference Refine : Requirement
     Reference DependencyTo : Requirement
+    Attribute PriorityType : Priority
 
   Enum Priority
     Literal Mandatory = 0

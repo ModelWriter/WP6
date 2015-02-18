@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
+import SimpleRequirementMM.Priority;
 import SimpleRequirementMM.Product;
 import SimpleRequirementMM.Requirement;
 import SimpleRequirementMM.RequirementLevel;
@@ -33,7 +34,8 @@ public class Docx2EcoreConverter {
 	private final static String REQUIREMENT_REFINE = "Refine ";
 	private final static String REQUIREMENT_DEPENDENCY_TO = "Dependency to ";
 	private final static String REQUIREMENT_PRIORITY = "Priority ";
- 
+    private final static String REQUIREMENT_PRIORITY_MANDATORY = " Mandatory";
+    
 	//private static Map<Requirement,String> requirementsMap;
 	
 	// Stores levels 
@@ -64,7 +66,7 @@ public class Docx2EcoreConverter {
 		headingMap.put("Heading7", 7);
 		headingMap.put("Heading8", 8);
 		headingMap.put("Heading9", 9);
-
+		
 		XWPFDocument docx = new XWPFDocument(new FileInputStream("C:/Users/2/Desktop/SampleRequirementDocument.docx"));
 
 		XWPFWordExtractor we = new XWPFWordExtractor(docx);
@@ -143,12 +145,25 @@ public class Docx2EcoreConverter {
 						// Set requirement's dependency
 						if(values[0].equals(REQUIREMENT_DEPENDENCY_TO)){
 
-							// r.setDependencyTo();
+							// to do
 						}
 
 						// Set requirement's priority
 						if(values[0].equals(REQUIREMENT_PRIORITY)){
 
+							if(values[1].equals(REQUIREMENT_PRIORITY_MANDATORY)){
+
+								r.setPriorityType(Priority.MANDATORY);	
+								
+							}else{
+								
+								r.setPriorityType(Priority.OPTÝONAL);
+							}
+						}
+						
+						// Set requirement's refine
+						if(values[0].equals(REQUIREMENT_REFINE)){
+							
 							// to do
 						}
 

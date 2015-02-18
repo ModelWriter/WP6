@@ -251,13 +251,22 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	int REQUÝREMENT__DEPENDENCY_TO = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Priority Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUÝREMENT__PRÝORÝTY_TYPE = NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Requirement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int REQUÝREMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Requirement</em>' class.
@@ -408,6 +417,17 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	EReference getRequirement_DependencyTo();
 
 	/**
+	 * Returns the meta object for the attribute '{@link SimpleRequirementMM.Requirement#getPriorityType <em>Priority Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Priority Type</em>'.
+	 * @see SimpleRequirementMM.Requirement#getPriorityType()
+	 * @see #getRequirement()
+	 * @generated
+	 */
+	EAttribute getRequirement_PriorityType();
+
+	/**
 	 * Returns the meta object for enum '{@link SimpleRequirementMM.Priority <em>Priority</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -543,6 +563,14 @@ public interface SimpleRequirementMMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REQUÝREMENT__DEPENDENCY_TO = eINSTANCE.getRequirement_DependencyTo();
+
+		/**
+		 * The meta object literal for the '<em><b>Priority Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REQUÝREMENT__PRÝORÝTY_TYPE = eINSTANCE.getRequirement_PriorityType();
 
 		/**
 		 * The meta object literal for the '{@link SimpleRequirementMM.Priority <em>Priority</em>}' enum.

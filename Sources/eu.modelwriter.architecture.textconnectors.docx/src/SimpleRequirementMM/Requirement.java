@@ -15,6 +15,7 @@ package SimpleRequirementMM;
  *   <li>{@link SimpleRequirementMM.Requirement#getDescription <em>Description</em>}</li>
  *   <li>{@link SimpleRequirementMM.Requirement#getRefine <em>Refine</em>}</li>
  *   <li>{@link SimpleRequirementMM.Requirement#getDependencyTo <em>Dependency To</em>}</li>
+ *   <li>{@link SimpleRequirementMM.Requirement#getPriorityType <em>Priority Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -126,5 +127,34 @@ public interface Requirement extends NamedElement {
 	 * @generated
 	 */
 	void setDependencyTo(Requirement value);
+
+	/**
+	 * Returns the value of the '<em><b>Priority Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link SimpleRequirementMM.Priority}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Priority Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Priority Type</em>' attribute.
+	 * @see SimpleRequirementMM.Priority
+	 * @see #setPriorityType(Priority)
+	 * @see SimpleRequirementMM.SimpleRequirementMMPackage#getRequirement_PriorityType()
+	 * @model
+	 * @generated
+	 */
+	Priority getPriorityType();
+
+	/**
+	 * Sets the value of the '{@link SimpleRequirementMM.Requirement#getPriorityType <em>Priority Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Priority Type</em>' attribute.
+	 * @see SimpleRequirementMM.Priority
+	 * @see #getPriorityType()
+	 * @generated
+	 */
+	void setPriorityType(Priority value);
 
 } // Requirement

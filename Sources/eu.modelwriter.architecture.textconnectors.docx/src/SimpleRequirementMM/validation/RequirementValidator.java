@@ -4,6 +4,7 @@
  */
 package SimpleRequirementMM.validation;
 
+import SimpleRequirementMM.Priority;
 import SimpleRequirementMM.Requirement;
 
 /**
@@ -19,4 +20,6 @@ public interface RequirementValidator {
 	boolean validateDescription(String value);
 	boolean validateRefine(Requirement value);
 	boolean validateDependencyTo(Requirement value);
+
+	boolean validatePriorityType(Priority value);
 }
