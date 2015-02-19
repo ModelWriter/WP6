@@ -26,6 +26,7 @@ package SimpleRequirementMM;
 public interface Requirement extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
@@ -33,12 +34,12 @@ public interface Requirement extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(int)
+	 * @see #setId(String)
 	 * @see SimpleRequirementMM.SimpleRequirementMMPackage#getRequirement_Id()
-	 * @model
+	 * @model default=""
 	 * @generated
 	 */
-	int getId();
+	String getId();
 
 	/**
 	 * Sets the value of the '{@link SimpleRequirementMM.Requirement#getId <em>Id</em>}' attribute.
@@ -48,7 +49,7 @@ public interface Requirement extends NamedElement {
 	 * @see #getId()
 	 * @generated
 	 */
-	void setId(int value);
+	void setId(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.

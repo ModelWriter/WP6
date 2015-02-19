@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ASCII"?>
+<SimpleRequirementMM:Product xmlns:SimpleRequirementMM="eu.modelwriter.architecture.textconnectors.docx.requirement">
+  <OwnedRequirementLevel Name="1 Presentation"/>
+  <OwnedRequirementLevel Name="2 Requirements">
+    <OwnedLevel Name="2.1 Level A">
+      <OwnedRequirement Name=" Equipment state" Id="EM-HLR-F-REQ-001" Description=" Equipments regularly send signals (a frame) to give their state. Signals differ according to the equipment category." PriorityType="Optional"/>
+      <OwnedRequirement Name=" Case of failure" Id="EM-HLR-F-REQ-002" Description=" In case of failure assumption (particular signal), advanced analysis should be performed and correlation should be done with other existing information to check the effective failure."/>
+      <OwnedRequirement Name=" Handle failure" Id="EM-HLR-F-REQ-003" Description=" If failure is confirmed, a procedure should be presented to the maintenance operator to handle the failure."/>
+    </OwnedLevel>
+    <OwnedLevel Name="2.2 Level B">
+      <OwnedLevel Name="2.2.1 Level B.1">
+        <OwnedLevel Name="2.2.1.1 Level B.1.1">
+          <OwnedRequirement Name=" Permissions" Id="EM-HLR-F-REQ-005" Description=" The target system should allow administrating the equipments and their categories."/>
+          <OwnedRequirement Name=" Procedure" Id="EM-HLR-F-REQ-004" Description=" The procedure differs according to the equipment type."/>
+          <OwnedRequirement Name=" Failures statistich" Id="EM-HLR-F-REQ-006" Description=" Statistics about failures and incident resolutions should be activated if needed and should be exported as reports if requested by the chief operator."/>
+        </OwnedLevel>
+      </OwnedLevel>
+    </OwnedLevel>
+  </OwnedRequirementLevel>
+  <OwnedRequirementLevel Name="3 Conclusion">
+    <OwnedLevel Name="3.1 Level A"/>
+    <OwnedLevel Name="3.2 Level B"/>
+    <OwnedLevel Name="3.3 Level C"/>
+  </OwnedRequirementLevel>
+  <OwnedRequirementLevel Name="4 Summary"/>
+</SimpleRequirementMM:Product>

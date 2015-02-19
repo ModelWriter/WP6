@@ -18,7 +18,7 @@ Package SimpleRequirementMM <eu.modelwriter.architecture.textconnectors.docx.req
     Reference OwnedRequirement : Requirement<<0..*>>
 
   Class Requirement -> NamedElement
-    Attribute Id : EInt
+    Attribute Id : EString
     Attribute Description : EString
     Reference Refine : Requirement
     Reference DependencyTo : Requirement

@@ -16,6 +16,8 @@ import SimpleRequirementMM.Requirement;
 public interface RequirementValidator {
 	boolean validate();
 
+	boolean validateId(String value);
+
 	boolean validateId(int value);
 	boolean validateDescription(String value);
 	boolean validateRefine(Requirement value);

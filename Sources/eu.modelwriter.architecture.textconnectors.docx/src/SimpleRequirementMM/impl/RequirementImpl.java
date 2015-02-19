@@ -39,7 +39,7 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ID_EDEFAULT = 0;
+	protected static final String ID_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -49,7 +49,7 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 	 * @generated
 	 * @ordered
 	 */
-	protected int ýd = ID_EDEFAULT;
+	protected String ýd = ID_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -135,7 +135,7 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getId() {
+	public String getId() {
 		return ýd;
 	}
 
@@ -144,8 +144,8 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(int newId) {
-		int oldId = ýd;
+	public void setId(String newId) {
+		String oldId = ýd;
 		ýd = newId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SimpleRequirementMMPackage.REQUÝREMENT__ID, oldId, ýd));
@@ -302,7 +302,7 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SimpleRequirementMMPackage.REQUÝREMENT__ID:
-				setId((Integer)newValue);
+				setId((String)newValue);
 				return;
 			case SimpleRequirementMMPackage.REQUÝREMENT__DESCRÝPTÝON:
 				setDescription((String)newValue);
@@ -356,7 +356,7 @@ public class RequirementImpl extends NamedElementImpl implements Requirement {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SimpleRequirementMMPackage.REQUÝREMENT__ID:
-				return ýd != ID_EDEFAULT;
+				return ID_EDEFAULT == null ? ýd != null : !ID_EDEFAULT.equals(ýd);
 			case SimpleRequirementMMPackage.REQUÝREMENT__DESCRÝPTÝON:
 				return DESCRÝPTÝON_EDEFAULT == null ? description != null : !DESCRÝPTÝON_EDEFAULT.equals(description);
 			case SimpleRequirementMMPackage.REQUÝREMENT__REFÝNE:

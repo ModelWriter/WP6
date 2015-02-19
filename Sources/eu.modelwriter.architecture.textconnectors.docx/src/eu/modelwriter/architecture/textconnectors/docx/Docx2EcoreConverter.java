@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -72,7 +74,7 @@ public class Docx2EcoreConverter {
 		XWPFWordExtractor we = new XWPFWordExtractor(docx);
 
 		XWPFStyles styles = docx.getStyles();
-
+		
 		List<XWPFParagraph> paragraphList = docx.getParagraphs();
 
 		SimpleRequirementMMFactory factory = SimpleRequirementMMFactory.eINSTANCE;
@@ -81,15 +83,23 @@ public class Docx2EcoreConverter {
 		int controller = 0;
 		Product product = factory.createProduct();
 		boolean reqFlag = false;
+		boolean isLevelChanged = false;
 		Requirement r = null;
+		Requirement pr = null;
+		
+		String pattern = "(EM-HLR-F-REQ-[0-9]{3})";
+		Pattern p = Pattern.compile(pattern);
+		
+		
 		
 		for(XWPFParagraph para : paragraphList){
 
+			//boolean b = para.getRun().isBold();
 			controller++;
 			
-			//String paragraphText = para.getText();
+			String paragraphText = para.getText();
 
-			if( para != null){
+			if( para != null && para.getText() != ""){
 
 				// first paragraph element
 				if(controller == 1){
@@ -117,14 +127,23 @@ public class Docx2EcoreConverter {
 					// This paragraph is about one of requirements' properties
 					if(para.getStyle() == null){
 						
+						Matcher m = p.matcher(para.getText());
+						
 						// If there is no corresponding requirement object
-						if(reqFlag == false){
-							
+						if(m.matches()){
+														
+								pr = r;
+								if(pr != null){
+									
+									requirementLevelStack.peek().getOwnedRequirement().add(pr);
+									
+								}
+														
 							r = factory.createRequirement();
-							r.setName(requirementLevelStack.peek().getName());
-							r.setId(reqId++);
+							//r.setName(requirementLevelStack.peek().getName());
+							r.setId(para.getText());
 							
-							reqFlag = true;
+							
 						}															
 
 						// Split the propertie and the value of it
@@ -172,13 +191,17 @@ public class Docx2EcoreConverter {
 						
 						// The current paragraph is on different level
 						// so add requirement to peek requirement level object
-						if(reqFlag == true){
+						if(r != null){
 							
+							/*
 							RequirementLevel poppedReqLvl = requirementLevelStack.pop();
 							poppedReqLvl.getOwnedRequirement().add(r);
 							requirementLevelStack.peek().getOwnedLevel().add(poppedReqLvl);
-							
-							reqFlag = false;
+							*/
+							requirementLevelStack.peek().getOwnedRequirement().add(r);
+							r = null;
+							//isLevelChanged = true;
+							//reqFlag = false;
 
 						}
 						
