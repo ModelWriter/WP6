@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="lib" path="lib/commons-codec-1.9.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/dom4j-1.6.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/poi-3.11-20141221.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/poi-examples-3.11-20141221.jar"/>

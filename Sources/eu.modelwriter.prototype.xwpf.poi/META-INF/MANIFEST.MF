@@ -10,7 +10,6 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
- lib/commons-codec-1.9.jar,
  lib/dom4j-1.6.1.jar,
  lib/poi-3.11-20141221.jar,
  lib/poi-examples-3.11-20141221.jar,
