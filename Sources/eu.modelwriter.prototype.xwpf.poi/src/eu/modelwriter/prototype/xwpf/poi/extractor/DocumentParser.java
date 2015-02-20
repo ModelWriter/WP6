@@ -74,7 +74,7 @@ public class DocumentParser {
 			}
 
 			/* Add Comments in the document */
-			// XXX MRO NOTE: poi does not allow the creation of new comments
+			// XXX MRO NOTE: poi API does not allow the creation of new comments
 			// yet!
 
 			inputDocument = getXWPFDocument(inputFile);
@@ -94,6 +94,15 @@ public class DocumentParser {
 					styleModifier.run();
 					styleModifier.save("output/annotatedVersion.docx");
 				}
+			}
+
+			inputDocument = getXWPFDocument(inputFile);
+			if (inputDocument != null) {
+				// Add content to the document respecting existing styles
+				WordAddContent contentAdder = new WordAddContent(inputDocument);
+
+				contentAdder.run();
+				contentAdder.save("output/AddNewContentVersion.docx");
 			}
 		} finally {
 			if (iStream != null) {
