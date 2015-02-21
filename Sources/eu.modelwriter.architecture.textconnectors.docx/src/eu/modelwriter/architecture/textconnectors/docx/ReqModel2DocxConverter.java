@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import SimpleRequirementMM.Priority;
 import SimpleRequirementMM.Product;
 import SimpleRequirementMM.Requirement;
 import SimpleRequirementMM.RequirementLevel;
@@ -25,6 +26,14 @@ public class ReqModel2DocxConverter {
 
 	private static Resource resource;
 	private static XWPFDocument document;
+	
+	// Requirement property keywords
+		private final static String REQUIREMENT_NAME = "Name";
+		private final static String REQUIREMENT_DESCRIPTION = "Description";
+		private final static String REQUIREMENT_REFINE = "Refine";
+		private final static String REQUIREMENT_DEPENDENCY_TO = "Dependency to ";
+		private final static String REQUIREMENT_PRIORITY = "Priority";
+		private final static String REQUIREMENT_PRIORITY_MANDATORY = "Mandatory";
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
@@ -61,12 +70,10 @@ public class ReqModel2DocxConverter {
 					
 					break;
 				}
-				
-						
+							
 			}
 			
 			
-
 		}// end of try
 		catch (NullPointerException | IOException e) {
 			e.printStackTrace();
@@ -143,10 +150,46 @@ public class ReqModel2DocxConverter {
 		XWPFParagraph paragraph = document.createParagraph();
 		XWPFRun run=paragraph.createRun();
 		
-		run.setText(r.getName());
-		run.setBold(false);
-		run.setFontSize(10);
+		run.setText(r.getId());
+		run.setBold(true);
+		run.setFontSize(11);
 		run.setFontFamily("Calibri (Body)");
+		run.addBreak();
+		
+		XWPFRun runName = paragraph.createRun();
+		runName.setText(REQUIREMENT_NAME + " : " + r.getName());
+		runName.addBreak();
+		
+		XWPFRun runDescription = paragraph.createRun();
+		runDescription.setText(REQUIREMENT_DESCRIPTION + " : " + r.getDescription());
+		runDescription.addBreak();
+		
+		XWPFRun runPriority = paragraph.createRun();
+		if(r.getPriorityType() == Priority.MANDATORY){
+			
+			runDescription.setText(REQUIREMENT_DESCRIPTION + " : Mandatory");
+			
+		}else{
+			
+			runDescription.setText(REQUIREMENT_DESCRIPTION + " : Optional");
+			
+		}
+		runPriority.addBreak();
+		
+		if(r.getDependencyTo() != null){
+			
+			XWPFRun runDependencyTo = paragraph.createRun();
+			runDependencyTo.setText(REQUIREMENT_DEPENDENCY_TO + " : " + r.getDependencyTo().getId());
+			runDependencyTo.addBreak();
+		}
+		
+		if(r.getRefine() != null){
+			
+			XWPFRun runRefine = paragraph.createRun();
+			runRefine.setText(REQUIREMENT_REFINE + " : " + r.getRefine().getId());
+			runRefine.addBreak();
+		}
+		
 	}
 	
 	 // Write Requirement Level to file
