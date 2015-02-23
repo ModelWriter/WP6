@@ -7,6 +7,7 @@
 package eu.modelwriter.architecture.textconnectors.docx;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -16,6 +17,8 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.apache.poi.xwpf.usermodel.XWPFStyles;
+import org.apache.xmlbeans.XmlException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -38,14 +41,19 @@ public class ReqModel2DocxConverter {
 		private final static String REQUIREMENT_DESCRIPTION = "Description";
 		private final static String REQUIREMENT_REFINE = "Refine";
 		private final static String REQUIREMENT_DEPENDENCY_TO = "Dependency to ";
-		private final static String REQUIREMENT_PRIORITY = "Priority";
-		private final static String REQUIREMENT_PRIORITY_MANDATORY = "Mandatory";
+		//private final static String REQUIREMENT_PRIORITY = "Priority";
+		//private final static String REQUIREMENT_PRIORITY_MANDATORY = "Mandatory";
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, XmlException {
 		// TODO Auto-generated method stub
 
-
+		// Get template document which includes heading styles
+		XWPFDocument template = new XWPFDocument(new FileInputStream("lib/template.docx"));
+		
 		document = new XWPFDocument(); 
+		
+		XWPFStyles newStyles = document.createStyles();
+		newStyles.setStyles(template.getStyle());
 		
 		//Write the Document in file system(in this case in project folder)					
 		FileOutputStream out = new FileOutputStream(new File("RequirementModelDocument.docx"));
@@ -225,10 +233,12 @@ public class ReqModel2DocxConverter {
 		paragraph.setAlignment(ParagraphAlignment.LEFT);
 		
 		// Setting heading style is not working
-		paragraph.setStyle("Heading"+heading);
+		// paragraph.setStyle("Heading"+heading);
+		paragraph.setStyle("Heading" + heading);
 		
 		run.setText(requirementLevel.getName());
 		run.setBold(true);
+		run.setColor("000000");
 		
 		switch(heading){
 		
