@@ -111,13 +111,12 @@ public class Docx2ReqModelConverter {
 
 		for(XWPFParagraph paragraph : paragraphList){
 
-			//boolean b = paragraph.getRun().isBold();
 			firstParagraphCounter++;
 
 			// For debug
-		    String paragraphText = paragraph.getText().trim();
+		    // String paragraphText = paragraph.getText().trim();
 
-			if( paragraph != null && paragraphText != ""){
+			if( paragraph != null && paragraph.getText().trim() != ""){
 
 				// first paragraph element
 				if(firstParagraphCounter == 1){
