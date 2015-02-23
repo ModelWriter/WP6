@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -95,7 +98,10 @@ public class ReqModel2DocxConverter {
 		document.write(out);
 		out.close();
 		
-		System.out.println("Docx written successfully");
+		final JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame,
+			    "File written successfully!");
+
 
 	}
 
@@ -231,9 +237,6 @@ public class ReqModel2DocxConverter {
 		XWPFRun run=paragraph.createRun();
 		
 		paragraph.setAlignment(ParagraphAlignment.LEFT);
-		
-		// Setting heading style is not working
-		// paragraph.setStyle("Heading"+heading);
 		paragraph.setStyle("Heading" + heading);
 		
 		run.setText(requirementLevel.getName());
