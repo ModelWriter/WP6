@@ -10,10 +10,6 @@ Development Projects
  * [xwpf - XML Word Processor Format - examples](http://svn.apache.org/repos/asf/poi/trunk/src/examples/src/org/apache/poi/xwpf/usermodel/)
  * 
  
-
-### WP1 - Industrial Use Cases and Requirements (AIRBUS)
-
-###### T1.1 - Evaluation Methods & Tools `[UNIT + KOCSISTEM + AIRBUS + OBEO + HISBIM + MANTIS]`
  
 
 
