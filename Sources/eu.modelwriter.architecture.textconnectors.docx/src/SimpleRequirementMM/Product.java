@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link SimpleRequirementMM.Product#getOwnedRequirementLevel <em>Owned Requirement Level</em>}</li>
+ *   <li>{@link SimpleRequirementMM.Product#getOwnedDefinition <em>Owned Definition</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,19 +22,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Product extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Owned Requirement Level</b></em>' containment reference list.
-	 * The list contents are of type {@link SimpleRequirementMM.RequirementLevel}.
+	 * Returns the value of the '<em><b>Owned Definition</b></em>' containment reference list.
+	 * The list contents are of type {@link SimpleRequirementMM.Definition}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Requirement Level</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Definition</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Requirement Level</em>' containment reference list.
-	 * @see SimpleRequirementMM.SimpleRequirementMMPackage#getProduct_OwnedRequirementLevel()
+	 * @return the value of the '<em>Owned Definition</em>' containment reference list.
+	 * @see SimpleRequirementMM.SimpleRequirementMMPackage#getProduct_OwnedDefinition()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<RequirementLevel> getOwnedRequirementLevel();
+	EList<Definition> getOwnedDefinition();
 
 } // Product

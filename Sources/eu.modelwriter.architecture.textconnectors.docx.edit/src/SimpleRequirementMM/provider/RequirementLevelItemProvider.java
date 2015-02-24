@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RequirementLevelItemProvider extends NamedElementItemProvider {
+public class RequirementLevelItemProvider extends DefinitionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -62,7 +62,6 @@ public class RequirementLevelItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SimpleRequirementMMPackage.Literals.REQUÝREMENT_LEVEL__OWNED_LEVEL);
 			childrenFeatures.add(SimpleRequirementMMPackage.Literals.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON);
 		}
 		return childrenFeatures;
@@ -119,7 +118,6 @@ public class RequirementLevelItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RequirementLevel.class)) {
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -140,7 +138,7 @@ public class RequirementLevelItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SimpleRequirementMMPackage.Literals.REQUÝREMENT_LEVEL__OWNED_LEVEL,
+				(SimpleRequirementMMPackage.Literals.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON,
 				 SimpleRequirementMMFactory.eINSTANCE.createRequirementLevel()));
 
 		newChildDescriptors.add

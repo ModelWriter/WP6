@@ -20,24 +20,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link SimpleRequirementMM.impl.RequirementLevelImpl#getOwnedLevel <em>Owned Level</em>}</li>
  *   <li>{@link SimpleRequirementMM.impl.RequirementLevelImpl#getOwnedDefinition <em>Owned Definition</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RequirementLevelImpl extends NamedElementImpl implements RequirementLevel {
-	/**
-	 * The cached value of the '{@link #getOwnedLevel() <em>Owned Level</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedLevel()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<RequirementLevel> ownedLevel;
-
+public class RequirementLevelImpl extends DefinitionImpl implements RequirementLevel {
 	/**
 	 * The cached value of the '{@link #getOwnedDefinition() <em>Owned Definition</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -72,18 +61,6 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<RequirementLevel> getOwnedLevel() {
-		if (ownedLevel == null) {
-			ownedLevel = new EObjectContainmentEList<RequirementLevel>(RequirementLevel.class, this, SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL);
-		}
-		return ownedLevel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Definition> getOwnedDefinition() {
 		if (ownedDefinition == null) {
 			ownedDefinition = new EObjectContainmentEList<Definition>(Definition.class, this, SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON);
@@ -99,8 +76,6 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
-				return ((InternalEList<?>)getOwnedLevel()).basicRemove(otherEnd, msgs);
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
 				return ((InternalEList<?>)getOwnedDefinition()).basicRemove(otherEnd, msgs);
 		}
@@ -115,8 +90,6 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
-				return getOwnedLevel();
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
 				return getOwnedDefinition();
 		}
@@ -132,10 +105,6 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
-				getOwnedLevel().clear();
-				getOwnedLevel().addAll((Collection<? extends RequirementLevel>)newValue);
-				return;
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
 				getOwnedDefinition().clear();
 				getOwnedDefinition().addAll((Collection<? extends Definition>)newValue);
@@ -152,9 +121,6 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
-				getOwnedLevel().clear();
-				return;
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
 				getOwnedDefinition().clear();
 				return;
@@ -170,8 +136,6 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
-				return ownedLevel != null && !ownedLevel.isEmpty();
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
 				return ownedDefinition != null && !ownedDefinition.isEmpty();
 		}

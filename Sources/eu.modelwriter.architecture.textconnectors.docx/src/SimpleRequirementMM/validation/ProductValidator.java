@@ -4,6 +4,7 @@
  */
 package SimpleRequirementMM.validation;
 
+import SimpleRequirementMM.Definition;
 import SimpleRequirementMM.RequirementLevel;
 
 import org.eclipse.emf.common.util.EList;
@@ -16,6 +17,8 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ProductValidator {
 	boolean validate();
+
+	boolean validateOwnedDefinition(EList<Definition> value);
 
 	boolean validateOwnedRequirementLevel(EList<RequirementLevel> value);
 }

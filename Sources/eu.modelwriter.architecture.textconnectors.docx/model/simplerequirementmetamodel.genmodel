@@ -16,15 +16,19 @@
     <genClasses ecoreClass="simplerequirementmetamodel.ecore#//Product">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simplerequirementmetamodel.ecore#//Product/OwnedRequirementLevel"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="simplerequirementmetamodel.ecore#//Definition"/>
     <genClasses ecoreClass="simplerequirementmetamodel.ecore#//RequirementLevel">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simplerequirementmetamodel.ecore#//RequirementLevel/OwnedLevel"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simplerequirementmetamodel.ecore#//RequirementLevel/OwnedRequirement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simplerequirementmetamodel.ecore#//RequirementLevel/OwnedDefinition"/>
     </genClasses>
     <genClasses ecoreClass="simplerequirementmetamodel.ecore#//Requirement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simplerequirementmetamodel.ecore#//Requirement/Id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simplerequirementmetamodel.ecore#//Requirement/Description"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simplerequirementmetamodel.ecore#//Requirement/Refine"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simplerequirementmetamodel.ecore#//Requirement/DependencyTo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simplerequirementmetamodel.ecore#//Requirement/PriorityType"/>
+    </genClasses>
+    <genClasses ecoreClass="simplerequirementmetamodel.ecore#//TextArea">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simplerequirementmetamodel.ecore#//TextArea/Text"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

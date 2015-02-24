@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link SimpleRequirementMM.RequirementLevel#getOwnedLevel <em>Owned Level</em>}</li>
  *   <li>{@link SimpleRequirementMM.RequirementLevel#getOwnedDefinition <em>Owned Definition</em>}</li>
  * </ul>
  * </p>
@@ -21,23 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface RequirementLevel extends NamedElement {
-	/**
-	 * Returns the value of the '<em><b>Owned Level</b></em>' containment reference list.
-	 * The list contents are of type {@link SimpleRequirementMM.RequirementLevel}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Level</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Level</em>' containment reference list.
-	 * @see SimpleRequirementMM.SimpleRequirementMMPackage#getRequirementLevel_OwnedLevel()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<RequirementLevel> getOwnedLevel();
-
+public interface RequirementLevel extends Definition {
 	/**
 	 * Returns the value of the '<em><b>Owned Definition</b></em>' containment reference list.
 	 * The list contents are of type {@link SimpleRequirementMM.Definition}.

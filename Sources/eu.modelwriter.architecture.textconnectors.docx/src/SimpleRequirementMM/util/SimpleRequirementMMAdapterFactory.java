@@ -76,12 +76,12 @@ public class SimpleRequirementMMAdapterFactory extends AdapterFactoryImpl {
 				return createProductAdapter();
 			}
 			@Override
-			public Adapter caseRequirementLevel(RequirementLevel object) {
-				return createRequirementLevelAdapter();
-			}
-			@Override
 			public Adapter caseDefinition(Definition object) {
 				return createDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseRequirementLevel(RequirementLevel object) {
+				return createRequirementLevelAdapter();
 			}
 			@Override
 			public Adapter caseRequirement(Requirement object) {

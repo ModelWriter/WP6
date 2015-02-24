@@ -45,8 +45,8 @@ public class ReqModel2DocxConverter {
 		private final static String REQUIREMENT_NAME = "Name";
 		private final static String REQUIREMENT_DESCRIPTION = "Description";
 		private final static String REQUIREMENT_REFINE = "Refine";
-		private final static String REQUIREMENT_DEPENDENCY_TO = "Dependency to ";
-		//private final static String REQUIREMENT_PRIORITY = "Priority";
+		private final static String REQUIREMENT_DEPENDENCY_TO = "Dependency to";
+		private final static String REQUIREMENT_PRIORITY = "Priority";
 		//private final static String REQUIREMENT_PRIORITY_MANDATORY = "Mandatory";
 
 	public static void main(String[] args) throws IOException, XmlException {
@@ -61,7 +61,7 @@ public class ReqModel2DocxConverter {
 		newStyles.setStyles(template.getStyle());
 		
 		//Write the Document in file system(in this case in project folder)					
-		FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/RequirementModelDocument.docx"));
+		FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/RequirementModelDocument1.docx"));
 
 		try {
 
@@ -81,9 +81,9 @@ public class ReqModel2DocxConverter {
 				// Traversing Product's children
 				if(o instanceof Product){
 					
-					for(RequirementLevel requirementLevelHeading1 : ((Product)o).getOwnedRequirementLevel()){
+					for(Definition requirementLevelHeading1 : ((Product)o).getOwnedDefinition()){
 						
-						preOrder(requirementLevelHeading1,1);
+						preOrder((RequirementLevel)requirementLevelHeading1,1);
 					}
 					
 					break;
@@ -142,24 +142,25 @@ public class ReqModel2DocxConverter {
 	public static void preOrder (RequirementLevel requirementLevel, int headingLevel)
 	{
 	 
+		/*
 	  if(requirementLevel.getOwnedLevel().isEmpty()){
 		  
 		  // Write Requirement Level to file
 		  writeRequirementLevel(requirementLevel,headingLevel);
 		  //System.out.println(requirementLevel.getName() + " " + headingLevel);
 
-		  if(!requirementLevel.getOwnedDefinition().isEmpty()){
+		  if(!requirementLevel.getOwnedRequirement().isEmpty()){
 			  
-			  for(Definition definition : requirementLevel.getOwnedDefinition()){
+			  for(Requirement requirement : requirementLevel.getOwnedRequirement()){
 				  
 				  // Write Requirement to file
-				  writeRequirement(definition);
+				  writeRequirement(requirement);
 				  //System.out.println(requirement.getName());
 			  }
 		  }
 		  
 		  return;
-	  }
+	  }*/
 	  
 	  // Write Requirement Level to file
 	  writeRequirementLevel(requirementLevel,headingLevel);
@@ -167,14 +168,21 @@ public class ReqModel2DocxConverter {
 	  
 	  headingLevel++;
 	  
-	  for(RequirementLevel subRequirementLevel : requirementLevel.getOwnedLevel()){
+	  for(Definition def : requirementLevel.getOwnedDefinition()){
 		  
-		  preOrder(subRequirementLevel,headingLevel);
-		 
+		  if(def instanceof RequirementLevel){
+			  
+			  preOrder((RequirementLevel)def,headingLevel);
+				 
+		  }else{
+			  
+			  writeRequirement(def);
+		  }
 	  }
 	  
 	}
 	
+
 	/**
 	 * Writes Requirement object to file
 	 * 
@@ -192,25 +200,25 @@ public class ReqModel2DocxConverter {
 			run.setText(requirement.getId());
 			run.setBold(true);
 			run.setFontSize(11);
-			run.setFontFamily("Calibri (Body)");
+			run.setFontFamily("Calibri");
 			run.addBreak();
 			
 			XWPFRun runName = paragraph.createRun();
-			runName.setText(REQUIREMENT_NAME + " : " + requirement.getName());
+			runName.setText(REQUIREMENT_NAME + " :" + requirement.getName());
 			runName.addBreak();
 			
 			XWPFRun runDescription = paragraph.createRun();
-			runDescription.setText(REQUIREMENT_DESCRIPTION + " : " + requirement.getDescription());
+			runDescription.setText(REQUIREMENT_DESCRIPTION + " :" + requirement.getDescription());
 			runDescription.addBreak();
 			
 			XWPFRun runPriority = paragraph.createRun();
 			if(requirement.getPriorityType() == Priority.MANDATORY){
 				
-				runDescription.setText(REQUIREMENT_DESCRIPTION + " : Mandatory");
+				runDescription.setText(REQUIREMENT_PRIORITY + " : Mandatory");
 				
 			}else{
 				
-				runDescription.setText(REQUIREMENT_DESCRIPTION + " : Optional");
+				runDescription.setText(REQUIREMENT_PRIORITY + " : Optional");
 				
 			}
 			runPriority.addBreak();
@@ -234,7 +242,7 @@ public class ReqModel2DocxConverter {
 			run.setText(textArea.getText());
 			run.setBold(false);
 			run.setFontSize(11);
-			run.setFontFamily("Calibri (Body)");
+			run.setFontFamily("Calibri");
 			//run.addBreak();
 		}
 		
@@ -266,7 +274,7 @@ public class ReqModel2DocxConverter {
 		default : run.setFontSize(12); break;
 		}
 		
-		run.setFontFamily("Calibri Light (Headings)");
+		run.setFontFamily("Calibri Light");
 		//run.addBreak();
 	}
 		

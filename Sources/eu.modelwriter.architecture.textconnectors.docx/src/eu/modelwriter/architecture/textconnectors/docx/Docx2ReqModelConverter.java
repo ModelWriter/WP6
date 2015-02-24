@@ -89,7 +89,7 @@ public class Docx2ReqModelConverter {
 		headingMap.put("Heading8", 8);
 		headingMap.put("Heading9", 9);
 
-		XWPFDocument docx = new XWPFDocument(new FileInputStream("Test Documents/SampleRequirementDocument2.docx"));
+		XWPFDocument docx = new XWPFDocument(new FileInputStream("Test Documents/SampleRequirementDocument.docx"));
 
 		//XWPFWordExtractor we = new XWPFWordExtractor(docx);
 
@@ -132,7 +132,7 @@ public class Docx2ReqModelConverter {
 
 					// Only biggest headers(Heading 1) should be added Product
 					if(headingMap.get(paragraph.getStyle()) == 1){
-						product.getOwnedRequirementLevel().add(requirementLevel);
+						product.getOwnedDefinition().add(requirementLevel);
 					}
 
 					requirementLevelStack.push(requirementLevel);
@@ -273,17 +273,17 @@ public class Docx2ReqModelConverter {
 
 							if(!requirementLevelStack.isEmpty()){
 
-								requirementLevelStack.peek().getOwnedLevel().add(poppedRequirementLevel);
+								requirementLevelStack.peek().getOwnedDefinition().add(poppedRequirementLevel);
 							}else{
 
-								product.getOwnedRequirementLevel().add(poppedRequirementLevel);
+								product.getOwnedDefinition().add(poppedRequirementLevel);
 							}
 
 							RequirementLevel newRequirementLevel = factory.createRequirementLevel();
 							newRequirementLevel.setName(paragraph.getText());
 
 							if(headingMap.get(paragraph.getStyle()) == 1){
-								product.getOwnedRequirementLevel().add(newRequirementLevel);
+								product.getOwnedDefinition().add(newRequirementLevel);
 							}
 
 							requirementLevelStack.push(newRequirementLevel);
@@ -303,12 +303,12 @@ public class Docx2ReqModelConverter {
 								// Higher level paragraph must be added to product
 								if(requirementLevelMap.get(poppedRequirementLevel) == 1){
 
-									product.getOwnedRequirementLevel().add(poppedRequirementLevel);
+									product.getOwnedDefinition().add(poppedRequirementLevel);
 									break;
 
 								}else{
 
-									requirementLevelStack.peek().getOwnedLevel().add(poppedRequirementLevel);			
+									requirementLevelStack.peek().getOwnedDefinition().add(poppedRequirementLevel);			
 								}
 
 
@@ -318,7 +318,7 @@ public class Docx2ReqModelConverter {
 							newRequirementLevel.setName(paragraph.getText());
 
 							if(headingMap.get(paragraph.getStyle()) == 1){
-								product.getOwnedRequirementLevel().add(newRequirementLevel);
+								product.getOwnedDefinition().add(newRequirementLevel);
 							}
 
 							requirementLevelStack.push(newRequirementLevel);
@@ -373,10 +373,10 @@ public class Docx2ReqModelConverter {
 
 			if(requirementLevelMap.get(poppedRequirementLevel) == 1){
 
-				product.getOwnedRequirementLevel().add(poppedRequirementLevel);
+				product.getOwnedDefinition().add(poppedRequirementLevel);
 			}else{
 
-				requirementLevelStack.peek().getOwnedLevel().add(poppedRequirementLevel);			
+				requirementLevelStack.peek().getOwnedDefinition().add(poppedRequirementLevel);			
 			}
 
 

@@ -114,13 +114,13 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	int PRODUCT__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Requirement Level</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Definition</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__OWNED_REQUÝREMENT_LEVEL = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int PRODUCT__OWNED_DEFÝNÝTÝON = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Product</em>' class.
@@ -148,52 +148,7 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @see SimpleRequirementMM.impl.SimpleRequirementMMPackageImpl#getRequirementLevel()
 	 * @generated
 	 */
-	int REQUÝREMENT_LEVEL = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUÝREMENT_LEVEL__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Level</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUÝREMENT_LEVEL__OWNED_LEVEL = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Definition</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Requirement Level</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUÝREMENT_LEVEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Requirement Level</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUÝREMENT_LEVEL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int REQUÝREMENT_LEVEL = 3;
 
 	/**
 	 * The meta object id for the '{@link SimpleRequirementMM.impl.DefinitionImpl <em>Definition</em>}' class.
@@ -203,7 +158,7 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @see SimpleRequirementMM.impl.SimpleRequirementMMPackageImpl#getDefinition()
 	 * @generated
 	 */
-	int DEFÝNÝTÝON = 3;
+	int DEFÝNÝTÝON = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -231,6 +186,42 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEFÝNÝTÝON_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUÝREMENT_LEVEL__NAME = DEFÝNÝTÝON__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Definition</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON = DEFÝNÝTÝON_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Requirement Level</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUÝREMENT_LEVEL_FEATURE_COUNT = DEFÝNÝTÝON_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Requirement Level</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUÝREMENT_LEVEL_OPERATION_COUNT = DEFÝNÝTÝON_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link SimpleRequirementMM.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -403,15 +394,15 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	EClass getProduct();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link SimpleRequirementMM.Product#getOwnedRequirementLevel <em>Owned Requirement Level</em>}'.
+	 * Returns the meta object for the containment reference list '{@link SimpleRequirementMM.Product#getOwnedDefinition <em>Owned Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Requirement Level</em>'.
-	 * @see SimpleRequirementMM.Product#getOwnedRequirementLevel()
+	 * @return the meta object for the containment reference list '<em>Owned Definition</em>'.
+	 * @see SimpleRequirementMM.Product#getOwnedDefinition()
 	 * @see #getProduct()
 	 * @generated
 	 */
-	EReference getProduct_OwnedRequirementLevel();
+	EReference getProduct_OwnedDefinition();
 
 	/**
 	 * Returns the meta object for class '{@link SimpleRequirementMM.RequirementLevel <em>Requirement Level</em>}'.
@@ -422,17 +413,6 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRequirementLevel();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link SimpleRequirementMM.RequirementLevel#getOwnedLevel <em>Owned Level</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Level</em>'.
-	 * @see SimpleRequirementMM.RequirementLevel#getOwnedLevel()
-	 * @see #getRequirementLevel()
-	 * @generated
-	 */
-	EReference getRequirementLevel_OwnedLevel();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link SimpleRequirementMM.RequirementLevel#getOwnedDefinition <em>Owned Definition</em>}'.
@@ -603,12 +583,12 @@ public interface SimpleRequirementMMPackage extends EPackage {
 		EClass PRODUCT = eINSTANCE.getProduct();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Requirement Level</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Definition</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PRODUCT__OWNED_REQUÝREMENT_LEVEL = eINSTANCE.getProduct_OwnedRequirementLevel();
+		EReference PRODUCT__OWNED_DEFÝNÝTÝON = eINSTANCE.getProduct_OwnedDefinition();
 
 		/**
 		 * The meta object literal for the '{@link SimpleRequirementMM.impl.RequirementLevelImpl <em>Requirement Level</em>}' class.
@@ -619,14 +599,6 @@ public interface SimpleRequirementMMPackage extends EPackage {
 		 * @generated
 		 */
 		EClass REQUÝREMENT_LEVEL = eINSTANCE.getRequirementLevel();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Level</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REQUÝREMENT_LEVEL__OWNED_LEVEL = eINSTANCE.getRequirementLevel_OwnedLevel();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Definition</b></em>' containment reference list feature.

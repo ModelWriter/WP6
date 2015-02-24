@@ -79,17 +79,18 @@ public class SimpleRequirementMMSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL: {
-				RequirementLevel requirementLevel = (RequirementLevel)theEObject;
-				T result = caseRequirementLevel(requirementLevel);
-				if (result == null) result = caseNamedElement(requirementLevel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case SimpleRequirementMMPackage.DEFÝNÝTÝON: {
 				Definition definition = (Definition)theEObject;
 				T result = caseDefinition(definition);
 				if (result == null) result = caseNamedElement(definition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL: {
+				RequirementLevel requirementLevel = (RequirementLevel)theEObject;
+				T result = caseRequirementLevel(requirementLevel);
+				if (result == null) result = caseDefinition(requirementLevel);
+				if (result == null) result = caseNamedElement(requirementLevel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

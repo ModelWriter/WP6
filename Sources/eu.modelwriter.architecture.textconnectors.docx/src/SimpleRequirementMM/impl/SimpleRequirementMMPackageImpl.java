@@ -169,7 +169,7 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProduct_OwnedRequirementLevel() {
+	public EReference getProduct_OwnedDefinition() {
 		return (EReference)productEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -187,17 +187,8 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRequirementLevel_OwnedLevel() {
-		return (EReference)requirementLevelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getRequirementLevel_OwnedDefinition() {
-		return (EReference)requirementLevelEClass.getEStructuralFeatures().get(1);
+		return (EReference)requirementLevelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -322,13 +313,12 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
 		productEClass = createEClass(PRODUCT);
-		createEReference(productEClass, PRODUCT__OWNED_REQUÝREMENT_LEVEL);
-
-		requirementLevelEClass = createEClass(REQUÝREMENT_LEVEL);
-		createEReference(requirementLevelEClass, REQUÝREMENT_LEVEL__OWNED_LEVEL);
-		createEReference(requirementLevelEClass, REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON);
+		createEReference(productEClass, PRODUCT__OWNED_DEFÝNÝTÝON);
 
 		definitionEClass = createEClass(DEFÝNÝTÝON);
+
+		requirementLevelEClass = createEClass(REQUÝREMENT_LEVEL);
+		createEReference(requirementLevelEClass, REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON);
 
 		requirementEClass = createEClass(REQUÝREMENT);
 		createEAttribute(requirementEClass, REQUÝREMENT__ID);
@@ -373,8 +363,8 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 
 		// Add supertypes to classes
 		productEClass.getESuperTypes().add(this.getNamedElement());
-		requirementLevelEClass.getESuperTypes().add(this.getNamedElement());
 		definitionEClass.getESuperTypes().add(this.getNamedElement());
+		requirementLevelEClass.getESuperTypes().add(this.getDefinition());
 		requirementEClass.getESuperTypes().add(this.getDefinition());
 		textAreaEClass.getESuperTypes().add(this.getDefinition());
 
@@ -383,13 +373,12 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "Name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(productEClass, Product.class, "Product", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProduct_OwnedRequirementLevel(), this.getRequirementLevel(), null, "OwnedRequirementLevel", null, 0, -1, Product.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(requirementLevelEClass, RequirementLevel.class, "RequirementLevel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRequirementLevel_OwnedLevel(), this.getRequirementLevel(), null, "OwnedLevel", null, 0, -1, RequirementLevel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementLevel_OwnedDefinition(), this.getDefinition(), null, "OwnedDefinition", null, 0, -1, RequirementLevel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProduct_OwnedDefinition(), this.getDefinition(), null, "OwnedDefinition", null, 0, -1, Product.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(definitionEClass, Definition.class, "Definition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(requirementLevelEClass, RequirementLevel.class, "RequirementLevel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRequirementLevel_OwnedDefinition(), this.getDefinition(), null, "OwnedDefinition", null, 0, -1, RequirementLevel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(requirementEClass, Requirement.class, "Requirement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRequirement_Id(), ecorePackage.getEString(), "Id", "", 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

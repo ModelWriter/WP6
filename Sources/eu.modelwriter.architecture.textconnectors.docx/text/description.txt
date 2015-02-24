@@ -11,13 +11,12 @@ Package SimpleRequirementMM <eu.modelwriter.architecture.textconnectors.docx.req
     Attribute Name : EString
 
   Class Product -> NamedElement
-    Reference OwnedRequirementLevel : RequirementLevel<<0..*>>
-
-  Class RequirementLevel -> NamedElement
-    Reference OwnedLevel : RequirementLevel<<0..*>>
     Reference OwnedDefinition : Definition<<0..*>>
 
   Class Definition -> NamedElement
+
+  Class RequirementLevel -> Definition
+    Reference OwnedDefinition : Definition<<0..*>>
 
   Class Requirement -> Definition
     Attribute Id : EString
