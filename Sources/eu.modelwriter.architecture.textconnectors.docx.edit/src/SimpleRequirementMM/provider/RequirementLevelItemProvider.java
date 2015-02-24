@@ -63,7 +63,7 @@ public class RequirementLevelItemProvider extends NamedElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SimpleRequirementMMPackage.Literals.REQUÝREMENT_LEVEL__OWNED_LEVEL);
-			childrenFeatures.add(SimpleRequirementMMPackage.Literals.REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT);
+			childrenFeatures.add(SimpleRequirementMMPackage.Literals.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON);
 		}
 		return childrenFeatures;
 	}
@@ -120,7 +120,7 @@ public class RequirementLevelItemProvider extends NamedElementItemProvider {
 
 		switch (notification.getFeatureID(RequirementLevel.class)) {
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT:
+			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -145,8 +145,13 @@ public class RequirementLevelItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SimpleRequirementMMPackage.Literals.REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT,
+				(SimpleRequirementMMPackage.Literals.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON,
 				 SimpleRequirementMMFactory.eINSTANCE.createRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SimpleRequirementMMPackage.Literals.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON,
+				 SimpleRequirementMMFactory.eINSTANCE.createTextArea()));
 	}
 
 }

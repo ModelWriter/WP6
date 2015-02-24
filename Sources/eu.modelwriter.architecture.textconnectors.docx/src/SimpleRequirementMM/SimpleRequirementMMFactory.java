@@ -49,6 +49,15 @@ public interface SimpleRequirementMMFactory extends EFactory {
 	Requirement createRequirement();
 
 	/**
+	 * Returns a new object of class '<em>Text Area</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Text Area</em>'.
+	 * @generated
+	 */
+	TextArea createTextArea();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

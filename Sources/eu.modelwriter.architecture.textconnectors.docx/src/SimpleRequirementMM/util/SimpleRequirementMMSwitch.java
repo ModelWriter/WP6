@@ -86,10 +86,26 @@ public class SimpleRequirementMMSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SimpleRequirementMMPackage.DEFÝNÝTÝON: {
+				Definition definition = (Definition)theEObject;
+				T result = caseDefinition(definition);
+				if (result == null) result = caseNamedElement(definition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SimpleRequirementMMPackage.REQUÝREMENT: {
 				Requirement requirement = (Requirement)theEObject;
 				T result = caseRequirement(requirement);
+				if (result == null) result = caseDefinition(requirement);
 				if (result == null) result = caseNamedElement(requirement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SimpleRequirementMMPackage.TEXT_AREA: {
+				TextArea textArea = (TextArea)theEObject;
+				T result = caseTextArea(textArea);
+				if (result == null) result = caseDefinition(textArea);
+				if (result == null) result = caseNamedElement(textArea);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -154,6 +170,36 @@ public class SimpleRequirementMMSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRequirement(Requirement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDefinition(Definition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Text Area</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Text Area</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTextArea(TextArea object) {
 		return null;
 	}
 

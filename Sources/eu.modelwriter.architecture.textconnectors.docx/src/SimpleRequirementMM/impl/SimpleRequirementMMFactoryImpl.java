@@ -60,6 +60,7 @@ public class SimpleRequirementMMFactoryImpl extends EFactoryImpl implements Simp
 			case SimpleRequirementMMPackage.PRODUCT: return createProduct();
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL: return createRequirementLevel();
 			case SimpleRequirementMMPackage.REQUÝREMENT: return createRequirement();
+			case SimpleRequirementMMPackage.TEXT_AREA: return createTextArea();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -123,6 +124,16 @@ public class SimpleRequirementMMFactoryImpl extends EFactoryImpl implements Simp
 	public Requirement createRequirement() {
 		RequirementImpl requirement = new RequirementImpl();
 		return requirement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TextArea createTextArea() {
+		TextAreaImpl textArea = new TextAreaImpl();
+		return textArea;
 	}
 
 	/**

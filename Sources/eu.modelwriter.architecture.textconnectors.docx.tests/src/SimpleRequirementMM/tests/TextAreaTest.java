@@ -2,18 +2,18 @@
  */
 package SimpleRequirementMM.tests;
 
-import SimpleRequirementMM.Requirement;
 import SimpleRequirementMM.SimpleRequirementMMFactory;
+import SimpleRequirementMM.TextArea;
 
 import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Requirement</b></em>'.
+ * A test case for the model object '<em><b>Text Area</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class RequirementTest extends DefinitionTest {
+public class TextAreaTest extends DefinitionTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -21,28 +21,28 @@ public class RequirementTest extends DefinitionTest {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(RequirementTest.class);
+		TestRunner.run(TextAreaTest.class);
 	}
 
 	/**
-	 * Constructs a new Requirement test case with the given name.
+	 * Constructs a new Text Area test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementTest(String name) {
+	public TextAreaTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Returns the fixture for this Requirement test case.
+	 * Returns the fixture for this Text Area test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected Requirement getFixture() {
-		return (Requirement)fixture;
+	protected TextArea getFixture() {
+		return (TextArea)fixture;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class RequirementTest extends DefinitionTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(SimpleRequirementMMFactory.eINSTANCE.createRequirement());
+		setFixture(SimpleRequirementMMFactory.eINSTANCE.createTextArea());
 	}
 
 	/**
@@ -67,4 +67,4 @@ public class RequirementTest extends DefinitionTest {
 		setFixture(null);
 	}
 
-} //RequirementTest
+} //TextAreaTest

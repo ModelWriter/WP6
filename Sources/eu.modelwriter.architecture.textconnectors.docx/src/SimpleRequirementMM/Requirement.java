@@ -23,7 +23,7 @@ package SimpleRequirementMM;
  * @model
  * @generated
  */
-public interface Requirement extends NamedElement {
+public interface Requirement extends Definition {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * The default value is <code>""</code>.

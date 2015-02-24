@@ -2,6 +2,7 @@
  */
 package SimpleRequirementMM.impl;
 
+import SimpleRequirementMM.Definition;
 import SimpleRequirementMM.NamedElement;
 import SimpleRequirementMM.Priority;
 import SimpleRequirementMM.Product;
@@ -10,6 +11,7 @@ import SimpleRequirementMM.RequirementLevel;
 import SimpleRequirementMM.SimpleRequirementMMFactory;
 import SimpleRequirementMM.SimpleRequirementMMPackage;
 
+import SimpleRequirementMM.TextArea;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -52,6 +54,20 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 	 * @generated
 	 */
 	private EClass requirementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass definitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass textAreaEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,7 +196,7 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRequirementLevel_OwnedRequirement() {
+	public EReference getRequirementLevel_OwnedDefinition() {
 		return (EReference)requirementLevelEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -243,6 +259,33 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDefinition() {
+		return definitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTextArea() {
+		return textAreaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTextArea_Text() {
+		return (EAttribute)textAreaEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getPriority() {
 		return priorityEEnum;
 	}
@@ -283,7 +326,9 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 
 		requirementLevelEClass = createEClass(REQUÝREMENT_LEVEL);
 		createEReference(requirementLevelEClass, REQUÝREMENT_LEVEL__OWNED_LEVEL);
-		createEReference(requirementLevelEClass, REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT);
+		createEReference(requirementLevelEClass, REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON);
+
+		definitionEClass = createEClass(DEFÝNÝTÝON);
 
 		requirementEClass = createEClass(REQUÝREMENT);
 		createEAttribute(requirementEClass, REQUÝREMENT__ID);
@@ -291,6 +336,9 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 		createEReference(requirementEClass, REQUÝREMENT__REFÝNE);
 		createEReference(requirementEClass, REQUÝREMENT__DEPENDENCY_TO);
 		createEAttribute(requirementEClass, REQUÝREMENT__PRÝORÝTY_TYPE);
+
+		textAreaEClass = createEClass(TEXT_AREA);
+		createEAttribute(textAreaEClass, TEXT_AREA__TEXT);
 
 		// Create enums
 		priorityEEnum = createEEnum(PRÝORÝTY);
@@ -326,7 +374,9 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 		// Add supertypes to classes
 		productEClass.getESuperTypes().add(this.getNamedElement());
 		requirementLevelEClass.getESuperTypes().add(this.getNamedElement());
-		requirementEClass.getESuperTypes().add(this.getNamedElement());
+		definitionEClass.getESuperTypes().add(this.getNamedElement());
+		requirementEClass.getESuperTypes().add(this.getDefinition());
+		textAreaEClass.getESuperTypes().add(this.getDefinition());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -337,7 +387,9 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 
 		initEClass(requirementLevelEClass, RequirementLevel.class, "RequirementLevel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRequirementLevel_OwnedLevel(), this.getRequirementLevel(), null, "OwnedLevel", null, 0, -1, RequirementLevel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementLevel_OwnedRequirement(), this.getRequirement(), null, "OwnedRequirement", null, 0, -1, RequirementLevel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementLevel_OwnedDefinition(), this.getDefinition(), null, "OwnedDefinition", null, 0, -1, RequirementLevel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(definitionEClass, Definition.class, "Definition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(requirementEClass, Requirement.class, "Requirement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRequirement_Id(), ecorePackage.getEString(), "Id", "", 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -345,6 +397,9 @@ public class SimpleRequirementMMPackageImpl extends EPackageImpl implements Simp
 		initEReference(getRequirement_Refine(), this.getRequirement(), null, "Refine", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRequirement_DependencyTo(), this.getRequirement(), null, "DependencyTo", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRequirement_PriorityType(), this.getPriority(), "PriorityType", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(textAreaEClass, TextArea.class, "TextArea", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTextArea_Text(), ecorePackage.getEString(), "Text", "", 0, 1, TextArea.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(priorityEEnum, Priority.class, "Priority");

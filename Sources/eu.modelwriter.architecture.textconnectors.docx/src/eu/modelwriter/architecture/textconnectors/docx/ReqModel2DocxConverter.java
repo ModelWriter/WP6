@@ -29,10 +29,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import SimpleRequirementMM.Definition;
 import SimpleRequirementMM.Priority;
 import SimpleRequirementMM.Product;
 import SimpleRequirementMM.Requirement;
 import SimpleRequirementMM.RequirementLevel;
+import SimpleRequirementMM.TextArea;
 
 public class ReqModel2DocxConverter {
 
@@ -59,7 +61,7 @@ public class ReqModel2DocxConverter {
 		newStyles.setStyles(template.getStyle());
 		
 		//Write the Document in file system(in this case in project folder)					
-		FileOutputStream out = new FileOutputStream(new File("RequirementModelDocument.docx"));
+		FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/RequirementModelDocument.docx"));
 
 		try {
 
@@ -146,12 +148,12 @@ public class ReqModel2DocxConverter {
 		  writeRequirementLevel(requirementLevel,headingLevel);
 		  //System.out.println(requirementLevel.getName() + " " + headingLevel);
 
-		  if(!requirementLevel.getOwnedRequirement().isEmpty()){
+		  if(!requirementLevel.getOwnedDefinition().isEmpty()){
 			  
-			  for(Requirement requirement : requirementLevel.getOwnedRequirement()){
+			  for(Definition definition : requirementLevel.getOwnedDefinition()){
 				  
 				  // Write Requirement to file
-				  writeRequirement(requirement);
+				  writeRequirement(definition);
 				  //System.out.println(requirement.getName());
 			  }
 		  }
@@ -178,49 +180,62 @@ public class ReqModel2DocxConverter {
 	 * 
 	 * @param requirement
 	 */
-	public static void writeRequirement(Requirement requirement){
+	public static void writeRequirement(Definition definition){
 		
 		XWPFParagraph paragraph = document.createParagraph();
 		XWPFRun run=paragraph.createRun();
 		
-		run.setText(requirement.getId());
-		run.setBold(true);
-		run.setFontSize(11);
-		run.setFontFamily("Calibri (Body)");
-		run.addBreak();
-		
-		XWPFRun runName = paragraph.createRun();
-		runName.setText(REQUIREMENT_NAME + " : " + requirement.getName());
-		runName.addBreak();
-		
-		XWPFRun runDescription = paragraph.createRun();
-		runDescription.setText(REQUIREMENT_DESCRIPTION + " : " + requirement.getDescription());
-		runDescription.addBreak();
-		
-		XWPFRun runPriority = paragraph.createRun();
-		if(requirement.getPriorityType() == Priority.MANDATORY){
+		if(definition instanceof Requirement){
 			
-			runDescription.setText(REQUIREMENT_DESCRIPTION + " : Mandatory");
+			Requirement requirement = (Requirement)definition;
 			
+			run.setText(requirement.getId());
+			run.setBold(true);
+			run.setFontSize(11);
+			run.setFontFamily("Calibri (Body)");
+			run.addBreak();
+			
+			XWPFRun runName = paragraph.createRun();
+			runName.setText(REQUIREMENT_NAME + " : " + requirement.getName());
+			runName.addBreak();
+			
+			XWPFRun runDescription = paragraph.createRun();
+			runDescription.setText(REQUIREMENT_DESCRIPTION + " : " + requirement.getDescription());
+			runDescription.addBreak();
+			
+			XWPFRun runPriority = paragraph.createRun();
+			if(requirement.getPriorityType() == Priority.MANDATORY){
+				
+				runDescription.setText(REQUIREMENT_DESCRIPTION + " : Mandatory");
+				
+			}else{
+				
+				runDescription.setText(REQUIREMENT_DESCRIPTION + " : Optional");
+				
+			}
+			runPriority.addBreak();
+			
+			if(requirement.getDependencyTo() != null){
+				
+				XWPFRun runDependencyTo = paragraph.createRun();
+				runDependencyTo.setText(REQUIREMENT_DEPENDENCY_TO + " : " + requirement.getDependencyTo().getId());
+				runDependencyTo.addBreak();
+			}
+			
+			if(requirement.getRefine() != null){
+				
+				XWPFRun runRefine = paragraph.createRun();
+				runRefine.setText(REQUIREMENT_REFINE + " : " + requirement.getRefine().getId());
+				runRefine.addBreak();
+			}
 		}else{
 			
-			runDescription.setText(REQUIREMENT_DESCRIPTION + " : Optional");
-			
-		}
-		runPriority.addBreak();
-		
-		if(requirement.getDependencyTo() != null){
-			
-			XWPFRun runDependencyTo = paragraph.createRun();
-			runDependencyTo.setText(REQUIREMENT_DEPENDENCY_TO + " : " + requirement.getDependencyTo().getId());
-			runDependencyTo.addBreak();
-		}
-		
-		if(requirement.getRefine() != null){
-			
-			XWPFRun runRefine = paragraph.createRun();
-			runRefine.setText(REQUIREMENT_REFINE + " : " + requirement.getRefine().getId());
-			runRefine.addBreak();
+			TextArea textArea = (TextArea)definition;
+			run.setText(textArea.getText());
+			run.setBold(false);
+			run.setFontSize(11);
+			run.setFontFamily("Calibri (Body)");
+			//run.addBreak();
 		}
 		
 	}
@@ -252,6 +267,7 @@ public class ReqModel2DocxConverter {
 		}
 		
 		run.setFontFamily("Calibri Light (Headings)");
+		//run.addBreak();
 	}
 		
 

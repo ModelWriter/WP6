@@ -141,6 +141,29 @@ public class SimpleRequirementMMItemProviderAdapterFactory extends SimpleRequire
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link SimpleRequirementMM.TextArea} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TextAreaItemProvider textAreaItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link SimpleRequirementMM.TextArea}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTextAreaAdapter() {
+		if (textAreaItemProvider == null) {
+			textAreaItemProvider = new TextAreaItemProvider(this);
+		}
+
+		return textAreaItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -242,6 +265,7 @@ public class SimpleRequirementMMItemProviderAdapterFactory extends SimpleRequire
 		if (productItemProvider != null) productItemProvider.dispose();
 		if (requirementLevelItemProvider != null) requirementLevelItemProvider.dispose();
 		if (requirementItemProvider != null) requirementItemProvider.dispose();
+		if (textAreaItemProvider != null) textAreaItemProvider.dispose();
 	}
 
 }

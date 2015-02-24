@@ -31,6 +31,7 @@ import SimpleRequirementMM.Product;
 import SimpleRequirementMM.Requirement;
 import SimpleRequirementMM.RequirementLevel;
 import SimpleRequirementMM.SimpleRequirementMMFactory;
+import SimpleRequirementMM.TextArea;
 
 public class Docx2ReqModelConverter {
 
@@ -108,7 +109,8 @@ public class Docx2ReqModelConverter {
 		// Regular expression for requirement id
 		String pattern = "(EM-HLR-F-REQ-[0-9]{3})";
 		Pattern p = Pattern.compile(pattern);
-
+		boolean reqFlag = false;
+		
 		for(XWPFParagraph paragraph : paragraphList){
 
 			firstParagraphCounter++;
@@ -152,7 +154,7 @@ public class Docx2ReqModelConverter {
 							previousRequirement = requirement;
 							if(previousRequirement != null){
 
-								requirementLevelStack.peek().getOwnedRequirement().add(previousRequirement);
+								requirementLevelStack.peek().getOwnedDefinition().add(previousRequirement);
 								requirementMultiMap.put(previousRequirement.getId().trim(), previousRequirement);
 
 							}
@@ -160,9 +162,12 @@ public class Docx2ReqModelConverter {
 							requirement = factory.createRequirement();
 							//requirement.setName(requirementLevelStack.peek().getName());
 							requirement.setId(paragraph.getText().trim());
+							reqFlag = true;
 
-
-						}															
+						}else{
+							
+							reqFlag = false;
+						}
 
 						// Split the propertie name and the value of it
 						String[] values = paragraph.getText().split(":");
@@ -205,8 +210,25 @@ public class Docx2ReqModelConverter {
 							refineMultiMap.put(requirement.getId(), values[1].trim());
 						}
 						
-						else{
+						// This paragraph is a text
+						else {
 							
+							if(reqFlag != true){
+								
+
+								TextArea textArea = factory.createTextArea();
+								textArea.setText(paragraph.getText());
+								
+								if(requirement != null && !requirementLevelStack.peek().getOwnedDefinition().contains(requirement) ){
+
+									requirementLevelStack.peek().getOwnedDefinition().add(requirement);
+									requirementMultiMap.put(requirement.getId().trim(), requirement);
+
+								}
+								
+								requirementLevelStack.peek().getOwnedDefinition().add(textArea);
+							}
+
 							
 						}
 
@@ -222,7 +244,7 @@ public class Docx2ReqModelConverter {
 							poppedRequirementLevel.getOwnedRequirement().add(requirement);
 							requirementLevelStack.peek().getOwnedLevel().add(poppedRequirementLevel);
 							 */
-							requirementLevelStack.peek().getOwnedRequirement().add(requirement);
+							requirementLevelStack.peek().getOwnedDefinition().add(requirement);
 							requirementMultiMap.put(requirement.getId(), requirement);
 							requirement = null;
 
@@ -316,7 +338,7 @@ public class Docx2ReqModelConverter {
 		// If the last requirement of document could not added to the corresponding requirement level
 		if(requirement != null){
 			
-			requirementLevelStack.peek().getOwnedRequirement().add(requirement);
+			requirementLevelStack.peek().getOwnedDefinition().add(requirement);
 			requirementMultiMap.put(requirement.getId(), requirement);
 		}
 

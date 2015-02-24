@@ -169,13 +169,13 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	int REQUÝREMENT_LEVEL__OWNED_LEVEL = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Requirement</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Definition</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Requirement Level</em>' class.
@@ -196,14 +196,14 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	int REQUÝREMENT_LEVEL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link SimpleRequirementMM.impl.RequirementImpl <em>Requirement</em>}' class.
+	 * The meta object id for the '{@link SimpleRequirementMM.impl.DefinitionImpl <em>Definition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see SimpleRequirementMM.impl.RequirementImpl
-	 * @see SimpleRequirementMM.impl.SimpleRequirementMMPackageImpl#getRequirement()
+	 * @see SimpleRequirementMM.impl.DefinitionImpl
+	 * @see SimpleRequirementMM.impl.SimpleRequirementMMPackageImpl#getDefinition()
 	 * @generated
 	 */
-	int REQUÝREMENT = 3;
+	int DEFÝNÝTÝON = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -212,7 +212,44 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__NAME = NAMED_ELEMENT__NAME;
+	int DEFÝNÝTÝON__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFÝNÝTÝON_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFÝNÝTÝON_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link SimpleRequirementMM.impl.RequirementImpl <em>Requirement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see SimpleRequirementMM.impl.RequirementImpl
+	 * @see SimpleRequirementMM.impl.SimpleRequirementMMPackageImpl#getRequirement()
+	 * @generated
+	 */
+	int REQUÝREMENT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUÝREMENT__NAME = DEFÝNÝTÝON__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -221,7 +258,7 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__ID = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int REQUÝREMENT__ID = DEFÝNÝTÝON_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -230,7 +267,7 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__DESCRÝPTÝON = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int REQUÝREMENT__DESCRÝPTÝON = DEFÝNÝTÝON_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Refine</b></em>' reference.
@@ -239,7 +276,7 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__REFÝNE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int REQUÝREMENT__REFÝNE = DEFÝNÝTÝON_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Dependency To</b></em>' reference.
@@ -248,7 +285,7 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__DEPENDENCY_TO = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int REQUÝREMENT__DEPENDENCY_TO = DEFÝNÝTÝON_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Priority Type</b></em>' attribute.
@@ -257,7 +294,7 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__PRÝORÝTY_TYPE = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int REQUÝREMENT__PRÝORÝTY_TYPE = DEFÝNÝTÝON_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Requirement</em>' class.
@@ -266,7 +303,7 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int REQUÝREMENT_FEATURE_COUNT = DEFÝNÝTÝON_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Requirement</em>' class.
@@ -275,7 +312,53 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int REQUÝREMENT_OPERATION_COUNT = DEFÝNÝTÝON_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link SimpleRequirementMM.impl.TextAreaImpl <em>Text Area</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see SimpleRequirementMM.impl.TextAreaImpl
+	 * @see SimpleRequirementMM.impl.SimpleRequirementMMPackageImpl#getTextArea()
+	 * @generated
+	 */
+	int TEXT_AREA = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA__NAME = DEFÝNÝTÝON__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA__TEXT = DEFÝNÝTÝON_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Text Area</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_FEATURE_COUNT = DEFÝNÝTÝON_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Text Area</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_OPERATION_COUNT = DEFÝNÝTÝON_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link SimpleRequirementMM.Priority <em>Priority</em>}' enum.
@@ -285,7 +368,7 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @see SimpleRequirementMM.impl.SimpleRequirementMMPackageImpl#getPriority()
 	 * @generated
 	 */
-	int PRÝORÝTY = 4;
+	int PRÝORÝTY = 6;
 
 
 	/**
@@ -352,15 +435,15 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	EReference getRequirementLevel_OwnedLevel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link SimpleRequirementMM.RequirementLevel#getOwnedRequirement <em>Owned Requirement</em>}'.
+	 * Returns the meta object for the containment reference list '{@link SimpleRequirementMM.RequirementLevel#getOwnedDefinition <em>Owned Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Requirement</em>'.
-	 * @see SimpleRequirementMM.RequirementLevel#getOwnedRequirement()
+	 * @return the meta object for the containment reference list '<em>Owned Definition</em>'.
+	 * @see SimpleRequirementMM.RequirementLevel#getOwnedDefinition()
 	 * @see #getRequirementLevel()
 	 * @generated
 	 */
-	EReference getRequirementLevel_OwnedRequirement();
+	EReference getRequirementLevel_OwnedDefinition();
 
 	/**
 	 * Returns the meta object for class '{@link SimpleRequirementMM.Requirement <em>Requirement</em>}'.
@@ -426,6 +509,37 @@ public interface SimpleRequirementMMPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRequirement_PriorityType();
+
+	/**
+	 * Returns the meta object for class '{@link SimpleRequirementMM.Definition <em>Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Definition</em>'.
+	 * @see SimpleRequirementMM.Definition
+	 * @generated
+	 */
+	EClass getDefinition();
+
+	/**
+	 * Returns the meta object for class '{@link SimpleRequirementMM.TextArea <em>Text Area</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Text Area</em>'.
+	 * @see SimpleRequirementMM.TextArea
+	 * @generated
+	 */
+	EClass getTextArea();
+
+	/**
+	 * Returns the meta object for the attribute '{@link SimpleRequirementMM.TextArea#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text</em>'.
+	 * @see SimpleRequirementMM.TextArea#getText()
+	 * @see #getTextArea()
+	 * @generated
+	 */
+	EAttribute getTextArea_Text();
 
 	/**
 	 * Returns the meta object for enum '{@link SimpleRequirementMM.Priority <em>Priority</em>}'.
@@ -515,12 +629,12 @@ public interface SimpleRequirementMMPackage extends EPackage {
 		EReference REQUÝREMENT_LEVEL__OWNED_LEVEL = eINSTANCE.getRequirementLevel_OwnedLevel();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Requirement</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Definition</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT = eINSTANCE.getRequirementLevel_OwnedRequirement();
+		EReference REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON = eINSTANCE.getRequirementLevel_OwnedDefinition();
 
 		/**
 		 * The meta object literal for the '{@link SimpleRequirementMM.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -571,6 +685,34 @@ public interface SimpleRequirementMMPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REQUÝREMENT__PRÝORÝTY_TYPE = eINSTANCE.getRequirement_PriorityType();
+
+		/**
+		 * The meta object literal for the '{@link SimpleRequirementMM.impl.DefinitionImpl <em>Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see SimpleRequirementMM.impl.DefinitionImpl
+		 * @see SimpleRequirementMM.impl.SimpleRequirementMMPackageImpl#getDefinition()
+		 * @generated
+		 */
+		EClass DEFÝNÝTÝON = eINSTANCE.getDefinition();
+
+		/**
+		 * The meta object literal for the '{@link SimpleRequirementMM.impl.TextAreaImpl <em>Text Area</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see SimpleRequirementMM.impl.TextAreaImpl
+		 * @see SimpleRequirementMM.impl.SimpleRequirementMMPackageImpl#getTextArea()
+		 * @generated
+		 */
+		EClass TEXT_AREA = eINSTANCE.getTextArea();
+
+		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT_AREA__TEXT = eINSTANCE.getTextArea_Text();
 
 		/**
 		 * The meta object literal for the '{@link SimpleRequirementMM.Priority <em>Priority</em>}' enum.

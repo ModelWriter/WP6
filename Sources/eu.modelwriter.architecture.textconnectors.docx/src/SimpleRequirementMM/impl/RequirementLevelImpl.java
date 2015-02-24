@@ -2,19 +2,14 @@
  */
 package SimpleRequirementMM.impl;
 
-import SimpleRequirementMM.Requirement;
+import SimpleRequirementMM.Definition;
 import SimpleRequirementMM.RequirementLevel;
 import SimpleRequirementMM.SimpleRequirementMMPackage;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -26,7 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link SimpleRequirementMM.impl.RequirementLevelImpl#getOwnedLevel <em>Owned Level</em>}</li>
- *   <li>{@link SimpleRequirementMM.impl.RequirementLevelImpl#getOwnedRequirement <em>Owned Requirement</em>}</li>
+ *   <li>{@link SimpleRequirementMM.impl.RequirementLevelImpl#getOwnedDefinition <em>Owned Definition</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,14 +39,14 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 	protected EList<RequirementLevel> ownedLevel;
 
 	/**
-	 * The cached value of the '{@link #getOwnedRequirement() <em>Owned Requirement</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedDefinition() <em>Owned Definition</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRequirement()
+	 * @see #getOwnedDefinition()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Requirement> ownedRequirement;
+	protected EList<Definition> ownedDefinition;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,11 +84,11 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Requirement> getOwnedRequirement() {
-		if (ownedRequirement == null) {
-			ownedRequirement = new EObjectContainmentEList<Requirement>(Requirement.class, this, SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT);
+	public EList<Definition> getOwnedDefinition() {
+		if (ownedDefinition == null) {
+			ownedDefinition = new EObjectContainmentEList<Definition>(Definition.class, this, SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON);
 		}
-		return ownedRequirement;
+		return ownedDefinition;
 	}
 
 	/**
@@ -106,8 +101,8 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 		switch (featureID) {
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
 				return ((InternalEList<?>)getOwnedLevel()).basicRemove(otherEnd, msgs);
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT:
-				return ((InternalEList<?>)getOwnedRequirement()).basicRemove(otherEnd, msgs);
+			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
+				return ((InternalEList<?>)getOwnedDefinition()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -122,8 +117,8 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 		switch (featureID) {
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
 				return getOwnedLevel();
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT:
-				return getOwnedRequirement();
+			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
+				return getOwnedDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -141,9 +136,9 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 				getOwnedLevel().clear();
 				getOwnedLevel().addAll((Collection<? extends RequirementLevel>)newValue);
 				return;
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT:
-				getOwnedRequirement().clear();
-				getOwnedRequirement().addAll((Collection<? extends Requirement>)newValue);
+			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
+				getOwnedDefinition().clear();
+				getOwnedDefinition().addAll((Collection<? extends Definition>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -160,8 +155,8 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
 				getOwnedLevel().clear();
 				return;
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT:
-				getOwnedRequirement().clear();
+			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
+				getOwnedDefinition().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -177,8 +172,8 @@ public class RequirementLevelImpl extends NamedElementImpl implements Requiremen
 		switch (featureID) {
 			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_LEVEL:
 				return ownedLevel != null && !ownedLevel.isEmpty();
-			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_REQUÝREMENT:
-				return ownedRequirement != null && !ownedRequirement.isEmpty();
+			case SimpleRequirementMMPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
+				return ownedDefinition != null && !ownedDefinition.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

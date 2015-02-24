@@ -80,8 +80,16 @@ public class SimpleRequirementMMAdapterFactory extends AdapterFactoryImpl {
 				return createRequirementLevelAdapter();
 			}
 			@Override
+			public Adapter caseDefinition(Definition object) {
+				return createDefinitionAdapter();
+			}
+			@Override
 			public Adapter caseRequirement(Requirement object) {
 				return createRequirementAdapter();
+			}
+			@Override
+			public Adapter caseTextArea(TextArea object) {
+				return createTextAreaAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -156,6 +164,34 @@ public class SimpleRequirementMMAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRequirementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link SimpleRequirementMM.Definition <em>Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see SimpleRequirementMM.Definition
+	 * @generated
+	 */
+	public Adapter createDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link SimpleRequirementMM.TextArea <em>Text Area</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see SimpleRequirementMM.TextArea
+	 * @generated
+	 */
+	public Adapter createTextAreaAdapter() {
 		return null;
 	}
 

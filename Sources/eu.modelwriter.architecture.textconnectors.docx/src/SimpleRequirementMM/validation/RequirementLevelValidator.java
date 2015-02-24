@@ -4,6 +4,7 @@
  */
 package SimpleRequirementMM.validation;
 
+import SimpleRequirementMM.Definition;
 import SimpleRequirementMM.Requirement;
 import SimpleRequirementMM.RequirementLevel;
 
@@ -19,5 +20,7 @@ public interface RequirementLevelValidator {
 	boolean validate();
 
 	boolean validateOwnedLevel(EList<RequirementLevel> value);
+	boolean validateOwnedDefinition(EList<Definition> value);
+
 	boolean validateOwnedRequirement(EList<Requirement> value);
 }
