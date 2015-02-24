@@ -88,7 +88,7 @@ public class Docx2ReqModelConverter {
 		headingMap.put("Heading8", 8);
 		headingMap.put("Heading9", 9);
 
-		XWPFDocument docx = new XWPFDocument(new FileInputStream("Test Documents/SampleRequirementDocument.docx"));
+		XWPFDocument docx = new XWPFDocument(new FileInputStream("Test Documents/SampleRequirementDocument2.docx"));
 
 		//XWPFWordExtractor we = new XWPFWordExtractor(docx);
 
@@ -114,8 +114,9 @@ public class Docx2ReqModelConverter {
 			firstParagraphCounter++;
 
 			// For debug
-		    // String paragraphText = paragraph.getText().trim();
-
+		     String paragraphText = paragraph.getText().trim();
+			// String s = paragraph.getStyle();
+			
 			if( paragraph != null && paragraph.getText().trim() != ""){
 
 				// first paragraph element
@@ -140,7 +141,7 @@ public class Docx2ReqModelConverter {
 
 					// If the paragraph is on the lowest level
 					// This paragraph is about one of requirements' properties
-					String s = paragraph.getStyle();
+					
 					if(paragraph.getStyle() == null){
 
 						Matcher matcher = p.matcher(paragraph.getText());
@@ -166,6 +167,7 @@ public class Docx2ReqModelConverter {
 						// Split the propertie name and the value of it
 						String[] values = paragraph.getText().split(":");
 
+						
 						// Set requirement's name
 						if(values[0].trim().equals(REQUIREMENT_NAME)){
 
@@ -173,19 +175,19 @@ public class Docx2ReqModelConverter {
 						}
 
 						// Set requirement's description
-						if(values[0].trim().equals(REQUIREMENT_DESCRIPTION)){
+						else if(values[0].trim().equals(REQUIREMENT_DESCRIPTION)){
 
 							requirement.setDescription(values[1]);
 						}
 
 						// Set requirement's dependency
-						if(values[0].equals(REQUIREMENT_DEPENDENCY_TO)){
+						else if(values[0].equals(REQUIREMENT_DEPENDENCY_TO)){
 							
 							dependenceyToMultiMap.put(requirement.getId(), values[1].trim());
 						}
 
 						// Set requirement's priority
-						if(values[0].trim().equals(REQUIREMENT_PRIORITY)){
+						else if(values[0].trim().equals(REQUIREMENT_PRIORITY)){
 
 							if(values[1].equals(REQUIREMENT_PRIORITY_MANDATORY)){
 
@@ -198,9 +200,14 @@ public class Docx2ReqModelConverter {
 						}
 
 						// Set requirement's refine
-						if(values[0].trim().equals(REQUIREMENT_REFINE)){
+						else if(values[0].trim().equals(REQUIREMENT_REFINE)){
 
 							refineMultiMap.put(requirement.getId(), values[1].trim());
+						}
+						
+						else{
+							
+							
 						}
 
 
