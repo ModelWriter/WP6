@@ -7,7 +7,7 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated simplerequirementmetamodel -->
+      <!-- @generated ReqModel -->
       <factory
             uri="eu.modelwriter.architecture.textconnectors.docx.requirement"
             class="ReqModel.provider.ReqModelItemProviderAdapterFactory"

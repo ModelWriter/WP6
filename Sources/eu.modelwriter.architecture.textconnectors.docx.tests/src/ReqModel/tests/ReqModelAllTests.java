@@ -9,11 +9,11 @@ import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test suite for the '<em><b>Simplerequirementmetamodel</b></em>' model.
+ * A test suite for the '<em><b>ReqModel</b></em>' model.
  * <!-- end-user-doc -->
  * @generated
  */
-public class SimplerequirementmetamodelAllTests extends TestSuite {
+public class ReqModelAllTests extends TestSuite {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ public class SimplerequirementmetamodelAllTests extends TestSuite {
 	 * @generated
 	 */
 	public static Test suite() {
-		TestSuite suite = new SimplerequirementmetamodelAllTests("Simplerequirementmetamodel Tests");
+		TestSuite suite = new ReqModelAllTests("ReqModel Tests");
 		return suite;
 	}
 
@@ -39,8 +39,8 @@ public class SimplerequirementmetamodelAllTests extends TestSuite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimplerequirementmetamodelAllTests(String name) {
+	public ReqModelAllTests(String name) {
 		super(name);
 	}
 
-} //SimplerequirementmetamodelAllTests
+} //ReqModelAllTests

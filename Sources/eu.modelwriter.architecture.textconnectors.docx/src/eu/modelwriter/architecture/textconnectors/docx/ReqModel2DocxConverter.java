@@ -117,7 +117,7 @@ public class ReqModel2DocxConverter {
 		// TODO Auto-generated method stub
 		
 		// Register the XMI resource factory for the .graph extension
-		URI uri = URI.createURI("Model/ReqModel.xmi");
+		URI uri = URI.createURI("Model/SimpleRequirementMM.xmi");
 		
 		ResourceSet resourceSet = new ResourceSetImpl();
 

@@ -141,7 +141,7 @@ public class NamedElementItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return SimplerequirementmetamodelEditPlugin.INSTANCE;
+		return ReqModelEditPlugin.INSTANCE;
 	}
 
 }

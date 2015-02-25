@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ReqModel:Product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ReqModel="eu.modelwriter.architecture.textconnectors.docx.requirement">
+  <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="1 Presentation"/>
+  <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="2 Requirements">
+    <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="2.1 Level A">
+      <OwnedDefinition xsi:type="ReqModel:Requirement" Name=" Equipment state" Id="EM-HLR-F-REQ-001" Description=" Equipments regularly send signals (a frame) to give their state. Signals differ according to the equipment category." PriorityType="Optional"/>
+      <OwnedDefinition xsi:type="ReqModel:TextArea"/>
+      <OwnedDefinition xsi:type="ReqModel:Requirement" Name=" Case of failure" Id="EM-HLR-F-REQ-002" Description=" In case of failure assumption (particular signal), advanced analysis should be performed and correlation should be done with other existing information to check the effective failure." PriorityType="Optional"/>
+      <OwnedDefinition xsi:type="ReqModel:TextArea"/>
+      <OwnedDefinition xsi:type="ReqModel:Requirement" Name=" Handle failure" Id="EM-HLR-F-REQ-003" Description=" If failure is confirmed, a procedure should be presented to the maintenance operator to handle the failure." PriorityType="Optional"/>
+    </OwnedDefinition>
+    <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="2.2 Level B">
+      <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="2.2.1 Level B.1">
+        <OwnedDefinition xsi:type="ReqModel:Requirement" Name=" Permissions" Id="EM-HLR-F-REQ-005" Description=" The target system should allow administrating the equipments and their categories." Refine="//@OwnedDefinition.1/@OwnedDefinition.0/@OwnedDefinition.2" PriorityType="Optional"/>
+        <OwnedDefinition xsi:type="ReqModel:TextArea"/>
+        <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="2.2.1.1 Level B.1.1">
+          <OwnedDefinition xsi:type="ReqModel:Requirement" Name=" Procedure" Id="EM-HLR-F-REQ-004" Description=" The procedure differs according to the equipment type." PriorityType="Optional"/>
+          <OwnedDefinition xsi:type="ReqModel:TextArea"/>
+          <OwnedDefinition xsi:type="ReqModel:TextArea"/>
+        </OwnedDefinition>
+      </OwnedDefinition>
+      <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="2.2.2 Level B.2">
+        <OwnedDefinition xsi:type="ReqModel:Requirement" Name=" Failures statistich" Id="EM-HLR-F-REQ-006" Description=" Statistics about failures and incident resolutions should be activated if needed and should be exported as reports if requested by the chief operator." DependencyTo="//@OwnedDefinition.1/@OwnedDefinition.0/@OwnedDefinition.4" PriorityType="Optional"/>
+        <OwnedDefinition xsi:type="ReqModel:TextArea"/>
+      </OwnedDefinition>
+    </OwnedDefinition>
+  </OwnedDefinition>
+  <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="3 Conclusion">
+    <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="3.1 Level A"/>
+    <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="3.2 Level B"/>
+    <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="3.3 Level C"/>
+  </OwnedDefinition>
+  <OwnedDefinition xsi:type="ReqModel:RequirementLevel" Name="4 Summary"/>
+</ReqModel:Product>

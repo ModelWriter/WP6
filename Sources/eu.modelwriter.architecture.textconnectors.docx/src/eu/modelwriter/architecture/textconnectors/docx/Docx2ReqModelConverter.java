@@ -1,9 +1,3 @@
-/**
- * Converts requirement file(.docx) to  EMF model instance
- * 
- * @author furkan.tanriverdi@unitbilisim.com
- */
-
 package eu.modelwriter.architecture.textconnectors.docx;
 
 import java.io.FileInputStream;
@@ -27,13 +21,14 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
-import ReqModel.ReqModelFactory;
 import ReqModel.Definition;
 import ReqModel.Priority;
 import ReqModel.Product;
+import ReqModel.ReqModelFactory;
 import ReqModel.Requirement;
 import ReqModel.RequirementLevel;
 import ReqModel.TextArea;
+
 
 public class Docx2ReqModelConverter {
 
@@ -530,7 +525,7 @@ public class Docx2ReqModelConverter {
 
 
 		// Create empty resource with the given URI
-		Resource resource = resourceSet.createResource(URI.createURI("Model/ReqModel.xmi"));
+		Resource resource = resourceSet.createResource(URI.createURI("Model/SimpleRequirementMM.xmi"));
 
 
 		// Add Product to contents list of the resource 
@@ -550,3 +545,4 @@ public class Docx2ReqModelConverter {
 
 
 }
+

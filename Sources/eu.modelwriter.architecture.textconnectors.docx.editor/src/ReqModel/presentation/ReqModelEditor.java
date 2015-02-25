@@ -530,7 +530,7 @@ public class ReqModelEditor
 					}
 				}
 				catch (CoreException exception) {
-					SimplerequirementmetamodelEditorPlugin.INSTANCE.log(exception);
+					ReqModelEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -646,7 +646,7 @@ public class ReqModelEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					SimplerequirementmetamodelEditorPlugin.INSTANCE.log(exception);
+					ReqModelEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -657,7 +657,7 @@ public class ReqModelEditor
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						SimplerequirementmetamodelEditorPlugin.INSTANCE.log(exception);
+						ReqModelEditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -1522,7 +1522,7 @@ public class ReqModelEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			SimplerequirementmetamodelEditorPlugin.INSTANCE.log(exception);
+			ReqModelEditorPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1726,7 +1726,7 @@ public class ReqModelEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return SimplerequirementmetamodelEditorPlugin.INSTANCE.getString(key);
+		return ReqModelEditorPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1736,7 +1736,7 @@ public class ReqModelEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return SimplerequirementmetamodelEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return ReqModelEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**

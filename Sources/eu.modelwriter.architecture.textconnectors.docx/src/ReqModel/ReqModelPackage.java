@@ -47,7 +47,7 @@ public interface ReqModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "SimpleRequirementMM";
+	String eNS_PREFIX = "ReqModel";
 
 	/**
 	 * The singleton instance of the package.

@@ -9,19 +9,19 @@ import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the Simplerequirementmetamodel editor plugin.
+ * This is the central singleton for the ReqModel editor plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class SimplerequirementmetamodelEditorPlugin extends EMFPlugin {
+public final class ReqModelEditorPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final SimplerequirementmetamodelEditorPlugin INSTANCE = new SimplerequirementmetamodelEditorPlugin();
+	public static final ReqModelEditorPlugin INSTANCE = new ReqModelEditorPlugin();
 	
 	/**
 	 * Keep track of the singleton.
@@ -37,7 +37,7 @@ public final class SimplerequirementmetamodelEditorPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimplerequirementmetamodelEditorPlugin() {
+	public ReqModelEditorPlugin() {
 		super
 			(new ResourceLocator [] {
 			});
