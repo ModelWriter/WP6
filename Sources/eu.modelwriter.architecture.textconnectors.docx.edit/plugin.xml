@@ -10,7 +10,7 @@
       <!-- @generated simplerequirementmetamodel -->
       <factory
             uri="eu.modelwriter.architecture.textconnectors.docx.requirement"
-            class="SimpleRequirementMM.provider.SimpleRequirementMMItemProviderAdapterFactory"
+            class="ReqModel.provider.ReqModelItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

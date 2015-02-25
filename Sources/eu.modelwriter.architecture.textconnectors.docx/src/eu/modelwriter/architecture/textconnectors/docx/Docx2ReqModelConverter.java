@@ -27,13 +27,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
-import SimpleRequirementMM.Definition;
-import SimpleRequirementMM.Priority;
-import SimpleRequirementMM.Product;
-import SimpleRequirementMM.Requirement;
-import SimpleRequirementMM.RequirementLevel;
-import SimpleRequirementMM.SimpleRequirementMMFactory;
-import SimpleRequirementMM.TextArea;
+import ReqModel.ReqModelFactory;
+import ReqModel.Definition;
+import ReqModel.Priority;
+import ReqModel.Product;
+import ReqModel.Requirement;
+import ReqModel.RequirementLevel;
+import ReqModel.TextArea;
 
 public class Docx2ReqModelConverter {
 
@@ -99,7 +99,7 @@ public class Docx2ReqModelConverter {
 
 		List<XWPFParagraph> paragraphList = docx.getParagraphs();
 
-		SimpleRequirementMMFactory factory = SimpleRequirementMMFactory.eINSTANCE;
+		ReqModelFactory factory = ReqModelFactory.eINSTANCE;
 
 		//int currentIndex = 0;
 		int firstParagraphCounter = 0;
@@ -530,7 +530,7 @@ public class Docx2ReqModelConverter {
 
 
 		// Create empty resource with the given URI
-		Resource resource = resourceSet.createResource(URI.createURI("Model/SimpleRequirementMM.xmi"));
+		Resource resource = resourceSet.createResource(URI.createURI("Model/ReqModel.xmi"));
 
 
 		// Add Product to contents list of the resource 

@@ -12,12 +12,12 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="SimpleRequirementMM.presentation.SimpleRequirementMMModelWizardID"
-            name="%_UI_SimpleRequirementMMModelWizard_label"
-            class="SimpleRequirementMM.presentation.SimpleRequirementMMModelWizard"
+            id="ReqModel.presentation.ReqModelModelWizardID"
+            name="%_UI_ReqModelModelWizard_label"
+            class="ReqModel.presentation.ReqModelModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/SimpleRequirementMMModelFile.gif">
-         <description>%_UI_SimpleRequirementMMModelWizard_description</description>
+            icon="icons/full/obj16/ReqModelModelFile.gif">
+         <description>%_UI_ReqModelModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
@@ -25,13 +25,12 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated simplerequirementmetamodel -->
       <editor
-            id="SimpleRequirementMM.presentation.SimpleRequirementMMEditorID"
-            name="%_UI_SimpleRequirementMMEditor_label"
-            icon="icons/full/obj16/SimpleRequirementMMModelFile.gif"
-            extensions="simplerequirementmm"
-            class="SimpleRequirementMM.presentation.SimpleRequirementMMEditor"
-            contributorClass="SimpleRequirementMM.presentation.SimpleRequirementMMActionBarContributor">
+            id="ReqModel.presentation.ReqModelEditorID"
+            name="%_UI_ReqModelEditor_label"
+            icon="icons/full/obj16/ReqModelModelFile.gif"
+            extensions="reqmodel"
+            class="ReqModel.presentation.ReqModelEditor"
+            contributorClass="ReqModel.presentation.ReqModelActionBarContributor">
       </editor>
    </extension>
-
 </plugin>

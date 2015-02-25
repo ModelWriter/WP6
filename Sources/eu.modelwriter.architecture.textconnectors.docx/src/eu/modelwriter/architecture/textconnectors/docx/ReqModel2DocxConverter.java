@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import SimpleRequirementMM.Definition;
-import SimpleRequirementMM.Priority;
-import SimpleRequirementMM.Product;
-import SimpleRequirementMM.Requirement;
-import SimpleRequirementMM.RequirementLevel;
-import SimpleRequirementMM.TextArea;
+import ReqModel.Definition;
+import ReqModel.Priority;
+import ReqModel.Product;
+import ReqModel.Requirement;
+import ReqModel.RequirementLevel;
+import ReqModel.TextArea;
 
 public class ReqModel2DocxConverter {
 
@@ -117,14 +117,14 @@ public class ReqModel2DocxConverter {
 		// TODO Auto-generated method stub
 		
 		// Register the XMI resource factory for the .graph extension
-		URI uri = URI.createURI("Model/SimpleRequirementMM.xmi");
+		URI uri = URI.createURI("Model/ReqModel.xmi");
 		
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		// register UML
 		Map packageRegistry = resourceSet.getPackageRegistry();
-		packageRegistry.put(SimpleRequirementMM.SimpleRequirementMMPackage.eNS_URI, 
-				SimpleRequirementMM.SimpleRequirementMMPackage.eINSTANCE);
+		packageRegistry.put(ReqModel.ReqModelPackage.eNS_URI, 
+				ReqModel.ReqModelPackage.eINSTANCE);
 
 		// Register XML resource as UMLResource.Factory.Instance
 		Map extensionFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();

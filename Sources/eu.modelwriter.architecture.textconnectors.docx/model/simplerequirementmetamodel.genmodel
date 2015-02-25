@@ -5,7 +5,7 @@
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>simplerequirementmetamodel.ecore</foreignModel>
-  <genPackages prefix="SimpleRequirementMM" disposableProviderFactory="true" ecorePackage="simplerequirementmetamodel.ecore#/">
+  <genPackages prefix="ReqModel" disposableProviderFactory="true" ecorePackage="simplerequirementmetamodel.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="simplerequirementmetamodel.ecore#//Priority">
       <genEnumLiterals ecoreEnumLiteral="simplerequirementmetamodel.ecore#//Priority/Mandatory"/>
       <genEnumLiterals ecoreEnumLiteral="simplerequirementmetamodel.ecore#//Priority/Optional"/>
@@ -14,7 +14,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simplerequirementmetamodel.ecore#//NamedElement/Name"/>
     </genClasses>
     <genClasses ecoreClass="simplerequirementmetamodel.ecore#//Product">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simplerequirementmetamodel.ecore#//Product/OwnedRequirementLevel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simplerequirementmetamodel.ecore#//Product/OwnedDefinition"/>
     </genClasses>
     <genClasses image="false" ecoreClass="simplerequirementmetamodel.ecore#//Definition"/>
     <genClasses ecoreClass="simplerequirementmetamodel.ecore#//RequirementLevel">
