@@ -203,22 +203,44 @@ public class ReqModel2DocxConverter {
 			run.setFontFamily("Calibri");
 			run.addBreak();
 			
-			XWPFRun runName = paragraph.createRun();
-			runName.setText(REQUIREMENT_NAME + " :" + requirement.getName());
-			runName.addBreak();
 			
-			XWPFRun runDescription = paragraph.createRun();
-			runDescription.setText(REQUIREMENT_DESCRIPTION + " :" + requirement.getDescription());
-			runDescription.addBreak();
+			String[] naneParagraphs = requirement.getName().split("\n");
+			for(int i = 0;i < naneParagraphs.length; i++){
+				
+				XWPFRun runName = paragraph.createRun();
+				if(i == 0){
+					runName.setText(REQUIREMENT_NAME + " :" + naneParagraphs[i]);
+				}else{
+					
+					runName.setText(naneParagraphs[i]);
+				}
+				
+				runName.addBreak();
+			}
+			
+			
+			String[] descriptionParagraphs = requirement.getDescription().split("\n");
+			for(int i = 0;i < descriptionParagraphs.length; i++){
+				
+				XWPFRun runDescription = paragraph.createRun();
+				if(i == 0){
+					runDescription.setText(REQUIREMENT_DESCRIPTION + " :" + descriptionParagraphs[i]);
+				}else{
+					
+					runDescription.setText(descriptionParagraphs[i]);
+				}
+				
+				runDescription.addBreak();
+			}
 			
 			XWPFRun runPriority = paragraph.createRun();
 			if(requirement.getPriorityType() == Priority.MANDATORY){
 				
-				runDescription.setText(REQUIREMENT_PRIORITY + " : Mandatory");
+				runPriority.setText(REQUIREMENT_PRIORITY + " : Mandatory");
 				
 			}else{
 				
-				runDescription.setText(REQUIREMENT_PRIORITY + " : Optional");
+				runPriority.setText(REQUIREMENT_PRIORITY + " : Optional");
 				
 			}
 			runPriority.addBreak();
