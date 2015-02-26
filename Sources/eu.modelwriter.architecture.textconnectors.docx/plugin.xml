@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated ReqModel -->
       <package
-            uri="eu.modelwriter.architecture.textconnectors.docx.requirement"
+            uri="eu.modelwriter.architecture.textconnectors.docx.reqmodel"
             class="ReqModel.ReqModelPackage"
             genModel="model/ReqModel.genmodel"/>
    </extension>

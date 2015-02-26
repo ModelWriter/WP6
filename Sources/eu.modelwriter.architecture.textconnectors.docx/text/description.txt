@@ -5,7 +5,7 @@ org.eclipse.emf.examples.generator.validator plug-in to illustrate how EMF's
 code generator can be extended.
 This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
 
-Package ReqModel <eu.modelwriter.architecture.textconnectors.docx.requirement>
+Package ReqModel <eu.modelwriter.architecture.textconnectors.docx.reqmodel>
 
   Class NamedElement
     Attribute Name : EString

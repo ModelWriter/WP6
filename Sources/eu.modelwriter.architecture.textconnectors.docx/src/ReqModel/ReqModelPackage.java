@@ -39,7 +39,7 @@ public interface ReqModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "eu.modelwriter.architecture.textconnectors.docx.requirement";
+	String eNS_URI = "eu.modelwriter.architecture.textconnectors.docx.reqmodel";
 
 	/**
 	 * The package namespace name.

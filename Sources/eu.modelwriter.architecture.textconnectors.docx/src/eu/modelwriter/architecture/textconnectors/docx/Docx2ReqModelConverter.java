@@ -1,3 +1,9 @@
+/**
+ * Converts requirement file(.docx) to  EMF model instance
+ * 
+ * @author furkan.tanriverdi@unitbilisim.com
+ */
+
 package eu.modelwriter.architecture.textconnectors.docx;
 
 import java.io.FileInputStream;
@@ -86,7 +92,7 @@ public class Docx2ReqModelConverter {
 		headingMap.put("Heading8", 8);
 		headingMap.put("Heading9", 9);
 
-		XWPFDocument docx = new XWPFDocument(new FileInputStream("Test Documents/SampleRequirementDocument.docx"));
+		XWPFDocument docx = new XWPFDocument(new FileInputStream("test documents/SampleRequirementDocument.docx"));
 
 		//XWPFWordExtractor we = new XWPFWordExtractor(docx);
 
@@ -525,7 +531,7 @@ public class Docx2ReqModelConverter {
 
 
 		// Create empty resource with the given URI
-		Resource resource = resourceSet.createResource(URI.createURI("Model/SimpleRequirementMM.xmi"));
+		Resource resource = resourceSet.createResource(URI.createURI("Model/ReqModel.xmi"));
 
 
 		// Add Product to contents list of the resource 
@@ -545,4 +551,3 @@ public class Docx2ReqModelConverter {
 
 
 }
-

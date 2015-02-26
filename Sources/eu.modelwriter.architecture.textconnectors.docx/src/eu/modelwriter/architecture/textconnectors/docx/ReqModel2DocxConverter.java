@@ -53,7 +53,7 @@ public class ReqModel2DocxConverter {
 		// TODO Auto-generated method stub
 
 		// Get template document which includes heading styles
-		XWPFDocument template = new XWPFDocument(new FileInputStream("lib/template.docx"));
+		XWPFDocument template = new XWPFDocument(new FileInputStream("template file/template.docx"));
 		
 		document = new XWPFDocument(); 
 		
@@ -61,7 +61,7 @@ public class ReqModel2DocxConverter {
 		newStyles.setStyles(template.getStyle());
 		
 		//Write the Document in file system(in this case in project folder)					
-		FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/RequirementModelDocument1.docx"));
+		FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/RequirementModelDocument.docx"));
 
 		try {
 
@@ -117,7 +117,7 @@ public class ReqModel2DocxConverter {
 		// TODO Auto-generated method stub
 		
 		// Register the XMI resource factory for the .graph extension
-		URI uri = URI.createURI("Model/SimpleRequirementMM.xmi");
+		URI uri = URI.createURI("Model/ReqModel.xmi");
 		
 		ResourceSet resourceSet = new ResourceSetImpl();
 
