@@ -6,6 +6,7 @@
 
 package eu.modelwriter.architecture.textconnectors.docx;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class Docx2ReqModelConverter {
 	// Maps requirement id and corresponding requirement object
 	public static Map<String, Requirement> requirementMultiMap;
 
-	public static void main(String[] args)throws Exception 
+	public static Product Convert(XWPFDocument doc) throws Exception 
 	{
 		//requirementsMap = new HashMap<Requirement,String>();
 		requirementLevelStack = new Stack<RequirementLevel>();
@@ -92,7 +93,7 @@ public class Docx2ReqModelConverter {
 		headingMap.put("Heading8", 8);
 		headingMap.put("Heading9", 9);
 
-		XWPFDocument docx = new XWPFDocument(new FileInputStream("test documents/SampleRequirementDocument.docx"));
+		XWPFDocument docx =doc;
 
 		//XWPFWordExtractor we = new XWPFWordExtractor(docx);
 
@@ -437,11 +438,15 @@ public class Docx2ReqModelConverter {
 		emptyStack();
 
 		// Create and save the model instance to xmi file
-		createXMIFile(product);
+		
+		/*
+		Resource r = createXMIFile(product);
 
 		final JFrame frame = new JFrame();
 		JOptionPane.showMessageDialog(frame, "EMF Model created successfully!");
-
+*/
+		
+		return product;
 	}
 
 	/**
@@ -521,7 +526,7 @@ public class Docx2ReqModelConverter {
 	 * 
 	 * @param product
 	 */
-	private static void createXMIFile(Product product) {
+	private static Resource createXMIFile(Product product) {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -547,6 +552,8 @@ public class Docx2ReqModelConverter {
 
 			e.printStackTrace();
 		}
+		
+		return resource;
 	}
 
 
