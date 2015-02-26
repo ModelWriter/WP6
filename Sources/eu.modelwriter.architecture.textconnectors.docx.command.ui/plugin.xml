@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="eu.modelwriter.architecture.textconnectors.docx.command.ui.handler.ConvertHandler"
+            id="eu.modelwriter.architecture.textconnectors.docx.command.ui.convert"
+            name="Convert2ReqModel">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+               label="Convert2ReqModel">
+            <command
+                  commandId="eu.modelwriter.architecture.textconnectors.docx.command.ui.convert"
+                  label="Convert Docx to Requirement Model"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="eu.modelwriter.architecture.textconnectors.docx.command.ui.handler.ConvertHandler"
+            commandId="eu.modelwriter.architecture.textconnectors.docx.command.ui.convert">
+      </handler>
+   </extension>
+
+</plugin>
