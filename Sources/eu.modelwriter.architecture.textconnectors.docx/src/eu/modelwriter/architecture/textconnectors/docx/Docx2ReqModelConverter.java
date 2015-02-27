@@ -20,6 +20,9 @@ import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+
+
+
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.eclipse.emf.common.util.URI;
@@ -93,13 +96,13 @@ public class Docx2ReqModelConverter {
 		headingMap.put("Heading8", 8);
 		headingMap.put("Heading9", 9);
 
-		//XWPFDocument docx =doc;
+		XWPFDocument docx = doc;
 
 		//XWPFWordExtractor we = new XWPFWordExtractor(docx);
 
 		//XWPFStyles styles = docx.getStyles();
 
-		List<XWPFParagraph> paragraphList = doc.getParagraphs();
+		List<XWPFParagraph> paragraphList = docx.getParagraphs();
 
 		ReqModelFactory factory = ReqModelFactory.eINSTANCE;
 

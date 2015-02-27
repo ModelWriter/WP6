@@ -18,6 +18,11 @@ import ReqModel.Product;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Shell;
@@ -30,7 +35,6 @@ public class ConvertHandler extends AbstractHandler implements IHandler {
 	@Override
 	public Object execute(ExecutionEvent event) {
 		// TODO Auto-generated method stub
-
 
 		XWPFDocument document = null;
 		// Shell shell = HandlerUtil.getActiveShell(event);
@@ -55,15 +59,10 @@ public class ConvertHandler extends AbstractHandler implements IHandler {
 				try {
 					
 					
-					document = new XWPFDocument(new FileInputStream(f));
-					List<XWPFParagraph> paragraphList = document.getParagraphs();
-					for(XWPFParagraph paragraph : paragraphList){
-						
-						System.out.println(paragraph.getText());
-					}
+					document = new XWPFDocument(new FileInputStream(f));					
 					
 					Product p = Docx2ReqModelConverter.Convert(document);
-					
+					createXMIFile(p);
 					
 					//Product p = Docx2ReqModelConverter.Convert(f);
 					
@@ -85,5 +84,40 @@ public class ConvertHandler extends AbstractHandler implements IHandler {
 		}
 		return null;
 
+	}
+	
+	/**
+	 * Saves the model instance and writes it to xmi file
+	 * 
+	 * @param product
+	 */
+	private static Resource createXMIFile(Product product) {
+
+		ResourceSet resourceSet = new ResourceSetImpl();
+
+		// Register XML Factory implementation using xmi extension
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+				"xmi", new  XMLResourceFactoryImpl());
+
+
+		// Create empty resource with the given URI
+		Resource resource = resourceSet.createResource(URI.createURI("Testing/ReqModel.xmi"));
+
+
+		// Add Product to contents list of the resource 
+
+		resource.getContents().add(product);
+
+		try{
+
+			// Save the resource	
+			resource.save(null);
+
+		}catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		
+		return resource;
 	}
 }
