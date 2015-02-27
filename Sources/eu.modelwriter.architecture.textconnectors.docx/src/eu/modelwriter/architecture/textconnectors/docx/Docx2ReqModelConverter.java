@@ -93,13 +93,13 @@ public class Docx2ReqModelConverter {
 		headingMap.put("Heading8", 8);
 		headingMap.put("Heading9", 9);
 
-		XWPFDocument docx =doc;
+		//XWPFDocument docx =doc;
 
 		//XWPFWordExtractor we = new XWPFWordExtractor(docx);
 
 		//XWPFStyles styles = docx.getStyles();
 
-		List<XWPFParagraph> paragraphList = docx.getParagraphs();
+		List<XWPFParagraph> paragraphList = doc.getParagraphs();
 
 		ReqModelFactory factory = ReqModelFactory.eINSTANCE;
 
