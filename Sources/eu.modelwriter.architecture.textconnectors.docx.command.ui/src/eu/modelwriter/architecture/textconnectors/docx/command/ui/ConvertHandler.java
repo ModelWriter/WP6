@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -16,9 +19,13 @@ import org.eclipse.core.commands.IHandler;
 import ReqModel.Product;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -27,6 +34,13 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
+
+
+
+
+
+
+
 
 import eu.modelwriter.architecture.textconnectors.docx.Docx2ReqModelConverter;
 
@@ -41,6 +55,7 @@ public class ConvertHandler extends AbstractHandler implements IHandler {
 		ISelection sel = HandlerUtil.getActiveMenuSelection(event);
 		IStructuredSelection selection = (IStructuredSelection) sel;
 
+		
 		Object firstElement = selection.getFirstElement();
 
 		if(firstElement instanceof IFile){
@@ -56,13 +71,30 @@ public class ConvertHandler extends AbstractHandler implements IHandler {
 			if (ifile != null) {
 
 				File f = ifile.getLocation().toFile();
+				String locationString = ifile.getLocation().toString();
+				String[] locationParts = locationString.split("/");
+			
+				String newLoc = "file:///";
+				
+				for(int i = 0;i < locationParts.length; i++){
+				
+					if(!locationParts[i].equals(f.getName())){
+						
+						newLoc += locationParts[i] + "/";
+					}else{
+						String[] name = locationParts[i].split("\\.");
+						newLoc += name[0] + ".xmi";
+					}
+				}
+				
+	
 				try {
 					
 					
 					document = new XWPFDocument(new FileInputStream(f));					
 					
 					Product p = Docx2ReqModelConverter.Convert(document);
-					createXMIFile(p);
+					createXMIFile(p,newLoc);
 					
 					//Product p = Docx2ReqModelConverter.Convert(f);
 					
@@ -91,7 +123,7 @@ public class ConvertHandler extends AbstractHandler implements IHandler {
 	 * 
 	 * @param product
 	 */
-	private static Resource createXMIFile(Product product) {
+	private static void createXMIFile(Product product, String location) {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -101,7 +133,7 @@ public class ConvertHandler extends AbstractHandler implements IHandler {
 
 
 		// Create empty resource with the given URI
-		Resource resource = resourceSet.createResource(URI.createURI("Testing/ReqModel.xmi"));
+		Resource resource = resourceSet.createResource(URI.createURI(location));
 
 
 		// Add Product to contents list of the resource 
@@ -110,14 +142,17 @@ public class ConvertHandler extends AbstractHandler implements IHandler {
 
 		try{
 
-			// Save the resource	
+			// Save the resource
+			//resource.save(System.out, Collections.EMPTY_MAP); 
 			resource.save(null);
+			
 
 		}catch (IOException e) {
 
 			e.printStackTrace();
 		}
 		
-		return resource;
+		
+				
 	}
 }

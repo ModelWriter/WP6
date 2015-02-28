@@ -442,9 +442,9 @@ public class Docx2ReqModelConverter {
 
 		// Create and save the model instance to xmi file
 		
+		
+		createXMIFile(product);
 		/*
-		Resource r = createXMIFile(product);
-
 		final JFrame frame = new JFrame();
 		JOptionPane.showMessageDialog(frame, "EMF Model created successfully!");
 */
@@ -539,7 +539,7 @@ public class Docx2ReqModelConverter {
 
 
 		// Create empty resource with the given URI
-		Resource resource = resourceSet.createResource(URI.createURI("Model/ReqModel.xmi"));
+		Resource resource = resourceSet.createResource(URI.createURI("model/ReqModel.xmi"));
 
 
 		// Add Product to contents list of the resource 
