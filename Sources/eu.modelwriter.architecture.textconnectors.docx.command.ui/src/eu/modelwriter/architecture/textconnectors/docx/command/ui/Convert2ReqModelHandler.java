@@ -9,6 +9,9 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.eclipse.core.commands.AbstractHandler;
@@ -34,6 +37,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
+
 
 
 
@@ -70,46 +74,56 @@ public class Convert2ReqModelHandler extends AbstractHandler implements IHandler
 
 			if (ifile != null) {
 
-				File f = ifile.getLocation().toFile();
-				String locationString = ifile.getLocation().toString();
-				String[] locationParts = locationString.split("/");
-			
-				String newLoc = "file:///";
+
+				if(!ifile.getName().contains(".docx")){
+					
+					final JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "WRONG FILE TYPE! (expected type: .docx)");
+					
+				}else{
+
+					File f = ifile.getLocation().toFile();
+					String locationString = ifile.getLocation().toString();
+					String[] locationParts = locationString.split("/");
 				
-				for(int i = 0;i < locationParts.length; i++){
-				
-					if(!locationParts[i].equals(f.getName())){
-						
-						newLoc += locationParts[i] + "/";
-					}else{
-						String[] name = locationParts[i].split("\\.");
-						newLoc += name[0] + ".xmi";
+					String newLoc = "file:///";
+					
+					for(int i = 0;i < locationParts.length; i++){
+					
+						if(!locationParts[i].equals(f.getName())){
+							
+							newLoc += locationParts[i] + "/";
+						}else{
+							String[] name = locationParts[i].split("\\.");
+							newLoc += name[0] + ".xmi";
+						}
 					}
+					
+		
+					try {
+						
+						
+						document = new XWPFDocument(new FileInputStream(f));					
+						
+						Product p = Docx2ReqModelConverter.Convert(document);
+						createXMIFile(p,newLoc);
+						
+						//Product p = Docx2ReqModelConverter.Convert(f);
+						
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+
 				}
 				
-	
-				try {
-					
-					
-					document = new XWPFDocument(new FileInputStream(f));					
-					
-					Product p = Docx2ReqModelConverter.Convert(document);
-					createXMIFile(p,newLoc);
-					
-					//Product p = Docx2ReqModelConverter.Convert(f);
-					
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-
 			}
 
 
@@ -145,7 +159,8 @@ public class Convert2ReqModelHandler extends AbstractHandler implements IHandler
 			// Save the resource
 			//resource.save(System.out, Collections.EMPTY_MAP); 
 			resource.save(null);
-			
+			final JFrame frame = new JFrame();
+			JOptionPane.showMessageDialog(frame, "Requirement Model created successfully!");
 
 		}catch (IOException e) {
 

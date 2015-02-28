@@ -1,20 +1,24 @@
 package eu.modelwriter.architecture.textconnectors.docx.command.ui;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -27,7 +31,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import ReqModel.Product;
-import eu.modelwriter.architecture.textconnectors.docx.Docx2ReqModelConverter;
 import eu.modelwriter.architecture.textconnectors.docx.ReqModel2DocxConverter;
 
 public class Convert2DocxHandler extends AbstractHandler implements IHandler {
@@ -58,12 +61,21 @@ public class Convert2DocxHandler extends AbstractHandler implements IHandler {
 
 			if (iresource != null) {
 	
-				try {
+				if(!iresource.getName().contains(".xmi")){
+					
+					final JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "WRONG FILE TYPE! (expected type: .xmi)");
+					
+				}else{
+					
+
 					// cast exception
 					//Resource r = (Resource)iresource.getLocation().toFile();
 					//Resource r = (Resource)iresource;
 					String locationString = iresource.getLocation().toString();
 					String loc = "file:///" + locationString;
+					
+					IPath path = iresource.getFullPath();
 					
 					String[] locationParts = locationString.split("/");
 					
@@ -75,7 +87,7 @@ public class Convert2DocxHandler extends AbstractHandler implements IHandler {
 							
 							newLoc += locationParts[i] + "/";
 						}else{
-							String[] name = locationParts[i].split("\\.");
+							String[] name = locationParts[i].split("\\.");							
 							newLoc += "RequirementModel.docx";
 						}
 					}
@@ -101,32 +113,31 @@ public class Convert2DocxHandler extends AbstractHandler implements IHandler {
 					Map extensionFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
 					extensionFactoryMap.put("xmi", new XMIResourceFactoryImpl());
 					
-					document = ReqModel2DocxConverter.Convert((Resource)resourceSet.createResource(uri));
 					
-					document.write(out);
-					out.close();
+					try {
+						
+						document = ReqModel2DocxConverter.Convert((Resource)resourceSet.createResource(uri));
+						
+						document.write(out);
+						out.close();
+						final JFrame frame = new JFrame();
+						JOptionPane.showMessageDialog(frame, "Requirement File created successfully!");
+						//iresource.refreshLocal(IResource.DEPTH_INFINITE, null);
+						refresh(path);
 					
-					/*
-					 * document = new XWPFDocument(new FileInputStream(f));					
-					
-					Product p = Docx2ReqModelConverter.Convert(document);
-					createXMIFile(p,newLoc);
-					
-					 */
-					
-					//Product p = Docx2ReqModelConverter.Convert(f);
-					
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
+				}
+				
 
 			}
 
@@ -134,6 +145,20 @@ public class Convert2DocxHandler extends AbstractHandler implements IHandler {
 		}
 		return null;
 
+	}
+	
+	/**
+	 * Projeyi yeniler. Boylece yeni yaratilan dosya varsa gorunur.
+	 */
+	protected void refresh(IPath path) {
+		try {
+			IResource dfile = ResourcesPlugin.getWorkspace().getRoot().getProject();
+			dfile.refreshLocal(IResource.DEPTH_INFINITE, null);
+			
+			//WorkbenchSelector.getSelectionProject().refreshLocal(IResource.DEPTH_INFINITE, null);
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
