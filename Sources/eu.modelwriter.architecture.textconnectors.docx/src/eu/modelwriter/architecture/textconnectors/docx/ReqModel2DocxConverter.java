@@ -49,24 +49,24 @@ public class ReqModel2DocxConverter {
 		private final static String REQUIREMENT_PRIORITY = "Priority";
 		//private final static String REQUIREMENT_PRIORITY_MANDATORY = "Mandatory";
 
-	public static void main(String[] args) throws IOException, XmlException {
+	public static XWPFDocument Convert(Resource r) throws IOException, XmlException {
 		// TODO Auto-generated method stub
 
 		// Get template document which includes heading styles
-		XWPFDocument template = new XWPFDocument(new FileInputStream("template file/template.docx"));
+		//XWPFDocument template = new XWPFDocument(new FileInputStream("template file/template.docx"));
 		
 		document = new XWPFDocument(); 
 		
 		XWPFStyles newStyles = document.createStyles();
-		newStyles.setStyles(template.getStyle());
+		//newStyles.setStyles(template.getStyle());
 		
 		//Write the Document in file system(in this case in project folder)					
-		FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/RequirementModelDocument.docx"));
+		//FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/RequirementModelDocument.docx"));
 
 		try {
 
 			// Get the resource
-			resource = getResource();
+			resource = r;
 			// try to load the file into resource
 			resource.load(null);
 
@@ -97,13 +97,18 @@ public class ReqModel2DocxConverter {
 			e.printStackTrace();
 		}
 		
-		document.write(out);
-		out.close();
+		//document.write(out);
+		//out.close();
 		
-		final JFrame frame = new JFrame();
+		/*
+		 * final JFrame frame = new JFrame();
 		JOptionPane.showMessageDialog(frame,
 			    "File written successfully!");
 
+		 * 
+		 */
+
+		return document;
 
 	}
 

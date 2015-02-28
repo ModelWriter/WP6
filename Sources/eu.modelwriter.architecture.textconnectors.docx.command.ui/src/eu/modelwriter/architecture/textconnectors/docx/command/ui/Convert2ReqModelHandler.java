@@ -44,7 +44,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 import eu.modelwriter.architecture.textconnectors.docx.Docx2ReqModelConverter;
 
-public class ConvertHandler extends AbstractHandler implements IHandler {
+public class Convert2ReqModelHandler extends AbstractHandler implements IHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) {

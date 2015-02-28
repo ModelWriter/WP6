@@ -443,7 +443,7 @@ public class Docx2ReqModelConverter {
 		// Create and save the model instance to xmi file
 		
 		
-		createXMIFile(product);
+		//createXMIFile(product);
 		/*
 		final JFrame frame = new JFrame();
 		JOptionPane.showMessageDialog(frame, "EMF Model created successfully!");

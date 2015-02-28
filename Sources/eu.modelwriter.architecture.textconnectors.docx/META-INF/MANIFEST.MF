@@ -20,4 +20,5 @@ Export-Package: ReqModel,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.emf.ecore.xmi.impl
+Import-Package: org.eclipse.core.resources,
+ org.eclipse.emf.ecore.xmi.impl
