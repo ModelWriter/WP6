@@ -264,12 +264,20 @@ public class ReqModel2DocxConverter {
 				runRefine.addBreak();
 			}
 		}else{
-			
+
 			TextArea textArea = (TextArea)definition;
-			run.setText(textArea.getText());
-			run.setBold(false);
-			run.setFontSize(11);
-			run.setFontFamily("Calibri");
+			
+			String[] textAreas = textArea.getText().split("\n");
+			
+			for(int i = 0; i < textAreas.length; i++){
+				
+				XWPFRun runTextArea = paragraph.createRun();
+				runTextArea.setText(textAreas[i]);
+				runTextArea.setBold(false);
+				runTextArea.setFontSize(11);
+				runTextArea.setFontFamily("Calibri");
+				runTextArea.addBreak();
+			}
 			//run.addBreak();
 		}
 		

@@ -72,6 +72,9 @@ public class Docx2ReqModelConverter {
 	// Maps requirement id and corresponding requirement object
 	public static Map<String, Requirement> requirementMultiMap;
 
+	public static List<TextArea> textAreaList;
+	public static ReqModelFactory factory;
+
 	public static Product Convert(XWPFDocument doc) throws Exception 
 	{
 		//requirementsMap = new HashMap<Requirement,String>();
@@ -104,7 +107,7 @@ public class Docx2ReqModelConverter {
 
 		List<XWPFParagraph> paragraphList = docx.getParagraphs();
 
-		ReqModelFactory factory = ReqModelFactory.eINSTANCE;
+		factory = ReqModelFactory.eINSTANCE;
 
 		//int currentIndex = 0;
 		int firstParagraphCounter = 0;
@@ -118,8 +121,9 @@ public class Docx2ReqModelConverter {
 		Pattern p = Pattern.compile(pattern);
 		boolean reqFlag = false;
 		boolean textInside = false;
-		int textCounter = 0;
-		List<Requirement> list = new ArrayList<Requirement>();
+		//int textCounter = 0;
+		textAreaList = new ArrayList<TextArea>();
+		//List<Requirement> list = new ArrayList<Requirement>();
 
 		for(XWPFParagraph paragraph : paragraphList){
 
@@ -161,6 +165,11 @@ public class Docx2ReqModelConverter {
 						// If there is no corresponding requirement object
 						if(matcher.matches()){
 
+							if(!textAreaList.isEmpty()){
+
+								concatTextAreas();
+							}
+
 							previousRequirement = requirement;
 							if(previousRequirement != null){
 
@@ -174,7 +183,7 @@ public class Docx2ReqModelConverter {
 							requirement.setId(paragraph.getText().trim());
 							reqFlag = true;
 							textInside = false;
-							textCounter = 0;
+							//textCounter = 0;
 
 
 						}else{
@@ -195,44 +204,8 @@ public class Docx2ReqModelConverter {
 						else if(values[0].trim().equals(REQUIREMENT_DESCRIPTION)){
 
 							requirement.setDescription(values[1]);
-							
-							// Concat the paragraphs inside the name 
-							if(textInside == true){
 
-								while(textCounter > 0){
-
-									Definition definition = requirementLevelStack.peek().getOwnedDefinition().remove(0);
-
-									if(definition instanceof TextArea){
-
-										String s = requirement.getName();
-										s += "\n" + ((TextArea)definition).getText();
-										requirement.setName(s);
-
-										textCounter--;
-
-									}else if(definition instanceof Requirement){
-
-										list.add((Requirement)definition);
-
-									}
-
-
-
-								}
-
-								while(!list.isEmpty()){
-
-									Definition d = list.remove(0);
-									requirementLevelStack.peek().getOwnedDefinition().add((Requirement)d);
-
-								}
-
-								String name = requirement.getName();
-								System.out.println(name);
-
-								textInside = false;
-							}
+							// Concat the paragraphs inside the name 						
 						}
 
 						// Set requirement's dependency
@@ -253,42 +226,16 @@ public class Docx2ReqModelConverter {
 
 								requirement.setPriorityType(Priority.OPTÝONAL);
 							}
-							
+
 							// Concat the paragraphs inside the description
-							if(textInside == true){
 
-								while(textCounter > 0){
+							if(textInside == true && !textAreaList.isEmpty()){
+								concatDescription(requirement);
+								//Definition definition = requirementLevelStack.peek().getOwnedDefinition().remove(0);						
+								textInside = false;					
 
-									Definition definition = requirementLevelStack.peek().getOwnedDefinition().remove(0);
-
-									if(definition instanceof TextArea){
-
-										String s = requirement.getDescription();
-										s += "\n" + ((TextArea)definition).getText();
-										requirement.setDescription(s);;
-										
-										textCounter--;
-
-									}else if(definition instanceof Requirement){
-										
-										list.add((Requirement)definition);
-										
-									}
-									
-
-									textInside = false;
-								}
-								
-								while(!list.isEmpty()){
-									
-									Definition d = list.remove(0);
-									requirementLevelStack.peek().getOwnedDefinition().add((Requirement)d);
-									
-								}
-								
-								textInside = false;
-															
 							}
+
 						}
 
 						// Set requirement's refine
@@ -306,7 +253,7 @@ public class Docx2ReqModelConverter {
 								TextArea textArea = factory.createTextArea();
 								textArea.setText(paragraph.getText());
 								textInside = true;
-								textCounter++;
+								//textCounter++;
 
 								if(requirement != null && !requirementLevelStack.peek().getOwnedDefinition().contains(requirement) ){
 
@@ -315,7 +262,8 @@ public class Docx2ReqModelConverter {
 
 								}
 
-								requirementLevelStack.peek().getOwnedDefinition().add(textArea);
+								//requirementLevelStack.peek().getOwnedDefinition().add(textArea);
+								textAreaList.add(textArea);
 							}
 
 
@@ -329,9 +277,9 @@ public class Docx2ReqModelConverter {
 						if(requirement != null){
 
 							/*
-							RequirementLevel poppedRequirementLevel = requirementLevelStack.pop();
-							poppedRequirementLevel.getOwnedRequirement().add(requirement);
-							requirementLevelStack.peek().getOwnedLevel().add(poppedRequirementLevel);
+									RequirementLevel poppedRequirementLevel = requirementLevelStack.pop();
+									poppedRequirementLevel.getOwnedRequirement().add(requirement);
+									requirementLevelStack.peek().getOwnedLevel().add(poppedRequirementLevel);
 							 */
 							requirementLevelStack.peek().getOwnedDefinition().add(requirement);
 							requirementMultiMap.put(requirement.getId(), requirement);
@@ -343,13 +291,17 @@ public class Docx2ReqModelConverter {
 						// If the current paragraph's level is lower than the peek's level 
 						if(headingMap.get(paragraph.getStyle()) > requirementLevelMap.get(requirementLevelStack.peek())){
 
+							if(!textAreaList.isEmpty()){
+								concatTextAreas();
+							}
+
 							RequirementLevel newRequirementLevel = factory.createRequirementLevel();
 							newRequirementLevel.setName(paragraph.getText());
 
 							/*
-							if(headingMap.get(paragraph.getStyle()) == 1){
-								product.getOwnedRequirementLevel().add(newRequirementLevel);
-							}*/
+									if(headingMap.get(paragraph.getStyle()) == 1){
+										product.getOwnedRequirementLevel().add(newRequirementLevel);
+									}*/
 
 							requirementLevelStack.push(newRequirementLevel);
 							requirementLevelMap.put(newRequirementLevel, headingMap.get(paragraph.getStyle()));
@@ -357,6 +309,10 @@ public class Docx2ReqModelConverter {
 
 						// If the current paragraph's level is equal to the peek's level 
 						else if(firstParagraphCounter > 1 && (headingMap.get(paragraph.getStyle()) == requirementLevelMap.get(requirementLevelStack.peek()))){
+
+							if(!textAreaList.isEmpty()){
+								concatTextAreas();
+							}
 
 							RequirementLevel poppedRequirementLevel = requirementLevelStack.pop();
 
@@ -386,6 +342,12 @@ public class Docx2ReqModelConverter {
 						else{											
 
 							while(headingMap.get(paragraph.getStyle()) <= requirementLevelMap.get(requirementLevelStack.peek())){
+
+								if(!textAreaList.isEmpty()){
+
+									concatTextAreas();
+								}
+
 
 								RequirementLevel poppedRequirementLevel = requirementLevelStack.pop();
 
@@ -431,6 +393,11 @@ public class Docx2ReqModelConverter {
 			requirementMultiMap.put(requirement.getId(), requirement);
 		}
 
+		// son level altýndaki paragraflar
+		if(!textAreaList.isEmpty()){
+			concatTextAreas();
+		}
+
 		// Assign Refine attribute
 		handleRefine();
 
@@ -441,15 +408,56 @@ public class Docx2ReqModelConverter {
 		emptyStack();
 
 		// Create and save the model instance to xmi file
-		
-		
 		//createXMIFile(product);
-		/*
-		final JFrame frame = new JFrame();
-		JOptionPane.showMessageDialog(frame, "EMF Model created successfully!");
-*/
-		
+
 		return product;
+
+	}
+
+	private static void concatDescription(Requirement requirement) {
+		// TODO Auto-generated method stub
+		Definition definition = textAreaList.remove(0);
+		String text = requirement.getDescription() + "\n" + ((TextArea)definition).getText();
+
+		while(!textAreaList.isEmpty()){
+
+			definition = textAreaList.remove(0);
+			text += ((TextArea)definition).getText();
+			if(!text.equals("")){
+				text += "\n";
+			}
+
+		}
+
+		TextArea newText = factory.createTextArea();
+		newText.setText(text);
+		requirement.setDescription(newText.getText());
+		//textCounter = 0;
+	}
+
+	private static void concatTextAreas() {
+		// TODO Auto-generated method stub
+
+
+		//Definition definition = requirementLevelStack.peek().getOwnedDefinition().remove(0);
+		Definition definition = textAreaList.remove(0);
+		String text = ((TextArea)definition).getText();
+
+		while(!textAreaList.isEmpty()){
+
+			definition = textAreaList.remove(0);
+			text += ((TextArea)definition).getText();
+			if(!text.equals("")){
+				text += "\n";
+			}
+
+		}
+
+		TextArea newText = factory.createTextArea();
+		newText.setText(text);
+		requirementLevelStack.peek().getOwnedDefinition().add(newText);
+		//textCounter = 0;
+
 	}
 
 	/**
@@ -529,7 +537,7 @@ public class Docx2ReqModelConverter {
 	 * 
 	 * @param product
 	 */
-	private static Resource createXMIFile(Product product) {
+	private static void createXMIFile(Product product) {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -539,7 +547,7 @@ public class Docx2ReqModelConverter {
 
 
 		// Create empty resource with the given URI
-		Resource resource = resourceSet.createResource(URI.createURI("model/ReqModel.xmi"));
+		Resource resource = resourceSet.createResource(URI.createURI("model/SimpleRequirementMM.xmi"));
 
 
 		// Add Product to contents list of the resource 
@@ -548,15 +556,14 @@ public class Docx2ReqModelConverter {
 
 		try{
 
-			// Save the resource	
+			// Save the resource
+			//resource.save(System.out, Collections.EMPTY_MAP); 
 			resource.save(null);
 
 		}catch (IOException e) {
 
 			e.printStackTrace();
 		}
-		
-		return resource;
 	}
 
 
