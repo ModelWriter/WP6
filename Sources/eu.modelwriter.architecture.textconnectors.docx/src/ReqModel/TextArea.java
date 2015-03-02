@@ -16,7 +16,7 @@ package ReqModel;
  * </p>
  *
  * @see ReqModel.ReqModelPackage#getTextArea()
- * @model annotation="gmf.node label='Name' figure='ellipse'"
+ * @model annotation="gmf.node label='Name'"
  * @generated
  */
 public interface TextArea extends Definition {

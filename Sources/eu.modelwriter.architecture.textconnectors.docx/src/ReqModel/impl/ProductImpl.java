@@ -68,7 +68,7 @@ public class ProductImpl extends NamedElementImpl implements Product {
 	 */
 	public EList<Definition> getOwnedDefinition() {
 		if (ownedDefinition == null) {
-			ownedDefinition = new EObjectContainmentEList<Definition>(Definition.class, this, ReqModelPackage.PRODUCT__OWNED_DEFÝNÝTÝON);
+			ownedDefinition = new EObjectContainmentEList<Definition>(Definition.class, this, ReqModelPackage.PRODUCT__OWNED_DEFINITION);
 		}
 		return ownedDefinition;
 	}
@@ -81,7 +81,7 @@ public class ProductImpl extends NamedElementImpl implements Product {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ReqModelPackage.PRODUCT__OWNED_DEFÝNÝTÝON:
+			case ReqModelPackage.PRODUCT__OWNED_DEFINITION:
 				return ((InternalEList<?>)getOwnedDefinition()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -95,7 +95,7 @@ public class ProductImpl extends NamedElementImpl implements Product {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ReqModelPackage.PRODUCT__OWNED_DEFÝNÝTÝON:
+			case ReqModelPackage.PRODUCT__OWNED_DEFINITION:
 				return getOwnedDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -110,7 +110,7 @@ public class ProductImpl extends NamedElementImpl implements Product {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ReqModelPackage.PRODUCT__OWNED_DEFÝNÝTÝON:
+			case ReqModelPackage.PRODUCT__OWNED_DEFINITION:
 				getOwnedDefinition().clear();
 				getOwnedDefinition().addAll((Collection<? extends Definition>)newValue);
 				return;
@@ -126,7 +126,7 @@ public class ProductImpl extends NamedElementImpl implements Product {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ReqModelPackage.PRODUCT__OWNED_DEFÝNÝTÝON:
+			case ReqModelPackage.PRODUCT__OWNED_DEFINITION:
 				getOwnedDefinition().clear();
 				return;
 		}
@@ -141,7 +141,7 @@ public class ProductImpl extends NamedElementImpl implements Product {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ReqModelPackage.PRODUCT__OWNED_DEFÝNÝTÝON:
+			case ReqModelPackage.PRODUCT__OWNED_DEFINITION:
 				return ownedDefinition != null && !ownedDefinition.isEmpty();
 		}
 		return super.eIsSet(featureID);

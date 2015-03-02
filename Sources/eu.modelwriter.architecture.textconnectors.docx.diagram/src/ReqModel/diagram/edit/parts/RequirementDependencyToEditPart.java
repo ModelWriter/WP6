@@ -72,7 +72,7 @@ public class RequirementDependencyToEditPart extends ConnectionNodeEditPart
 		 */
 		public RequirementDependencyToFigure() {
 			this.setLineStyle(Graphics.LINE_DASH);
-			this.setForegroundColor(THÝS_FORE);
+			this.setForegroundColor(THIS_FORE);
 
 			setTargetDecoration(createTargetDecoration());
 		}
@@ -90,6 +90,6 @@ public class RequirementDependencyToEditPart extends ConnectionNodeEditPart
 	/**
 	 * @generated
 	 */
-	static final Color THÝS_FORE = new Color(null, 0, 0, 0);
+	static final Color THIS_FORE = new Color(null, 0, 0, 0);
 
 }

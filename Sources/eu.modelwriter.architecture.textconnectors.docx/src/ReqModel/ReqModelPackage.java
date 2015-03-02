@@ -111,7 +111,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__OWNED_DEFÝNÝTÝON = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int PRODUCT__OWNED_DEFINITION = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Product</em>' class.
@@ -130,7 +130,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @see ReqModel.impl.ReqModelPackageImpl#getDefinition()
 	 * @generated
 	 */
-	int DEFÝNÝTÝON = 2;
+	int DEFINITION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -139,7 +139,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEFÝNÝTÝON__NAME = NAMED_ELEMENT__NAME;
+	int DEFINITION__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Definition</em>' class.
@@ -148,7 +148,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEFÝNÝTÝON_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int DEFINITION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link ReqModel.impl.RequirementLevelImpl <em>Requirement Level</em>}' class.
@@ -158,7 +158,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @see ReqModel.impl.ReqModelPackageImpl#getRequirementLevel()
 	 * @generated
 	 */
-	int REQUÝREMENT_LEVEL = 3;
+	int REQUIREMENT_LEVEL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -167,7 +167,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT_LEVEL__NAME = DEFÝNÝTÝON__NAME;
+	int REQUIREMENT_LEVEL__NAME = DEFINITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Definition</b></em>' containment reference list.
@@ -176,7 +176,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON = DEFÝNÝTÝON_FEATURE_COUNT + 0;
+	int REQUIREMENT_LEVEL__OWNED_DEFINITION = DEFINITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Requirement Level</em>' class.
@@ -185,7 +185,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT_LEVEL_FEATURE_COUNT = DEFÝNÝTÝON_FEATURE_COUNT + 1;
+	int REQUIREMENT_LEVEL_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link ReqModel.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -195,7 +195,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @see ReqModel.impl.ReqModelPackageImpl#getRequirement()
 	 * @generated
 	 */
-	int REQUÝREMENT = 4;
+	int REQUIREMENT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -204,7 +204,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__NAME = DEFÝNÝTÝON__NAME;
+	int REQUIREMENT__NAME = DEFINITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -213,7 +213,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__ID = DEFÝNÝTÝON_FEATURE_COUNT + 0;
+	int REQUIREMENT__ID = DEFINITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -222,7 +222,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__DESCRÝPTÝON = DEFÝNÝTÝON_FEATURE_COUNT + 1;
+	int REQUIREMENT__DESCRIPTION = DEFINITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Refine</b></em>' reference.
@@ -231,7 +231,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__REFÝNE = DEFÝNÝTÝON_FEATURE_COUNT + 2;
+	int REQUIREMENT__REFINE = DEFINITION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Dependency To</b></em>' reference.
@@ -240,7 +240,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__DEPENDENCY_TO = DEFÝNÝTÝON_FEATURE_COUNT + 3;
+	int REQUIREMENT__DEPENDENCY_TO = DEFINITION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Priority Type</b></em>' attribute.
@@ -249,7 +249,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT__PRÝORÝTY_TYPE = DEFÝNÝTÝON_FEATURE_COUNT + 4;
+	int REQUIREMENT__PRIORITY_TYPE = DEFINITION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Requirement</em>' class.
@@ -258,7 +258,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUÝREMENT_FEATURE_COUNT = DEFÝNÝTÝON_FEATURE_COUNT + 5;
+	int REQUIREMENT_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link ReqModel.impl.TextAreaImpl <em>Text Area</em>}' class.
@@ -277,7 +277,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_AREA__NAME = DEFÝNÝTÝON__NAME;
+	int TEXT_AREA__NAME = DEFINITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -286,7 +286,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_AREA__TEXT = DEFÝNÝTÝON_FEATURE_COUNT + 0;
+	int TEXT_AREA__TEXT = DEFINITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Text Area</em>' class.
@@ -295,7 +295,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_AREA_FEATURE_COUNT = DEFÝNÝTÝON_FEATURE_COUNT + 1;
+	int TEXT_AREA_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link ReqModel.Priority <em>Priority</em>}' enum.
@@ -305,8 +305,7 @@ public interface ReqModelPackage extends EPackage {
 	 * @see ReqModel.impl.ReqModelPackageImpl#getPriority()
 	 * @generated
 	 */
-	int PRÝORÝTY = 6;
-
+	int PRIORITY = 6;
 
 	/**
 	 * Returns the meta object for class '{@link ReqModel.NamedElement <em>Named Element</em>}'.
@@ -519,24 +518,6 @@ public interface ReqModelPackage extends EPackage {
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
-		 * The meta object literal for the '{@link ReqModel.impl.ProductImpl <em>Product</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see ReqModel.impl.ProductImpl
-		 * @see ReqModel.impl.ReqModelPackageImpl#getProduct()
-		 * @generated
-		 */
-		EClass PRODUCT = eINSTANCE.getProduct();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Definition</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PRODUCT__OWNED_DEFÝNÝTÝON = eINSTANCE.getProduct_OwnedDefinition();
-
-		/**
 		 * The meta object literal for the '{@link ReqModel.impl.DefinitionImpl <em>Definition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -544,7 +525,7 @@ public interface ReqModelPackage extends EPackage {
 		 * @see ReqModel.impl.ReqModelPackageImpl#getDefinition()
 		 * @generated
 		 */
-		EClass DEFÝNÝTÝON = eINSTANCE.getDefinition();
+		EClass DEFINITION = eINSTANCE.getDefinition();
 
 		/**
 		 * The meta object literal for the '{@link ReqModel.impl.RequirementLevelImpl <em>Requirement Level</em>}' class.
@@ -554,7 +535,7 @@ public interface ReqModelPackage extends EPackage {
 		 * @see ReqModel.impl.ReqModelPackageImpl#getRequirementLevel()
 		 * @generated
 		 */
-		EClass REQUÝREMENT_LEVEL = eINSTANCE.getRequirementLevel();
+		EClass REQUIREMENT_LEVEL = eINSTANCE.getRequirementLevel();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Definition</b></em>' containment reference list feature.
@@ -562,7 +543,7 @@ public interface ReqModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON = eINSTANCE.getRequirementLevel_OwnedDefinition();
+		EReference REQUIREMENT_LEVEL__OWNED_DEFINITION = eINSTANCE.getRequirementLevel_OwnedDefinition();
 
 		/**
 		 * The meta object literal for the '{@link ReqModel.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -572,7 +553,7 @@ public interface ReqModelPackage extends EPackage {
 		 * @see ReqModel.impl.ReqModelPackageImpl#getRequirement()
 		 * @generated
 		 */
-		EClass REQUÝREMENT = eINSTANCE.getRequirement();
+		EClass REQUIREMENT = eINSTANCE.getRequirement();
 
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -580,7 +561,7 @@ public interface ReqModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REQUÝREMENT__ID = eINSTANCE.getRequirement_Id();
+		EAttribute REQUIREMENT__ID = eINSTANCE.getRequirement_Id();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -588,7 +569,7 @@ public interface ReqModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REQUÝREMENT__DESCRÝPTÝON = eINSTANCE.getRequirement_Description();
+		EAttribute REQUIREMENT__DESCRIPTION = eINSTANCE.getRequirement_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Refine</b></em>' reference feature.
@@ -596,7 +577,7 @@ public interface ReqModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUÝREMENT__REFÝNE = eINSTANCE.getRequirement_Refine();
+		EReference REQUIREMENT__REFINE = eINSTANCE.getRequirement_Refine();
 
 		/**
 		 * The meta object literal for the '<em><b>Dependency To</b></em>' reference feature.
@@ -604,7 +585,7 @@ public interface ReqModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUÝREMENT__DEPENDENCY_TO = eINSTANCE.getRequirement_DependencyTo();
+		EReference REQUIREMENT__DEPENDENCY_TO = eINSTANCE.getRequirement_DependencyTo();
 
 		/**
 		 * The meta object literal for the '<em><b>Priority Type</b></em>' attribute feature.
@@ -612,7 +593,7 @@ public interface ReqModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REQUÝREMENT__PRÝORÝTY_TYPE = eINSTANCE.getRequirement_PriorityType();
+		EAttribute REQUIREMENT__PRIORITY_TYPE = eINSTANCE.getRequirement_PriorityType();
 
 		/**
 		 * The meta object literal for the '{@link ReqModel.impl.TextAreaImpl <em>Text Area</em>}' class.
@@ -633,6 +614,24 @@ public interface ReqModelPackage extends EPackage {
 		EAttribute TEXT_AREA__TEXT = eINSTANCE.getTextArea_Text();
 
 		/**
+		 * The meta object literal for the '{@link ReqModel.impl.ProductImpl <em>Product</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ReqModel.impl.ProductImpl
+		 * @see ReqModel.impl.ReqModelPackageImpl#getProduct()
+		 * @generated
+		 */
+		EClass PRODUCT = eINSTANCE.getProduct();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Definition</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRODUCT__OWNED_DEFINITION = eINSTANCE.getProduct_OwnedDefinition();
+
+		/**
 		 * The meta object literal for the '{@link ReqModel.Priority <em>Priority</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -640,7 +639,7 @@ public interface ReqModelPackage extends EPackage {
 		 * @see ReqModel.impl.ReqModelPackageImpl#getPriority()
 		 * @generated
 		 */
-		EEnum PRÝORÝTY = eINSTANCE.getPriority();
+		EEnum PRIORITY = eINSTANCE.getPriority();
 
 	}
 

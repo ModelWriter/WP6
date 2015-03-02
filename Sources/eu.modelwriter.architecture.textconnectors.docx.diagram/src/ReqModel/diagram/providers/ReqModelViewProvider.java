@@ -142,9 +142,7 @@ public class ReqModelViewProvider extends AbstractProvider implements
 				switch (visualID) {
 				case ReqModel.diagram.edit.parts.RequirementLevelEditPart.VISUAL_ID:
 				case ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID:
-				case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
 				case ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID:
-				case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
 				case ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != ReqModel.diagram.part.ReqModelVisualIDRegistry
@@ -160,10 +158,8 @@ public class ReqModelViewProvider extends AbstractProvider implements
 		}
 		return ReqModel.diagram.edit.parts.RequirementLevelEditPart.VISUAL_ID == visualID
 				|| ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID == visualID
-				|| ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID == visualID
 				|| ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID == visualID
-				|| ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID == visualID
-				|| ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID == visualID;
+				|| ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -229,17 +225,11 @@ public class ReqModelViewProvider extends AbstractProvider implements
 		case ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID:
 			return createRequirement_2002(domainElement, containerView, index,
 					persisted, preferencesHint);
-		case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
-			return createTextArea_2003(domainElement, containerView, index,
-					persisted, preferencesHint);
 		case ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID:
 			return createRequirementLevel_3001(domainElement, containerView,
 					index, persisted, preferencesHint);
 		case ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID:
 			return createRequirement_3002(domainElement, containerView, index,
-					persisted, preferencesHint);
-		case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
-			return createTextArea_3003(domainElement, containerView, index,
 					persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
@@ -318,7 +308,7 @@ public class ReqModelViewProvider extends AbstractProvider implements
 				node,
 				ReqModel.diagram.part.ReqModelVisualIDRegistry
 						.getType(ReqModel.diagram.edit.parts.RequirementLevelRequirementLevelOwnedDefinitionCompartmentEditPart.VISUAL_ID),
-				true, false, false, false);
+				true, false, true, true);
 		return node;
 	}
 
@@ -373,53 +363,6 @@ public class ReqModelViewProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	public Node createTextArea_2003(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(ReqModel.diagram.part.ReqModelVisualIDRegistry
-				.getType(ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		stampShortcut(containerView, node);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-
-		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
-				FigureUtilities.RGBToInteger(lineRGB));
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
-			nodeFontStyle.setFontName(fontData.getName());
-			nodeFontStyle.setFontHeight(fontData.getHeight());
-			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
-		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5006 = createLabel(
-				node,
-				ReqModel.diagram.part.ReqModelVisualIDRegistry
-						.getType(ReqModel.diagram.edit.parts.TextAreaNameEditPart.VISUAL_ID));
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
 	public Node createRequirementLevel_3001(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
@@ -467,7 +410,7 @@ public class ReqModelViewProvider extends AbstractProvider implements
 				node,
 				ReqModel.diagram.part.ReqModelVisualIDRegistry
 						.getType(ReqModel.diagram.edit.parts.RequirementLevelRequirementLevelOwnedDefinitionCompartment2EditPart.VISUAL_ID),
-				true, false, false, false);
+				true, false, true, true);
 		return node;
 	}
 
@@ -515,52 +458,6 @@ public class ReqModelViewProvider extends AbstractProvider implements
 				node,
 				ReqModel.diagram.part.ReqModelVisualIDRegistry
 						.getType(ReqModel.diagram.edit.parts.RequirementName2EditPart.VISUAL_ID));
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createTextArea_3003(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(ReqModel.diagram.part.ReqModelVisualIDRegistry
-				.getType(ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-
-		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
-				FigureUtilities.RGBToInteger(lineRGB));
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
-			nodeFontStyle.setFontName(fontData.getName());
-			nodeFontStyle.setFontHeight(fontData.getHeight());
-			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
-		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5002 = createLabel(
-				node,
-				ReqModel.diagram.part.ReqModelVisualIDRegistry
-						.getType(ReqModel.diagram.edit.parts.TextAreaName2EditPart.VISUAL_ID));
 		return node;
 	}
 

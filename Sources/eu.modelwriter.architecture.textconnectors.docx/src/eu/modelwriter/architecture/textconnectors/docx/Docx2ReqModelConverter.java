@@ -224,7 +224,7 @@ public class Docx2ReqModelConverter {
 
 							}else{
 
-								requirement.setPriorityType(Priority.OPTÝONAL);
+								requirement.setPriorityType(Priority.OPTIONAL);
 							}
 
 							// Concat the paragraphs inside the description

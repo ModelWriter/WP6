@@ -33,7 +33,7 @@ public abstract class DefinitionImpl extends NamedElementImpl implements Definit
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReqModelPackage.Literals.DEFÝNÝTÝON;
+		return ReqModelPackage.Literals.DEFINITION;
 	}
 
 } //DefinitionImpl

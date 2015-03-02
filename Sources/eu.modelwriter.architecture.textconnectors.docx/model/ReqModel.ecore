@@ -27,12 +27,12 @@
       <details key="label.icon" value="false"/>
       <details key="label" value="Name"/>
       <details key="label.pattern" value="{0}"/>
-      <details key="size" value="100,60"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="OwnedDefinition" upperBound="-1"
         eType="#//Definition" containment="true">
       <eAnnotations source="gmf.compartment">
         <details key="collapsible" value="true"/>
+        <details key="layout" value="list"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -42,7 +42,6 @@
       <details key="label.icon" value="false"/>
       <details key="label" value="Name"/>
       <details key="label.pattern" value="{0}"/>
-      <details key="size" value="20,20"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
@@ -68,7 +67,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="TextArea" eSuperTypes="#//Definition">
     <eAnnotations source="gmf.node">
       <details key="label" value="Name"/>
-      <details key="figure" value="ellipse"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>

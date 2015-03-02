@@ -79,14 +79,14 @@ public class ReqModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ReqModelPackage.DEFÝNÝTÝON: {
+			case ReqModelPackage.DEFINITION: {
 				Definition definition = (Definition)theEObject;
 				T result = caseDefinition(definition);
 				if (result == null) result = caseNamedElement(definition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ReqModelPackage.REQUÝREMENT_LEVEL: {
+			case ReqModelPackage.REQUIREMENT_LEVEL: {
 				RequirementLevel requirementLevel = (RequirementLevel)theEObject;
 				T result = caseRequirementLevel(requirementLevel);
 				if (result == null) result = caseDefinition(requirementLevel);
@@ -94,7 +94,7 @@ public class ReqModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ReqModelPackage.REQUÝREMENT: {
+			case ReqModelPackage.REQUIREMENT: {
 				Requirement requirement = (Requirement)theEObject;
 				T result = caseRequirement(requirement);
 				if (result == null) result = caseDefinition(requirement);

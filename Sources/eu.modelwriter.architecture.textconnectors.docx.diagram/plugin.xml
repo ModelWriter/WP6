@@ -258,7 +258,7 @@
          </object>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="ReqModel"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,3001,3002,3003"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,3001,3002"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002"/>
       </viewProvider>
    </extension>
@@ -271,13 +271,13 @@
             <method name="getType()" value="ReqModel"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,2002,2003,3001,3002,3003"/>
+            <method name="getType()" value="2001,2002,3001,3002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5004,5005,5006,5003,5001,5002"/>
+            <method name="getType()" value="5004,5005,5003,5001"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002"/>
@@ -304,11 +304,6 @@
          <object class="ReqModel.diagram.edit.parts.RequirementEditPart" id="Requirement_2002"/>
          <context elements="Requirement_2002"/>
       </modelingAssistantProvider>
-            <modelingAssistantProvider class="ReqModel.diagram.providers.assistants.ReqModelModelingAssistantProviderOfTextAreaEditPart">
-         <Priority name="Lowest"/>
-         <object class="ReqModel.diagram.edit.parts.TextAreaEditPart" id="TextArea_2003"/>
-         <context elements="TextArea_2003"/>
-      </modelingAssistantProvider>
             <modelingAssistantProvider class="ReqModel.diagram.providers.assistants.ReqModelModelingAssistantProviderOfRequirementLevel2EditPart">
          <Priority name="Lowest"/>
          <object class="ReqModel.diagram.edit.parts.RequirementLevel2EditPart" id="RequirementLevel_3001"/>
@@ -318,11 +313,6 @@
          <Priority name="Lowest"/>
          <object class="ReqModel.diagram.edit.parts.Requirement2EditPart" id="Requirement_3002"/>
          <context elements="Requirement_3002"/>
-      </modelingAssistantProvider>
-            <modelingAssistantProvider class="ReqModel.diagram.providers.assistants.ReqModelModelingAssistantProviderOfTextArea2EditPart">
-         <Priority name="Lowest"/>
-         <object class="ReqModel.diagram.edit.parts.TextArea2EditPart" id="TextArea_3003"/>
-         <context elements="TextArea_3003"/>
       </modelingAssistantProvider>
       
    </extension>
@@ -347,7 +337,7 @@
       <decoratorProvider class="ReqModel.diagram.providers.ReqModelShortcutsDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
-            <method name="getType()" value="2001,2002,2003"/>
+            <method name="getType()" value="2001,2002"/>
          </object>
          <context decoratorTargets="generated-top-nodes"/>
       </decoratorProvider>
@@ -386,15 +376,6 @@
       </metamodel>
       <metamodel nsURI="eu.modelwriter.architecture.textconnectors.docx.reqmodel">
          <specializationType
-               id="eu.modelwriter.architecture.textconnectors.docx.diagram.TextArea_2003"
-               name="%metatype.name.TextArea_2003"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="eu.modelwriter.architecture.textconnectors.docx.diagram.TextArea_3003"/>
-            <param name="semanticHint" value="2003"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="eu.modelwriter.architecture.textconnectors.docx.reqmodel">
-         <specializationType
                id="eu.modelwriter.architecture.textconnectors.docx.diagram.RequirementLevel_3001"
                name="%metatype.name.RequirementLevel_3001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
@@ -410,16 +391,6 @@
                eclass="Requirement"
                edithelper="ReqModel.diagram.edit.helpers.RequirementEditHelper">
             <param name="semanticHint" value="3002"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="eu.modelwriter.architecture.textconnectors.docx.reqmodel">
-         <metamodelType
-               id="eu.modelwriter.architecture.textconnectors.docx.diagram.TextArea_3003"
-               name="%metatype.name.TextArea_3003"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="TextArea"
-               edithelper="ReqModel.diagram.edit.helpers.TextAreaEditHelper">
-            <param name="semanticHint" value="3003"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="eu.modelwriter.architecture.textconnectors.docx.reqmodel">
@@ -455,10 +426,8 @@
          <elementType ref="eu.modelwriter.architecture.textconnectors.docx.diagram.Product_1000"/>
          <elementType ref="eu.modelwriter.architecture.textconnectors.docx.diagram.RequirementLevel_2001"/>
          <elementType ref="eu.modelwriter.architecture.textconnectors.docx.diagram.Requirement_2002"/>
-         <elementType ref="eu.modelwriter.architecture.textconnectors.docx.diagram.TextArea_2003"/>
          <elementType ref="eu.modelwriter.architecture.textconnectors.docx.diagram.RequirementLevel_3001"/>
          <elementType ref="eu.modelwriter.architecture.textconnectors.docx.diagram.Requirement_3002"/>
-         <elementType ref="eu.modelwriter.architecture.textconnectors.docx.diagram.TextArea_3003"/>
          <elementType ref="eu.modelwriter.architecture.textconnectors.docx.diagram.RequirementRefine_4001"/>
          <elementType ref="eu.modelwriter.architecture.textconnectors.docx.diagram.RequirementDependencyTo_4002"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>

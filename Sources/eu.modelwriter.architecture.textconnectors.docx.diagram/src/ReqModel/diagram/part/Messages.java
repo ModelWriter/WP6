@@ -286,16 +286,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String TextArea4CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String TextArea4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
 	public static String DependencyTo1CreationTool_title;
 
 	/**

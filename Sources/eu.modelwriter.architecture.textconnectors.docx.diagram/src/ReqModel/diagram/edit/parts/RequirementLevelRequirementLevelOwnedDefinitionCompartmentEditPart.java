@@ -4,11 +4,12 @@
 package ReqModel.diagram.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
@@ -25,7 +26,7 @@ import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicy
  * @generated
  */
 public class RequirementLevelRequirementLevelOwnedDefinitionCompartmentEditPart
-		extends ShapeCompartmentEditPart {
+		extends ListCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -38,6 +39,13 @@ public class RequirementLevelRequirementLevelOwnedDefinitionCompartmentEditPart
 	public RequirementLevelRequirementLevelOwnedDefinitionCompartmentEditPart(
 			View view) {
 		super(view);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean hasModelChildrenChanged(Notification evt) {
+		return false;
 	}
 
 	/**
@@ -101,9 +109,6 @@ public class RequirementLevelRequirementLevelOwnedDefinitionCompartmentEditPart
 				return this;
 			}
 			if (type == ReqModel.diagram.providers.ReqModelElementTypes.Requirement_3002) {
-				return this;
-			}
-			if (type == ReqModel.diagram.providers.ReqModelElementTypes.TextArea_3003) {
 				return this;
 			}
 			return getParent().getTargetEditPart(request);

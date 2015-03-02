@@ -99,18 +99,12 @@ public class ReqModelNavigatorLabelProvider extends LabelProvider implements
 		case ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?eu.modelwriter.architecture.textconnectors.docx.reqmodel?Requirement", ReqModel.diagram.providers.ReqModelElementTypes.Requirement_2002); //$NON-NLS-1$
-		case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?eu.modelwriter.architecture.textconnectors.docx.reqmodel?TextArea", ReqModel.diagram.providers.ReqModelElementTypes.TextArea_2003); //$NON-NLS-1$
 		case ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?eu.modelwriter.architecture.textconnectors.docx.reqmodel?RequirementLevel", ReqModel.diagram.providers.ReqModelElementTypes.RequirementLevel_3001); //$NON-NLS-1$
 		case ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?eu.modelwriter.architecture.textconnectors.docx.reqmodel?Requirement", ReqModel.diagram.providers.ReqModelElementTypes.Requirement_3002); //$NON-NLS-1$
-		case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?eu.modelwriter.architecture.textconnectors.docx.reqmodel?TextArea", ReqModel.diagram.providers.ReqModelElementTypes.TextArea_3003); //$NON-NLS-1$
 		case ReqModel.diagram.edit.parts.RequirementRefineEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?eu.modelwriter.architecture.textconnectors.docx.reqmodel?Requirement?Refine", ReqModel.diagram.providers.ReqModelElementTypes.RequirementRefine_4001); //$NON-NLS-1$
@@ -187,14 +181,10 @@ public class ReqModelNavigatorLabelProvider extends LabelProvider implements
 			return getRequirementLevel_2001Text(view);
 		case ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID:
 			return getRequirement_2002Text(view);
-		case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
-			return getTextArea_2003Text(view);
 		case ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID:
 			return getRequirementLevel_3001Text(view);
 		case ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID:
 			return getRequirement_3002Text(view);
-		case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
-			return getTextArea_3003Text(view);
 		case ReqModel.diagram.edit.parts.RequirementRefineEditPart.VISUAL_ID:
 			return getRequirementRefine_4001Text(view);
 		case ReqModel.diagram.edit.parts.RequirementDependencyToEditPart.VISUAL_ID:
@@ -265,27 +255,6 @@ public class ReqModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getTextArea_2003Text(View view) {
-		IParser parser = ReqModel.diagram.providers.ReqModelParserProvider
-				.getParser(
-						ReqModel.diagram.providers.ReqModelElementTypes.TextArea_2003,
-						view.getElement() != null ? view.getElement() : view,
-						ReqModel.diagram.part.ReqModelVisualIDRegistry
-								.getType(ReqModel.diagram.edit.parts.TextAreaNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			ReqModel.diagram.part.ReqModelDiagramEditorPlugin.getInstance()
-					.logError("Parser was not found for label " + 5006); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	private String getRequirementLevel_3001Text(View view) {
 		IParser parser = ReqModel.diagram.providers.ReqModelParserProvider
 				.getParser(
@@ -321,27 +290,6 @@ public class ReqModelNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			ReqModel.diagram.part.ReqModelDiagramEditorPlugin.getInstance()
 					.logError("Parser was not found for label " + 5001); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getTextArea_3003Text(View view) {
-		IParser parser = ReqModel.diagram.providers.ReqModelParserProvider
-				.getParser(
-						ReqModel.diagram.providers.ReqModelElementTypes.TextArea_3003,
-						view.getElement() != null ? view.getElement() : view,
-						ReqModel.diagram.part.ReqModelVisualIDRegistry
-								.getType(ReqModel.diagram.edit.parts.TextAreaName2EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			ReqModel.diagram.part.ReqModelDiagramEditorPlugin.getInstance()
-					.logError("Parser was not found for label " + 5002); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

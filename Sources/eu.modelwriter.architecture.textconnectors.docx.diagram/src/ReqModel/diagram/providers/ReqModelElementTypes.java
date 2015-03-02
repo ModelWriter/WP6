@@ -60,19 +60,11 @@ public class ReqModelElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType TextArea_2003 = getElementType("eu.modelwriter.architecture.textconnectors.docx.diagram.TextArea_2003"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
 	public static final IElementType RequirementLevel_3001 = getElementType("eu.modelwriter.architecture.textconnectors.docx.diagram.RequirementLevel_3001"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
 	public static final IElementType Requirement_3002 = getElementType("eu.modelwriter.architecture.textconnectors.docx.diagram.Requirement_3002"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType TextArea_3003 = getElementType("eu.modelwriter.architecture.textconnectors.docx.diagram.TextArea_3003"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -129,17 +121,11 @@ public class ReqModelElementTypes {
 			elements.put(Requirement_2002,
 					ReqModel.ReqModelPackage.eINSTANCE.getRequirement());
 
-			elements.put(TextArea_2003,
-					ReqModel.ReqModelPackage.eINSTANCE.getTextArea());
-
 			elements.put(RequirementLevel_3001,
 					ReqModel.ReqModelPackage.eINSTANCE.getRequirementLevel());
 
 			elements.put(Requirement_3002,
 					ReqModel.ReqModelPackage.eINSTANCE.getRequirement());
-
-			elements.put(TextArea_3003,
-					ReqModel.ReqModelPackage.eINSTANCE.getTextArea());
 
 			elements.put(RequirementRefine_4001,
 					ReqModel.ReqModelPackage.eINSTANCE.getRequirement_Refine());
@@ -167,10 +153,8 @@ public class ReqModelElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Product_1000);
 			KNOWN_ELEMENT_TYPES.add(RequirementLevel_2001);
 			KNOWN_ELEMENT_TYPES.add(Requirement_2002);
-			KNOWN_ELEMENT_TYPES.add(TextArea_2003);
 			KNOWN_ELEMENT_TYPES.add(RequirementLevel_3001);
 			KNOWN_ELEMENT_TYPES.add(Requirement_3002);
-			KNOWN_ELEMENT_TYPES.add(TextArea_3003);
 			KNOWN_ELEMENT_TYPES.add(RequirementRefine_4001);
 			KNOWN_ELEMENT_TYPES.add(RequirementDependencyTo_4002);
 		}
@@ -188,14 +172,10 @@ public class ReqModelElementTypes {
 			return RequirementLevel_2001;
 		case ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID:
 			return Requirement_2002;
-		case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
-			return TextArea_2003;
 		case ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID:
 			return RequirementLevel_3001;
 		case ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID:
 			return Requirement_3002;
-		case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
-			return TextArea_3003;
 		case ReqModel.diagram.edit.parts.RequirementRefineEditPart.VISUAL_ID:
 			return RequirementRefine_4001;
 		case ReqModel.diagram.edit.parts.RequirementDependencyToEditPart.VISUAL_ID:

@@ -58,8 +58,8 @@ public class ReqModelFactoryImpl extends EFactoryImpl implements ReqModelFactory
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ReqModelPackage.PRODUCT: return createProduct();
-			case ReqModelPackage.REQUÝREMENT_LEVEL: return createRequirementLevel();
-			case ReqModelPackage.REQUÝREMENT: return createRequirement();
+			case ReqModelPackage.REQUIREMENT_LEVEL: return createRequirementLevel();
+			case ReqModelPackage.REQUIREMENT: return createRequirement();
 			case ReqModelPackage.TEXT_AREA: return createTextArea();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -74,7 +74,7 @@ public class ReqModelFactoryImpl extends EFactoryImpl implements ReqModelFactory
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case ReqModelPackage.PRÝORÝTY:
+			case ReqModelPackage.PRIORITY:
 				return createPriorityFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -89,7 +89,7 @@ public class ReqModelFactoryImpl extends EFactoryImpl implements ReqModelFactory
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case ReqModelPackage.PRÝORÝTY:
+			case ReqModelPackage.PRIORITY:
 				return convertPriorityToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");

@@ -62,7 +62,7 @@ public class RequirementLevelItemProvider extends DefinitionItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ReqModelPackage.Literals.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON);
+			childrenFeatures.add(ReqModelPackage.Literals.REQUIREMENT_LEVEL__OWNED_DEFINITION);
 		}
 		return childrenFeatures;
 	}
@@ -118,7 +118,7 @@ public class RequirementLevelItemProvider extends DefinitionItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RequirementLevel.class)) {
-			case ReqModelPackage.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON:
+			case ReqModelPackage.REQUIREMENT_LEVEL__OWNED_DEFINITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -138,17 +138,17 @@ public class RequirementLevelItemProvider extends DefinitionItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ReqModelPackage.Literals.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON,
+				(ReqModelPackage.Literals.REQUIREMENT_LEVEL__OWNED_DEFINITION,
 				 ReqModelFactory.eINSTANCE.createRequirementLevel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ReqModelPackage.Literals.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON,
+				(ReqModelPackage.Literals.REQUIREMENT_LEVEL__OWNED_DEFINITION,
 				 ReqModelFactory.eINSTANCE.createRequirement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ReqModelPackage.Literals.REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON,
+				(ReqModelPackage.Literals.REQUIREMENT_LEVEL__OWNED_DEFINITION,
 				 ReqModelFactory.eINSTANCE.createTextArea()));
 	}
 

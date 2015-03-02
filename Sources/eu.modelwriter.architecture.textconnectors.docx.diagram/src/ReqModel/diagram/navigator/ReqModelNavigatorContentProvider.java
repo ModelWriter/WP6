@@ -253,12 +253,6 @@ public class ReqModelNavigatorContentProvider implements ICommonContentProvider 
 							.getType(ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ReqModel.diagram.part.ReqModelVisualIDRegistry
-							.getType(ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
 			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
 					ReqModel.diagram.part.ReqModelVisualIDRegistry
@@ -297,16 +291,6 @@ public class ReqModelNavigatorContentProvider implements ICommonContentProvider 
 					connectedViews,
 					ReqModel.diagram.part.ReqModelVisualIDRegistry
 							.getType(ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ReqModel.diagram.part.ReqModelVisualIDRegistry
-							.getType(ReqModel.diagram.edit.parts.RequirementLevelRequirementLevelOwnedDefinitionCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(
-					connectedViews,
-					ReqModel.diagram.part.ReqModelVisualIDRegistry
-							.getType(ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
 			return result.toArray();
@@ -377,16 +361,6 @@ public class ReqModelNavigatorContentProvider implements ICommonContentProvider 
 					connectedViews,
 					ReqModel.diagram.part.ReqModelVisualIDRegistry
 							.getType(ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ReqModel.diagram.part.ReqModelVisualIDRegistry
-							.getType(ReqModel.diagram.edit.parts.RequirementLevelRequirementLevelOwnedDefinitionCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(
-					connectedViews,
-					ReqModel.diagram.part.ReqModelVisualIDRegistry
-							.getType(ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
 			return result.toArray();

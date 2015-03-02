@@ -42,13 +42,6 @@ public class ReqModelEditPartFactory implements EditPartFactory {
 				return new ReqModel.diagram.edit.parts.RequirementNameEditPart(
 						view);
 
-			case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
-				return new ReqModel.diagram.edit.parts.TextAreaEditPart(view);
-
-			case ReqModel.diagram.edit.parts.TextAreaNameEditPart.VISUAL_ID:
-				return new ReqModel.diagram.edit.parts.TextAreaNameEditPart(
-						view);
-
 			case ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID:
 				return new ReqModel.diagram.edit.parts.RequirementLevel2EditPart(
 						view);
@@ -63,13 +56,6 @@ public class ReqModelEditPartFactory implements EditPartFactory {
 
 			case ReqModel.diagram.edit.parts.RequirementName2EditPart.VISUAL_ID:
 				return new ReqModel.diagram.edit.parts.RequirementName2EditPart(
-						view);
-
-			case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
-				return new ReqModel.diagram.edit.parts.TextArea2EditPart(view);
-
-			case ReqModel.diagram.edit.parts.TextAreaName2EditPart.VISUAL_ID:
-				return new ReqModel.diagram.edit.parts.TextAreaName2EditPart(
 						view);
 
 			case ReqModel.diagram.edit.parts.RequirementLevelRequirementLevelOwnedDefinitionCompartmentEditPart.VISUAL_ID:

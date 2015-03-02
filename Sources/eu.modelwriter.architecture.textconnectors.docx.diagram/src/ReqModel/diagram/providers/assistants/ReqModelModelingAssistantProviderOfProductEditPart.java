@@ -20,10 +20,9 @@ public class ReqModelModelingAssistantProviderOfProductEditPart extends
 	 */
 	@Override
 	public List<IElementType> getTypesForPopupBar(IAdaptable host) {
-		List<IElementType> types = new ArrayList<IElementType>(3);
+		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(ReqModel.diagram.providers.ReqModelElementTypes.RequirementLevel_2001);
 		types.add(ReqModel.diagram.providers.ReqModelElementTypes.Requirement_2002);
-		types.add(ReqModel.diagram.providers.ReqModelElementTypes.TextArea_2003);
 		return types;
 	}
 

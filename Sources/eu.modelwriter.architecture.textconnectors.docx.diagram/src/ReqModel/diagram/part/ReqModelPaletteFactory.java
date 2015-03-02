@@ -38,7 +38,6 @@ public class ReqModelPaletteFactory {
 		paletteContainer.add(createProduct1CreationTool());
 		paletteContainer.add(createRequirement2CreationTool());
 		paletteContainer.add(createRequirementLevel3CreationTool());
-		paletteContainer.add(createTextArea4CreationTool());
 		return paletteContainer;
 	}
 
@@ -100,24 +99,6 @@ public class ReqModelPaletteFactory {
 		entry.setId("createRequirementLevel3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ReqModel.diagram.providers.ReqModelElementTypes
 				.getImageDescriptor(ReqModel.diagram.providers.ReqModelElementTypes.RequirementLevel_2001));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createTextArea4CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(ReqModel.diagram.providers.ReqModelElementTypes.TextArea_3003);
-		types.add(ReqModel.diagram.providers.ReqModelElementTypes.TextArea_2003);
-		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
-				ReqModel.diagram.part.Messages.TextArea4CreationTool_title,
-				ReqModel.diagram.part.Messages.TextArea4CreationTool_desc,
-				types);
-		entry.setId("createTextArea4CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(ReqModel.diagram.providers.ReqModelElementTypes
-				.getImageDescriptor(ReqModel.diagram.providers.ReqModelElementTypes.TextArea_3003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

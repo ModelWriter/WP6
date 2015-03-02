@@ -69,25 +69,6 @@ public class ReqModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser textAreaName_5006Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getTextAreaName_5006Parser() {
-		if (textAreaName_5006Parser == null) {
-			EAttribute[] features = new EAttribute[] { ReqModel.ReqModelPackage.eINSTANCE
-					.getNamedElement_Name() };
-			ReqModel.diagram.parsers.MessageFormatParser parser = new ReqModel.diagram.parsers.MessageFormatParser(
-					features);
-			textAreaName_5006Parser = parser;
-		}
-		return textAreaName_5006Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser requirementLevelName_5003Parser;
 
 	/**
@@ -132,39 +113,16 @@ public class ReqModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser textAreaName_5002Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getTextAreaName_5002Parser() {
-		if (textAreaName_5002Parser == null) {
-			EAttribute[] features = new EAttribute[] { ReqModel.ReqModelPackage.eINSTANCE
-					.getNamedElement_Name() };
-			ReqModel.diagram.parsers.MessageFormatParser parser = new ReqModel.diagram.parsers.MessageFormatParser(
-					features);
-			textAreaName_5002Parser = parser;
-		}
-		return textAreaName_5002Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case ReqModel.diagram.edit.parts.RequirementLevelNameEditPart.VISUAL_ID:
 			return getRequirementLevelName_5004Parser();
 		case ReqModel.diagram.edit.parts.RequirementNameEditPart.VISUAL_ID:
 			return getRequirementName_5005Parser();
-		case ReqModel.diagram.edit.parts.TextAreaNameEditPart.VISUAL_ID:
-			return getTextAreaName_5006Parser();
 		case ReqModel.diagram.edit.parts.RequirementLevelName2EditPart.VISUAL_ID:
 			return getRequirementLevelName_5003Parser();
 		case ReqModel.diagram.edit.parts.RequirementName2EditPart.VISUAL_ID:
 			return getRequirementName_5001Parser();
-		case ReqModel.diagram.edit.parts.TextAreaName2EditPart.VISUAL_ID:
-			return getTextAreaName_5002Parser();
 		}
 		return null;
 	}

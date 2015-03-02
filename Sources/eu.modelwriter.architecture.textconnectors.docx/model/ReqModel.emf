@@ -9,7 +9,7 @@ abstract class NamedElement {
 @gmf.diagram
 @gmf.node(label="Name")
 class Product extends NamedElement {
-   @gmf.compartment(collapsible="true")
+  @gmf.compartment(collapsible="true")
   val Definition[*] OwnedDefinition;
 }
 
@@ -17,13 +17,13 @@ abstract class Definition extends NamedElement {
 
 }
 
-@gmf.node(figure="rectangle", label.icon="false", label="Name", label.pattern="{0}", size="100,60")
+@gmf.node(figure="rectangle", label.icon="false", label="Name", label.pattern="{0}")
 class RequirementLevel extends Definition {
-  @gmf.compartment(collapsible="true")
+  @gmf.compartment(collapsible="true", layout="list")
   val Definition[*] OwnedDefinition;
 }
 
-@gmf.node(figure="rectangle", label.icon="false", label="Name",  figure="rounded", label.pattern="{0}", size="20,20")
+@gmf.node(figure="rectangle", label.icon="false", label="Name",  figure="rounded", label.pattern="{0}")
 class Requirement extends Definition {
   attr String Id = "";
   attr String Description;
@@ -34,7 +34,7 @@ class Requirement extends Definition {
   attr Priority PriorityType;
 }
 
-@gmf.node(label="Name", figure="ellipse")
+@gmf.node(label="Name")
 class TextArea extends Definition {
   attr String Text = "";
 }

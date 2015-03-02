@@ -313,25 +313,25 @@ public class ReqModelPackageImpl extends EPackageImpl implements ReqModelPackage
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
 		productEClass = createEClass(PRODUCT);
-		createEReference(productEClass, PRODUCT__OWNED_DEFÝNÝTÝON);
+		createEReference(productEClass, PRODUCT__OWNED_DEFINITION);
 
-		definitionEClass = createEClass(DEFÝNÝTÝON);
+		definitionEClass = createEClass(DEFINITION);
 
-		requirementLevelEClass = createEClass(REQUÝREMENT_LEVEL);
-		createEReference(requirementLevelEClass, REQUÝREMENT_LEVEL__OWNED_DEFÝNÝTÝON);
+		requirementLevelEClass = createEClass(REQUIREMENT_LEVEL);
+		createEReference(requirementLevelEClass, REQUIREMENT_LEVEL__OWNED_DEFINITION);
 
-		requirementEClass = createEClass(REQUÝREMENT);
-		createEAttribute(requirementEClass, REQUÝREMENT__ID);
-		createEAttribute(requirementEClass, REQUÝREMENT__DESCRÝPTÝON);
-		createEReference(requirementEClass, REQUÝREMENT__REFÝNE);
-		createEReference(requirementEClass, REQUÝREMENT__DEPENDENCY_TO);
-		createEAttribute(requirementEClass, REQUÝREMENT__PRÝORÝTY_TYPE);
+		requirementEClass = createEClass(REQUIREMENT);
+		createEAttribute(requirementEClass, REQUIREMENT__ID);
+		createEAttribute(requirementEClass, REQUIREMENT__DESCRIPTION);
+		createEReference(requirementEClass, REQUIREMENT__REFINE);
+		createEReference(requirementEClass, REQUIREMENT__DEPENDENCY_TO);
+		createEAttribute(requirementEClass, REQUIREMENT__PRIORITY_TYPE);
 
 		textAreaEClass = createEClass(TEXT_AREA);
 		createEAttribute(textAreaEClass, TEXT_AREA__TEXT);
 
 		// Create enums
-		priorityEEnum = createEEnum(PRÝORÝTY);
+		priorityEEnum = createEEnum(PRIORITY);
 	}
 
 	/**
@@ -393,7 +393,7 @@ public class ReqModelPackageImpl extends EPackageImpl implements ReqModelPackage
 		// Initialize enums and add enum literals
 		initEEnum(priorityEEnum, Priority.class, "Priority");
 		addEEnumLiteral(priorityEEnum, Priority.MANDATORY);
-		addEEnumLiteral(priorityEEnum, Priority.OPTÝONAL);
+		addEEnumLiteral(priorityEEnum, Priority.OPTIONAL);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -436,8 +436,7 @@ public class ReqModelPackageImpl extends EPackageImpl implements ReqModelPackage
 			 "figure", "rectangle",
 			 "label.icon", "false",
 			 "label", "Name",
-			 "label.pattern", "{0}",
-			 "size", "100,60"
+			 "label.pattern", "{0}"
 		   });	
 		addAnnotation
 		  (requirementEClass, 
@@ -446,15 +445,13 @@ public class ReqModelPackageImpl extends EPackageImpl implements ReqModelPackage
 			 "figure", "rounded",
 			 "label.icon", "false",
 			 "label", "Name",
-			 "label.pattern", "{0}",
-			 "size", "20,20"
+			 "label.pattern", "{0}"
 		   });	
 		addAnnotation
 		  (textAreaEClass, 
 		   source, 
 		   new String[] {
-			 "label", "Name",
-			 "figure", "ellipse"
+			 "label", "Name"
 		   });
 	}
 
@@ -491,7 +488,8 @@ public class ReqModelPackageImpl extends EPackageImpl implements ReqModelPackage
 		  (getRequirementLevel_OwnedDefinition(), 
 		   source, 
 		   new String[] {
-			 "collapsible", "true"
+			 "collapsible", "true",
+			 "layout", "list"
 		   });
 	}
 

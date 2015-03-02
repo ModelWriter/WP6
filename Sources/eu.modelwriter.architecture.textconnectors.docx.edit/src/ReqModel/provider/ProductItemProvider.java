@@ -62,7 +62,7 @@ public class ProductItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ReqModelPackage.Literals.PRODUCT__OWNED_DEFÝNÝTÝON);
+			childrenFeatures.add(ReqModelPackage.Literals.PRODUCT__OWNED_DEFINITION);
 		}
 		return childrenFeatures;
 	}
@@ -118,7 +118,7 @@ public class ProductItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Product.class)) {
-			case ReqModelPackage.PRODUCT__OWNED_DEFÝNÝTÝON:
+			case ReqModelPackage.PRODUCT__OWNED_DEFINITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -138,17 +138,17 @@ public class ProductItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ReqModelPackage.Literals.PRODUCT__OWNED_DEFÝNÝTÝON,
+				(ReqModelPackage.Literals.PRODUCT__OWNED_DEFINITION,
 				 ReqModelFactory.eINSTANCE.createRequirementLevel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ReqModelPackage.Literals.PRODUCT__OWNED_DEFÝNÝTÝON,
+				(ReqModelPackage.Literals.PRODUCT__OWNED_DEFINITION,
 				 ReqModelFactory.eINSTANCE.createRequirement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ReqModelPackage.Literals.PRODUCT__OWNED_DEFÝNÝTÝON,
+				(ReqModelPackage.Literals.PRODUCT__OWNED_DEFINITION,
 				 ReqModelFactory.eINSTANCE.createTextArea()));
 	}
 

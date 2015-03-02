@@ -81,8 +81,7 @@ public class RequirementLevelRequirementLevelOwnedDefinitionCompartment2Canonica
 		int visualID = ReqModel.diagram.part.ReqModelVisualIDRegistry
 				.getVisualID(view);
 		return visualID == ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID
-				|| visualID == ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID
-				|| visualID == ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID;
+				|| visualID == ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID;
 	}
 
 	/**

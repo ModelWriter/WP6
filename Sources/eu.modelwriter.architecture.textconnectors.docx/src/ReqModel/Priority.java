@@ -32,11 +32,11 @@ public enum Priority implements Enumerator {
 	 * The '<em><b>Optional</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OPTÝONAL_VALUE
+	 * @see #OPTIONAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OPTÝONAL(1, "Optional", "Optional");
+	OPTIONAL(1, "Optional", "Optional");
 
 	/**
 	 * The '<em><b>Mandatory</b></em>' literal value.
@@ -61,12 +61,12 @@ public enum Priority implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OPTÝONAL
+	 * @see #OPTIONAL
 	 * @model name="Optional"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OPTÝONAL_VALUE = 1;
+	public static final int OPTIONAL_VALUE = 1;
 
 	/**
 	 * An array of all the '<em><b>Priority</b></em>' enumerators.
@@ -77,7 +77,7 @@ public enum Priority implements Enumerator {
 	private static final Priority[] VALUES_ARRAY =
 		new Priority[] {
 			MANDATORY,
-			OPTÝONAL,
+			OPTIONAL,
 		};
 
 	/**
@@ -129,7 +129,7 @@ public enum Priority implements Enumerator {
 	public static Priority get(int value) {
 		switch (value) {
 			case MANDATORY_VALUE: return MANDATORY;
-			case OPTÝONAL_VALUE: return OPTÝONAL;
+			case OPTIONAL_VALUE: return OPTIONAL;
 		}
 		return null;
 	}

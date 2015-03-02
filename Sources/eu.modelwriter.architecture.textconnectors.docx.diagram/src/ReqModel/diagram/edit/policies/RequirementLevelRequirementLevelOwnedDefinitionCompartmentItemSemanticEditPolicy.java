@@ -35,11 +35,6 @@ public class RequirementLevelRequirementLevelOwnedDefinitionCompartmentItemSeman
 			return getGEFWrapper(new ReqModel.diagram.edit.commands.Requirement2CreateCommand(
 					req));
 		}
-		if (ReqModel.diagram.providers.ReqModelElementTypes.TextArea_3003 == req
-				.getElementType()) {
-			return getGEFWrapper(new ReqModel.diagram.edit.commands.TextArea2CreateCommand(
-					req));
-		}
 		return super.getCreateCommand(req);
 	}
 

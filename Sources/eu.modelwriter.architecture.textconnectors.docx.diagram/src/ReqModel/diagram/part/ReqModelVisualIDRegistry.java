@@ -131,10 +131,6 @@ public class ReqModelVisualIDRegistry {
 					.isSuperTypeOf(domainElement.eClass())) {
 				return ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID;
 			}
-			if (ReqModel.ReqModelPackage.eINSTANCE.getTextArea().isSuperTypeOf(
-					domainElement.eClass())) {
-				return ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID;
-			}
 			break;
 		case ReqModel.diagram.edit.parts.RequirementLevelRequirementLevelOwnedDefinitionCompartmentEditPart.VISUAL_ID:
 			if (ReqModel.ReqModelPackage.eINSTANCE.getRequirementLevel()
@@ -145,10 +141,6 @@ public class ReqModelVisualIDRegistry {
 					.isSuperTypeOf(domainElement.eClass())) {
 				return ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID;
 			}
-			if (ReqModel.ReqModelPackage.eINSTANCE.getTextArea().isSuperTypeOf(
-					domainElement.eClass())) {
-				return ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID;
-			}
 			break;
 		case ReqModel.diagram.edit.parts.RequirementLevelRequirementLevelOwnedDefinitionCompartment2EditPart.VISUAL_ID:
 			if (ReqModel.ReqModelPackage.eINSTANCE.getRequirementLevel()
@@ -158,10 +150,6 @@ public class ReqModelVisualIDRegistry {
 			if (ReqModel.ReqModelPackage.eINSTANCE.getRequirement()
 					.isSuperTypeOf(domainElement.eClass())) {
 				return ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID;
-			}
-			if (ReqModel.ReqModelPackage.eINSTANCE.getTextArea().isSuperTypeOf(
-					domainElement.eClass())) {
-				return ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -199,9 +187,6 @@ public class ReqModelVisualIDRegistry {
 			if (ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			break;
 		case ReqModel.diagram.edit.parts.RequirementLevelEditPart.VISUAL_ID:
 			if (ReqModel.diagram.edit.parts.RequirementLevelNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -213,11 +198,6 @@ public class ReqModelVisualIDRegistry {
 			break;
 		case ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID:
 			if (ReqModel.diagram.edit.parts.RequirementNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
-			if (ReqModel.diagram.edit.parts.TextAreaNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -234,19 +214,11 @@ public class ReqModelVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
-			if (ReqModel.diagram.edit.parts.TextAreaName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case ReqModel.diagram.edit.parts.RequirementLevelRequirementLevelOwnedDefinitionCompartmentEditPart.VISUAL_ID:
 			if (ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -255,9 +227,6 @@ public class ReqModelVisualIDRegistry {
 				return true;
 			}
 			if (ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -330,9 +299,7 @@ public class ReqModelVisualIDRegistry {
 		case ReqModel.diagram.edit.parts.ProductEditPart.VISUAL_ID:
 			return false;
 		case ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID:
-		case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
 		case ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID:
-		case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
 			return true;
 		default:
 			break;

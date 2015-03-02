@@ -91,8 +91,7 @@ public class ProductCanonicalEditPolicy extends CanonicalEditPolicy {
 		int visualID = ReqModel.diagram.part.ReqModelVisualIDRegistry
 				.getVisualID(view);
 		return visualID == ReqModel.diagram.edit.parts.RequirementLevelEditPart.VISUAL_ID
-				|| visualID == ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID
-				|| visualID == ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID;
+				|| visualID == ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -283,14 +282,6 @@ public class ProductCanonicalEditPolicy extends CanonicalEditPolicy {
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
-		case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(ReqModel.diagram.part.ReqModelDiagramUpdater
-						.getTextArea_2003ContainedLinks(view));
-			}
-			domain2NotationMap.putView(view.getElement(), view);
-			break;
-		}
 		case ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ReqModel.diagram.part.ReqModelDiagramUpdater
@@ -303,14 +294,6 @@ public class ProductCanonicalEditPolicy extends CanonicalEditPolicy {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ReqModel.diagram.part.ReqModelDiagramUpdater
 						.getRequirement_3002ContainedLinks(view));
-			}
-			domain2NotationMap.putView(view.getElement(), view);
-			break;
-		}
-		case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(ReqModel.diagram.part.ReqModelDiagramUpdater
-						.getTextArea_3003ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;

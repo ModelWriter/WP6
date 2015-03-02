@@ -67,7 +67,7 @@ public class RequirementItemProvider extends DefinitionItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Requirement_Id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_Id_feature", "_UI_Requirement_type"),
-				 ReqModelPackage.Literals.REQUÝREMENT__ID,
+				 ReqModelPackage.Literals.REQUIREMENT__ID,
 				 true,
 				 false,
 				 false,
@@ -89,7 +89,7 @@ public class RequirementItemProvider extends DefinitionItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Requirement_Description_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_Description_feature", "_UI_Requirement_type"),
-				 ReqModelPackage.Literals.REQUÝREMENT__DESCRÝPTÝON,
+				 ReqModelPackage.Literals.REQUIREMENT__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -111,7 +111,7 @@ public class RequirementItemProvider extends DefinitionItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Requirement_Refine_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_Refine_feature", "_UI_Requirement_type"),
-				 ReqModelPackage.Literals.REQUÝREMENT__REFÝNE,
+				 ReqModelPackage.Literals.REQUIREMENT__REFINE,
 				 true,
 				 false,
 				 true,
@@ -133,7 +133,7 @@ public class RequirementItemProvider extends DefinitionItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Requirement_DependencyTo_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_DependencyTo_feature", "_UI_Requirement_type"),
-				 ReqModelPackage.Literals.REQUÝREMENT__DEPENDENCY_TO,
+				 ReqModelPackage.Literals.REQUIREMENT__DEPENDENCY_TO,
 				 true,
 				 false,
 				 true,
@@ -155,7 +155,7 @@ public class RequirementItemProvider extends DefinitionItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Requirement_PriorityType_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_PriorityType_feature", "_UI_Requirement_type"),
-				 ReqModelPackage.Literals.REQUÝREMENT__PRÝORÝTY_TYPE,
+				 ReqModelPackage.Literals.REQUIREMENT__PRIORITY_TYPE,
 				 true,
 				 false,
 				 false,
@@ -202,9 +202,9 @@ public class RequirementItemProvider extends DefinitionItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Requirement.class)) {
-			case ReqModelPackage.REQUÝREMENT__ID:
-			case ReqModelPackage.REQUÝREMENT__DESCRÝPTÝON:
-			case ReqModelPackage.REQUÝREMENT__PRÝORÝTY_TYPE:
+			case ReqModelPackage.REQUIREMENT__ID:
+			case ReqModelPackage.REQUIREMENT__DESCRIPTION:
+			case ReqModelPackage.REQUIREMENT__PRIORITY_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

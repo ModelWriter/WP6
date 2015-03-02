@@ -37,11 +37,6 @@ public class ProductItemSemanticEditPolicy extends
 			return getGEFWrapper(new ReqModel.diagram.edit.commands.RequirementCreateCommand(
 					req));
 		}
-		if (ReqModel.diagram.providers.ReqModelElementTypes.TextArea_2003 == req
-				.getElementType()) {
-			return getGEFWrapper(new ReqModel.diagram.edit.commands.TextAreaCreateCommand(
-					req));
-		}
 		return super.getCreateCommand(req);
 	}
 

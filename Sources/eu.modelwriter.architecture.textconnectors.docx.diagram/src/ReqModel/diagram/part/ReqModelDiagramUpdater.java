@@ -71,11 +71,6 @@ public class ReqModelDiagramUpdater {
 						childElement, visualID));
 				continue;
 			}
-			if (visualID == ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID) {
-				result.add(new ReqModel.diagram.part.ReqModelNodeDescriptor(
-						childElement, visualID));
-				continue;
-			}
 		}
 		return result;
 	}
@@ -106,11 +101,6 @@ public class ReqModelDiagramUpdater {
 				continue;
 			}
 			if (visualID == ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID) {
-				result.add(new ReqModel.diagram.part.ReqModelNodeDescriptor(
-						childElement, visualID));
-				continue;
-			}
-			if (visualID == ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID) {
 				result.add(new ReqModel.diagram.part.ReqModelNodeDescriptor(
 						childElement, visualID));
 				continue;
@@ -149,11 +139,6 @@ public class ReqModelDiagramUpdater {
 						childElement, visualID));
 				continue;
 			}
-			if (visualID == ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID) {
-				result.add(new ReqModel.diagram.part.ReqModelNodeDescriptor(
-						childElement, visualID));
-				continue;
-			}
 		}
 		return result;
 	}
@@ -171,14 +156,10 @@ public class ReqModelDiagramUpdater {
 			return getRequirementLevel_2001ContainedLinks(view);
 		case ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID:
 			return getRequirement_2002ContainedLinks(view);
-		case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
-			return getTextArea_2003ContainedLinks(view);
 		case ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID:
 			return getRequirementLevel_3001ContainedLinks(view);
 		case ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID:
 			return getRequirement_3002ContainedLinks(view);
-		case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
-			return getTextArea_3003ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -194,14 +175,10 @@ public class ReqModelDiagramUpdater {
 			return getRequirementLevel_2001IncomingLinks(view);
 		case ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID:
 			return getRequirement_2002IncomingLinks(view);
-		case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
-			return getTextArea_2003IncomingLinks(view);
 		case ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID:
 			return getRequirementLevel_3001IncomingLinks(view);
 		case ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID:
 			return getRequirement_3002IncomingLinks(view);
-		case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
-			return getTextArea_3003IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -217,14 +194,10 @@ public class ReqModelDiagramUpdater {
 			return getRequirementLevel_2001OutgoingLinks(view);
 		case ReqModel.diagram.edit.parts.RequirementEditPart.VISUAL_ID:
 			return getRequirement_2002OutgoingLinks(view);
-		case ReqModel.diagram.edit.parts.TextAreaEditPart.VISUAL_ID:
-			return getTextArea_2003OutgoingLinks(view);
 		case ReqModel.diagram.edit.parts.RequirementLevel2EditPart.VISUAL_ID:
 			return getRequirementLevel_3001OutgoingLinks(view);
 		case ReqModel.diagram.edit.parts.Requirement2EditPart.VISUAL_ID:
 			return getRequirement_3002OutgoingLinks(view);
-		case ReqModel.diagram.edit.parts.TextArea2EditPart.VISUAL_ID:
-			return getTextArea_3003OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -261,14 +234,6 @@ public class ReqModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ReqModel.diagram.part.ReqModelLinkDescriptor> getTextArea_2003ContainedLinks(
-			View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<ReqModel.diagram.part.ReqModelLinkDescriptor> getRequirementLevel_3001ContainedLinks(
 			View view) {
 		return Collections.emptyList();
@@ -285,14 +250,6 @@ public class ReqModelDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_Refine_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DependencyTo_4002(modelElement));
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<ReqModel.diagram.part.ReqModelLinkDescriptor> getTextArea_3003ContainedLinks(
-			View view) {
-		return Collections.emptyList();
 	}
 
 	/**
@@ -323,14 +280,6 @@ public class ReqModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ReqModel.diagram.part.ReqModelLinkDescriptor> getTextArea_2003IncomingLinks(
-			View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<ReqModel.diagram.part.ReqModelLinkDescriptor> getRequirementLevel_3001IncomingLinks(
 			View view) {
 		return Collections.emptyList();
@@ -351,14 +300,6 @@ public class ReqModelDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Requirement_DependencyTo_4002(
 				modelElement, crossReferences));
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<ReqModel.diagram.part.ReqModelLinkDescriptor> getTextArea_3003IncomingLinks(
-			View view) {
-		return Collections.emptyList();
 	}
 
 	/**
@@ -385,14 +326,6 @@ public class ReqModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ReqModel.diagram.part.ReqModelLinkDescriptor> getTextArea_2003OutgoingLinks(
-			View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<ReqModel.diagram.part.ReqModelLinkDescriptor> getRequirementLevel_3001OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
@@ -409,14 +342,6 @@ public class ReqModelDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_Refine_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DependencyTo_4002(modelElement));
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<ReqModel.diagram.part.ReqModelLinkDescriptor> getTextArea_3003OutgoingLinks(
-			View view) {
-		return Collections.emptyList();
 	}
 
 	/**
