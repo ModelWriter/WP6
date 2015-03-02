@@ -17,13 +17,13 @@ abstract class Definition extends NamedElement {
 
 }
 
-@gmf.node(figure="rectangle", label.icon="false", label="Name", label.pattern="{0}")
+@gmf.node(figure="rectangle", label.icon="true", label="Name", label.pattern="{0}")
 class RequirementLevel extends Definition {
   @gmf.compartment(collapsible="true", layout="list")
   val Definition[*] OwnedDefinition;
 }
 
-@gmf.node(figure="rectangle", label.icon="false", label="Name",  figure="rounded", label.pattern="{0}")
+@gmf.node(figure="rectangle", label.icon="true", label="Name",  figure="rounded", label.pattern="{0}")
 class Requirement extends Definition {
   attr String Id = "";
   attr String Description;

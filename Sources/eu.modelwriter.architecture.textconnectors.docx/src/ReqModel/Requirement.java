@@ -20,7 +20,7 @@ package ReqModel;
  * </p>
  *
  * @see ReqModel.ReqModelPackage#getRequirement()
- * @model annotation="gmf.node figure='rounded' label.icon='false' label='Name' label.pattern='{0}'"
+ * @model annotation="gmf.node figure='rounded' label.icon='true' label='Name' label.pattern='{0}'"
  * @generated
  */
 public interface Requirement extends Definition {

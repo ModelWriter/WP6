@@ -24,7 +24,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="RequirementLevel" eSuperTypes="#//Definition">
     <eAnnotations source="gmf.node">
       <details key="figure" value="rectangle"/>
-      <details key="label.icon" value="false"/>
+      <details key="label.icon" value="true"/>
       <details key="label" value="Name"/>
       <details key="label.pattern" value="{0}"/>
     </eAnnotations>
@@ -39,7 +39,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Requirement" eSuperTypes="#//Definition">
     <eAnnotations source="gmf.node">
       <details key="figure" value="rounded"/>
-      <details key="label.icon" value="false"/>
+      <details key="label.icon" value="true"/>
       <details key="label" value="Name"/>
       <details key="label.pattern" value="{0}"/>
     </eAnnotations>

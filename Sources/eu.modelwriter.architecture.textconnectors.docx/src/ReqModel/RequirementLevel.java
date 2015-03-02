@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see ReqModel.ReqModelPackage#getRequirementLevel()
- * @model annotation="gmf.node figure='rectangle' label.icon='false' label='Name' label.pattern='{0}'"
+ * @model annotation="gmf.node figure='rectangle' label.icon='true' label='Name' label.pattern='{0}'"
  * @generated
  */
 public interface RequirementLevel extends Definition {

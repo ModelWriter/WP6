@@ -434,7 +434,7 @@ public class ReqModelPackageImpl extends EPackageImpl implements ReqModelPackage
 		   source, 
 		   new String[] {
 			 "figure", "rectangle",
-			 "label.icon", "false",
+			 "label.icon", "true",
 			 "label", "Name",
 			 "label.pattern", "{0}"
 		   });	
@@ -443,7 +443,7 @@ public class ReqModelPackageImpl extends EPackageImpl implements ReqModelPackage
 		   source, 
 		   new String[] {
 			 "figure", "rounded",
-			 "label.icon", "false",
+			 "label.icon", "true",
 			 "label", "Name",
 			 "label.pattern", "{0}"
 		   });	
