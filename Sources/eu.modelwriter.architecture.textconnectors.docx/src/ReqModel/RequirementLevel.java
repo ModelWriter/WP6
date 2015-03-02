@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see ReqModel.ReqModelPackage#getRequirementLevel()
- * @model
+ * @model annotation="gmf.node figure='rectangle' label.icon='false' label='Name' label.pattern='{0}' size='100,60'"
  * @generated
  */
 public interface RequirementLevel extends Definition {
@@ -33,6 +33,7 @@ public interface RequirementLevel extends Definition {
 	 * @return the value of the '<em>Owned Definition</em>' containment reference list.
 	 * @see ReqModel.ReqModelPackage#getRequirementLevel_OwnedDefinition()
 	 * @model containment="true"
+	 *        annotation="gmf.compartment collapsible='true'"
 	 * @generated
 	 */
 	EList<Definition> getOwnedDefinition();

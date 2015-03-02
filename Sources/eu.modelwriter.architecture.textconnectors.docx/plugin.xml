@@ -10,8 +10,7 @@
       <!-- @generated ReqModel -->
       <package
             uri="eu.modelwriter.architecture.textconnectors.docx.reqmodel"
-            class="ReqModel.ReqModelPackage"
-            genModel="model/ReqModel.genmodel"/>
+            class="ReqModel.ReqModelPackage"/>
    </extension>
 
 </plugin>

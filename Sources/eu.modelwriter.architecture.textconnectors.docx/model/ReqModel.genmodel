@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/eu.modelwriter.architecture.textconnectors.docx/src"
     modelPluginID="eu.modelwriter.architecture.textconnectors.docx" modelName="ReqModel"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false">
-  <foreignModel>ReqModel.ecore</foreignModel>
+  <foreignModel>ReqModel.emf</foreignModel>
   <genPackages prefix="ReqModel" disposableProviderFactory="true" ecorePackage="ReqModel.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="ReqModel.ecore#//Priority">
       <genEnumLiterals ecoreEnumLiteral="ReqModel.ecore#//Priority/Mandatory"/>

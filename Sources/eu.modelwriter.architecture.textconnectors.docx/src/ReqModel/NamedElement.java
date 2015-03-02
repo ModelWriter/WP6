@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see ReqModel.ReqModelPackage#getNamedElement()
  * @model abstract="true"
+ *        annotation="gmf.node label='name'"
  * @generated
  */
 public interface NamedElement extends EObject {

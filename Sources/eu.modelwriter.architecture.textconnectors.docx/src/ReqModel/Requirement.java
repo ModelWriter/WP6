@@ -20,7 +20,7 @@ package ReqModel;
  * </p>
  *
  * @see ReqModel.ReqModelPackage#getRequirement()
- * @model
+ * @model annotation="gmf.node figure='rounded' label.icon='false' label='Name' label.pattern='{0}' size='20,20'"
  * @generated
  */
 public interface Requirement extends Definition {
@@ -88,7 +88,7 @@ public interface Requirement extends Definition {
 	 * @return the value of the '<em>Refine</em>' reference.
 	 * @see #setRefine(Requirement)
 	 * @see ReqModel.ReqModelPackage#getRequirement_Refine()
-	 * @model
+	 * @model annotation="gmf.link target.decoration='arrow' source.decoration='none' style='dash' color='0,0,0'"
 	 * @generated
 	 */
 	Requirement getRefine();
@@ -114,7 +114,7 @@ public interface Requirement extends Definition {
 	 * @return the value of the '<em>Dependency To</em>' reference.
 	 * @see #setDependencyTo(Requirement)
 	 * @see ReqModel.ReqModelPackage#getRequirement_DependencyTo()
-	 * @model
+	 * @model annotation="gmf.link target.decoration='arrow' source.decoration='none' style='dash' color='0,0,0'"
 	 * @generated
 	 */
 	Requirement getDependencyTo();

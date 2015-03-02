@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see ReqModel.ReqModelPackage#getProduct()
- * @model
+ * @model annotation="gmf.node label='Name'"
  * @generated
  */
 public interface Product extends NamedElement {
@@ -33,6 +33,7 @@ public interface Product extends NamedElement {
 	 * @return the value of the '<em>Owned Definition</em>' containment reference list.
 	 * @see ReqModel.ReqModelPackage#getProduct_OwnedDefinition()
 	 * @model containment="true"
+	 *        annotation="gmf.compartment collapsible='true'"
 	 * @generated
 	 */
 	EList<Definition> getOwnedDefinition();

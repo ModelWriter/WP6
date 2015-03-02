@@ -368,7 +368,7 @@ public class ReqModelPackageImpl extends EPackageImpl implements ReqModelPackage
 		requirementEClass.getESuperTypes().add(this.getDefinition());
 		textAreaEClass.getESuperTypes().add(this.getDefinition());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "Name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -397,6 +397,130 @@ public class ReqModelPackageImpl extends EPackageImpl implements ReqModelPackage
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// gmf.node
+		createGmfAnnotations();
+		// gmf.diagram
+		createGmf_1Annotations();
+		// gmf.compartment
+		createGmf_2Annotations();
+		// gmf.link
+		createGmf_3Annotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.node</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmfAnnotations() {
+		String source = "gmf.node";	
+		addAnnotation
+		  (namedElementEClass, 
+		   source, 
+		   new String[] {
+			 "label", "name"
+		   });	
+		addAnnotation
+		  (productEClass, 
+		   source, 
+		   new String[] {
+			 "label", "Name"
+		   });	
+		addAnnotation
+		  (requirementLevelEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "rectangle",
+			 "label.icon", "false",
+			 "label", "Name",
+			 "label.pattern", "{0}",
+			 "size", "100,60"
+		   });	
+		addAnnotation
+		  (requirementEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "rounded",
+			 "label.icon", "false",
+			 "label", "Name",
+			 "label.pattern", "{0}",
+			 "size", "20,20"
+		   });	
+		addAnnotation
+		  (textAreaEClass, 
+		   source, 
+		   new String[] {
+			 "label", "Name",
+			 "figure", "ellipse"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.diagram</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_1Annotations() {
+		String source = "gmf.diagram";	
+		addAnnotation
+		  (productEClass, 
+		   source, 
+		   new String[] {
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.compartment</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_2Annotations() {
+		String source = "gmf.compartment";	
+		addAnnotation
+		  (getProduct_OwnedDefinition(), 
+		   source, 
+		   new String[] {
+			 "collapsible", "true"
+		   });	
+		addAnnotation
+		  (getRequirementLevel_OwnedDefinition(), 
+		   source, 
+		   new String[] {
+			 "collapsible", "true"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.link</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_3Annotations() {
+		String source = "gmf.link";	
+		addAnnotation
+		  (getRequirement_Refine(), 
+		   source, 
+		   new String[] {
+			 "target.decoration", "arrow",
+			 "source.decoration", "none",
+			 "style", "dash",
+			 "color", "0,0,0"
+		   });	
+		addAnnotation
+		  (getRequirement_DependencyTo(), 
+		   source, 
+		   new String[] {
+			 "target.decoration", "arrow",
+			 "source.decoration", "none",
+			 "style", "dash",
+			 "color", "0,0,0"
+		   });
 	}
 
 } //ReqModelPackageImpl

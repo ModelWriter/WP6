@@ -35,6 +35,7 @@ import eu.modelwriter.architecture.textconnectors.docx.ReqModel2DocxConverter;
 
 public class Convert2DocxHandler extends AbstractHandler implements IHandler {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object execute(ExecutionEvent event) {
 		// TODO Auto-generated method stub
@@ -123,7 +124,7 @@ public class Convert2DocxHandler extends AbstractHandler implements IHandler {
 						final JFrame frame = new JFrame();
 						JOptionPane.showMessageDialog(frame, "Requirement File created successfully!");
 						//iresource.refreshLocal(IResource.DEPTH_INFINITE, null);
-						refresh(path);
+						//refresh(path);
 					
 					} catch (FileNotFoundException e) {
 						// TODO Auto-generated catch block
@@ -148,7 +149,7 @@ public class Convert2DocxHandler extends AbstractHandler implements IHandler {
 	}
 	
 	/**
-	 * Projeyi yeniler. Boylece yeni yaratilan dosya varsa gorunur.
+	 * Refreshes the project, so new file can be seen when added.
 	 */
 	protected void refresh(IPath path) {
 		try {
@@ -161,42 +162,5 @@ public class Convert2DocxHandler extends AbstractHandler implements IHandler {
 		}
 	}
 	
-	/**
-	 * Saves the model instance and writes it to xmi file
-	 * 
-	 * @param product
-	 */
-	private static void createXMIFile(Product product, String location) {
-
-		ResourceSet resourceSet = new ResourceSetImpl();
-
-		// Register XML Factory implementation using xmi extension
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-				"xmi", new  XMLResourceFactoryImpl());
-
-
-		// Create empty resource with the given URI
-		Resource resource = resourceSet.createResource(URI.createURI(location));
-
-
-		// Add Product to contents list of the resource 
-
-		resource.getContents().add(product);
-
-		try{
-
-			// Save the resource
-			//resource.save(System.out, Collections.EMPTY_MAP); 
-			resource.save(null);
-			
-
-		}catch (IOException e) {
-
-			e.printStackTrace();
-		}
-		
-		
-				
-	}
 
 }

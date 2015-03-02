@@ -86,15 +86,6 @@ public interface ReqModelPackage extends EPackage {
 	int NAMED_ELEMENT_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Named Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link ReqModel.impl.ProductImpl <em>Product</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,15 +123,6 @@ public interface ReqModelPackage extends EPackage {
 	int PRODUCT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Product</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link ReqModel.impl.DefinitionImpl <em>Definition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -167,15 +149,6 @@ public interface ReqModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEFÝNÝTÝON_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Definition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFÝNÝTÝON_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link ReqModel.impl.RequirementLevelImpl <em>Requirement Level</em>}' class.
@@ -213,15 +186,6 @@ public interface ReqModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int REQUÝREMENT_LEVEL_FEATURE_COUNT = DEFÝNÝTÝON_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Requirement Level</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUÝREMENT_LEVEL_OPERATION_COUNT = DEFÝNÝTÝON_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link ReqModel.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -297,15 +261,6 @@ public interface ReqModelPackage extends EPackage {
 	int REQUÝREMENT_FEATURE_COUNT = DEFÝNÝTÝON_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of operations of the '<em>Requirement</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUÝREMENT_OPERATION_COUNT = DEFÝNÝTÝON_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link ReqModel.impl.TextAreaImpl <em>Text Area</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -341,15 +296,6 @@ public interface ReqModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEXT_AREA_FEATURE_COUNT = DEFÝNÝTÝON_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Text Area</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_AREA_OPERATION_COUNT = DEFÝNÝTÝON_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link ReqModel.Priority <em>Priority</em>}' enum.
