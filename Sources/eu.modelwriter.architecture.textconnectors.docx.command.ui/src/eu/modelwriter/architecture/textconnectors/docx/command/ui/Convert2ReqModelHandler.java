@@ -95,7 +95,7 @@ public class Convert2ReqModelHandler extends AbstractHandler implements IHandler
 							newLoc += locationParts[i] + "/";
 						}else{
 							String[] name = locationParts[i].split("\\.");
-							newLoc += name[0] + ".xmi";
+							newLoc += name[0] + ".reqmodel";
 						}
 					}
 					

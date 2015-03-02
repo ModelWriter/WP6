@@ -62,10 +62,10 @@ public class Convert2DocxHandler extends AbstractHandler implements IHandler {
 
 			if (iresource != null) {
 	
-				if(!iresource.getName().contains(".xmi")){
+				if(!iresource.getName().contains(".reqmodel")){
 					
 					final JFrame frame = new JFrame();
-					JOptionPane.showMessageDialog(frame, "WRONG FILE TYPE! (expected type: .xmi)");
+					JOptionPane.showMessageDialog(frame, "WRONG FILE TYPE! (expected type: .reqmodel)");
 					
 				}else{
 					
