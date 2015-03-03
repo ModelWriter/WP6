@@ -218,7 +218,7 @@ public class Docx2ReqModelConverter {
 						// Set requirement's priority
 						else if(values[0].trim().equals(REQUIREMENT_PRIORITY)){
 
-							if(values[1].equals(REQUIREMENT_PRIORITY_MANDATORY)){
+							if(values[1].trim().equals(REQUIREMENT_PRIORITY_MANDATORY)){
 
 								requirement.setPriorityType(Priority.MANDATORY);	
 
