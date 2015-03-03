@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -52,13 +53,14 @@ public class ReqModel2DocxConverter {
 	public static XWPFDocument Convert(Resource r) throws IOException, XmlException {
 		// TODO Auto-generated method stub
 
-		// Get template document which includes heading styles
-		//XWPFDocument template = new XWPFDocument(new FileInputStream("template file/template.docx"));
-		
+		URL url = new URL("platform:/plugin/eu.modelwriter.architecture.textconnectors.docx/templates/template.docx");   
+		 // Get template document which includes heading styles
+		XWPFDocument template = new XWPFDocument(url.openConnection().getInputStream());
+			
 		document = new XWPFDocument(); 
 		
 		XWPFStyles newStyles = document.createStyles();
-		//newStyles.setStyles(template.getStyle());
+		newStyles.setStyles(template.getStyle());
 		
 		//Write the Document in file system(in this case in project folder)					
 		//FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/RequirementModelDocument.docx"));
