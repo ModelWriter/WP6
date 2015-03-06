@@ -1,0 +1,123 @@
+/**
+ */
+package useCase;
+
+import org.eclipse.emf.ecore.EFactory;
+
+/**
+ * <!-- begin-user-doc -->
+ * The <b>Factory</b> for the model.
+ * It provides a create method for each non-abstract class of the model.
+ * <!-- end-user-doc -->
+ * @see useCase.UseCasePackage
+ * @generated
+ */
+public interface UseCaseFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	UseCaseFactory eINSTANCE = useCase.impl.UseCaseFactoryImpl.init();
+
+	/**
+	 * Returns a new object of class '<em>Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Element</em>'.
+	 * @generated
+	 */
+	Element createElement();
+
+	/**
+	 * Returns a new object of class '<em>Documentation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Documentation</em>'.
+	 * @generated
+	 */
+	Documentation createDocumentation();
+
+	/**
+	 * Returns a new object of class '<em>Use Case</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Use Case</em>'.
+	 * @generated
+	 */
+	UseCase createUseCase();
+
+	/**
+	 * Returns a new object of class '<em>Actor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Actor</em>'.
+	 * @generated
+	 */
+	Actor createActor();
+
+	/**
+	 * Returns a new object of class '<em>Interest</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interest</em>'.
+	 * @generated
+	 */
+	Interest createInterest();
+
+	/**
+	 * Returns a new object of class '<em>Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expression</em>'.
+	 * @generated
+	 */
+	Expression createExpression();
+
+	/**
+	 * Returns a new object of class '<em>Sequence Flow</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sequence Flow</em>'.
+	 * @generated
+	 */
+	SequenceFlow createSequenceFlow();
+
+	/**
+	 * Returns a new object of class '<em>Conditional Sequence Flow</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conditional Sequence Flow</em>'.
+	 * @generated
+	 */
+	ConditionalSequenceFlow createConditionalSequenceFlow();
+
+	/**
+	 * Returns a new object of class '<em>Activity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Activity</em>'.
+	 * @generated
+	 */
+	Activity createActivity();
+
+	/**
+	 * Returns a new object of class '<em>Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Event</em>'.
+	 * @generated
+	 */
+	Event createEvent();
+
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	UseCasePackage getUseCasePackage();
+
+} //UseCaseFactory
