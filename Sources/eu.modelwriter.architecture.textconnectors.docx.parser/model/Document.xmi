@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ParseTree:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ParseTree="eu.modelwriter.architecture.textconnectors.docx.parsetree" xsi:schemaLocation="eu.modelwriter.architecture.textconnectors.docx.parsetree ParseTree.ecore" name="UseCaseSpecification">
+  <ownedNode xsi:type="ParseTree:NamedNode" name="USE CASE UC1: SIGN UP">
+    <documentation text="1&#x9;USE CASE UC1: SIGN UP" textFormat="Heading 1"/>
+    <ownedNode xsi:type="ParseTree:NamedNode" name="Primary Actor">
+      <documentation text="Primary Actor: " textFormat="Bold"/>
+      <nextNode>
+        <documentation text="Student" textFormat="None"/>
+      </nextNode>
+    </ownedNode>
+    <ownedNode xsi:type="ParseTree:NamedNode" name="Stakeholders and Interests">
+      <documentation text="Stakeholders and Interests: " textFormat="Bold"/>
+      <ownedNode xsi:type="ParseTree:NamedNode" name="Student">
+        <documentation text="&#xf0a7;&#x9;Student: " textFormat="None"/>
+        <nextNode>
+          <documentation text="wants easily understandable questions, fast response, no system errors." textFormat="None"/>
+        </nextNode>
+      </ownedNode>
+    </ownedNode>
+    <ownedNode xsi:type="ParseTree:NamedNode" name="Main Success Scenario (or Basic Flow)">
+      <documentation text="Main Success Scenario (or Basic Flow): " textFormat="Bold"/>
+      <ownedNode xsi:type="ParseTree:NamedNode" name="1">
+        <documentation text="1. " textFormat="None"/>
+        <nextNode>
+          <documentation text="Student visits system home page. " textFormat="None"/>
+        </nextNode>
+      </ownedNode>
+      <ownedNode xsi:type="ParseTree:NamedNode" name="2">
+        <documentation text="2. " textFormat="None"/>
+        <ownedNode>
+          <documentation text="System shows home page with login form and sign up button. " textFormat="None"/>
+        </ownedNode>
+      </ownedNode>
+    </ownedNode>
+    <ownedNode xsi:type="ParseTree:NamedNode" name="Extensions (or Alternative Flows)">
+      <documentation text="Extensions (or Alternative Flows): " textFormat="Bold"/>
+      <ownedNode xsi:type="ParseTree:NamedNode" name="a*">
+        <documentation text="*a. " textFormat="None"/>
+        <nextNode xsi:type="ParseTree:NamedNode" name="At any time, System fails">
+          <documentation text="At any time, System fails: " textFormat="None"/>
+          <nextNode>
+            <documentation text="To support recovery, ensure all transaction sensitive state and events can be recovered from any step of the scenario." textFormat="None"/>
+          </nextNode>
+        </nextNode>
+      </ownedNode>
+    </ownedNode>
+  </ownedNode>
+  <ownedNode xsi:type="ParseTree:NamedNode" name="USE CASE UC2: SIGN IN">
+    <documentation text="2&#x9;USE CASE UC2: SIGN IN" textFormat="Heading 1"/>
+  </ownedNode>
+</ParseTree:Document>

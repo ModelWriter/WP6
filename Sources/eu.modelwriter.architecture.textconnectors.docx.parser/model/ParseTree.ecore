@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ParseTree" nsURI="eu.modelwriter.architecture.textconnectors.docx.parsetree"
+    nsPrefix="ParseTree">
+  <eClassifiers xsi:type="ecore:EClass" name="Documentation" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textFormat" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentation" upperBound="-1"
+        eType="#//Documentation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedNode" upperBound="-1"
+        eType="#//Node" containment="true" eOpposite="#//Node/parentNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextNode" eType="#//Node"
+        containment="true" eOpposite="#//Node/prevNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prevNode" eType="#//Node"
+        eOpposite="#//Node/nextNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentNode" eType="#//Node"
+        eOpposite="#//Node/ownedNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedNode" upperBound="-1"
+        eType="#//Node" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedNode" eSuperTypes="#//Node #//NamedElement"/>
+</ecore:EPackage>
