@@ -6,38 +6,62 @@
     complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>usecase.ecore</foreignModel>
   <genPackages prefix="UseCase" disposableProviderFactory="true" ecorePackage="usecase.ecore#/">
-    <genClasses ecoreClass="usecase.ecore#//Element"/>
+    <genClasses ecoreClass="usecase.ecore#//Element">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//Element/documentation"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="usecase.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//NamedElement/name"/>
     </genClasses>
-    <genClasses ecoreClass="usecase.ecore#//Documentation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//Documentation/ownedUseCase"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//Documentation/ownedActor"/>
+    <genClasses ecoreClass="usecase.ecore#//Specification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//Specification/ownedUseCase"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//Specification/ownedActor"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Specification/ownedProcess"/>
     </genClasses>
     <genClasses ecoreClass="usecase.ecore#//UseCase">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//UseCase/primaryActor"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//UseCase/ownedStakeholderInterest"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//UseCase/mainFlow"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//UseCase/alternativeFlows"/>
     </genClasses>
     <genClasses ecoreClass="usecase.ecore#//Actor"/>
     <genClasses ecoreClass="usecase.ecore#//Interest">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Interest/actor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Interest/description"/>
     </genClasses>
     <genClasses ecoreClass="usecase.ecore#//Expression"/>
     <genClasses image="false" ecoreClass="usecase.ecore#//FlowElement"/>
-    <genClasses ecoreClass="usecase.ecore#//SequenceFlow">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//SequenceFlow/Source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//SequenceFlow/Target"/>
+    <genClasses ecoreClass="usecase.ecore#//Flow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Flow/Source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Flow/Target"/>
     </genClasses>
-    <genClasses ecoreClass="usecase.ecore#//ConditionalSequenceFlow">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//ConditionalSequenceFlow/conditionExpression"/>
+    <genClasses ecoreClass="usecase.ecore#//ConditionalFlow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//ConditionalFlow/conditionExpression"/>
     </genClasses>
     <genClasses image="false" ecoreClass="usecase.ecore#//FlowNode">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//FlowNode/label"/>
     </genClasses>
-    <genClasses ecoreClass="usecase.ecore#//Activity">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Activity/description"/>
-    </genClasses>
+    <genClasses ecoreClass="usecase.ecore#//Activity"/>
     <genClasses ecoreClass="usecase.ecore#//Event"/>
+    <genClasses ecoreClass="usecase.ecore#//Process">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Process/definedAt"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//Process/ownedFlowElements"/>
+    </genClasses>
+    <genClasses ecoreClass="usecase.ecore#//Documentation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Documentation/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Documentation/textFormat"/>
+    </genClasses>
+    <genClasses ecoreClass="usecase.ecore#//StartEvent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//StartEvent/isInterrupting"/>
+    </genClasses>
+    <genClasses ecoreClass="usecase.ecore#//EndEvent"/>
+    <genClasses ecoreClass="usecase.ecore#//Gateway"/>
+    <genClasses ecoreClass="usecase.ecore#//ThrowEvent"/>
+    <genClasses ecoreClass="usecase.ecore#//CatchEvent"/>
+    <genClasses ecoreClass="usecase.ecore#//IntermediateCatchEvent"/>
+    <genClasses ecoreClass="usecase.ecore#//IntermediateThrowEvent"/>
+    <genClasses ecoreClass="usecase.ecore#//SequenceFlow"/>
+    <genClasses ecoreClass="usecase.ecore#//InclusiveGateway">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//InclusiveGateway/default"/>
+    </genClasses>
+    <genClasses ecoreClass="usecase.ecore#//ParallelGateway"/>
   </genPackages>
 </genmodel:GenModel>
