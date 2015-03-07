@@ -14,5 +14,4 @@ package useCase.validation;
 public interface ActivityValidator {
 	boolean validate();
 
-	boolean validateDescription(String value);
 }

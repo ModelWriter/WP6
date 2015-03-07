@@ -16,7 +16,7 @@ import useCase.UseCasePackage;
  *
  * @generated
  */
-public class EventImpl extends FlowNodeImpl implements Event {
+public abstract class EventImpl extends FlowNodeImpl implements Event {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

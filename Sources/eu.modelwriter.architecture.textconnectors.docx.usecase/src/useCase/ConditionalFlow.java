@@ -5,21 +5,21 @@ package useCase;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Conditional Sequence Flow</b></em>'.
+ * A representation of the model object '<em><b>Conditional Flow</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link useCase.ConditionalSequenceFlow#getConditionExpression <em>Condition Expression</em>}</li>
+ *   <li>{@link useCase.ConditionalFlow#getConditionExpression <em>Condition Expression</em>}</li>
  * </ul>
  * </p>
  *
- * @see useCase.UseCasePackage#getConditionalSequenceFlow()
+ * @see useCase.UseCasePackage#getConditionalFlow()
  * @model
  * @generated
  */
-public interface ConditionalSequenceFlow extends SequenceFlow {
+public interface ConditionalFlow extends Flow {
 	/**
 	 * Returns the value of the '<em><b>Condition Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -30,14 +30,14 @@ public interface ConditionalSequenceFlow extends SequenceFlow {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition Expression</em>' reference.
 	 * @see #setConditionExpression(Expression)
-	 * @see useCase.UseCasePackage#getConditionalSequenceFlow_ConditionExpression()
+	 * @see useCase.UseCasePackage#getConditionalFlow_ConditionExpression()
 	 * @model
 	 * @generated
 	 */
 	Expression getConditionExpression();
 
 	/**
-	 * Sets the value of the '{@link useCase.ConditionalSequenceFlow#getConditionExpression <em>Condition Expression</em>}' reference.
+	 * Sets the value of the '{@link useCase.ConditionalFlow#getConditionExpression <em>Condition Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition Expression</em>' reference.
@@ -46,4 +46,4 @@ public interface ConditionalSequenceFlow extends SequenceFlow {
 	 */
 	void setConditionExpression(Expression value);
 
-} // ConditionalSequenceFlow
+} // ConditionalFlow

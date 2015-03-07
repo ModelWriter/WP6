@@ -2,21 +2,13 @@
  */
 package useCase.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import useCase.Actor;
 import useCase.Documentation;
-import useCase.UseCase;
 import useCase.UseCasePackage;
 
 /**
@@ -26,33 +18,53 @@ import useCase.UseCasePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link useCase.impl.DocumentationImpl#getOwnedUseCase <em>Owned Use Case</em>}</li>
- *   <li>{@link useCase.impl.DocumentationImpl#getOwnedActor <em>Owned Actor</em>}</li>
+ *   <li>{@link useCase.impl.DocumentationImpl#getText <em>Text</em>}</li>
+ *   <li>{@link useCase.impl.DocumentationImpl#getTextFormat <em>Text Format</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DocumentationImpl extends NamedElementImpl implements Documentation {
+public class DocumentationImpl extends ElementImpl implements Documentation {
 	/**
-	 * The cached value of the '{@link #getOwnedUseCase() <em>Owned Use Case</em>}' containment reference list.
+	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedUseCase()
+	 * @see #getText()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<UseCase> ownedUseCase;
+	protected static final String TEXT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getOwnedActor() <em>Owned Actor</em>}' containment reference list.
+	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedActor()
+	 * @see #getText()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Actor> ownedActor;
+	protected String text = TEXT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTextFormat() <em>Text Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTextFormat()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TEXT_FORMAT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTextFormat() <em>Text Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTextFormat()
+	 * @generated
+	 * @ordered
+	 */
+	protected String textFormat = TEXT_FORMAT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,7 +82,7 @@ public class DocumentationImpl extends NamedElementImpl implements Documentation
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UseCasePackage.Literals.DOCUMENTATÝON;
+		return UseCasePackage.Literals.DOCUMENTATION;
 	}
 
 	/**
@@ -78,11 +90,8 @@ public class DocumentationImpl extends NamedElementImpl implements Documentation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<UseCase> getOwnedUseCase() {
-		if (ownedUseCase == null) {
-			ownedUseCase = new EObjectContainmentEList<UseCase>(UseCase.class, this, UseCasePackage.DOCUMENTATÝON__OWNED_USE_CASE);
-		}
-		return ownedUseCase;
+	public String getText() {
+		return text;
 	}
 
 	/**
@@ -90,11 +99,11 @@ public class DocumentationImpl extends NamedElementImpl implements Documentation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Actor> getOwnedActor() {
-		if (ownedActor == null) {
-			ownedActor = new EObjectContainmentEList<Actor>(Actor.class, this, UseCasePackage.DOCUMENTATÝON__OWNED_ACTOR);
-		}
-		return ownedActor;
+	public void setText(String newText) {
+		String oldText = text;
+		text = newText;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.DOCUMENTATION__TEXT, oldText, text));
 	}
 
 	/**
@@ -102,15 +111,20 @@ public class DocumentationImpl extends NamedElementImpl implements Documentation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UseCasePackage.DOCUMENTATÝON__OWNED_USE_CASE:
-				return ((InternalEList<?>)getOwnedUseCase()).basicRemove(otherEnd, msgs);
-			case UseCasePackage.DOCUMENTATÝON__OWNED_ACTOR:
-				return ((InternalEList<?>)getOwnedActor()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+	public String getTextFormat() {
+		return textFormat;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTextFormat(String newTextFormat) {
+		String oldTextFormat = textFormat;
+		textFormat = newTextFormat;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.DOCUMENTATION__TEXT_FORMAT, oldTextFormat, textFormat));
 	}
 
 	/**
@@ -121,10 +135,10 @@ public class DocumentationImpl extends NamedElementImpl implements Documentation
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UseCasePackage.DOCUMENTATÝON__OWNED_USE_CASE:
-				return getOwnedUseCase();
-			case UseCasePackage.DOCUMENTATÝON__OWNED_ACTOR:
-				return getOwnedActor();
+			case UseCasePackage.DOCUMENTATION__TEXT:
+				return getText();
+			case UseCasePackage.DOCUMENTATION__TEXT_FORMAT:
+				return getTextFormat();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,17 +148,14 @@ public class DocumentationImpl extends NamedElementImpl implements Documentation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UseCasePackage.DOCUMENTATÝON__OWNED_USE_CASE:
-				getOwnedUseCase().clear();
-				getOwnedUseCase().addAll((Collection<? extends UseCase>)newValue);
+			case UseCasePackage.DOCUMENTATION__TEXT:
+				setText((String)newValue);
 				return;
-			case UseCasePackage.DOCUMENTATÝON__OWNED_ACTOR:
-				getOwnedActor().clear();
-				getOwnedActor().addAll((Collection<? extends Actor>)newValue);
+			case UseCasePackage.DOCUMENTATION__TEXT_FORMAT:
+				setTextFormat((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -158,11 +169,11 @@ public class DocumentationImpl extends NamedElementImpl implements Documentation
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.DOCUMENTATÝON__OWNED_USE_CASE:
-				getOwnedUseCase().clear();
+			case UseCasePackage.DOCUMENTATION__TEXT:
+				setText(TEXT_EDEFAULT);
 				return;
-			case UseCasePackage.DOCUMENTATÝON__OWNED_ACTOR:
-				getOwnedActor().clear();
+			case UseCasePackage.DOCUMENTATION__TEXT_FORMAT:
+				setTextFormat(TEXT_FORMAT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -176,12 +187,30 @@ public class DocumentationImpl extends NamedElementImpl implements Documentation
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.DOCUMENTATÝON__OWNED_USE_CASE:
-				return ownedUseCase != null && !ownedUseCase.isEmpty();
-			case UseCasePackage.DOCUMENTATÝON__OWNED_ACTOR:
-				return ownedActor != null && !ownedActor.isEmpty();
+			case UseCasePackage.DOCUMENTATION__TEXT:
+				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
+			case UseCasePackage.DOCUMENTATION__TEXT_FORMAT:
+				return TEXT_FORMAT_EDEFAULT == null ? textFormat != null : !TEXT_FORMAT_EDEFAULT.equals(textFormat);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (text: ");
+		result.append(text);
+		result.append(", textFormat: ");
+		result.append(textFormat);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DocumentationImpl

@@ -20,4 +20,6 @@ public interface UseCaseValidator {
 
 	boolean validatePrimaryActor(Actor value);
 	boolean validateOwnedStakeholderInterest(EList<Interest> value);
+	boolean validateMainFlow(useCase.Process value);
+	boolean validateAlternativeFlows(EList<useCase.Process> value);
 }

@@ -9,7 +9,31 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import useCase.*;
+import useCase.Activity;
+import useCase.Actor;
+import useCase.CatchEvent;
+import useCase.ConditionalFlow;
+import useCase.Documentation;
+import useCase.Element;
+import useCase.EndEvent;
+import useCase.Event;
+import useCase.Expression;
+import useCase.Flow;
+import useCase.FlowElement;
+import useCase.FlowNode;
+import useCase.Gateway;
+import useCase.InclusiveGateway;
+import useCase.Interest;
+import useCase.IntermediateCatchEvent;
+import useCase.IntermediateThrowEvent;
+import useCase.NamedElement;
+import useCase.ParallelGateway;
+import useCase.SequenceFlow;
+import useCase.Specification;
+import useCase.StartEvent;
+import useCase.ThrowEvent;
+import useCase.UseCase;
+import useCase.UseCasePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,8 +100,8 @@ public class UseCaseAdapterFactory extends AdapterFactoryImpl {
 				return createNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseDocumentation(Documentation object) {
-				return createDocumentationAdapter();
+			public Adapter caseSpecification(Specification object) {
+				return createSpecificationAdapter();
 			}
 			@Override
 			public Adapter caseUseCase(UseCase object) {
@@ -100,12 +124,12 @@ public class UseCaseAdapterFactory extends AdapterFactoryImpl {
 				return createFlowElementAdapter();
 			}
 			@Override
-			public Adapter caseSequenceFlow(SequenceFlow object) {
-				return createSequenceFlowAdapter();
+			public Adapter caseFlow(Flow object) {
+				return createFlowAdapter();
 			}
 			@Override
-			public Adapter caseConditionalSequenceFlow(ConditionalSequenceFlow object) {
-				return createConditionalSequenceFlowAdapter();
+			public Adapter caseConditionalFlow(ConditionalFlow object) {
+				return createConditionalFlowAdapter();
 			}
 			@Override
 			public Adapter caseFlowNode(FlowNode object) {
@@ -118,6 +142,54 @@ public class UseCaseAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseEvent(Event object) {
 				return createEventAdapter();
+			}
+			@Override
+			public Adapter caseProcess(useCase.Process object) {
+				return createProcessAdapter();
+			}
+			@Override
+			public Adapter caseDocumentation(Documentation object) {
+				return createDocumentationAdapter();
+			}
+			@Override
+			public Adapter caseStartEvent(StartEvent object) {
+				return createStartEventAdapter();
+			}
+			@Override
+			public Adapter caseEndEvent(EndEvent object) {
+				return createEndEventAdapter();
+			}
+			@Override
+			public Adapter caseGateway(Gateway object) {
+				return createGatewayAdapter();
+			}
+			@Override
+			public Adapter caseThrowEvent(ThrowEvent object) {
+				return createThrowEventAdapter();
+			}
+			@Override
+			public Adapter caseCatchEvent(CatchEvent object) {
+				return createCatchEventAdapter();
+			}
+			@Override
+			public Adapter caseIntermediateCatchEvent(IntermediateCatchEvent object) {
+				return createIntermediateCatchEventAdapter();
+			}
+			@Override
+			public Adapter caseIntermediateThrowEvent(IntermediateThrowEvent object) {
+				return createIntermediateThrowEventAdapter();
+			}
+			@Override
+			public Adapter caseSequenceFlow(SequenceFlow object) {
+				return createSequenceFlowAdapter();
+			}
+			@Override
+			public Adapter caseInclusiveGateway(InclusiveGateway object) {
+				return createInclusiveGatewayAdapter();
+			}
+			@Override
+			public Adapter caseParallelGateway(ParallelGateway object) {
+				return createParallelGatewayAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -168,16 +240,16 @@ public class UseCaseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link useCase.Documentation <em>Documentation</em>}'.
+	 * Creates a new adapter for an object of class '{@link useCase.Specification <em>Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see useCase.Documentation
+	 * @see useCase.Specification
 	 * @generated
 	 */
-	public Adapter createDocumentationAdapter() {
+	public Adapter createSpecificationAdapter() {
 		return null;
 	}
 
@@ -252,30 +324,30 @@ public class UseCaseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link useCase.SequenceFlow <em>Sequence Flow</em>}'.
+	 * Creates a new adapter for an object of class '{@link useCase.Flow <em>Flow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see useCase.SequenceFlow
+	 * @see useCase.Flow
 	 * @generated
 	 */
-	public Adapter createSequenceFlowAdapter() {
+	public Adapter createFlowAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link useCase.ConditionalSequenceFlow <em>Conditional Sequence Flow</em>}'.
+	 * Creates a new adapter for an object of class '{@link useCase.ConditionalFlow <em>Conditional Flow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see useCase.ConditionalSequenceFlow
+	 * @see useCase.ConditionalFlow
 	 * @generated
 	 */
-	public Adapter createConditionalSequenceFlowAdapter() {
+	public Adapter createConditionalFlowAdapter() {
 		return null;
 	}
 
@@ -318,6 +390,174 @@ public class UseCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.Process <em>Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.Process
+	 * @generated
+	 */
+	public Adapter createProcessAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.Documentation <em>Documentation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.Documentation
+	 * @generated
+	 */
+	public Adapter createDocumentationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.StartEvent <em>Start Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.StartEvent
+	 * @generated
+	 */
+	public Adapter createStartEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.EndEvent <em>End Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.EndEvent
+	 * @generated
+	 */
+	public Adapter createEndEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.Gateway <em>Gateway</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.Gateway
+	 * @generated
+	 */
+	public Adapter createGatewayAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.ThrowEvent <em>Throw Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.ThrowEvent
+	 * @generated
+	 */
+	public Adapter createThrowEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.CatchEvent <em>Catch Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.CatchEvent
+	 * @generated
+	 */
+	public Adapter createCatchEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.IntermediateCatchEvent <em>Intermediate Catch Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.IntermediateCatchEvent
+	 * @generated
+	 */
+	public Adapter createIntermediateCatchEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.IntermediateThrowEvent <em>Intermediate Throw Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.IntermediateThrowEvent
+	 * @generated
+	 */
+	public Adapter createIntermediateThrowEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.SequenceFlow <em>Sequence Flow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.SequenceFlow
+	 * @generated
+	 */
+	public Adapter createSequenceFlowAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.InclusiveGateway <em>Inclusive Gateway</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.InclusiveGateway
+	 * @generated
+	 */
+	public Adapter createInclusiveGatewayAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link useCase.ParallelGateway <em>Parallel Gateway</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see useCase.ParallelGateway
+	 * @generated
+	 */
+	public Adapter createParallelGatewayAdapter() {
 		return null;
 	}
 

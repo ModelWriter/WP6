@@ -16,5 +16,4 @@ public interface InterestValidator {
 	boolean validate();
 
 	boolean validateActor(Actor value);
-	boolean validateDescription(String value);
 }

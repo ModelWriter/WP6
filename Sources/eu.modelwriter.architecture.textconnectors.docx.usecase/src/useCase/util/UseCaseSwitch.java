@@ -7,7 +7,31 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import useCase.*;
+import useCase.Activity;
+import useCase.Actor;
+import useCase.CatchEvent;
+import useCase.ConditionalFlow;
+import useCase.Documentation;
+import useCase.Element;
+import useCase.EndEvent;
+import useCase.Event;
+import useCase.Expression;
+import useCase.Flow;
+import useCase.FlowElement;
+import useCase.FlowNode;
+import useCase.Gateway;
+import useCase.InclusiveGateway;
+import useCase.Interest;
+import useCase.IntermediateCatchEvent;
+import useCase.IntermediateThrowEvent;
+import useCase.NamedElement;
+import useCase.ParallelGateway;
+import useCase.SequenceFlow;
+import useCase.Specification;
+import useCase.StartEvent;
+import useCase.ThrowEvent;
+import useCase.UseCase;
+import useCase.UseCasePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,11 +103,11 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.DOCUMENTATÝON: {
-				Documentation documentation = (Documentation)theEObject;
-				T result = caseDocumentation(documentation);
-				if (result == null) result = caseNamedElement(documentation);
-				if (result == null) result = caseElement(documentation);
+			case UseCasePackage.SPECIFICATION: {
+				Specification specification = (Specification)theEObject;
+				T result = caseSpecification(specification);
+				if (result == null) result = caseNamedElement(specification);
+				if (result == null) result = caseElement(specification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,13 +128,13 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case UseCasePackage.INTEREST: {
-				Interest ýnterest = (Interest)theEObject;
-				T result = caseInterest(ýnterest);
-				if (result == null) result = caseElement(ýnterest);
+				Interest interest = (Interest)theEObject;
+				T result = caseInterest(interest);
+				if (result == null) result = caseElement(interest);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.EXPRESSÝON: {
+			case UseCasePackage.EXPRESSION: {
 				Expression expression = (Expression)theEObject;
 				T result = caseExpression(expression);
 				if (result == null) result = caseElement(expression);
@@ -124,20 +148,20 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.SEQUENCE_FLOW: {
-				SequenceFlow sequenceFlow = (SequenceFlow)theEObject;
-				T result = caseSequenceFlow(sequenceFlow);
-				if (result == null) result = caseFlowElement(sequenceFlow);
-				if (result == null) result = caseElement(sequenceFlow);
+			case UseCasePackage.FLOW: {
+				Flow flow = (Flow)theEObject;
+				T result = caseFlow(flow);
+				if (result == null) result = caseFlowElement(flow);
+				if (result == null) result = caseElement(flow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.CONDÝTÝONAL_SEQUENCE_FLOW: {
-				ConditionalSequenceFlow conditionalSequenceFlow = (ConditionalSequenceFlow)theEObject;
-				T result = caseConditionalSequenceFlow(conditionalSequenceFlow);
-				if (result == null) result = caseSequenceFlow(conditionalSequenceFlow);
-				if (result == null) result = caseFlowElement(conditionalSequenceFlow);
-				if (result == null) result = caseElement(conditionalSequenceFlow);
+			case UseCasePackage.CONDITIONAL_FLOW: {
+				ConditionalFlow conditionalFlow = (ConditionalFlow)theEObject;
+				T result = caseConditionalFlow(conditionalFlow);
+				if (result == null) result = caseFlow(conditionalFlow);
+				if (result == null) result = caseFlowElement(conditionalFlow);
+				if (result == null) result = caseElement(conditionalFlow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -149,7 +173,7 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.ACTÝVÝTY: {
+			case UseCasePackage.ACTIVITY: {
 				Activity activity = (Activity)theEObject;
 				T result = caseActivity(activity);
 				if (result == null) result = caseFlowNode(activity);
@@ -164,6 +188,123 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseFlowNode(event);
 				if (result == null) result = caseFlowElement(event);
 				if (result == null) result = caseElement(event);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.PROCESS: {
+				useCase.Process process = (useCase.Process)theEObject;
+				T result = caseProcess(process);
+				if (result == null) result = caseNamedElement(process);
+				if (result == null) result = caseElement(process);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.DOCUMENTATION: {
+				Documentation documentation = (Documentation)theEObject;
+				T result = caseDocumentation(documentation);
+				if (result == null) result = caseElement(documentation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.START_EVENT: {
+				StartEvent startEvent = (StartEvent)theEObject;
+				T result = caseStartEvent(startEvent);
+				if (result == null) result = caseCatchEvent(startEvent);
+				if (result == null) result = caseEvent(startEvent);
+				if (result == null) result = caseFlowNode(startEvent);
+				if (result == null) result = caseFlowElement(startEvent);
+				if (result == null) result = caseElement(startEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.END_EVENT: {
+				EndEvent endEvent = (EndEvent)theEObject;
+				T result = caseEndEvent(endEvent);
+				if (result == null) result = caseThrowEvent(endEvent);
+				if (result == null) result = caseEvent(endEvent);
+				if (result == null) result = caseFlowNode(endEvent);
+				if (result == null) result = caseFlowElement(endEvent);
+				if (result == null) result = caseElement(endEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.GATEWAY: {
+				Gateway gateway = (Gateway)theEObject;
+				T result = caseGateway(gateway);
+				if (result == null) result = caseFlowNode(gateway);
+				if (result == null) result = caseFlowElement(gateway);
+				if (result == null) result = caseElement(gateway);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.THROW_EVENT: {
+				ThrowEvent throwEvent = (ThrowEvent)theEObject;
+				T result = caseThrowEvent(throwEvent);
+				if (result == null) result = caseEvent(throwEvent);
+				if (result == null) result = caseFlowNode(throwEvent);
+				if (result == null) result = caseFlowElement(throwEvent);
+				if (result == null) result = caseElement(throwEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.CATCH_EVENT: {
+				CatchEvent catchEvent = (CatchEvent)theEObject;
+				T result = caseCatchEvent(catchEvent);
+				if (result == null) result = caseEvent(catchEvent);
+				if (result == null) result = caseFlowNode(catchEvent);
+				if (result == null) result = caseFlowElement(catchEvent);
+				if (result == null) result = caseElement(catchEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.INTERMEDIATE_CATCH_EVENT: {
+				IntermediateCatchEvent intermediateCatchEvent = (IntermediateCatchEvent)theEObject;
+				T result = caseIntermediateCatchEvent(intermediateCatchEvent);
+				if (result == null) result = caseCatchEvent(intermediateCatchEvent);
+				if (result == null) result = caseEvent(intermediateCatchEvent);
+				if (result == null) result = caseFlowNode(intermediateCatchEvent);
+				if (result == null) result = caseFlowElement(intermediateCatchEvent);
+				if (result == null) result = caseElement(intermediateCatchEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.INTERMEDIATE_THROW_EVENT: {
+				IntermediateThrowEvent intermediateThrowEvent = (IntermediateThrowEvent)theEObject;
+				T result = caseIntermediateThrowEvent(intermediateThrowEvent);
+				if (result == null) result = caseThrowEvent(intermediateThrowEvent);
+				if (result == null) result = caseEvent(intermediateThrowEvent);
+				if (result == null) result = caseFlowNode(intermediateThrowEvent);
+				if (result == null) result = caseFlowElement(intermediateThrowEvent);
+				if (result == null) result = caseElement(intermediateThrowEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.SEQUENCE_FLOW: {
+				SequenceFlow sequenceFlow = (SequenceFlow)theEObject;
+				T result = caseSequenceFlow(sequenceFlow);
+				if (result == null) result = caseFlow(sequenceFlow);
+				if (result == null) result = caseFlowElement(sequenceFlow);
+				if (result == null) result = caseElement(sequenceFlow);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.INCLUSIVE_GATEWAY: {
+				InclusiveGateway inclusiveGateway = (InclusiveGateway)theEObject;
+				T result = caseInclusiveGateway(inclusiveGateway);
+				if (result == null) result = caseGateway(inclusiveGateway);
+				if (result == null) result = caseFlowNode(inclusiveGateway);
+				if (result == null) result = caseFlowElement(inclusiveGateway);
+				if (result == null) result = caseElement(inclusiveGateway);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UseCasePackage.PARALLEL_GATEWAY: {
+				ParallelGateway parallelGateway = (ParallelGateway)theEObject;
+				T result = caseParallelGateway(parallelGateway);
+				if (result == null) result = caseGateway(parallelGateway);
+				if (result == null) result = caseFlowNode(parallelGateway);
+				if (result == null) result = caseFlowElement(parallelGateway);
+				if (result == null) result = caseElement(parallelGateway);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -202,17 +343,17 @@ public class UseCaseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Documentation</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Documentation</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Specification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDocumentation(Documentation object) {
+	public T caseSpecification(Specification object) {
 		return null;
 	}
 
@@ -292,32 +433,32 @@ public class UseCaseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Sequence Flow</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Flow</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Sequence Flow</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Flow</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSequenceFlow(SequenceFlow object) {
+	public T caseFlow(Flow object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conditional Sequence Flow</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Flow</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conditional Sequence Flow</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Flow</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConditionalSequenceFlow(ConditionalSequenceFlow object) {
+	public T caseConditionalFlow(ConditionalFlow object) {
 		return null;
 	}
 
@@ -363,6 +504,186 @@ public class UseCaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEvent(Event object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Process</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Process</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProcess(useCase.Process object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Documentation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Documentation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDocumentation(Documentation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Start Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Start Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStartEvent(StartEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>End Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>End Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEndEvent(EndEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gateway</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gateway</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGateway(Gateway object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Throw Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Throw Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseThrowEvent(ThrowEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Catch Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Catch Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCatchEvent(CatchEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Intermediate Catch Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Intermediate Catch Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIntermediateCatchEvent(IntermediateCatchEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Intermediate Throw Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Intermediate Throw Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIntermediateThrowEvent(IntermediateThrowEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sequence Flow</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sequence Flow</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSequenceFlow(SequenceFlow object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inclusive Gateway</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inclusive Gateway</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInclusiveGateway(InclusiveGateway object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parallel Gateway</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parallel Gateway</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParallelGateway(ParallelGateway object) {
 		return null;
 	}
 

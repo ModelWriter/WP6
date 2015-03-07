@@ -22,22 +22,13 @@ public interface UseCaseFactory extends EFactory {
 	UseCaseFactory eINSTANCE = useCase.impl.UseCaseFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Element</em>'.
+	 * Returns a new object of class '<em>Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element</em>'.
+	 * @return a new object of class '<em>Specification</em>'.
 	 * @generated
 	 */
-	Element createElement();
-
-	/**
-	 * Returns a new object of class '<em>Documentation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Documentation</em>'.
-	 * @generated
-	 */
-	Documentation createDocumentation();
+	Specification createSpecification();
 
 	/**
 	 * Returns a new object of class '<em>Use Case</em>'.
@@ -76,22 +67,13 @@ public interface UseCaseFactory extends EFactory {
 	Expression createExpression();
 
 	/**
-	 * Returns a new object of class '<em>Sequence Flow</em>'.
+	 * Returns a new object of class '<em>Conditional Flow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sequence Flow</em>'.
+	 * @return a new object of class '<em>Conditional Flow</em>'.
 	 * @generated
 	 */
-	SequenceFlow createSequenceFlow();
-
-	/**
-	 * Returns a new object of class '<em>Conditional Sequence Flow</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional Sequence Flow</em>'.
-	 * @generated
-	 */
-	ConditionalSequenceFlow createConditionalSequenceFlow();
+	ConditionalFlow createConditionalFlow();
 
 	/**
 	 * Returns a new object of class '<em>Activity</em>'.
@@ -103,13 +85,85 @@ public interface UseCaseFactory extends EFactory {
 	Activity createActivity();
 
 	/**
-	 * Returns a new object of class '<em>Event</em>'.
+	 * Returns a new object of class '<em>Process</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Event</em>'.
+	 * @return a new object of class '<em>Process</em>'.
 	 * @generated
 	 */
-	Event createEvent();
+	Process createProcess();
+
+	/**
+	 * Returns a new object of class '<em>Documentation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Documentation</em>'.
+	 * @generated
+	 */
+	Documentation createDocumentation();
+
+	/**
+	 * Returns a new object of class '<em>Start Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Start Event</em>'.
+	 * @generated
+	 */
+	StartEvent createStartEvent();
+
+	/**
+	 * Returns a new object of class '<em>End Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>End Event</em>'.
+	 * @generated
+	 */
+	EndEvent createEndEvent();
+
+	/**
+	 * Returns a new object of class '<em>Intermediate Catch Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Intermediate Catch Event</em>'.
+	 * @generated
+	 */
+	IntermediateCatchEvent createIntermediateCatchEvent();
+
+	/**
+	 * Returns a new object of class '<em>Intermediate Throw Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Intermediate Throw Event</em>'.
+	 * @generated
+	 */
+	IntermediateThrowEvent createIntermediateThrowEvent();
+
+	/**
+	 * Returns a new object of class '<em>Sequence Flow</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sequence Flow</em>'.
+	 * @generated
+	 */
+	SequenceFlow createSequenceFlow();
+
+	/**
+	 * Returns a new object of class '<em>Inclusive Gateway</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inclusive Gateway</em>'.
+	 * @generated
+	 */
+	InclusiveGateway createInclusiveGateway();
+
+	/**
+	 * Returns a new object of class '<em>Parallel Gateway</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parallel Gateway</em>'.
+	 * @generated
+	 */
+	ParallelGateway createParallelGateway();
 
 	/**
 	 * Returns the package supported by this factory.

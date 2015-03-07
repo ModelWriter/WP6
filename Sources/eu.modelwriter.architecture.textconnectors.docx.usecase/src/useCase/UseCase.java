@@ -14,6 +14,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link useCase.UseCase#getPrimaryActor <em>Primary Actor</em>}</li>
  *   <li>{@link useCase.UseCase#getOwnedStakeholderInterest <em>Owned Stakeholder Interest</em>}</li>
+ *   <li>{@link useCase.UseCase#getMainFlow <em>Main Flow</em>}</li>
+ *   <li>{@link useCase.UseCase#getAlternativeFlows <em>Alternative Flows</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +35,7 @@ public interface UseCase extends NamedElement {
 	 * @return the value of the '<em>Primary Actor</em>' reference.
 	 * @see #setPrimaryActor(Actor)
 	 * @see useCase.UseCasePackage#getUseCase_PrimaryActor()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Actor getPrimaryActor();
@@ -63,5 +65,49 @@ public interface UseCase extends NamedElement {
 	 * @generated
 	 */
 	EList<Interest> getOwnedStakeholderInterest();
+
+	/**
+	 * Returns the value of the '<em><b>Main Flow</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link useCase.Process#getDefinedAt <em>Defined At</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Main Flow</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Main Flow</em>' reference.
+	 * @see #setMainFlow(useCase.Process)
+	 * @see useCase.UseCasePackage#getUseCase_MainFlow()
+	 * @see useCase.Process#getDefinedAt
+	 * @model opposite="definedAt"
+	 * @generated
+	 */
+	useCase.Process getMainFlow();
+
+	/**
+	 * Sets the value of the '{@link useCase.UseCase#getMainFlow <em>Main Flow</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Main Flow</em>' reference.
+	 * @see #getMainFlow()
+	 * @generated
+	 */
+	void setMainFlow(useCase.Process value);
+
+	/**
+	 * Returns the value of the '<em><b>Alternative Flows</b></em>' reference list.
+	 * The list contents are of type {@link useCase.Process}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Alternative Flows</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Alternative Flows</em>' reference list.
+	 * @see useCase.UseCasePackage#getUseCase_AlternativeFlows()
+	 * @model
+	 * @generated
+	 */
+	EList<useCase.Process> getAlternativeFlows();
 
 } // UseCase

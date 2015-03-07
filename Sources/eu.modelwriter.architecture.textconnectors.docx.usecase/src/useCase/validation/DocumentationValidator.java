@@ -4,10 +4,6 @@
  */
 package useCase.validation;
 
-import org.eclipse.emf.common.util.EList;
-
-import useCase.Actor;
-import useCase.UseCase;
 
 /**
  * A sample validator interface for {@link useCase.Documentation}.
@@ -18,6 +14,6 @@ import useCase.UseCase;
 public interface DocumentationValidator {
 	boolean validate();
 
-	boolean validateOwnedUseCase(EList<UseCase> value);
-	boolean validateOwnedActor(EList<Actor> value);
+	boolean validateText(String value);
+	boolean validateTextFormat(String value);
 }

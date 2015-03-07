@@ -4,7 +4,6 @@
  */
 package useCase.validation;
 
-import useCase.FlowNode;
 
 /**
  * A sample validator interface for {@link useCase.SequenceFlow}.
@@ -15,6 +14,4 @@ import useCase.FlowNode;
 public interface SequenceFlowValidator {
 	boolean validate();
 
-	boolean validateSource(FlowNode value);
-	boolean validateTarget(FlowNode value);
 }

@@ -10,7 +10,23 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import useCase.*;
+import useCase.Activity;
+import useCase.Actor;
+import useCase.ConditionalFlow;
+import useCase.Documentation;
+import useCase.EndEvent;
+import useCase.Expression;
+import useCase.InclusiveGateway;
+import useCase.Interest;
+import useCase.IntermediateCatchEvent;
+import useCase.IntermediateThrowEvent;
+import useCase.ParallelGateway;
+import useCase.SequenceFlow;
+import useCase.Specification;
+import useCase.StartEvent;
+import useCase.UseCase;
+import useCase.UseCaseFactory;
+import useCase.UseCasePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,16 +72,22 @@ public class UseCaseFactoryImpl extends EFactoryImpl implements UseCaseFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case UseCasePackage.ELEMENT: return createElement();
-			case UseCasePackage.DOCUMENTATÝON: return createDocumentation();
+			case UseCasePackage.SPECIFICATION: return createSpecification();
 			case UseCasePackage.USE_CASE: return createUseCase();
 			case UseCasePackage.ACTOR: return createActor();
 			case UseCasePackage.INTEREST: return createInterest();
-			case UseCasePackage.EXPRESSÝON: return createExpression();
+			case UseCasePackage.EXPRESSION: return createExpression();
+			case UseCasePackage.CONDITIONAL_FLOW: return createConditionalFlow();
+			case UseCasePackage.ACTIVITY: return createActivity();
+			case UseCasePackage.PROCESS: return createProcess();
+			case UseCasePackage.DOCUMENTATION: return createDocumentation();
+			case UseCasePackage.START_EVENT: return createStartEvent();
+			case UseCasePackage.END_EVENT: return createEndEvent();
+			case UseCasePackage.INTERMEDIATE_CATCH_EVENT: return createIntermediateCatchEvent();
+			case UseCasePackage.INTERMEDIATE_THROW_EVENT: return createIntermediateThrowEvent();
 			case UseCasePackage.SEQUENCE_FLOW: return createSequenceFlow();
-			case UseCasePackage.CONDÝTÝONAL_SEQUENCE_FLOW: return createConditionalSequenceFlow();
-			case UseCasePackage.ACTÝVÝTY: return createActivity();
-			case UseCasePackage.EVENT: return createEvent();
+			case UseCasePackage.INCLUSIVE_GATEWAY: return createInclusiveGateway();
+			case UseCasePackage.PARALLEL_GATEWAY: return createParallelGateway();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -76,19 +98,9 @@ public class UseCaseFactoryImpl extends EFactoryImpl implements UseCaseFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element createElement() {
-		ElementImpl element = new ElementImpl();
-		return element;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Documentation createDocumentation() {
-		DocumentationImpl documentation = new DocumentationImpl();
-		return documentation;
+	public Specification createSpecification() {
+		SpecificationImpl specification = new SpecificationImpl();
+		return specification;
 	}
 
 	/**
@@ -117,8 +129,8 @@ public class UseCaseFactoryImpl extends EFactoryImpl implements UseCaseFactory {
 	 * @generated
 	 */
 	public Interest createInterest() {
-		InterestImpl ýnterest = new InterestImpl();
-		return ýnterest;
+		InterestImpl interest = new InterestImpl();
+		return interest;
 	}
 
 	/**
@@ -136,19 +148,9 @@ public class UseCaseFactoryImpl extends EFactoryImpl implements UseCaseFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SequenceFlow createSequenceFlow() {
-		SequenceFlowImpl sequenceFlow = new SequenceFlowImpl();
-		return sequenceFlow;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConditionalSequenceFlow createConditionalSequenceFlow() {
-		ConditionalSequenceFlowImpl conditionalSequenceFlow = new ConditionalSequenceFlowImpl();
-		return conditionalSequenceFlow;
+	public ConditionalFlow createConditionalFlow() {
+		ConditionalFlowImpl conditionalFlow = new ConditionalFlowImpl();
+		return conditionalFlow;
 	}
 
 	/**
@@ -166,9 +168,89 @@ public class UseCaseFactoryImpl extends EFactoryImpl implements UseCaseFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Event createEvent() {
-		EventImpl event = new EventImpl();
-		return event;
+	public useCase.Process createProcess() {
+		ProcessImpl process = new ProcessImpl();
+		return process;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Documentation createDocumentation() {
+		DocumentationImpl documentation = new DocumentationImpl();
+		return documentation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StartEvent createStartEvent() {
+		StartEventImpl startEvent = new StartEventImpl();
+		return startEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EndEvent createEndEvent() {
+		EndEventImpl endEvent = new EndEventImpl();
+		return endEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IntermediateCatchEvent createIntermediateCatchEvent() {
+		IntermediateCatchEventImpl intermediateCatchEvent = new IntermediateCatchEventImpl();
+		return intermediateCatchEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IntermediateThrowEvent createIntermediateThrowEvent() {
+		IntermediateThrowEventImpl intermediateThrowEvent = new IntermediateThrowEventImpl();
+		return intermediateThrowEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SequenceFlow createSequenceFlow() {
+		SequenceFlowImpl sequenceFlow = new SequenceFlowImpl();
+		return sequenceFlow;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InclusiveGateway createInclusiveGateway() {
+		InclusiveGatewayImpl inclusiveGateway = new InclusiveGatewayImpl();
+		return inclusiveGateway;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParallelGateway createParallelGateway() {
+		ParallelGatewayImpl parallelGateway = new ParallelGatewayImpl();
+		return parallelGateway;
 	}
 
 	/**

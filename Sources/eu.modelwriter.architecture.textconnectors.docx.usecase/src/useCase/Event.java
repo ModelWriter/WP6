@@ -10,7 +10,7 @@ package useCase;
  *
  *
  * @see useCase.UseCasePackage#getEvent()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Event extends FlowNode {

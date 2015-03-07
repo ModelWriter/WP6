@@ -9,24 +9,24 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import useCase.ConditionalSequenceFlow;
+import useCase.ConditionalFlow;
 import useCase.Expression;
 import useCase.UseCasePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Conditional Sequence Flow</b></em>'.
+ * An implementation of the model object '<em><b>Conditional Flow</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link useCase.impl.ConditionalSequenceFlowImpl#getConditionExpression <em>Condition Expression</em>}</li>
+ *   <li>{@link useCase.impl.ConditionalFlowImpl#getConditionExpression <em>Condition Expression</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ConditionalSequenceFlowImpl extends SequenceFlowImpl implements ConditionalSequenceFlow {
+public class ConditionalFlowImpl extends FlowImpl implements ConditionalFlow {
 	/**
 	 * The cached value of the '{@link #getConditionExpression() <em>Condition Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -42,7 +42,7 @@ public class ConditionalSequenceFlowImpl extends SequenceFlowImpl implements Con
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConditionalSequenceFlowImpl() {
+	protected ConditionalFlowImpl() {
 		super();
 	}
 
@@ -53,7 +53,7 @@ public class ConditionalSequenceFlowImpl extends SequenceFlowImpl implements Con
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UseCasePackage.Literals.CONDÝTÝONAL_SEQUENCE_FLOW;
+		return UseCasePackage.Literals.CONDITIONAL_FLOW;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class ConditionalSequenceFlowImpl extends SequenceFlowImpl implements Con
 			conditionExpression = (Expression)eResolveProxy(oldConditionExpression);
 			if (conditionExpression != oldConditionExpression) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UseCasePackage.CONDÝTÝONAL_SEQUENCE_FLOW__CONDÝTÝON_EXPRESSÝON, oldConditionExpression, conditionExpression));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION, oldConditionExpression, conditionExpression));
 			}
 		}
 		return conditionExpression;
@@ -91,7 +91,7 @@ public class ConditionalSequenceFlowImpl extends SequenceFlowImpl implements Con
 		Expression oldConditionExpression = conditionExpression;
 		conditionExpression = newConditionExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.CONDÝTÝONAL_SEQUENCE_FLOW__CONDÝTÝON_EXPRESSÝON, oldConditionExpression, conditionExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION, oldConditionExpression, conditionExpression));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class ConditionalSequenceFlowImpl extends SequenceFlowImpl implements Con
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UseCasePackage.CONDÝTÝONAL_SEQUENCE_FLOW__CONDÝTÝON_EXPRESSÝON:
+			case UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION:
 				if (resolve) return getConditionExpression();
 				return basicGetConditionExpression();
 		}
@@ -117,7 +117,7 @@ public class ConditionalSequenceFlowImpl extends SequenceFlowImpl implements Con
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UseCasePackage.CONDÝTÝONAL_SEQUENCE_FLOW__CONDÝTÝON_EXPRESSÝON:
+			case UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION:
 				setConditionExpression((Expression)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class ConditionalSequenceFlowImpl extends SequenceFlowImpl implements Con
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.CONDÝTÝONAL_SEQUENCE_FLOW__CONDÝTÝON_EXPRESSÝON:
+			case UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION:
 				setConditionExpression((Expression)null);
 				return;
 		}
@@ -147,10 +147,10 @@ public class ConditionalSequenceFlowImpl extends SequenceFlowImpl implements Con
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.CONDÝTÝONAL_SEQUENCE_FLOW__CONDÝTÝON_EXPRESSÝON:
+			case UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION:
 				return conditionExpression != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ConditionalSequenceFlowImpl
+} //ConditionalFlowImpl
