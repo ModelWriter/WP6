@@ -86,7 +86,7 @@ public class ProcessImpl extends NamedElementImpl implements useCase.Process {
 			definedAt = (UseCase)eResolveProxy(oldDefinedAt);
 			if (definedAt != oldDefinedAt) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UseCasePackage.PROCESS__DEFINED_AT, oldDefinedAt, definedAt));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UseCasePackage.PROCESS__DEFÝNED_AT, oldDefinedAt, definedAt));
 			}
 		}
 		return definedAt;
@@ -110,7 +110,7 @@ public class ProcessImpl extends NamedElementImpl implements useCase.Process {
 		UseCase oldDefinedAt = definedAt;
 		definedAt = newDefinedAt;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UseCasePackage.PROCESS__DEFINED_AT, oldDefinedAt, newDefinedAt);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UseCasePackage.PROCESS__DEFÝNED_AT, oldDefinedAt, newDefinedAt);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -125,14 +125,14 @@ public class ProcessImpl extends NamedElementImpl implements useCase.Process {
 		if (newDefinedAt != definedAt) {
 			NotificationChain msgs = null;
 			if (definedAt != null)
-				msgs = ((InternalEObject)definedAt).eInverseRemove(this, UseCasePackage.USE_CASE__MAIN_FLOW, UseCase.class, msgs);
+				msgs = ((InternalEObject)definedAt).eInverseRemove(this, UseCasePackage.USE_CASE__MAÝN_FLOW, UseCase.class, msgs);
 			if (newDefinedAt != null)
-				msgs = ((InternalEObject)newDefinedAt).eInverseAdd(this, UseCasePackage.USE_CASE__MAIN_FLOW, UseCase.class, msgs);
+				msgs = ((InternalEObject)newDefinedAt).eInverseAdd(this, UseCasePackage.USE_CASE__MAÝN_FLOW, UseCase.class, msgs);
 			msgs = basicSetDefinedAt(newDefinedAt, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.PROCESS__DEFINED_AT, newDefinedAt, newDefinedAt));
+			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.PROCESS__DEFÝNED_AT, newDefinedAt, newDefinedAt));
 	}
 
 	/**
@@ -155,9 +155,9 @@ public class ProcessImpl extends NamedElementImpl implements useCase.Process {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UseCasePackage.PROCESS__DEFINED_AT:
+			case UseCasePackage.PROCESS__DEFÝNED_AT:
 				if (definedAt != null)
-					msgs = ((InternalEObject)definedAt).eInverseRemove(this, UseCasePackage.USE_CASE__MAIN_FLOW, UseCase.class, msgs);
+					msgs = ((InternalEObject)definedAt).eInverseRemove(this, UseCasePackage.USE_CASE__MAÝN_FLOW, UseCase.class, msgs);
 				return basicSetDefinedAt((UseCase)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -171,7 +171,7 @@ public class ProcessImpl extends NamedElementImpl implements useCase.Process {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UseCasePackage.PROCESS__DEFINED_AT:
+			case UseCasePackage.PROCESS__DEFÝNED_AT:
 				return basicSetDefinedAt(null, msgs);
 			case UseCasePackage.PROCESS__OWNED_FLOW_ELEMENTS:
 				return ((InternalEList<?>)getOwnedFlowElements()).basicRemove(otherEnd, msgs);
@@ -187,7 +187,7 @@ public class ProcessImpl extends NamedElementImpl implements useCase.Process {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UseCasePackage.PROCESS__DEFINED_AT:
+			case UseCasePackage.PROCESS__DEFÝNED_AT:
 				if (resolve) return getDefinedAt();
 				return basicGetDefinedAt();
 			case UseCasePackage.PROCESS__OWNED_FLOW_ELEMENTS:
@@ -205,7 +205,7 @@ public class ProcessImpl extends NamedElementImpl implements useCase.Process {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UseCasePackage.PROCESS__DEFINED_AT:
+			case UseCasePackage.PROCESS__DEFÝNED_AT:
 				setDefinedAt((UseCase)newValue);
 				return;
 			case UseCasePackage.PROCESS__OWNED_FLOW_ELEMENTS:
@@ -224,7 +224,7 @@ public class ProcessImpl extends NamedElementImpl implements useCase.Process {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.PROCESS__DEFINED_AT:
+			case UseCasePackage.PROCESS__DEFÝNED_AT:
 				setDefinedAt((UseCase)null);
 				return;
 			case UseCasePackage.PROCESS__OWNED_FLOW_ELEMENTS:
@@ -242,7 +242,7 @@ public class ProcessImpl extends NamedElementImpl implements useCase.Process {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.PROCESS__DEFINED_AT:
+			case UseCasePackage.PROCESS__DEFÝNED_AT:
 				return definedAt != null;
 			case UseCasePackage.PROCESS__OWNED_FLOW_ELEMENTS:
 				return ownedFlowElements != null && !ownedFlowElements.isEmpty();

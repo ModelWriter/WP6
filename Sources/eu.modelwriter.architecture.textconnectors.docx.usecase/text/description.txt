@@ -28,6 +28,7 @@ Package useCase <eu.modelwriter.architecture.textconnectors.docx.usecase>
 
   Class Interest -> Element
     Reference actor : Actor<<1..1>>
+    Reference detail : Documentation<<1..1>>
 
   Class Expression -> Element
 
@@ -42,6 +43,7 @@ Package useCase <eu.modelwriter.architecture.textconnectors.docx.usecase>
 
   Class FlowNode -> FlowElement
     Attribute label : EString
+    Reference detail : Documentation
 
   Class Activity -> FlowNode
 

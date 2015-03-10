@@ -73,7 +73,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__DOCUMENTATION = 0;
+	int ELEMENT__DOCUMENTAT›ON = 0;
 
 	/**
 	 * The number of structural features of the '<em>Element</em>' class.
@@ -110,7 +110,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__DOCUMENTATION = ELEMENT__DOCUMENTATION;
+	int NAMED_ELEMENT__DOCUMENTAT›ON = ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -147,7 +147,7 @@ public interface UseCasePackage extends EPackage {
 	 * @see useCase.impl.UseCasePackageImpl#getSpecification()
 	 * @generated
 	 */
-	int SPECIFICATION = 2;
+	int SPEC›F›CAT›ON = 2;
 
 	/**
 	 * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -156,7 +156,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__DOCUMENTATION = NAMED_ELEMENT__DOCUMENTATION;
+	int SPEC›F›CAT›ON__DOCUMENTAT›ON = NAMED_ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -165,7 +165,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__NAME = NAMED_ELEMENT__NAME;
+	int SPEC›F›CAT›ON__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -174,7 +174,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__OWNED_USE_CASE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int SPEC›F›CAT›ON__OWNED_USE_CASE = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Actor</b></em>' containment reference list.
@@ -183,7 +183,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__OWNED_ACTOR = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int SPEC›F›CAT›ON__OWNED_ACTOR = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Process</b></em>' containment reference list.
@@ -192,7 +192,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__OWNED_PROCESS = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int SPEC›F›CAT›ON__OWNED_PROCESS = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Specification</em>' class.
@@ -201,7 +201,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int SPEC›F›CAT›ON_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Specification</em>' class.
@@ -210,7 +210,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int SPEC›F›CAT›ON_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link useCase.impl.UseCaseImpl <em>Use Case</em>}' class.
@@ -229,7 +229,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__DOCUMENTATION = NAMED_ELEMENT__DOCUMENTATION;
+	int USE_CASE__DOCUMENTAT›ON = NAMED_ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -247,7 +247,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__PRIMARY_ACTOR = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int USE_CASE__PR›MARY_ACTOR = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Stakeholder Interest</b></em>' containment reference list.
@@ -265,7 +265,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__MAIN_FLOW = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int USE_CASE__MA›N_FLOW = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Alternative Flows</b></em>' reference list.
@@ -274,7 +274,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__ALTERNATIVE_FLOWS = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int USE_CASE__ALTERNAT›VE_FLOWS = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Use Case</em>' class.
@@ -311,7 +311,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__DOCUMENTATION = NAMED_ELEMENT__DOCUMENTATION;
+	int ACTOR__DOCUMENTAT›ON = NAMED_ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -357,7 +357,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTEREST__DOCUMENTATION = ELEMENT__DOCUMENTATION;
+	int INTEREST__DOCUMENTAT›ON = ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Actor</b></em>' reference.
@@ -369,13 +369,22 @@ public interface UseCasePackage extends EPackage {
 	int INTEREST__ACTOR = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEREST__DETA›L = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Interest</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTEREST_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+	int INTEREST_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Interest</em>' class.
@@ -394,7 +403,7 @@ public interface UseCasePackage extends EPackage {
 	 * @see useCase.impl.UseCasePackageImpl#getExpression()
 	 * @generated
 	 */
-	int EXPRESSION = 6;
+	int EXPRESS›ON = 6;
 
 	/**
 	 * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -403,7 +412,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__DOCUMENTATION = ELEMENT__DOCUMENTATION;
+	int EXPRESS›ON__DOCUMENTAT›ON = ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The number of structural features of the '<em>Expression</em>' class.
@@ -412,7 +421,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+	int EXPRESS›ON_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Expression</em>' class.
@@ -421,7 +430,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+	int EXPRESS›ON_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link useCase.impl.FlowElementImpl <em>Flow Element</em>}' class.
@@ -440,7 +449,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_ELEMENT__DOCUMENTATION = ELEMENT__DOCUMENTATION;
+	int FLOW_ELEMENT__DOCUMENTAT›ON = ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The number of structural features of the '<em>Flow Element</em>' class.
@@ -477,7 +486,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW__DOCUMENTATION = FLOW_ELEMENT__DOCUMENTATION;
+	int FLOW__DOCUMENTAT›ON = FLOW_ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -523,7 +532,7 @@ public interface UseCasePackage extends EPackage {
 	 * @see useCase.impl.UseCasePackageImpl#getConditionalFlow()
 	 * @generated
 	 */
-	int CONDITIONAL_FLOW = 9;
+	int COND›T›ONAL_FLOW = 9;
 
 	/**
 	 * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -532,7 +541,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_FLOW__DOCUMENTATION = FLOW__DOCUMENTATION;
+	int COND›T›ONAL_FLOW__DOCUMENTAT›ON = FLOW__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -541,7 +550,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_FLOW__SOURCE = FLOW__SOURCE;
+	int COND›T›ONAL_FLOW__SOURCE = FLOW__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -550,7 +559,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_FLOW__TARGET = FLOW__TARGET;
+	int COND›T›ONAL_FLOW__TARGET = FLOW__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Condition Expression</b></em>' reference.
@@ -559,7 +568,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_FLOW__CONDITION_EXPRESSION = FLOW_FEATURE_COUNT + 0;
+	int COND›T›ONAL_FLOW__COND›T›ON_EXPRESS›ON = FLOW_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Conditional Flow</em>' class.
@@ -568,7 +577,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_FLOW_FEATURE_COUNT = FLOW_FEATURE_COUNT + 1;
+	int COND›T›ONAL_FLOW_FEATURE_COUNT = FLOW_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Conditional Flow</em>' class.
@@ -577,7 +586,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_FLOW_OPERATION_COUNT = FLOW_OPERATION_COUNT + 0;
+	int COND›T›ONAL_FLOW_OPERATION_COUNT = FLOW_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link useCase.impl.FlowNodeImpl <em>Flow Node</em>}' class.
@@ -596,7 +605,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_NODE__DOCUMENTATION = FLOW_ELEMENT__DOCUMENTATION;
+	int FLOW_NODE__DOCUMENTAT›ON = FLOW_ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -608,13 +617,22 @@ public interface UseCasePackage extends EPackage {
 	int FLOW_NODE__LABEL = FLOW_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_NODE__DETA›L = FLOW_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Flow Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_NODE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 1;
+	int FLOW_NODE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Flow Node</em>' class.
@@ -633,7 +651,7 @@ public interface UseCasePackage extends EPackage {
 	 * @see useCase.impl.UseCasePackageImpl#getActivity()
 	 * @generated
 	 */
-	int ACTIVITY = 11;
+	int ACT›V›TY = 11;
 
 	/**
 	 * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -642,7 +660,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY__DOCUMENTATION = FLOW_NODE__DOCUMENTATION;
+	int ACT›V›TY__DOCUMENTAT›ON = FLOW_NODE__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -651,7 +669,16 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY__LABEL = FLOW_NODE__LABEL;
+	int ACT›V›TY__LABEL = FLOW_NODE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACT›V›TY__DETA›L = FLOW_NODE__DETA›L;
 
 	/**
 	 * The number of structural features of the '<em>Activity</em>' class.
@@ -660,7 +687,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 0;
+	int ACT›V›TY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Activity</em>' class.
@@ -669,7 +696,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_OPERATION_COUNT = FLOW_NODE_OPERATION_COUNT + 0;
+	int ACT›V›TY_OPERATION_COUNT = FLOW_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link useCase.impl.EventImpl <em>Event</em>}' class.
@@ -688,7 +715,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__DOCUMENTATION = FLOW_NODE__DOCUMENTATION;
+	int EVENT__DOCUMENTAT›ON = FLOW_NODE__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -698,6 +725,15 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT__LABEL = FLOW_NODE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__DETA›L = FLOW_NODE__DETA›L;
 
 	/**
 	 * The number of structural features of the '<em>Event</em>' class.
@@ -734,7 +770,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__DOCUMENTATION = NAMED_ELEMENT__DOCUMENTATION;
+	int PROCESS__DOCUMENTAT›ON = NAMED_ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -752,7 +788,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__DEFINED_AT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int PROCESS__DEF›NED_AT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Flow Elements</b></em>' containment reference list.
@@ -789,7 +825,7 @@ public interface UseCasePackage extends EPackage {
 	 * @see useCase.impl.UseCasePackageImpl#getDocumentation()
 	 * @generated
 	 */
-	int DOCUMENTATION = 14;
+	int DOCUMENTAT›ON = 14;
 
 	/**
 	 * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -798,7 +834,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION__DOCUMENTATION = ELEMENT__DOCUMENTATION;
+	int DOCUMENTAT›ON__DOCUMENTAT›ON = ELEMENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -807,7 +843,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION__TEXT = ELEMENT_FEATURE_COUNT + 0;
+	int DOCUMENTAT›ON__TEXT = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Text Format</b></em>' attribute.
@@ -816,7 +852,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION__TEXT_FORMAT = ELEMENT_FEATURE_COUNT + 1;
+	int DOCUMENTAT›ON__TEXT_FORMAT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Documentation</em>' class.
@@ -825,7 +861,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int DOCUMENTAT›ON_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Documentation</em>' class.
@@ -834,7 +870,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+	int DOCUMENTAT›ON_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link useCase.impl.CatchEventImpl <em>Catch Event</em>}' class.
@@ -853,7 +889,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CATCH_EVENT__DOCUMENTATION = EVENT__DOCUMENTATION;
+	int CATCH_EVENT__DOCUMENTAT›ON = EVENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -863,6 +899,15 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int CATCH_EVENT__LABEL = EVENT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATCH_EVENT__DETA›L = EVENT__DETA›L;
 
 	/**
 	 * The number of structural features of the '<em>Catch Event</em>' class.
@@ -899,7 +944,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int START_EVENT__DOCUMENTATION = CATCH_EVENT__DOCUMENTATION;
+	int START_EVENT__DOCUMENTAT›ON = CATCH_EVENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -911,13 +956,22 @@ public interface UseCasePackage extends EPackage {
 	int START_EVENT__LABEL = CATCH_EVENT__LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Is Interrupting</b></em>' attribute.
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int START_EVENT__IS_INTERRUPTING = CATCH_EVENT_FEATURE_COUNT + 0;
+	int START_EVENT__DETA›L = CATCH_EVENT__DETA›L;
+
+	/**
+	 * The feature id for the '<em><b>›s Interrupting</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_EVENT__›S_INTERRUPT›NG = CATCH_EVENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Start Event</em>' class.
@@ -954,7 +1008,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int THROW_EVENT__DOCUMENTATION = EVENT__DOCUMENTATION;
+	int THROW_EVENT__DOCUMENTAT›ON = EVENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -964,6 +1018,15 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int THROW_EVENT__LABEL = EVENT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THROW_EVENT__DETA›L = EVENT__DETA›L;
 
 	/**
 	 * The number of structural features of the '<em>Throw Event</em>' class.
@@ -1000,7 +1063,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int END_EVENT__DOCUMENTATION = THROW_EVENT__DOCUMENTATION;
+	int END_EVENT__DOCUMENTAT›ON = THROW_EVENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -1010,6 +1073,15 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int END_EVENT__LABEL = THROW_EVENT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_EVENT__DETA›L = THROW_EVENT__DETA›L;
 
 	/**
 	 * The number of structural features of the '<em>End Event</em>' class.
@@ -1046,7 +1118,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GATEWAY__DOCUMENTATION = FLOW_NODE__DOCUMENTATION;
+	int GATEWAY__DOCUMENTAT›ON = FLOW_NODE__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -1056,6 +1128,15 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int GATEWAY__LABEL = FLOW_NODE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GATEWAY__DETA›L = FLOW_NODE__DETA›L;
 
 	/**
 	 * The number of structural features of the '<em>Gateway</em>' class.
@@ -1083,7 +1164,7 @@ public interface UseCasePackage extends EPackage {
 	 * @see useCase.impl.UseCasePackageImpl#getIntermediateCatchEvent()
 	 * @generated
 	 */
-	int INTERMEDIATE_CATCH_EVENT = 20;
+	int INTERMED›ATE_CATCH_EVENT = 20;
 
 	/**
 	 * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1092,7 +1173,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERMEDIATE_CATCH_EVENT__DOCUMENTATION = CATCH_EVENT__DOCUMENTATION;
+	int INTERMED›ATE_CATCH_EVENT__DOCUMENTAT›ON = CATCH_EVENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -1101,7 +1182,16 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERMEDIATE_CATCH_EVENT__LABEL = CATCH_EVENT__LABEL;
+	int INTERMED›ATE_CATCH_EVENT__LABEL = CATCH_EVENT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERMED›ATE_CATCH_EVENT__DETA›L = CATCH_EVENT__DETA›L;
 
 	/**
 	 * The number of structural features of the '<em>Intermediate Catch Event</em>' class.
@@ -1110,7 +1200,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERMEDIATE_CATCH_EVENT_FEATURE_COUNT = CATCH_EVENT_FEATURE_COUNT + 0;
+	int INTERMED›ATE_CATCH_EVENT_FEATURE_COUNT = CATCH_EVENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Intermediate Catch Event</em>' class.
@@ -1119,7 +1209,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERMEDIATE_CATCH_EVENT_OPERATION_COUNT = CATCH_EVENT_OPERATION_COUNT + 0;
+	int INTERMED›ATE_CATCH_EVENT_OPERATION_COUNT = CATCH_EVENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link useCase.impl.IntermediateThrowEventImpl <em>Intermediate Throw Event</em>}' class.
@@ -1129,7 +1219,7 @@ public interface UseCasePackage extends EPackage {
 	 * @see useCase.impl.UseCasePackageImpl#getIntermediateThrowEvent()
 	 * @generated
 	 */
-	int INTERMEDIATE_THROW_EVENT = 21;
+	int INTERMED›ATE_THROW_EVENT = 21;
 
 	/**
 	 * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1138,7 +1228,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERMEDIATE_THROW_EVENT__DOCUMENTATION = THROW_EVENT__DOCUMENTATION;
+	int INTERMED›ATE_THROW_EVENT__DOCUMENTAT›ON = THROW_EVENT__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -1147,7 +1237,16 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERMEDIATE_THROW_EVENT__LABEL = THROW_EVENT__LABEL;
+	int INTERMED›ATE_THROW_EVENT__LABEL = THROW_EVENT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERMED›ATE_THROW_EVENT__DETA›L = THROW_EVENT__DETA›L;
 
 	/**
 	 * The number of structural features of the '<em>Intermediate Throw Event</em>' class.
@@ -1156,7 +1255,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERMEDIATE_THROW_EVENT_FEATURE_COUNT = THROW_EVENT_FEATURE_COUNT + 0;
+	int INTERMED›ATE_THROW_EVENT_FEATURE_COUNT = THROW_EVENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Intermediate Throw Event</em>' class.
@@ -1165,7 +1264,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERMEDIATE_THROW_EVENT_OPERATION_COUNT = THROW_EVENT_OPERATION_COUNT + 0;
+	int INTERMED›ATE_THROW_EVENT_OPERATION_COUNT = THROW_EVENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link useCase.impl.SequenceFlowImpl <em>Sequence Flow</em>}' class.
@@ -1184,7 +1283,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_FLOW__DOCUMENTATION = FLOW__DOCUMENTATION;
+	int SEQUENCE_FLOW__DOCUMENTAT›ON = FLOW__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -1230,7 +1329,7 @@ public interface UseCasePackage extends EPackage {
 	 * @see useCase.impl.UseCasePackageImpl#getInclusiveGateway()
 	 * @generated
 	 */
-	int INCLUSIVE_GATEWAY = 23;
+	int INCLUS›VE_GATEWAY = 23;
 
 	/**
 	 * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1239,7 +1338,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUSIVE_GATEWAY__DOCUMENTATION = GATEWAY__DOCUMENTATION;
+	int INCLUS›VE_GATEWAY__DOCUMENTAT›ON = GATEWAY__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -1248,7 +1347,16 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUSIVE_GATEWAY__LABEL = GATEWAY__LABEL;
+	int INCLUS›VE_GATEWAY__LABEL = GATEWAY__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUS›VE_GATEWAY__DETA›L = GATEWAY__DETA›L;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' reference.
@@ -1257,7 +1365,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUSIVE_GATEWAY__DEFAULT = GATEWAY_FEATURE_COUNT + 0;
+	int INCLUS›VE_GATEWAY__DEFAULT = GATEWAY_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Inclusive Gateway</em>' class.
@@ -1266,7 +1374,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUSIVE_GATEWAY_FEATURE_COUNT = GATEWAY_FEATURE_COUNT + 1;
+	int INCLUS›VE_GATEWAY_FEATURE_COUNT = GATEWAY_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Inclusive Gateway</em>' class.
@@ -1275,7 +1383,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUSIVE_GATEWAY_OPERATION_COUNT = GATEWAY_OPERATION_COUNT + 0;
+	int INCLUS›VE_GATEWAY_OPERATION_COUNT = GATEWAY_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link useCase.impl.ParallelGatewayImpl <em>Parallel Gateway</em>}' class.
@@ -1294,7 +1402,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARALLEL_GATEWAY__DOCUMENTATION = GATEWAY__DOCUMENTATION;
+	int PARALLEL_GATEWAY__DOCUMENTAT›ON = GATEWAY__DOCUMENTAT›ON;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -1304,6 +1412,15 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int PARALLEL_GATEWAY__LABEL = GATEWAY__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARALLEL_GATEWAY__DETA›L = GATEWAY__DETA›L;
 
 	/**
 	 * The number of structural features of the '<em>Parallel Gateway</em>' class.
@@ -1495,6 +1612,17 @@ public interface UseCasePackage extends EPackage {
 	EReference getInterest_Actor();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link useCase.Interest#getDetail <em>Detail</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Detail</em>'.
+	 * @see useCase.Interest#getDetail()
+	 * @see #getInterest()
+	 * @generated
+	 */
+	EReference getInterest_Detail();
+
+	/**
 	 * Returns the meta object for class '{@link useCase.Expression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1587,6 +1715,17 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFlowNode_Label();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link useCase.FlowNode#getDetail <em>Detail</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Detail</em>'.
+	 * @see useCase.FlowNode#getDetail()
+	 * @see #getFlowNode()
+	 * @generated
+	 */
+	EReference getFlowNode_Detail();
 
 	/**
 	 * Returns the meta object for class '{@link useCase.Activity <em>Activity</em>}'.
@@ -1683,15 +1822,15 @@ public interface UseCasePackage extends EPackage {
 	EClass getStartEvent();
 
 	/**
-	 * Returns the meta object for the attribute '{@link useCase.StartEvent#isIsInterrupting <em>Is Interrupting</em>}'.
+	 * Returns the meta object for the attribute '{@link useCase.StartEvent#is›sInterrupting <em>›s Interrupting</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Interrupting</em>'.
-	 * @see useCase.StartEvent#isIsInterrupting()
+	 * @return the meta object for the attribute '<em>›s Interrupting</em>'.
+	 * @see useCase.StartEvent#is›sInterrupting()
 	 * @see #getStartEvent()
 	 * @generated
 	 */
-	EAttribute getStartEvent_IsInterrupting();
+	EAttribute getStartEvent_›sInterrupting();
 
 	/**
 	 * Returns the meta object for class '{@link useCase.EndEvent <em>End Event</em>}'.
@@ -1833,7 +1972,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ELEMENT__DOCUMENTATION = eINSTANCE.getElement_Documentation();
+		EReference ELEMENT__DOCUMENTAT›ON = eINSTANCE.getElement_Documentation();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -1861,7 +2000,7 @@ public interface UseCasePackage extends EPackage {
 		 * @see useCase.impl.UseCasePackageImpl#getSpecification()
 		 * @generated
 		 */
-		EClass SPECIFICATION = eINSTANCE.getSpecification();
+		EClass SPEC›F›CAT›ON = eINSTANCE.getSpecification();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Use Case</b></em>' containment reference list feature.
@@ -1869,7 +2008,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPECIFICATION__OWNED_USE_CASE = eINSTANCE.getSpecification_OwnedUseCase();
+		EReference SPEC›F›CAT›ON__OWNED_USE_CASE = eINSTANCE.getSpecification_OwnedUseCase();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Actor</b></em>' containment reference list feature.
@@ -1877,7 +2016,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPECIFICATION__OWNED_ACTOR = eINSTANCE.getSpecification_OwnedActor();
+		EReference SPEC›F›CAT›ON__OWNED_ACTOR = eINSTANCE.getSpecification_OwnedActor();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Process</b></em>' containment reference list feature.
@@ -1885,7 +2024,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPECIFICATION__OWNED_PROCESS = eINSTANCE.getSpecification_OwnedProcess();
+		EReference SPEC›F›CAT›ON__OWNED_PROCESS = eINSTANCE.getSpecification_OwnedProcess();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.UseCaseImpl <em>Use Case</em>}' class.
@@ -1903,7 +2042,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USE_CASE__PRIMARY_ACTOR = eINSTANCE.getUseCase_PrimaryActor();
+		EReference USE_CASE__PR›MARY_ACTOR = eINSTANCE.getUseCase_PrimaryActor();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Stakeholder Interest</b></em>' containment reference list feature.
@@ -1919,7 +2058,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USE_CASE__MAIN_FLOW = eINSTANCE.getUseCase_MainFlow();
+		EReference USE_CASE__MA›N_FLOW = eINSTANCE.getUseCase_MainFlow();
 
 		/**
 		 * The meta object literal for the '<em><b>Alternative Flows</b></em>' reference list feature.
@@ -1927,7 +2066,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USE_CASE__ALTERNATIVE_FLOWS = eINSTANCE.getUseCase_AlternativeFlows();
+		EReference USE_CASE__ALTERNAT›VE_FLOWS = eINSTANCE.getUseCase_AlternativeFlows();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.ActorImpl <em>Actor</em>}' class.
@@ -1958,6 +2097,14 @@ public interface UseCasePackage extends EPackage {
 		EReference INTEREST__ACTOR = eINSTANCE.getInterest_Actor();
 
 		/**
+		 * The meta object literal for the '<em><b>Detail</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTEREST__DETA›L = eINSTANCE.getInterest_Detail();
+
+		/**
 		 * The meta object literal for the '{@link useCase.impl.ExpressionImpl <em>Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1965,7 +2112,7 @@ public interface UseCasePackage extends EPackage {
 		 * @see useCase.impl.UseCasePackageImpl#getExpression()
 		 * @generated
 		 */
-		EClass EXPRESSION = eINSTANCE.getExpression();
+		EClass EXPRESS›ON = eINSTANCE.getExpression();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.FlowElementImpl <em>Flow Element</em>}' class.
@@ -2011,7 +2158,7 @@ public interface UseCasePackage extends EPackage {
 		 * @see useCase.impl.UseCasePackageImpl#getConditionalFlow()
 		 * @generated
 		 */
-		EClass CONDITIONAL_FLOW = eINSTANCE.getConditionalFlow();
+		EClass COND›T›ONAL_FLOW = eINSTANCE.getConditionalFlow();
 
 		/**
 		 * The meta object literal for the '<em><b>Condition Expression</b></em>' reference feature.
@@ -2019,7 +2166,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITIONAL_FLOW__CONDITION_EXPRESSION = eINSTANCE.getConditionalFlow_ConditionExpression();
+		EReference COND›T›ONAL_FLOW__COND›T›ON_EXPRESS›ON = eINSTANCE.getConditionalFlow_ConditionExpression();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.FlowNodeImpl <em>Flow Node</em>}' class.
@@ -2040,6 +2187,14 @@ public interface UseCasePackage extends EPackage {
 		EAttribute FLOW_NODE__LABEL = eINSTANCE.getFlowNode_Label();
 
 		/**
+		 * The meta object literal for the '<em><b>Detail</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FLOW_NODE__DETA›L = eINSTANCE.getFlowNode_Detail();
+
+		/**
 		 * The meta object literal for the '{@link useCase.impl.ActivityImpl <em>Activity</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2047,7 +2202,7 @@ public interface UseCasePackage extends EPackage {
 		 * @see useCase.impl.UseCasePackageImpl#getActivity()
 		 * @generated
 		 */
-		EClass ACTIVITY = eINSTANCE.getActivity();
+		EClass ACT›V›TY = eINSTANCE.getActivity();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.EventImpl <em>Event</em>}' class.
@@ -2075,7 +2230,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROCESS__DEFINED_AT = eINSTANCE.getProcess_DefinedAt();
+		EReference PROCESS__DEF›NED_AT = eINSTANCE.getProcess_DefinedAt();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Flow Elements</b></em>' containment reference list feature.
@@ -2093,7 +2248,7 @@ public interface UseCasePackage extends EPackage {
 		 * @see useCase.impl.UseCasePackageImpl#getDocumentation()
 		 * @generated
 		 */
-		EClass DOCUMENTATION = eINSTANCE.getDocumentation();
+		EClass DOCUMENTAT›ON = eINSTANCE.getDocumentation();
 
 		/**
 		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
@@ -2101,7 +2256,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DOCUMENTATION__TEXT = eINSTANCE.getDocumentation_Text();
+		EAttribute DOCUMENTAT›ON__TEXT = eINSTANCE.getDocumentation_Text();
 
 		/**
 		 * The meta object literal for the '<em><b>Text Format</b></em>' attribute feature.
@@ -2109,7 +2264,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DOCUMENTATION__TEXT_FORMAT = eINSTANCE.getDocumentation_TextFormat();
+		EAttribute DOCUMENTAT›ON__TEXT_FORMAT = eINSTANCE.getDocumentation_TextFormat();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.StartEventImpl <em>Start Event</em>}' class.
@@ -2122,12 +2277,12 @@ public interface UseCasePackage extends EPackage {
 		EClass START_EVENT = eINSTANCE.getStartEvent();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Interrupting</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>›s Interrupting</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute START_EVENT__IS_INTERRUPTING = eINSTANCE.getStartEvent_IsInterrupting();
+		EAttribute START_EVENT__›S_INTERRUPT›NG = eINSTANCE.getStartEvent_›sInterrupting();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.EndEventImpl <em>End Event</em>}' class.
@@ -2177,7 +2332,7 @@ public interface UseCasePackage extends EPackage {
 		 * @see useCase.impl.UseCasePackageImpl#getIntermediateCatchEvent()
 		 * @generated
 		 */
-		EClass INTERMEDIATE_CATCH_EVENT = eINSTANCE.getIntermediateCatchEvent();
+		EClass INTERMED›ATE_CATCH_EVENT = eINSTANCE.getIntermediateCatchEvent();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.IntermediateThrowEventImpl <em>Intermediate Throw Event</em>}' class.
@@ -2187,7 +2342,7 @@ public interface UseCasePackage extends EPackage {
 		 * @see useCase.impl.UseCasePackageImpl#getIntermediateThrowEvent()
 		 * @generated
 		 */
-		EClass INTERMEDIATE_THROW_EVENT = eINSTANCE.getIntermediateThrowEvent();
+		EClass INTERMED›ATE_THROW_EVENT = eINSTANCE.getIntermediateThrowEvent();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.SequenceFlowImpl <em>Sequence Flow</em>}' class.
@@ -2207,7 +2362,7 @@ public interface UseCasePackage extends EPackage {
 		 * @see useCase.impl.UseCasePackageImpl#getInclusiveGateway()
 		 * @generated
 		 */
-		EClass INCLUSIVE_GATEWAY = eINSTANCE.getInclusiveGateway();
+		EClass INCLUS›VE_GATEWAY = eINSTANCE.getInclusiveGateway();
 
 		/**
 		 * The meta object literal for the '<em><b>Default</b></em>' reference feature.
@@ -2215,7 +2370,7 @@ public interface UseCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INCLUSIVE_GATEWAY__DEFAULT = eINSTANCE.getInclusiveGateway_Default();
+		EReference INCLUS›VE_GATEWAY__DEFAULT = eINSTANCE.getInclusiveGateway_Default();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.ParallelGatewayImpl <em>Parallel Gateway</em>}' class.

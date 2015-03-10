@@ -33,7 +33,7 @@ public class ExpressionImpl extends ElementImpl implements Expression {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UseCasePackage.Literals.EXPRESSION;
+		return UseCasePackage.Literals.EXPRESSÝON;
 	}
 
 } //ExpressionImpl

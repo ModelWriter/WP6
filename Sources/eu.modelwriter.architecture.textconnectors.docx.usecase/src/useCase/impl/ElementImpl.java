@@ -70,7 +70,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 */
 	public EList<Documentation> getDocumentation() {
 		if (documentation == null) {
-			documentation = new EObjectContainmentEList<Documentation>(Documentation.class, this, UseCasePackage.ELEMENT__DOCUMENTATION);
+			documentation = new EObjectContainmentEList<Documentation>(Documentation.class, this, UseCasePackage.ELEMENT__DOCUMENTATÝON);
 		}
 		return documentation;
 	}
@@ -83,7 +83,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UseCasePackage.ELEMENT__DOCUMENTATION:
+			case UseCasePackage.ELEMENT__DOCUMENTATÝON:
 				return ((InternalEList<?>)getDocumentation()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -97,7 +97,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UseCasePackage.ELEMENT__DOCUMENTATION:
+			case UseCasePackage.ELEMENT__DOCUMENTATÝON:
 				return getDocumentation();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -112,7 +112,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UseCasePackage.ELEMENT__DOCUMENTATION:
+			case UseCasePackage.ELEMENT__DOCUMENTATÝON:
 				getDocumentation().clear();
 				getDocumentation().addAll((Collection<? extends Documentation>)newValue);
 				return;
@@ -128,7 +128,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.ELEMENT__DOCUMENTATION:
+			case UseCasePackage.ELEMENT__DOCUMENTATÝON:
 				getDocumentation().clear();
 				return;
 		}
@@ -143,7 +143,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.ELEMENT__DOCUMENTATION:
+			case UseCasePackage.ELEMENT__DOCUMENTATÝON:
 				return documentation != null && !documentation.isEmpty();
 		}
 		return super.eIsSet(featureID);

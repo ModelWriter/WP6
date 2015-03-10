@@ -72,21 +72,21 @@ public class UseCaseFactoryImpl extends EFactoryImpl implements UseCaseFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case UseCasePackage.SPECIFICATION: return createSpecification();
+			case UseCasePackage.SPECÝFÝCATÝON: return createSpecification();
 			case UseCasePackage.USE_CASE: return createUseCase();
 			case UseCasePackage.ACTOR: return createActor();
 			case UseCasePackage.INTEREST: return createInterest();
-			case UseCasePackage.EXPRESSION: return createExpression();
-			case UseCasePackage.CONDITIONAL_FLOW: return createConditionalFlow();
-			case UseCasePackage.ACTIVITY: return createActivity();
+			case UseCasePackage.EXPRESSÝON: return createExpression();
+			case UseCasePackage.CONDÝTÝONAL_FLOW: return createConditionalFlow();
+			case UseCasePackage.ACTÝVÝTY: return createActivity();
 			case UseCasePackage.PROCESS: return createProcess();
-			case UseCasePackage.DOCUMENTATION: return createDocumentation();
+			case UseCasePackage.DOCUMENTATÝON: return createDocumentation();
 			case UseCasePackage.START_EVENT: return createStartEvent();
 			case UseCasePackage.END_EVENT: return createEndEvent();
-			case UseCasePackage.INTERMEDIATE_CATCH_EVENT: return createIntermediateCatchEvent();
-			case UseCasePackage.INTERMEDIATE_THROW_EVENT: return createIntermediateThrowEvent();
+			case UseCasePackage.INTERMEDÝATE_CATCH_EVENT: return createIntermediateCatchEvent();
+			case UseCasePackage.INTERMEDÝATE_THROW_EVENT: return createIntermediateThrowEvent();
 			case UseCasePackage.SEQUENCE_FLOW: return createSequenceFlow();
-			case UseCasePackage.INCLUSIVE_GATEWAY: return createInclusiveGateway();
+			case UseCasePackage.INCLUSÝVE_GATEWAY: return createInclusiveGateway();
 			case UseCasePackage.PARALLEL_GATEWAY: return createParallelGateway();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -129,8 +129,8 @@ public class UseCaseFactoryImpl extends EFactoryImpl implements UseCaseFactory {
 	 * @generated
 	 */
 	public Interest createInterest() {
-		InterestImpl interest = new InterestImpl();
-		return interest;
+		InterestImpl ýnterest = new InterestImpl();
+		return ýnterest;
 	}
 
 	/**
@@ -209,8 +209,8 @@ public class UseCaseFactoryImpl extends EFactoryImpl implements UseCaseFactory {
 	 * @generated
 	 */
 	public IntermediateCatchEvent createIntermediateCatchEvent() {
-		IntermediateCatchEventImpl intermediateCatchEvent = new IntermediateCatchEventImpl();
-		return intermediateCatchEvent;
+		IntermediateCatchEventImpl ýntermediateCatchEvent = new IntermediateCatchEventImpl();
+		return ýntermediateCatchEvent;
 	}
 
 	/**
@@ -219,8 +219,8 @@ public class UseCaseFactoryImpl extends EFactoryImpl implements UseCaseFactory {
 	 * @generated
 	 */
 	public IntermediateThrowEvent createIntermediateThrowEvent() {
-		IntermediateThrowEventImpl intermediateThrowEvent = new IntermediateThrowEventImpl();
-		return intermediateThrowEvent;
+		IntermediateThrowEventImpl ýntermediateThrowEvent = new IntermediateThrowEventImpl();
+		return ýntermediateThrowEvent;
 	}
 
 	/**
@@ -239,8 +239,8 @@ public class UseCaseFactoryImpl extends EFactoryImpl implements UseCaseFactory {
 	 * @generated
 	 */
 	public InclusiveGateway createInclusiveGateway() {
-		InclusiveGatewayImpl inclusiveGateway = new InclusiveGatewayImpl();
-		return inclusiveGateway;
+		InclusiveGatewayImpl ýnclusiveGateway = new InclusiveGatewayImpl();
+		return ýnclusiveGateway;
 	}
 
 	/**

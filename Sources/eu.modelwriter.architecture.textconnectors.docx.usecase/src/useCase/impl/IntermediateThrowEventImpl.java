@@ -33,7 +33,7 @@ public class IntermediateThrowEventImpl extends ThrowEventImpl implements Interm
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UseCasePackage.Literals.INTERMEDIATE_THROW_EVENT;
+		return UseCasePackage.Literals.INTERMEDÝATE_THROW_EVENT;
 	}
 
 } //IntermediateThrowEventImpl

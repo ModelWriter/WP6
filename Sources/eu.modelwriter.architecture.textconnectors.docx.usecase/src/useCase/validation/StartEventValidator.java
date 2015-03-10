@@ -14,5 +14,7 @@ package useCase.validation;
 public interface StartEventValidator {
 	boolean validate();
 
+	boolean validate›sInterrupting(boolean value);
+
 	boolean validateIsInterrupting(boolean value);
 }

@@ -53,7 +53,7 @@ public class ConditionalFlowImpl extends FlowImpl implements ConditionalFlow {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UseCasePackage.Literals.CONDITIONAL_FLOW;
+		return UseCasePackage.Literals.CONDÝTÝONAL_FLOW;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class ConditionalFlowImpl extends FlowImpl implements ConditionalFlow {
 			conditionExpression = (Expression)eResolveProxy(oldConditionExpression);
 			if (conditionExpression != oldConditionExpression) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION, oldConditionExpression, conditionExpression));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UseCasePackage.CONDÝTÝONAL_FLOW__CONDÝTÝON_EXPRESSÝON, oldConditionExpression, conditionExpression));
 			}
 		}
 		return conditionExpression;
@@ -91,7 +91,7 @@ public class ConditionalFlowImpl extends FlowImpl implements ConditionalFlow {
 		Expression oldConditionExpression = conditionExpression;
 		conditionExpression = newConditionExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION, oldConditionExpression, conditionExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.CONDÝTÝONAL_FLOW__CONDÝTÝON_EXPRESSÝON, oldConditionExpression, conditionExpression));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class ConditionalFlowImpl extends FlowImpl implements ConditionalFlow {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION:
+			case UseCasePackage.CONDÝTÝONAL_FLOW__CONDÝTÝON_EXPRESSÝON:
 				if (resolve) return getConditionExpression();
 				return basicGetConditionExpression();
 		}
@@ -117,7 +117,7 @@ public class ConditionalFlowImpl extends FlowImpl implements ConditionalFlow {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION:
+			case UseCasePackage.CONDÝTÝONAL_FLOW__CONDÝTÝON_EXPRESSÝON:
 				setConditionExpression((Expression)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class ConditionalFlowImpl extends FlowImpl implements ConditionalFlow {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION:
+			case UseCasePackage.CONDÝTÝONAL_FLOW__CONDÝTÝON_EXPRESSÝON:
 				setConditionExpression((Expression)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public class ConditionalFlowImpl extends FlowImpl implements ConditionalFlow {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.CONDITIONAL_FLOW__CONDITION_EXPRESSION:
+			case UseCasePackage.CONDÝTÝONAL_FLOW__CONDÝTÝON_EXPRESSÝON:
 				return conditionExpression != null;
 		}
 		return super.eIsSet(featureID);

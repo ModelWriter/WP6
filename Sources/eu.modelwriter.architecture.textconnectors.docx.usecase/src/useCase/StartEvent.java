@@ -11,7 +11,7 @@ package useCase;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link useCase.StartEvent#isIsInterrupting <em>Is Interrupting</em>}</li>
+ *   <li>{@link useCase.StartEvent#is›sInterrupting <em>›s Interrupting</em>}</li>
  * </ul>
  * </p>
  *
@@ -21,30 +21,30 @@ package useCase;
  */
 public interface StartEvent extends CatchEvent {
 	/**
-	 * Returns the value of the '<em><b>Is Interrupting</b></em>' attribute.
+	 * Returns the value of the '<em><b>›s Interrupting</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Interrupting</em>' attribute isn't clear,
+	 * If the meaning of the '<em>›s Interrupting</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Interrupting</em>' attribute.
-	 * @see #setIsInterrupting(boolean)
-	 * @see useCase.UseCasePackage#getStartEvent_IsInterrupting()
+	 * @return the value of the '<em>›s Interrupting</em>' attribute.
+	 * @see #set›sInterrupting(boolean)
+	 * @see useCase.UseCasePackage#getStartEvent_›sInterrupting()
 	 * @model default="true"
 	 * @generated
 	 */
-	boolean isIsInterrupting();
+	boolean is›sInterrupting();
 
 	/**
-	 * Sets the value of the '{@link useCase.StartEvent#isIsInterrupting <em>Is Interrupting</em>}' attribute.
+	 * Sets the value of the '{@link useCase.StartEvent#is›sInterrupting <em>›s Interrupting</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Interrupting</em>' attribute.
-	 * @see #isIsInterrupting()
+	 * @param value the new value of the '<em>›s Interrupting</em>' attribute.
+	 * @see #is›sInterrupting()
 	 * @generated
 	 */
-	void setIsInterrupting(boolean value);
+	void set›sInterrupting(boolean value);
 
 } // StartEvent

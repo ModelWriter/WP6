@@ -83,7 +83,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass interestEClass = null;
+	private EClass ýnterestEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -188,14 +188,14 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass intermediateCatchEventEClass = null;
+	private EClass ýntermediateCatchEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass intermediateThrowEventEClass = null;
+	private EClass ýntermediateThrowEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -209,7 +209,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass inclusiveGatewayEClass = null;
+	private EClass ýnclusiveGatewayEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -411,7 +411,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * @generated
 	 */
 	public EClass getInterest() {
-		return interestEClass;
+		return ýnterestEClass;
 	}
 
 	/**
@@ -420,7 +420,16 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * @generated
 	 */
 	public EReference getInterest_Actor() {
-		return (EReference)interestEClass.getEStructuralFeatures().get(0);
+		return (EReference)ýnterestEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInterest_Detail() {
+		return (EReference)ýnterestEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -509,6 +518,15 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFlowNode_Detail() {
+		return (EReference)flowNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getActivity() {
 		return activityEClass;
 	}
@@ -590,7 +608,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStartEvent_IsInterrupting() {
+	public EAttribute getStartEvent_ÝsInterrupting() {
 		return (EAttribute)startEventEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -636,7 +654,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * @generated
 	 */
 	public EClass getIntermediateCatchEvent() {
-		return intermediateCatchEventEClass;
+		return ýntermediateCatchEventEClass;
 	}
 
 	/**
@@ -645,7 +663,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * @generated
 	 */
 	public EClass getIntermediateThrowEvent() {
-		return intermediateThrowEventEClass;
+		return ýntermediateThrowEventEClass;
 	}
 
 	/**
@@ -663,7 +681,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * @generated
 	 */
 	public EClass getInclusiveGateway() {
-		return inclusiveGatewayEClass;
+		return ýnclusiveGatewayEClass;
 	}
 
 	/**
@@ -672,7 +690,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * @generated
 	 */
 	public EReference getInclusiveGateway_Default() {
-		return (EReference)inclusiveGatewayEClass.getEStructuralFeatures().get(0);
+		return (EReference)ýnclusiveGatewayEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -713,28 +731,29 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 
 		// Create classes and their features
 		elementEClass = createEClass(ELEMENT);
-		createEReference(elementEClass, ELEMENT__DOCUMENTATION);
+		createEReference(elementEClass, ELEMENT__DOCUMENTATÝON);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
-		specificationEClass = createEClass(SPECIFICATION);
-		createEReference(specificationEClass, SPECIFICATION__OWNED_USE_CASE);
-		createEReference(specificationEClass, SPECIFICATION__OWNED_ACTOR);
-		createEReference(specificationEClass, SPECIFICATION__OWNED_PROCESS);
+		specificationEClass = createEClass(SPECÝFÝCATÝON);
+		createEReference(specificationEClass, SPECÝFÝCATÝON__OWNED_USE_CASE);
+		createEReference(specificationEClass, SPECÝFÝCATÝON__OWNED_ACTOR);
+		createEReference(specificationEClass, SPECÝFÝCATÝON__OWNED_PROCESS);
 
 		useCaseEClass = createEClass(USE_CASE);
-		createEReference(useCaseEClass, USE_CASE__PRIMARY_ACTOR);
+		createEReference(useCaseEClass, USE_CASE__PRÝMARY_ACTOR);
 		createEReference(useCaseEClass, USE_CASE__OWNED_STAKEHOLDER_INTEREST);
-		createEReference(useCaseEClass, USE_CASE__MAIN_FLOW);
-		createEReference(useCaseEClass, USE_CASE__ALTERNATIVE_FLOWS);
+		createEReference(useCaseEClass, USE_CASE__MAÝN_FLOW);
+		createEReference(useCaseEClass, USE_CASE__ALTERNATÝVE_FLOWS);
 
 		actorEClass = createEClass(ACTOR);
 
-		interestEClass = createEClass(INTEREST);
-		createEReference(interestEClass, INTEREST__ACTOR);
+		ýnterestEClass = createEClass(INTEREST);
+		createEReference(ýnterestEClass, INTEREST__ACTOR);
+		createEReference(ýnterestEClass, INTEREST__DETAÝL);
 
-		expressionEClass = createEClass(EXPRESSION);
+		expressionEClass = createEClass(EXPRESSÝON);
 
 		flowElementEClass = createEClass(FLOW_ELEMENT);
 
@@ -742,26 +761,27 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 		createEReference(flowEClass, FLOW__SOURCE);
 		createEReference(flowEClass, FLOW__TARGET);
 
-		conditionalFlowEClass = createEClass(CONDITIONAL_FLOW);
-		createEReference(conditionalFlowEClass, CONDITIONAL_FLOW__CONDITION_EXPRESSION);
+		conditionalFlowEClass = createEClass(CONDÝTÝONAL_FLOW);
+		createEReference(conditionalFlowEClass, CONDÝTÝONAL_FLOW__CONDÝTÝON_EXPRESSÝON);
 
 		flowNodeEClass = createEClass(FLOW_NODE);
 		createEAttribute(flowNodeEClass, FLOW_NODE__LABEL);
+		createEReference(flowNodeEClass, FLOW_NODE__DETAÝL);
 
-		activityEClass = createEClass(ACTIVITY);
+		activityEClass = createEClass(ACTÝVÝTY);
 
 		eventEClass = createEClass(EVENT);
 
 		processEClass = createEClass(PROCESS);
-		createEReference(processEClass, PROCESS__DEFINED_AT);
+		createEReference(processEClass, PROCESS__DEFÝNED_AT);
 		createEReference(processEClass, PROCESS__OWNED_FLOW_ELEMENTS);
 
-		documentationEClass = createEClass(DOCUMENTATION);
-		createEAttribute(documentationEClass, DOCUMENTATION__TEXT);
-		createEAttribute(documentationEClass, DOCUMENTATION__TEXT_FORMAT);
+		documentationEClass = createEClass(DOCUMENTATÝON);
+		createEAttribute(documentationEClass, DOCUMENTATÝON__TEXT);
+		createEAttribute(documentationEClass, DOCUMENTATÝON__TEXT_FORMAT);
 
 		startEventEClass = createEClass(START_EVENT);
-		createEAttribute(startEventEClass, START_EVENT__IS_INTERRUPTING);
+		createEAttribute(startEventEClass, START_EVENT__ÝS_INTERRUPTÝNG);
 
 		endEventEClass = createEClass(END_EVENT);
 
@@ -771,14 +791,14 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 
 		catchEventEClass = createEClass(CATCH_EVENT);
 
-		intermediateCatchEventEClass = createEClass(INTERMEDIATE_CATCH_EVENT);
+		ýntermediateCatchEventEClass = createEClass(INTERMEDÝATE_CATCH_EVENT);
 
-		intermediateThrowEventEClass = createEClass(INTERMEDIATE_THROW_EVENT);
+		ýntermediateThrowEventEClass = createEClass(INTERMEDÝATE_THROW_EVENT);
 
 		sequenceFlowEClass = createEClass(SEQUENCE_FLOW);
 
-		inclusiveGatewayEClass = createEClass(INCLUSIVE_GATEWAY);
-		createEReference(inclusiveGatewayEClass, INCLUSIVE_GATEWAY__DEFAULT);
+		ýnclusiveGatewayEClass = createEClass(INCLUSÝVE_GATEWAY);
+		createEReference(ýnclusiveGatewayEClass, INCLUSÝVE_GATEWAY__DEFAULT);
 
 		parallelGatewayEClass = createEClass(PARALLEL_GATEWAY);
 	}
@@ -815,7 +835,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 		specificationEClass.getESuperTypes().add(this.getNamedElement());
 		useCaseEClass.getESuperTypes().add(this.getNamedElement());
 		actorEClass.getESuperTypes().add(this.getNamedElement());
-		interestEClass.getESuperTypes().add(this.getElement());
+		ýnterestEClass.getESuperTypes().add(this.getElement());
 		expressionEClass.getESuperTypes().add(this.getElement());
 		flowElementEClass.getESuperTypes().add(this.getElement());
 		flowEClass.getESuperTypes().add(this.getFlowElement());
@@ -830,10 +850,10 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 		gatewayEClass.getESuperTypes().add(this.getFlowNode());
 		throwEventEClass.getESuperTypes().add(this.getEvent());
 		catchEventEClass.getESuperTypes().add(this.getEvent());
-		intermediateCatchEventEClass.getESuperTypes().add(this.getCatchEvent());
-		intermediateThrowEventEClass.getESuperTypes().add(this.getThrowEvent());
+		ýntermediateCatchEventEClass.getESuperTypes().add(this.getCatchEvent());
+		ýntermediateThrowEventEClass.getESuperTypes().add(this.getThrowEvent());
 		sequenceFlowEClass.getESuperTypes().add(this.getFlow());
-		inclusiveGatewayEClass.getESuperTypes().add(this.getGateway());
+		ýnclusiveGatewayEClass.getESuperTypes().add(this.getGateway());
 		parallelGatewayEClass.getESuperTypes().add(this.getGateway());
 
 		// Initialize classes, features, and operations; add parameters
@@ -856,8 +876,9 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 
 		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(interestEClass, Interest.class, "Interest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(ýnterestEClass, Interest.class, "Interest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInterest_Actor(), this.getActor(), null, "actor", null, 1, 1, Interest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInterest_Detail(), this.getDocumentation(), null, "detail", null, 1, 1, Interest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -872,6 +893,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 
 		initEClass(flowNodeEClass, FlowNode.class, "FlowNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFlowNode_Label(), ecorePackage.getEString(), "label", null, 0, 1, FlowNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFlowNode_Detail(), this.getDocumentation(), null, "detail", null, 0, 1, FlowNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(activityEClass, Activity.class, "Activity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -886,7 +908,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 		initEAttribute(getDocumentation_TextFormat(), ecorePackage.getEString(), "textFormat", null, 0, 1, Documentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(startEventEClass, StartEvent.class, "StartEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStartEvent_IsInterrupting(), ecorePackage.getEBoolean(), "isInterrupting", "true", 0, 1, StartEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStartEvent_ÝsInterrupting(), ecorePackage.getEBoolean(), "isInterrupting", "true", 0, 1, StartEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(endEventEClass, EndEvent.class, "EndEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -896,13 +918,13 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 
 		initEClass(catchEventEClass, CatchEvent.class, "CatchEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(intermediateCatchEventEClass, IntermediateCatchEvent.class, "IntermediateCatchEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(ýntermediateCatchEventEClass, IntermediateCatchEvent.class, "IntermediateCatchEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(intermediateThrowEventEClass, IntermediateThrowEvent.class, "IntermediateThrowEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(ýntermediateThrowEventEClass, IntermediateThrowEvent.class, "IntermediateThrowEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(sequenceFlowEClass, SequenceFlow.class, "SequenceFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(inclusiveGatewayEClass, InclusiveGateway.class, "InclusiveGateway", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(ýnclusiveGatewayEClass, InclusiveGateway.class, "InclusiveGateway", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInclusiveGateway_Default(), this.getSequenceFlow(), null, "default", null, 0, 1, InclusiveGateway.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(parallelGatewayEClass, ParallelGateway.class, "ParallelGateway", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

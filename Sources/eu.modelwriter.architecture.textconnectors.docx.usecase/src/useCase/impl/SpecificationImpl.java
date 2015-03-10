@@ -81,7 +81,7 @@ public class SpecificationImpl extends NamedElementImpl implements Specification
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UseCasePackage.Literals.SPECIFICATION;
+		return UseCasePackage.Literals.SPECÝFÝCATÝON;
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class SpecificationImpl extends NamedElementImpl implements Specification
 	 */
 	public EList<UseCase> getOwnedUseCase() {
 		if (ownedUseCase == null) {
-			ownedUseCase = new EObjectContainmentEList<UseCase>(UseCase.class, this, UseCasePackage.SPECIFICATION__OWNED_USE_CASE);
+			ownedUseCase = new EObjectContainmentEList<UseCase>(UseCase.class, this, UseCasePackage.SPECÝFÝCATÝON__OWNED_USE_CASE);
 		}
 		return ownedUseCase;
 	}
@@ -103,7 +103,7 @@ public class SpecificationImpl extends NamedElementImpl implements Specification
 	 */
 	public EList<Actor> getOwnedActor() {
 		if (ownedActor == null) {
-			ownedActor = new EObjectContainmentEList<Actor>(Actor.class, this, UseCasePackage.SPECIFICATION__OWNED_ACTOR);
+			ownedActor = new EObjectContainmentEList<Actor>(Actor.class, this, UseCasePackage.SPECÝFÝCATÝON__OWNED_ACTOR);
 		}
 		return ownedActor;
 	}
@@ -115,7 +115,7 @@ public class SpecificationImpl extends NamedElementImpl implements Specification
 	 */
 	public EList<useCase.Process> getOwnedProcess() {
 		if (ownedProcess == null) {
-			ownedProcess = new EObjectContainmentEList<useCase.Process>(useCase.Process.class, this, UseCasePackage.SPECIFICATION__OWNED_PROCESS);
+			ownedProcess = new EObjectContainmentEList<useCase.Process>(useCase.Process.class, this, UseCasePackage.SPECÝFÝCATÝON__OWNED_PROCESS);
 		}
 		return ownedProcess;
 	}
@@ -128,11 +128,11 @@ public class SpecificationImpl extends NamedElementImpl implements Specification
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UseCasePackage.SPECIFICATION__OWNED_USE_CASE:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_USE_CASE:
 				return ((InternalEList<?>)getOwnedUseCase()).basicRemove(otherEnd, msgs);
-			case UseCasePackage.SPECIFICATION__OWNED_ACTOR:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_ACTOR:
 				return ((InternalEList<?>)getOwnedActor()).basicRemove(otherEnd, msgs);
-			case UseCasePackage.SPECIFICATION__OWNED_PROCESS:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_PROCESS:
 				return ((InternalEList<?>)getOwnedProcess()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -146,11 +146,11 @@ public class SpecificationImpl extends NamedElementImpl implements Specification
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UseCasePackage.SPECIFICATION__OWNED_USE_CASE:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_USE_CASE:
 				return getOwnedUseCase();
-			case UseCasePackage.SPECIFICATION__OWNED_ACTOR:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_ACTOR:
 				return getOwnedActor();
-			case UseCasePackage.SPECIFICATION__OWNED_PROCESS:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_PROCESS:
 				return getOwnedProcess();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -165,15 +165,15 @@ public class SpecificationImpl extends NamedElementImpl implements Specification
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UseCasePackage.SPECIFICATION__OWNED_USE_CASE:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_USE_CASE:
 				getOwnedUseCase().clear();
 				getOwnedUseCase().addAll((Collection<? extends UseCase>)newValue);
 				return;
-			case UseCasePackage.SPECIFICATION__OWNED_ACTOR:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_ACTOR:
 				getOwnedActor().clear();
 				getOwnedActor().addAll((Collection<? extends Actor>)newValue);
 				return;
-			case UseCasePackage.SPECIFICATION__OWNED_PROCESS:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_PROCESS:
 				getOwnedProcess().clear();
 				getOwnedProcess().addAll((Collection<? extends useCase.Process>)newValue);
 				return;
@@ -189,13 +189,13 @@ public class SpecificationImpl extends NamedElementImpl implements Specification
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.SPECIFICATION__OWNED_USE_CASE:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_USE_CASE:
 				getOwnedUseCase().clear();
 				return;
-			case UseCasePackage.SPECIFICATION__OWNED_ACTOR:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_ACTOR:
 				getOwnedActor().clear();
 				return;
-			case UseCasePackage.SPECIFICATION__OWNED_PROCESS:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_PROCESS:
 				getOwnedProcess().clear();
 				return;
 		}
@@ -210,11 +210,11 @@ public class SpecificationImpl extends NamedElementImpl implements Specification
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.SPECIFICATION__OWNED_USE_CASE:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_USE_CASE:
 				return ownedUseCase != null && !ownedUseCase.isEmpty();
-			case UseCasePackage.SPECIFICATION__OWNED_ACTOR:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_ACTOR:
 				return ownedActor != null && !ownedActor.isEmpty();
-			case UseCasePackage.SPECIFICATION__OWNED_PROCESS:
+			case UseCasePackage.SPECÝFÝCATÝON__OWNED_PROCESS:
 				return ownedProcess != null && !ownedProcess.isEmpty();
 		}
 		return super.eIsSet(featureID);

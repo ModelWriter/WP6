@@ -82,7 +82,7 @@ public class DocumentationImpl extends ElementImpl implements Documentation {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UseCasePackage.Literals.DOCUMENTATION;
+		return UseCasePackage.Literals.DOCUMENTATÝON;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class DocumentationImpl extends ElementImpl implements Documentation {
 		String oldText = text;
 		text = newText;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.DOCUMENTATION__TEXT, oldText, text));
+			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.DOCUMENTATÝON__TEXT, oldText, text));
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class DocumentationImpl extends ElementImpl implements Documentation {
 		String oldTextFormat = textFormat;
 		textFormat = newTextFormat;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.DOCUMENTATION__TEXT_FORMAT, oldTextFormat, textFormat));
+			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.DOCUMENTATÝON__TEXT_FORMAT, oldTextFormat, textFormat));
 	}
 
 	/**
@@ -135,9 +135,9 @@ public class DocumentationImpl extends ElementImpl implements Documentation {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UseCasePackage.DOCUMENTATION__TEXT:
+			case UseCasePackage.DOCUMENTATÝON__TEXT:
 				return getText();
-			case UseCasePackage.DOCUMENTATION__TEXT_FORMAT:
+			case UseCasePackage.DOCUMENTATÝON__TEXT_FORMAT:
 				return getTextFormat();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -151,10 +151,10 @@ public class DocumentationImpl extends ElementImpl implements Documentation {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UseCasePackage.DOCUMENTATION__TEXT:
+			case UseCasePackage.DOCUMENTATÝON__TEXT:
 				setText((String)newValue);
 				return;
-			case UseCasePackage.DOCUMENTATION__TEXT_FORMAT:
+			case UseCasePackage.DOCUMENTATÝON__TEXT_FORMAT:
 				setTextFormat((String)newValue);
 				return;
 		}
@@ -169,10 +169,10 @@ public class DocumentationImpl extends ElementImpl implements Documentation {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.DOCUMENTATION__TEXT:
+			case UseCasePackage.DOCUMENTATÝON__TEXT:
 				setText(TEXT_EDEFAULT);
 				return;
-			case UseCasePackage.DOCUMENTATION__TEXT_FORMAT:
+			case UseCasePackage.DOCUMENTATÝON__TEXT_FORMAT:
 				setTextFormat(TEXT_FORMAT_EDEFAULT);
 				return;
 		}
@@ -187,9 +187,9 @@ public class DocumentationImpl extends ElementImpl implements Documentation {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.DOCUMENTATION__TEXT:
+			case UseCasePackage.DOCUMENTATÝON__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
-			case UseCasePackage.DOCUMENTATION__TEXT_FORMAT:
+			case UseCasePackage.DOCUMENTATÝON__TEXT_FORMAT:
 				return TEXT_FORMAT_EDEFAULT == null ? textFormat != null : !TEXT_FORMAT_EDEFAULT.equals(textFormat);
 		}
 		return super.eIsSet(featureID);

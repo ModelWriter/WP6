@@ -103,7 +103,7 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.SPECIFICATION: {
+			case UseCasePackage.SPECÝFÝCATÝON: {
 				Specification specification = (Specification)theEObject;
 				T result = caseSpecification(specification);
 				if (result == null) result = caseNamedElement(specification);
@@ -128,13 +128,13 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case UseCasePackage.INTEREST: {
-				Interest interest = (Interest)theEObject;
-				T result = caseInterest(interest);
-				if (result == null) result = caseElement(interest);
+				Interest ýnterest = (Interest)theEObject;
+				T result = caseInterest(ýnterest);
+				if (result == null) result = caseElement(ýnterest);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.EXPRESSION: {
+			case UseCasePackage.EXPRESSÝON: {
 				Expression expression = (Expression)theEObject;
 				T result = caseExpression(expression);
 				if (result == null) result = caseElement(expression);
@@ -156,7 +156,7 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.CONDITIONAL_FLOW: {
+			case UseCasePackage.CONDÝTÝONAL_FLOW: {
 				ConditionalFlow conditionalFlow = (ConditionalFlow)theEObject;
 				T result = caseConditionalFlow(conditionalFlow);
 				if (result == null) result = caseFlow(conditionalFlow);
@@ -173,7 +173,7 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.ACTIVITY: {
+			case UseCasePackage.ACTÝVÝTY: {
 				Activity activity = (Activity)theEObject;
 				T result = caseActivity(activity);
 				if (result == null) result = caseFlowNode(activity);
@@ -199,7 +199,7 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.DOCUMENTATION: {
+			case UseCasePackage.DOCUMENTATÝON: {
 				Documentation documentation = (Documentation)theEObject;
 				T result = caseDocumentation(documentation);
 				if (result == null) result = caseElement(documentation);
@@ -257,25 +257,25 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.INTERMEDIATE_CATCH_EVENT: {
-				IntermediateCatchEvent intermediateCatchEvent = (IntermediateCatchEvent)theEObject;
-				T result = caseIntermediateCatchEvent(intermediateCatchEvent);
-				if (result == null) result = caseCatchEvent(intermediateCatchEvent);
-				if (result == null) result = caseEvent(intermediateCatchEvent);
-				if (result == null) result = caseFlowNode(intermediateCatchEvent);
-				if (result == null) result = caseFlowElement(intermediateCatchEvent);
-				if (result == null) result = caseElement(intermediateCatchEvent);
+			case UseCasePackage.INTERMEDÝATE_CATCH_EVENT: {
+				IntermediateCatchEvent ýntermediateCatchEvent = (IntermediateCatchEvent)theEObject;
+				T result = caseIntermediateCatchEvent(ýntermediateCatchEvent);
+				if (result == null) result = caseCatchEvent(ýntermediateCatchEvent);
+				if (result == null) result = caseEvent(ýntermediateCatchEvent);
+				if (result == null) result = caseFlowNode(ýntermediateCatchEvent);
+				if (result == null) result = caseFlowElement(ýntermediateCatchEvent);
+				if (result == null) result = caseElement(ýntermediateCatchEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.INTERMEDIATE_THROW_EVENT: {
-				IntermediateThrowEvent intermediateThrowEvent = (IntermediateThrowEvent)theEObject;
-				T result = caseIntermediateThrowEvent(intermediateThrowEvent);
-				if (result == null) result = caseThrowEvent(intermediateThrowEvent);
-				if (result == null) result = caseEvent(intermediateThrowEvent);
-				if (result == null) result = caseFlowNode(intermediateThrowEvent);
-				if (result == null) result = caseFlowElement(intermediateThrowEvent);
-				if (result == null) result = caseElement(intermediateThrowEvent);
+			case UseCasePackage.INTERMEDÝATE_THROW_EVENT: {
+				IntermediateThrowEvent ýntermediateThrowEvent = (IntermediateThrowEvent)theEObject;
+				T result = caseIntermediateThrowEvent(ýntermediateThrowEvent);
+				if (result == null) result = caseThrowEvent(ýntermediateThrowEvent);
+				if (result == null) result = caseEvent(ýntermediateThrowEvent);
+				if (result == null) result = caseFlowNode(ýntermediateThrowEvent);
+				if (result == null) result = caseFlowElement(ýntermediateThrowEvent);
+				if (result == null) result = caseElement(ýntermediateThrowEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -288,13 +288,13 @@ public class UseCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UseCasePackage.INCLUSIVE_GATEWAY: {
-				InclusiveGateway inclusiveGateway = (InclusiveGateway)theEObject;
-				T result = caseInclusiveGateway(inclusiveGateway);
-				if (result == null) result = caseGateway(inclusiveGateway);
-				if (result == null) result = caseFlowNode(inclusiveGateway);
-				if (result == null) result = caseFlowElement(inclusiveGateway);
-				if (result == null) result = caseElement(inclusiveGateway);
+			case UseCasePackage.INCLUSÝVE_GATEWAY: {
+				InclusiveGateway ýnclusiveGateway = (InclusiveGateway)theEObject;
+				T result = caseInclusiveGateway(ýnclusiveGateway);
+				if (result == null) result = caseGateway(ýnclusiveGateway);
+				if (result == null) result = caseFlowNode(ýnclusiveGateway);
+				if (result == null) result = caseFlowElement(ýnclusiveGateway);
+				if (result == null) result = caseElement(ýnclusiveGateway);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

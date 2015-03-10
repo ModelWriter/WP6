@@ -33,7 +33,7 @@ public class ActivityImpl extends FlowNodeImpl implements Activity {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UseCasePackage.Literals.ACTIVITY;
+		return UseCasePackage.Literals.ACTÝVÝTY;
 	}
 
 } //ActivityImpl

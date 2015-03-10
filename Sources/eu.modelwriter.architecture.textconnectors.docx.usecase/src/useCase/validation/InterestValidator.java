@@ -5,6 +5,7 @@
 package useCase.validation;
 
 import useCase.Actor;
+import useCase.Documentation;
 
 /**
  * A sample validator interface for {@link useCase.Interest}.
@@ -16,4 +17,6 @@ public interface InterestValidator {
 	boolean validate();
 
 	boolean validateActor(Actor value);
+
+	boolean validateDetail(Documentation value);
 }

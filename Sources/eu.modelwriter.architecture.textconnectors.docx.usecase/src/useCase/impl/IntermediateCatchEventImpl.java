@@ -33,7 +33,7 @@ public class IntermediateCatchEventImpl extends CatchEventImpl implements Interm
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UseCasePackage.Literals.INTERMEDIATE_CATCH_EVENT;
+		return UseCasePackage.Literals.INTERMEDÝATE_CATCH_EVENT;
 	}
 
 } //IntermediateCatchEventImpl

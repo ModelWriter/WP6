@@ -18,7 +18,7 @@ import useCase.UseCasePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link useCase.impl.StartEventImpl#isIsInterrupting <em>Is Interrupting</em>}</li>
+ *   <li>{@link useCase.impl.StartEventImpl#is›sInterrupting <em>›s Interrupting</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,24 +26,24 @@ import useCase.UseCasePackage;
  */
 public class StartEventImpl extends CatchEventImpl implements StartEvent {
 	/**
-	 * The default value of the '{@link #isIsInterrupting() <em>Is Interrupting</em>}' attribute.
+	 * The default value of the '{@link #is›sInterrupting() <em>›s Interrupting</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsInterrupting()
+	 * @see #is›sInterrupting()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_INTERRUPTING_EDEFAULT = true;
+	protected static final boolean ›S_INTERRUPT›NG_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #isIsInterrupting() <em>Is Interrupting</em>}' attribute.
+	 * The cached value of the '{@link #is›sInterrupting() <em>›s Interrupting</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsInterrupting()
+	 * @see #is›sInterrupting()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isInterrupting = IS_INTERRUPTING_EDEFAULT;
+	protected boolean isInterrupting = ›S_INTERRUPT›NG_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,7 +69,7 @@ public class StartEventImpl extends CatchEventImpl implements StartEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsInterrupting() {
+	public boolean is›sInterrupting() {
 		return isInterrupting;
 	}
 
@@ -78,11 +78,11 @@ public class StartEventImpl extends CatchEventImpl implements StartEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsInterrupting(boolean newIsInterrupting) {
-		boolean oldIsInterrupting = isInterrupting;
-		isInterrupting = newIsInterrupting;
+	public void set›sInterrupting(boolean new›sInterrupting) {
+		boolean old›sInterrupting = isInterrupting;
+		isInterrupting = new›sInterrupting;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.START_EVENT__IS_INTERRUPTING, oldIsInterrupting, isInterrupting));
+			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.START_EVENT__›S_INTERRUPT›NG, old›sInterrupting, isInterrupting));
 	}
 
 	/**
@@ -93,8 +93,8 @@ public class StartEventImpl extends CatchEventImpl implements StartEvent {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UseCasePackage.START_EVENT__IS_INTERRUPTING:
-				return isIsInterrupting();
+			case UseCasePackage.START_EVENT__›S_INTERRUPT›NG:
+				return is›sInterrupting();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,8 +107,8 @@ public class StartEventImpl extends CatchEventImpl implements StartEvent {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UseCasePackage.START_EVENT__IS_INTERRUPTING:
-				setIsInterrupting((Boolean)newValue);
+			case UseCasePackage.START_EVENT__›S_INTERRUPT›NG:
+				set›sInterrupting((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -122,8 +122,8 @@ public class StartEventImpl extends CatchEventImpl implements StartEvent {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.START_EVENT__IS_INTERRUPTING:
-				setIsInterrupting(IS_INTERRUPTING_EDEFAULT);
+			case UseCasePackage.START_EVENT__›S_INTERRUPT›NG:
+				set›sInterrupting(›S_INTERRUPT›NG_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -137,8 +137,8 @@ public class StartEventImpl extends CatchEventImpl implements StartEvent {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.START_EVENT__IS_INTERRUPTING:
-				return isInterrupting != IS_INTERRUPTING_EDEFAULT;
+			case UseCasePackage.START_EVENT__›S_INTERRUPT›NG:
+				return isInterrupting != ›S_INTERRUPT›NG_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

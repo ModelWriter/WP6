@@ -4,6 +4,8 @@
  */
 package useCase.validation;
 
+import useCase.Documentation;
+
 
 /**
  * A sample validator interface for {@link useCase.FlowNode}.
@@ -15,4 +17,6 @@ public interface FlowNodeValidator {
 	boolean validate();
 
 	boolean validateLabel(String value);
+
+	boolean validateDetail(Documentation value);
 }

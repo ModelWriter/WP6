@@ -53,7 +53,7 @@ public class InclusiveGatewayImpl extends GatewayImpl implements InclusiveGatewa
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UseCasePackage.Literals.INCLUSIVE_GATEWAY;
+		return UseCasePackage.Literals.INCLUSÝVE_GATEWAY;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class InclusiveGatewayImpl extends GatewayImpl implements InclusiveGatewa
 			default_ = (SequenceFlow)eResolveProxy(oldDefault);
 			if (default_ != oldDefault) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UseCasePackage.INCLUSIVE_GATEWAY__DEFAULT, oldDefault, default_));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UseCasePackage.INCLUSÝVE_GATEWAY__DEFAULT, oldDefault, default_));
 			}
 		}
 		return default_;
@@ -91,7 +91,7 @@ public class InclusiveGatewayImpl extends GatewayImpl implements InclusiveGatewa
 		SequenceFlow oldDefault = default_;
 		default_ = newDefault;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.INCLUSIVE_GATEWAY__DEFAULT, oldDefault, default_));
+			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.INCLUSÝVE_GATEWAY__DEFAULT, oldDefault, default_));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class InclusiveGatewayImpl extends GatewayImpl implements InclusiveGatewa
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UseCasePackage.INCLUSIVE_GATEWAY__DEFAULT:
+			case UseCasePackage.INCLUSÝVE_GATEWAY__DEFAULT:
 				if (resolve) return getDefault();
 				return basicGetDefault();
 		}
@@ -117,7 +117,7 @@ public class InclusiveGatewayImpl extends GatewayImpl implements InclusiveGatewa
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UseCasePackage.INCLUSIVE_GATEWAY__DEFAULT:
+			case UseCasePackage.INCLUSÝVE_GATEWAY__DEFAULT:
 				setDefault((SequenceFlow)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class InclusiveGatewayImpl extends GatewayImpl implements InclusiveGatewa
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.INCLUSIVE_GATEWAY__DEFAULT:
+			case UseCasePackage.INCLUSÝVE_GATEWAY__DEFAULT:
 				setDefault((SequenceFlow)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public class InclusiveGatewayImpl extends GatewayImpl implements InclusiveGatewa
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UseCasePackage.INCLUSIVE_GATEWAY__DEFAULT:
+			case UseCasePackage.INCLUSÝVE_GATEWAY__DEFAULT:
 				return default_ != null;
 		}
 		return super.eIsSet(featureID);
