@@ -369,22 +369,13 @@ public interface UseCasePackage extends EPackage {
 	int INTEREST__ACTOR = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEREST__DETAÝL = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Interest</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTEREST_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int INTEREST_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Interest</em>' class.
@@ -617,22 +608,13 @@ public interface UseCasePackage extends EPackage {
 	int FLOW_NODE__LABEL = FLOW_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLOW_NODE__DETAÝL = FLOW_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Flow Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_NODE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 2;
+	int FLOW_NODE_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Flow Node</em>' class.
@@ -670,15 +652,6 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTÝVÝTY__LABEL = FLOW_NODE__LABEL;
-
-	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTÝVÝTY__DETAÝL = FLOW_NODE__DETAÝL;
 
 	/**
 	 * The number of structural features of the '<em>Activity</em>' class.
@@ -725,15 +698,6 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT__LABEL = FLOW_NODE__LABEL;
-
-	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__DETAÝL = FLOW_NODE__DETAÝL;
 
 	/**
 	 * The number of structural features of the '<em>Event</em>' class.
@@ -901,15 +865,6 @@ public interface UseCasePackage extends EPackage {
 	int CATCH_EVENT__LABEL = EVENT__LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CATCH_EVENT__DETAÝL = EVENT__DETAÝL;
-
-	/**
 	 * The number of structural features of the '<em>Catch Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -954,15 +909,6 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int START_EVENT__LABEL = CATCH_EVENT__LABEL;
-
-	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int START_EVENT__DETAÝL = CATCH_EVENT__DETAÝL;
 
 	/**
 	 * The feature id for the '<em><b>Ýs Interrupting</b></em>' attribute.
@@ -1020,15 +966,6 @@ public interface UseCasePackage extends EPackage {
 	int THROW_EVENT__LABEL = EVENT__LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int THROW_EVENT__DETAÝL = EVENT__DETAÝL;
-
-	/**
 	 * The number of structural features of the '<em>Throw Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1073,15 +1010,6 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int END_EVENT__LABEL = THROW_EVENT__LABEL;
-
-	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_EVENT__DETAÝL = THROW_EVENT__DETAÝL;
 
 	/**
 	 * The number of structural features of the '<em>End Event</em>' class.
@@ -1130,15 +1058,6 @@ public interface UseCasePackage extends EPackage {
 	int GATEWAY__LABEL = FLOW_NODE__LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GATEWAY__DETAÝL = FLOW_NODE__DETAÝL;
-
-	/**
 	 * The number of structural features of the '<em>Gateway</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1185,15 +1104,6 @@ public interface UseCasePackage extends EPackage {
 	int INTERMEDÝATE_CATCH_EVENT__LABEL = CATCH_EVENT__LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERMEDÝATE_CATCH_EVENT__DETAÝL = CATCH_EVENT__DETAÝL;
-
-	/**
 	 * The number of structural features of the '<em>Intermediate Catch Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1238,15 +1148,6 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERMEDÝATE_THROW_EVENT__LABEL = THROW_EVENT__LABEL;
-
-	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERMEDÝATE_THROW_EVENT__DETAÝL = THROW_EVENT__DETAÝL;
 
 	/**
 	 * The number of structural features of the '<em>Intermediate Throw Event</em>' class.
@@ -1350,15 +1251,6 @@ public interface UseCasePackage extends EPackage {
 	int INCLUSÝVE_GATEWAY__LABEL = GATEWAY__LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCLUSÝVE_GATEWAY__DETAÝL = GATEWAY__DETAÝL;
-
-	/**
 	 * The feature id for the '<em><b>Default</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1412,15 +1304,6 @@ public interface UseCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int PARALLEL_GATEWAY__LABEL = GATEWAY__LABEL;
-
-	/**
-	 * The feature id for the '<em><b>Detail</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARALLEL_GATEWAY__DETAÝL = GATEWAY__DETAÝL;
 
 	/**
 	 * The number of structural features of the '<em>Parallel Gateway</em>' class.
@@ -1612,17 +1495,6 @@ public interface UseCasePackage extends EPackage {
 	EReference getInterest_Actor();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link useCase.Interest#getDetail <em>Detail</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Detail</em>'.
-	 * @see useCase.Interest#getDetail()
-	 * @see #getInterest()
-	 * @generated
-	 */
-	EReference getInterest_Detail();
-
-	/**
 	 * Returns the meta object for class '{@link useCase.Expression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1715,17 +1587,6 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFlowNode_Label();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link useCase.FlowNode#getDetail <em>Detail</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Detail</em>'.
-	 * @see useCase.FlowNode#getDetail()
-	 * @see #getFlowNode()
-	 * @generated
-	 */
-	EReference getFlowNode_Detail();
 
 	/**
 	 * Returns the meta object for class '{@link useCase.Activity <em>Activity</em>}'.
@@ -2097,14 +1958,6 @@ public interface UseCasePackage extends EPackage {
 		EReference INTEREST__ACTOR = eINSTANCE.getInterest_Actor();
 
 		/**
-		 * The meta object literal for the '<em><b>Detail</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTEREST__DETAÝL = eINSTANCE.getInterest_Detail();
-
-		/**
 		 * The meta object literal for the '{@link useCase.impl.ExpressionImpl <em>Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2185,14 +2038,6 @@ public interface UseCasePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FLOW_NODE__LABEL = eINSTANCE.getFlowNode_Label();
-
-		/**
-		 * The meta object literal for the '<em><b>Detail</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FLOW_NODE__DETAÝL = eINSTANCE.getFlowNode_Detail();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.ActivityImpl <em>Activity</em>}' class.

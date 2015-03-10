@@ -428,15 +428,6 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInterest_Detail() {
-		return (EReference)ýnterestEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getExpression() {
 		return expressionEClass;
 	}
@@ -511,15 +502,6 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 */
 	public EAttribute getFlowNode_Label() {
 		return (EAttribute)flowNodeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFlowNode_Detail() {
-		return (EReference)flowNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -751,7 +733,6 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 
 		ýnterestEClass = createEClass(INTEREST);
 		createEReference(ýnterestEClass, INTEREST__ACTOR);
-		createEReference(ýnterestEClass, INTEREST__DETAÝL);
 
 		expressionEClass = createEClass(EXPRESSÝON);
 
@@ -766,7 +747,6 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 
 		flowNodeEClass = createEClass(FLOW_NODE);
 		createEAttribute(flowNodeEClass, FLOW_NODE__LABEL);
-		createEReference(flowNodeEClass, FLOW_NODE__DETAÝL);
 
 		activityEClass = createEClass(ACTÝVÝTY);
 
@@ -878,7 +858,6 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 
 		initEClass(ýnterestEClass, Interest.class, "Interest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInterest_Actor(), this.getActor(), null, "actor", null, 1, 1, Interest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInterest_Detail(), this.getDocumentation(), null, "detail", null, 1, 1, Interest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -893,7 +872,6 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 
 		initEClass(flowNodeEClass, FlowNode.class, "FlowNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFlowNode_Label(), ecorePackage.getEString(), "label", null, 0, 1, FlowNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFlowNode_Detail(), this.getDocumentation(), null, "detail", null, 0, 1, FlowNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(activityEClass, Activity.class, "Activity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

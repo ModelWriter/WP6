@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.text.Document;
 
 import org.apache.poi.extractor.ExtractorFactory;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -34,9 +35,12 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTPPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRPr;
 
+import useCase.Activity;
 import useCase.Actor;
+import useCase.EndEvent;
 import useCase.Interest;
 import useCase.Process;
+import useCase.SequenceFlow;
 import useCase.Specification;
 import useCase.StartEvent;
 import useCase.UseCase;
@@ -52,7 +56,7 @@ public class UseCase2BusinessProcessModelConverter {
 	private final static String PRECONDITION = "Preconditions";
 	private final static String SUCCESS_GUARANTEE = "Success Guarantee";
 	private final static String POSTCONDITION = "Postcondition";
-	private final static String MAIN_SUCCESS_SCENARIO = "Main Success Scenario";
+	private final static String MAIN_SUCCESS_SCENARIO = "Main Success Scenario (or Basic Flow)";
 	private final static String BASIC_FLOW = "Basic Flow";
 	private final static String EXTENSIONS = "Extensions";
 	private final static String ALTERNATIVE_FLOWS = "Alternative Flows";
@@ -76,11 +80,11 @@ public class UseCase2BusinessProcessModelConverter {
 	private static XWPFNumbering numbering = null; 
 
 	private static XWPFParagraph handledParagraph = null;
-	
+
 	private static boolean paragraphNotHandled = false;
-	
+
 	private static XWPFParagraph paragraph; 
-	
+
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		// TODO Auto-generated method stub
 
@@ -98,11 +102,11 @@ public class UseCase2BusinessProcessModelConverter {
 		headingMap.put("Heading8", 8);
 		headingMap.put("Heading9", 9);
 		headingMap.put("ListParagraph", 99);
-		
+
 		File file = null; 
 		FileInputStream fis = null; 
 		XWPFDocument document = null; 
-		
+
 		XWPFNum num = null; 
 		List<XWPFParagraph> paraList = null; 
 		BigInteger numID = null; 
@@ -124,23 +128,23 @@ public class UseCase2BusinessProcessModelConverter {
 		String loweredText = "";
 		int firstParagraphCounter = 0;
 		boolean flag = false;
-		
-		
+
+
 		documentationList = new ArrayList<Documentation>();
 		UseCase useCase = null;
 
 		while(paraIter.hasNext()) {
 
-			
+
 			if(paragraphNotHandled == false){
 				paragraph = paraIter.next();
 			}
-			
+
 			paragraphNotHandled = false;
-			
+
 			numID = paragraph.getNumID();
 			loweredText = paragraph.getText().toLowerCase();
-			
+
 			String style = paragraph.getStyle();
 			if(style == null){
 				style = "null";
@@ -197,7 +201,7 @@ public class UseCase2BusinessProcessModelConverter {
 								String key = values[0] + ":";
 
 								// key-value 
-								if(runText.contains(key) && run.isBold()){
+								if(key.contains(runText) && run.isBold()){
 
 									keyValue = true;
 									createKeyValue(useCase);
@@ -323,9 +327,9 @@ public class UseCase2BusinessProcessModelConverter {
 					while(numID != null && paraIter.hasNext()){
 
 						String[] v = paragraph.getText().split(":");
-						
+
 						Interest interest = factory.createInterest();
-						
+
 						Actor interestActor = factory.createActor();
 						interestActor.setName(v[0]);
 
@@ -333,10 +337,10 @@ public class UseCase2BusinessProcessModelConverter {
 						doc.setText(v[1]);
 
 						interest.setActor(interestActor);
-						interest.setDetail(doc);
+						interest.getDocumentation().add(doc);
 
 						useCase.getOwnedStakeholderInterest().add(interest);
-						
+
 						specification.getOwnedActor().add(interestActor);
 
 						paragraphNotHandled = true;
@@ -344,45 +348,164 @@ public class UseCase2BusinessProcessModelConverter {
 						numID = paragraph.getNumID();
 					}// end while
 				}//end if
-				
+
 			}// end if
 			break;
-			
+
 		case PRECONDITION :
-			
+
 			if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
-				
+
 				paragraph = paraIter.next();
 				numID = paragraph.getNumID();
-				
+
 				if(numID != null){
 
 					// Iterating through the numbers
 					while(numID != null && paraIter.hasNext()){
-						
+
 						StartEvent startEvent = factory.createStartEvent();
 						Documentation doc = factory.createDocumentation();
 						doc.setText(paragraph.getText());
-						
+
 						Process process = factory.createProcess();
 						process.setDefinedAt(useCase);
-						startEvent.setDetail(doc);
+						startEvent.getDocumentation().add(doc);
 						process.getOwnedFlowElements().add(startEvent);
-						
+
 						specification.getOwnedProcess().add(process);
-						
+
 						paragraphNotHandled = true;
 						paragraph = paraIter.next();
 						numID = paragraph.getNumID();
-						
+
 					}// end while
 				}//end if
-				
+
 			}
 			break;
-			
-			default: paragraphNotHandled = false; break;
-					
+
+		case SUCCESS_GUARANTEE :
+
+			if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
+
+				paragraph = paraIter.next();
+				numID = paragraph.getNumID();
+
+				if(numID != null){
+
+					// Iterating through the numbers
+					while(numID != null && paraIter.hasNext()){
+
+						EndEvent endEvent = factory.createEndEvent();
+						Documentation doc = factory.createDocumentation();
+						doc.setText(paragraph.getText());
+
+						Process process = factory.createProcess();
+						process.setDefinedAt(useCase);
+						endEvent.getDocumentation().add(doc);
+						process.getOwnedFlowElements().add(endEvent);
+
+						specification.getOwnedProcess().add(process);
+
+						paragraphNotHandled = true;
+						paragraph = paraIter.next();
+						numID = paragraph.getNumID();
+
+					}// end while
+				}//end if
+
+			}
+			break;
+
+		case MAIN_SUCCESS_SCENARIO :
+
+			paragraph = paraIter.next();
+			numID = paragraph.getNumID();
+			Activity previousActivity = null;
+
+			/** Activity must start with a positive integer and continue with dot('.')
+			 * and there might be a whitespace(only one)
+			 */
+			String mainFlowActivityPattern = "(([1-9][0-9]*[.][ ]?)[A-Z].*)";
+			Pattern p = Pattern.compile(mainFlowActivityPattern);
+			Matcher matcher = p.matcher(paragraph.getText());
+
+			int activityCounter = 0;
+
+			Process process = factory.createProcess();
+			process.setDefinedAt(useCase);
+
+
+			if(matcher.matches()){
+
+				// Iterating through the numbers
+
+				StartEvent startEvent = factory.createStartEvent();
+				process.getOwnedFlowElements().add(startEvent);
+
+				while(matcher.matches() && paragraph != null){
+
+					activityCounter++;
+					// to-do
+					SequenceFlow sequenceFlow = factory.createSequenceFlow();
+					Activity activity = factory.createActivity();
+
+					String[] v = paragraph.getText().split("\\.");
+
+					activity.setLabel(v[0]);
+
+					Documentation doc = factory.createDocumentation();
+					doc.setText(v[1]);
+					activity.getDocumentation().add(doc);
+
+					if(activityCounter == 1){
+
+						sequenceFlow.setSource(startEvent);
+					}else{
+						sequenceFlow.setSource(previousActivity);
+					}
+
+					sequenceFlow.setTarget(activity);
+
+					previousActivity = activity;
+
+					process.getOwnedFlowElements().add(sequenceFlow);
+					process.getOwnedFlowElements().add(activity);							
+
+					if(paraIter.hasNext()){
+						paragraph = paraIter.next();
+						matcher = p.matcher(paragraph.getText());
+						numID = paragraph.getNumID();
+					}else{
+						break;
+					}
+						
+
+				}// end while
+
+				EndEvent endEvent = factory.createEndEvent();
+				SequenceFlow sequenceFlow = factory.createSequenceFlow();
+				sequenceFlow.setSource(previousActivity);
+				sequenceFlow.setTarget(endEvent);
+				
+				process.getOwnedFlowElements().add(previousActivity);
+				process.getOwnedFlowElements().add(endEvent);
+				process.getOwnedFlowElements().add(sequenceFlow);
+
+				useCase.setMainFlow(process);
+				specification.getOwnedProcess().add(process);
+
+				paragraphNotHandled = true;
+			}
+
+			break;
+
+		default: 
+
+			paragraphNotHandled = false; 
+			break;
+
 
 		}
 
@@ -439,8 +562,8 @@ public class UseCase2BusinessProcessModelConverter {
 		try{
 
 			// Save the resource
-			resource.save(System.out, Collections.EMPTY_MAP); 
-			//resource.save(null);
+			//resource.save(System.out, Collections.EMPTY_MAP); 
+			resource.save(null);
 			final JFrame frame = new JFrame();
 			JOptionPane.showMessageDialog(frame, "Model created successfully!");
 

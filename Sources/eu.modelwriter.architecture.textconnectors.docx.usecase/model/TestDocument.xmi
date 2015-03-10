@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uc:Specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uc="eu.modelwriter.architecture.textconnectors.docx.usecase" name="UseCaseSpecification">
+  <ownedUseCase name="Use Case UC2: Sign In" primaryActor="//@ownedActor.0" mainFlow="//@ownedProcess.1">
+    <ownedStakeholderInterest actor="//@ownedActor.1">
+      <documentation text=" Wants simple user interface, fast response, no system errors."/>
+    </ownedStakeholderInterest>
+  </ownedUseCase>
+  <ownedActor name=" Student"/>
+  <ownedActor name="Student"/>
+  <ownedProcess>
+    <ownedFlowElements xsi:type="uc:StartEvent">
+      <documentation text="Student is registered."/>
+    </ownedFlowElements>
+  </ownedProcess>
+  <ownedProcess definedAt="//@ownedUseCase.0">
+    <ownedFlowElements xsi:type="uc:StartEvent"/>
+    <ownedFlowElements xsi:type="uc:SequenceFlow" Source="//@ownedProcess.1/@ownedFlowElements.0" Target="//@ownedProcess.1/@ownedFlowElements.2"/>
+    <ownedFlowElements xsi:type="uc:Activity" label="1">
+      <documentation text=" Student visits system home page"/>
+    </ownedFlowElements>
+    <ownedFlowElements xsi:type="uc:SequenceFlow" Source="//@ownedProcess.1/@ownedFlowElements.2" Target="//@ownedProcess.1/@ownedFlowElements.4"/>
+    <ownedFlowElements xsi:type="uc:Activity" label="2">
+      <documentation text=" System shows home page with login form and sign up button"/>
+    </ownedFlowElements>
+    <ownedFlowElements xsi:type="uc:SequenceFlow" Source="//@ownedProcess.1/@ownedFlowElements.4" Target="//@ownedProcess.1/@ownedFlowElements.6"/>
+    <ownedFlowElements xsi:type="uc:Activity" label="3">
+      <documentation text=" Student enters his/her username and password then click login button"/>
+    </ownedFlowElements>
+    <ownedFlowElements xsi:type="uc:SequenceFlow" Source="//@ownedProcess.1/@ownedFlowElements.6" Target="//@ownedProcess.1/@ownedFlowElements.8"/>
+    <ownedFlowElements xsi:type="uc:Activity" label="4">
+      <documentation text=" System shows Student&#x2019;s home page"/>
+    </ownedFlowElements>
+    <ownedFlowElements xsi:type="uc:EndEvent"/>
+    <ownedFlowElements xsi:type="uc:SequenceFlow" Source="//@ownedProcess.1/@ownedFlowElements.8" Target="//@ownedProcess.1/@ownedFlowElements.9"/>
+  </ownedProcess>
+</uc:Specification>
