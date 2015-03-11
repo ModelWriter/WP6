@@ -58,7 +58,7 @@ public class UseCase2BusinessProcessModelConverter {
 	private final static String POSTCONDITION = "Postcondition";
 	private final static String MAIN_SUCCESS_SCENARIO = "Main Success Scenario (or Basic Flow)";
 	private final static String BASIC_FLOW = "Basic Flow";
-	private final static String EXTENSIONS = "Extensions";
+	private final static String EXTENSIONS = "Extensions (or Alternative Flows)";
 	private final static String ALTERNATIVE_FLOWS = "Alternative Flows";
 
 
@@ -170,7 +170,7 @@ public class UseCase2BusinessProcessModelConverter {
 				}else {
 
 					// If the paragraph is a plain text or key-value pair 
-					if(paragraph.getStyle() == null) {
+					if(paragraph.getStyle() == null && paragraph.getText().trim().length()>0) {
 
 						//Plain text or key-value pair
 						//paragraph is in the list
@@ -306,7 +306,7 @@ public class UseCase2BusinessProcessModelConverter {
 		XWPFNum num = null;
 
 		switch(values[0]){
-
+		
 		case PRIMARY_ACTOR : 
 			Actor actor = factory.createActor();
 			actor.setName(values[1]);
@@ -417,6 +417,112 @@ public class UseCase2BusinessProcessModelConverter {
 
 			}
 			break;
+			
+		case EXTENSIONS :
+			
+			paragraph = paraIter.next();
+			//NumID = paragraph.getNumID();
+			String s = paragraph.getText();
+			Activity previousExtensionActivity = null;
+			Process previousExtensionProcess = null;
+			// Get the TAB count '\t'
+			int tabCount = 0;
+			int extensionActivityCounter = 0;
+			
+			String extensionActivityPattern = "((([1-9]|[*])[a-z][.][ ]?)[A-Z].*)";
+			Pattern extensionPattern = Pattern.compile(extensionActivityPattern);
+			Matcher extensionMatcher = extensionPattern.matcher(paragraph.getText());
+			
+			Process extensionProcess = null; 
+
+			
+			if(extensionMatcher.matches()){
+				
+				StartEvent extensionStartEvent = factory.createStartEvent();
+				
+				
+				while(paragraph != null && paragraph.getText().trim().length()>0){
+
+					extensionActivityCounter++;
+					
+					SequenceFlow extensionSequenceFlow = factory.createSequenceFlow();
+					Activity extensionActivity = factory.createActivity();
+
+					// get the TAB('\t') count
+					tabCount = s.length() - s.replaceAll("\t", "").length();
+					
+					// new process
+					if(tabCount == 0){
+						
+						if(extensionProcess != null){
+							previousExtensionProcess = extensionProcess;
+							useCase.getAlternativeFlows().add(previousExtensionProcess);
+							specification.getOwnedProcess().add(previousExtensionProcess);
+						}
+						
+						extensionProcess = factory.createProcess();
+						
+						//extensionProcess.setDefinedAt(useCase);
+						
+						// first process of the extensions part
+						if(extensionActivityCounter == 1){
+							
+							extensionProcess.getOwnedFlowElements().add(extensionStartEvent);
+						}
+					}
+					
+					String[] v = paragraph.getText().split("\\.");
+
+					extensionActivity.setLabel(v[0]);
+
+					Documentation doc = factory.createDocumentation();
+					doc.setText(v[1]);
+					doc.setTextFormat("tab count:"+tabCount);
+					extensionActivity.getDocumentation().add(doc);
+
+					if(extensionActivityCounter == 1){
+
+						extensionSequenceFlow.setSource(extensionStartEvent);
+					}else if(tabCount != 0){
+						extensionSequenceFlow.setSource(previousExtensionActivity);
+						extensionSequenceFlow.setTarget(extensionActivity);
+					}				
+
+					previousExtensionActivity = extensionActivity;
+
+					extensionProcess.getOwnedFlowElements().add(extensionSequenceFlow);
+					extensionProcess.getOwnedFlowElements().add(extensionActivity);	
+					
+					if(paraIter.hasNext()){
+						paragraph = paraIter.next();
+						s = paragraph.getText();
+						extensionMatcher = extensionPattern.matcher(paragraph.getText());
+						numID = paragraph.getNumID();
+						
+					}else{
+						break;
+					}
+					
+				}// end while
+				
+				EndEvent extensionEndEvent = factory.createEndEvent();
+				SequenceFlow extensionSequenceFlow = factory.createSequenceFlow();
+				extensionSequenceFlow.setSource(previousExtensionActivity);
+				extensionSequenceFlow.setTarget(extensionEndEvent);
+				
+				extensionProcess.getOwnedFlowElements().add(previousExtensionActivity);
+				extensionProcess.getOwnedFlowElements().add(extensionSequenceFlow);
+				extensionProcess.getOwnedFlowElements().add(extensionEndEvent);
+
+				//useCase.setMainFlow(extensionProcess);
+				useCase.getAlternativeFlows().add(extensionProcess);
+				specification.getOwnedProcess().add(extensionProcess);
+
+				paragraphNotHandled = true;
+			}
+			
+			break;
+			
 
 		case MAIN_SUCCESS_SCENARIO :
 
@@ -428,8 +534,8 @@ public class UseCase2BusinessProcessModelConverter {
 			 * and there might be a whitespace(only one)
 			 */
 			String mainFlowActivityPattern = "(([1-9][0-9]*[.][ ]?)[A-Z].*)";
-			Pattern p = Pattern.compile(mainFlowActivityPattern);
-			Matcher matcher = p.matcher(paragraph.getText());
+			Pattern pattern = Pattern.compile(mainFlowActivityPattern);
+			Matcher matcher = pattern.matcher(paragraph.getText());
 
 			int activityCounter = 0;
 
@@ -475,7 +581,7 @@ public class UseCase2BusinessProcessModelConverter {
 
 					if(paraIter.hasNext()){
 						paragraph = paraIter.next();
-						matcher = p.matcher(paragraph.getText());
+						matcher = pattern.matcher(paragraph.getText());
 						numID = paragraph.getNumID();
 					}else{
 						break;

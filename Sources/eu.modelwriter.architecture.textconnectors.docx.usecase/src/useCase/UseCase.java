@@ -95,7 +95,7 @@ public interface UseCase extends NamedElement {
 	void setMainFlow(useCase.Process value);
 
 	/**
-	 * Returns the value of the '<em><b>Alternative Flows</b></em>' reference list.
+	 * Returns the value of the '<em><b>Alternative Flows</b></em>' containment reference list.
 	 * The list contents are of type {@link useCase.Process}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -103,9 +103,9 @@ public interface UseCase extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Alternative Flows</em>' reference list.
+	 * @return the value of the '<em>Alternative Flows</em>' containment reference list.
 	 * @see useCase.UseCasePackage#getUseCase_AlternativeFlows()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<useCase.Process> getAlternativeFlows();

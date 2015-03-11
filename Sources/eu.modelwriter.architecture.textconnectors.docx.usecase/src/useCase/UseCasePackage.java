@@ -268,7 +268,7 @@ public interface UseCasePackage extends EPackage {
 	int USE_CASE__MAÝN_FLOW = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Alternative Flows</b></em>' reference list.
+	 * The feature id for the '<em><b>Alternative Flows</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1453,10 +1453,10 @@ public interface UseCasePackage extends EPackage {
 	EReference getUseCase_MainFlow();
 
 	/**
-	 * Returns the meta object for the reference list '{@link useCase.UseCase#getAlternativeFlows <em>Alternative Flows</em>}'.
+	 * Returns the meta object for the containment reference list '{@link useCase.UseCase#getAlternativeFlows <em>Alternative Flows</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Alternative Flows</em>'.
+	 * @return the meta object for the containment reference list '<em>Alternative Flows</em>'.
 	 * @see useCase.UseCase#getAlternativeFlows()
 	 * @see #getUseCase()
 	 * @generated
@@ -1922,7 +1922,7 @@ public interface UseCasePackage extends EPackage {
 		EReference USE_CASE__MAÝN_FLOW = eINSTANCE.getUseCase_MainFlow();
 
 		/**
-		 * The meta object literal for the '<em><b>Alternative Flows</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Alternative Flows</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

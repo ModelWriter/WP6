@@ -24,7 +24,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mainFlow" eType="#//Process"
         eOpposite="#//Process/definedAt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="alternativeFlows" upperBound="-1"
-        eType="#//Process"/>
+        eType="#//Process" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Interest" eSuperTypes="#//Element">

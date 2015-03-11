@@ -3,21 +3,14 @@
 package useCase.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import useCase.Actor;
 import useCase.Interest;
 import useCase.UseCase;
@@ -71,7 +64,7 @@ public class UseCaseImpl extends NamedElementImpl implements UseCase {
 	protected useCase.Process mainFlow;
 
 	/**
-	 * The cached value of the '{@link #getAlternativeFlows() <em>Alternative Flows</em>}' reference list.
+	 * The cached value of the '{@link #getAlternativeFlows() <em>Alternative Flows</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAlternativeFlows()
@@ -216,7 +209,7 @@ public class UseCaseImpl extends NamedElementImpl implements UseCase {
 	 */
 	public EList<useCase.Process> getAlternativeFlows() {
 		if (alternativeFlows == null) {
-			alternativeFlows = new EObjectResolvingEList<useCase.Process>(useCase.Process.class, this, UseCasePackage.USE_CASE__ALTERNATÝVE_FLOWS);
+			alternativeFlows = new EObjectContainmentEList<useCase.Process>(useCase.Process.class, this, UseCasePackage.USE_CASE__ALTERNATÝVE_FLOWS);
 		}
 		return alternativeFlows;
 	}
@@ -249,6 +242,8 @@ public class UseCaseImpl extends NamedElementImpl implements UseCase {
 				return ((InternalEList<?>)getOwnedStakeholderInterest()).basicRemove(otherEnd, msgs);
 			case UseCasePackage.USE_CASE__MAÝN_FLOW:
 				return basicSetMainFlow(null, msgs);
+			case UseCasePackage.USE_CASE__ALTERNATÝVE_FLOWS:
+				return ((InternalEList<?>)getAlternativeFlows()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
