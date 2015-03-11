@@ -288,335 +288,374 @@ public class UseCase2BusinessProcessModelConverter {
 
 	 */
 
-	// Creates Node and its documentation
-	private static void createNamedNode(XWPFParagraph paragraph) {
-		// TODO Auto-generated method stub
-
-
-
-	}
-
 
 	private static void createKeyValue(UseCase useCase) {
 		// TODO Auto-generated method stub
 
 		String[] values = paragraph.getText().split(":");
-		BigInteger numID = null;
-		int numberingID = -1;
-		XWPFNum num = null;
+		//BigInteger numID = null;
+		//int numberingID = -1;
+		//XWPFNum num = null;
 
 		switch(values[0]){
 		
 		case PRIMARY_ACTOR : 
-			Actor actor = factory.createActor();
-			actor.setName(values[1]);
-			useCase.setPrimaryActor(actor);
-			specification.getOwnedActor().add(actor);
+			
+			handlePrimaryActor(useCase);
 			break;
 
 		case STAKEHOLDERS_AND_INTERESTS : 
 
-			if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
-
-				paragraph = paraIter.next();
-				numID = paragraph.getNumID();
-
-				if(numID != null){
-
-					// Iterating through the numbers
-					while(numID != null && paraIter.hasNext()){
-
-						String[] v = paragraph.getText().split(":");
-
-						Interest interest = factory.createInterest();
-
-						Actor interestActor = factory.createActor();
-						interestActor.setName(v[0]);
-
-						Documentation doc = factory.createDocumentation();
-						doc.setText(v[1]);
-
-						interest.setActor(interestActor);
-						interest.getDocumentation().add(doc);
-
-						useCase.getOwnedStakeholderInterest().add(interest);
-
-						specification.getOwnedActor().add(interestActor);
-
-						paragraphNotHandled = true;
-						paragraph = paraIter.next();
-						numID = paragraph.getNumID();
-					}// end while
-				}//end if
-
-			}// end if
+			handleStakeholdersAndInterest(useCase);
 			break;
 
 		case PRECONDITION :
 
-			if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
-
-				paragraph = paraIter.next();
-				numID = paragraph.getNumID();
-
-				if(numID != null){
-
-					// Iterating through the numbers
-					while(numID != null && paraIter.hasNext()){
-
-						StartEvent startEvent = factory.createStartEvent();
-						Documentation doc = factory.createDocumentation();
-						doc.setText(paragraph.getText());
-
-						Process process = factory.createProcess();
-						process.setDefinedAt(useCase);
-						startEvent.getDocumentation().add(doc);
-						process.getOwnedFlowElements().add(startEvent);
-
-						specification.getOwnedProcess().add(process);
-
-						paragraphNotHandled = true;
-						paragraph = paraIter.next();
-						numID = paragraph.getNumID();
-
-					}// end while
-				}//end if
-
-			}
+			handlePreconditions(useCase);
 			break;
 
 		case SUCCESS_GUARANTEE :
 
-			if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
-
-				paragraph = paraIter.next();
-				numID = paragraph.getNumID();
-
-				if(numID != null){
-
-					// Iterating through the numbers
-					while(numID != null && paraIter.hasNext()){
-
-						EndEvent endEvent = factory.createEndEvent();
-						Documentation doc = factory.createDocumentation();
-						doc.setText(paragraph.getText());
-
-						Process process = factory.createProcess();
-						process.setDefinedAt(useCase);
-						endEvent.getDocumentation().add(doc);
-						process.getOwnedFlowElements().add(endEvent);
-
-						specification.getOwnedProcess().add(process);
-
-						paragraphNotHandled = true;
-						paragraph = paraIter.next();
-						numID = paragraph.getNumID();
-
-					}// end while
-				}//end if
-
-			}
+			handlePostconditions(useCase);
 			break;
 			
 		case EXTENSIONS :
 			
-			paragraph = paraIter.next();
-			//NumID = paragraph.getNumID();
-			String s = paragraph.getText();
-			Activity previousExtensionActivity = null;
-			Process previousExtensionProcess = null;
-			// Get the TAB count '\t'
-			int tabCount = 0;
-			int extensionActivityCounter = 0;
-			
-			String extensionActivityPattern = "((([1-9]|[*])[a-z][.][ ]?)[A-Z].*)";
-			Pattern extensionPattern = Pattern.compile(extensionActivityPattern);
-			Matcher extensionMatcher = extensionPattern.matcher(paragraph.getText());
-			
-			Process extensionProcess = null; 
-
-			
-			if(extensionMatcher.matches()){
-				
-				StartEvent extensionStartEvent = factory.createStartEvent();
-				
-				
-				while(paragraph != null && paragraph.getText().trim().length()>0){
-
-					extensionActivityCounter++;
-					
-					SequenceFlow extensionSequenceFlow = factory.createSequenceFlow();
-					Activity extensionActivity = factory.createActivity();
-
-					// get the TAB('\t') count
-					tabCount = s.length() - s.replaceAll("\t", "").length();
-					
-					// new process
-					if(tabCount == 0){
-						
-						if(extensionProcess != null){
-							previousExtensionProcess = extensionProcess;
-							useCase.getAlternativeFlows().add(previousExtensionProcess);
-							specification.getOwnedProcess().add(previousExtensionProcess);
-						}
-						
-						extensionProcess = factory.createProcess();
-						
-						//extensionProcess.setDefinedAt(useCase);
-						
-						// first process of the extensions part
-						if(extensionActivityCounter == 1){
-							
-							extensionProcess.getOwnedFlowElements().add(extensionStartEvent);
-						}
-					}
-					
-					String[] v = paragraph.getText().split("\\.");
-
-					extensionActivity.setLabel(v[0]);
-
-					Documentation doc = factory.createDocumentation();
-					doc.setText(v[1]);
-					doc.setTextFormat("tab count:"+tabCount);
-					extensionActivity.getDocumentation().add(doc);
-
-					if(extensionActivityCounter == 1){
-
-						extensionSequenceFlow.setSource(extensionStartEvent);
-					}else if(tabCount != 0){
-						extensionSequenceFlow.setSource(previousExtensionActivity);
-						extensionSequenceFlow.setTarget(extensionActivity);
-					}				
-
-					previousExtensionActivity = extensionActivity;
-
-					extensionProcess.getOwnedFlowElements().add(extensionSequenceFlow);
-					extensionProcess.getOwnedFlowElements().add(extensionActivity);	
-					
-					if(paraIter.hasNext()){
-						paragraph = paraIter.next();
-						s = paragraph.getText();
-						extensionMatcher = extensionPattern.matcher(paragraph.getText());
-						numID = paragraph.getNumID();
-						
-					}else{
-						break;
-					}
-					
-				}// end while
-				
-				EndEvent extensionEndEvent = factory.createEndEvent();
-				SequenceFlow extensionSequenceFlow = factory.createSequenceFlow();
-				extensionSequenceFlow.setSource(previousExtensionActivity);
-				extensionSequenceFlow.setTarget(extensionEndEvent);
-				
-				extensionProcess.getOwnedFlowElements().add(previousExtensionActivity);
-				extensionProcess.getOwnedFlowElements().add(extensionSequenceFlow);
-				extensionProcess.getOwnedFlowElements().add(extensionEndEvent);
-
-				//useCase.setMainFlow(extensionProcess);
-				useCase.getAlternativeFlows().add(extensionProcess);
-				specification.getOwnedProcess().add(extensionProcess);
-
-				paragraphNotHandled = true;
-			}
-			
+			handleAlternativeFlows(useCase);		
 			break;
 			
 
 		case MAIN_SUCCESS_SCENARIO :
 
-			paragraph = paraIter.next();
-			numID = paragraph.getNumID();
-			Activity previousActivity = null;
-
-			/** Activity must start with a positive integer and continue with dot('.')
-			 * and there might be a whitespace(only one)
-			 */
-			String mainFlowActivityPattern = "(([1-9][0-9]*[.][ ]?)[A-Z].*)";
-			Pattern pattern = Pattern.compile(mainFlowActivityPattern);
-			Matcher matcher = pattern.matcher(paragraph.getText());
-
-			int activityCounter = 0;
-
-			Process process = factory.createProcess();
-			process.setDefinedAt(useCase);
-
-
-			if(matcher.matches()){
-
-				// Iterating through the numbers
-
-				StartEvent startEvent = factory.createStartEvent();
-				process.getOwnedFlowElements().add(startEvent);
-
-				while(matcher.matches() && paragraph != null){
-
-					activityCounter++;
-					// to-do
-					SequenceFlow sequenceFlow = factory.createSequenceFlow();
-					Activity activity = factory.createActivity();
-
-					String[] v = paragraph.getText().split("\\.");
-
-					activity.setLabel(v[0]);
-
-					Documentation doc = factory.createDocumentation();
-					doc.setText(v[1]);
-					activity.getDocumentation().add(doc);
-
-					if(activityCounter == 1){
-
-						sequenceFlow.setSource(startEvent);
-					}else{
-						sequenceFlow.setSource(previousActivity);
-					}
-
-					sequenceFlow.setTarget(activity);
-
-					previousActivity = activity;
-
-					process.getOwnedFlowElements().add(sequenceFlow);
-					process.getOwnedFlowElements().add(activity);							
-
-					if(paraIter.hasNext()){
-						paragraph = paraIter.next();
-						matcher = pattern.matcher(paragraph.getText());
-						numID = paragraph.getNumID();
-					}else{
-						break;
-					}
-						
-
-				}// end while
-
-				EndEvent endEvent = factory.createEndEvent();
-				SequenceFlow sequenceFlow = factory.createSequenceFlow();
-				sequenceFlow.setSource(previousActivity);
-				sequenceFlow.setTarget(endEvent);
-				
-				process.getOwnedFlowElements().add(previousActivity);
-				process.getOwnedFlowElements().add(endEvent);
-				process.getOwnedFlowElements().add(sequenceFlow);
-
-				useCase.setMainFlow(process);
-				specification.getOwnedProcess().add(process);
-
-				paragraphNotHandled = true;
-			}
-
+			handleMainFlow(useCase);
 			break;
-
+			
 		default: 
 
 			paragraphNotHandled = false; 
 			break;
 
-
 		}
 
 	}
 
+
+	private static void handleMainFlow(UseCase useCase) {
+		
+		BigInteger numID = null;
+
+		paragraph = paraIter.next();
+		numID = paragraph.getNumID();
+		Activity previousActivity = null;
+
+		/** Activity must start with a positive integer and continue with dot('.')
+		 * and there might be a whitespace(only one)
+		 */
+		String mainFlowActivityPattern = "(([1-9][0-9]*[.][ ]?)[A-Z].*)";
+		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
+		Matcher matcher = pattern.matcher(paragraph.getText());
+
+		int activityCounter = 0;
+
+		Process process = factory.createProcess();
+		process.setDefinedAt(useCase);
+
+
+		if(matcher.matches()){
+
+			// Iterating through the numbers
+
+			StartEvent startEvent = factory.createStartEvent();
+			process.getOwnedFlowElements().add(startEvent);
+
+			while(matcher.matches() && paragraph != null){
+
+				activityCounter++;
+				// to-do
+				SequenceFlow sequenceFlow = factory.createSequenceFlow();
+				Activity activity = factory.createActivity();
+
+				String[] v = paragraph.getText().split("\\.");
+
+				activity.setLabel(v[0]);
+
+				Documentation doc = factory.createDocumentation();
+				doc.setText(v[1]);
+				activity.getDocumentation().add(doc);
+
+				if(activityCounter == 1){
+
+					sequenceFlow.setSource(startEvent);
+				}else{
+					sequenceFlow.setSource(previousActivity);
+				}
+
+				sequenceFlow.setTarget(activity);
+
+				previousActivity = activity;
+
+				process.getOwnedFlowElements().add(sequenceFlow);
+				process.getOwnedFlowElements().add(activity);							
+
+				if(paraIter.hasNext()){
+					paragraph = paraIter.next();
+					matcher = pattern.matcher(paragraph.getText());
+					numID = paragraph.getNumID();
+				}else{
+					break;
+				}
+					
+
+			}// end while
+
+			EndEvent endEvent = factory.createEndEvent();
+			SequenceFlow sequenceFlow = factory.createSequenceFlow();
+			sequenceFlow.setSource(previousActivity);
+			sequenceFlow.setTarget(endEvent);
+			
+			process.getOwnedFlowElements().add(previousActivity);
+			process.getOwnedFlowElements().add(endEvent);
+			process.getOwnedFlowElements().add(sequenceFlow);
+
+			useCase.setMainFlow(process);
+			specification.getOwnedProcess().add(process);
+
+			paragraphNotHandled = true;
+		}
+		
+	}
+
+	private static void handleAlternativeFlows(UseCase useCase) {
+		
+		BigInteger numID = null;
+		paragraph = paraIter.next();
+		//NumID = paragraph.getNumID();
+		String s = paragraph.getText();
+		Activity previousExtensionActivity = null;
+		Process previousExtensionProcess = null;
+		// Get the TAB count '\t'
+		int tabCount = 0;
+		int extensionActivityCounter = 0;
+		
+		String extensionActivityPattern = "((([1-9]|[*])[a-z][.][ ]?)[A-Z].*)";
+		Pattern extensionPattern = Pattern.compile(extensionActivityPattern);
+		Matcher extensionMatcher = extensionPattern.matcher(paragraph.getText());
+		
+		Process extensionProcess = null; 
+		
+		if(extensionMatcher.matches()){
+			
+			StartEvent extensionStartEvent = factory.createStartEvent();
+					
+			while(paragraph != null && paragraph.getText().trim().length()>0){
+
+				extensionActivityCounter++;
+				
+				SequenceFlow extensionSequenceFlow = factory.createSequenceFlow();
+				Activity extensionActivity = factory.createActivity();
+
+				// get the TAB('\t') count
+				tabCount = s.length() - s.replaceAll("\t", "").length();
+				
+				// new process
+				if(tabCount == 0){
+					
+					if(extensionProcess != null){
+						previousExtensionProcess = extensionProcess;
+						useCase.getAlternativeFlows().add(previousExtensionProcess);
+						specification.getOwnedProcess().add(previousExtensionProcess);
+					}
+					
+					extensionProcess = factory.createProcess();
+					
+					//extensionProcess.setDefinedAt(useCase);
+					
+					// first process of the extensions part
+					if(extensionActivityCounter == 1){
+						
+						extensionProcess.getOwnedFlowElements().add(extensionStartEvent);
+					}
+				}
+				
+				String[] v = paragraph.getText().split("\\.");
+
+				extensionActivity.setLabel(v[0].substring(tabCount));
+
+				Documentation doc = factory.createDocumentation();
+				doc.setText(v[1]);
+				doc.setTextFormat("tab count:"+tabCount);
+				extensionActivity.getDocumentation().add(doc);
+
+				if(extensionActivityCounter == 1){
+
+					extensionSequenceFlow.setSource(extensionStartEvent);
+				}else if(tabCount != 0){
+					extensionSequenceFlow.setSource(previousExtensionActivity);
+					extensionSequenceFlow.setTarget(extensionActivity);
+				}				
+
+				previousExtensionActivity = extensionActivity;
+
+				extensionProcess.getOwnedFlowElements().add(extensionSequenceFlow);
+				extensionProcess.getOwnedFlowElements().add(extensionActivity);	
+				
+				if(paraIter.hasNext()){
+					paragraph = paraIter.next();
+					s = paragraph.getText();
+					extensionMatcher = extensionPattern.matcher(paragraph.getText());
+					numID = paragraph.getNumID();
+					
+				}else{
+					break;
+				}
+				
+			}// end while
+			
+			EndEvent extensionEndEvent = factory.createEndEvent();
+			SequenceFlow extensionSequenceFlow = factory.createSequenceFlow();
+			extensionSequenceFlow.setSource(previousExtensionActivity);
+			extensionSequenceFlow.setTarget(extensionEndEvent);
+			
+			extensionProcess.getOwnedFlowElements().add(previousExtensionActivity);
+			extensionProcess.getOwnedFlowElements().add(extensionSequenceFlow);
+			extensionProcess.getOwnedFlowElements().add(extensionEndEvent);
+
+			//useCase.setMainFlow(extensionProcess);
+			useCase.getAlternativeFlows().add(extensionProcess);
+			specification.getOwnedProcess().add(extensionProcess);
+
+			paragraphNotHandled = true;
+		}
+		
+	}
+
+
+	private static void handlePostconditions(UseCase useCase) {
+
+		String[] values = paragraph.getText().split(":");
+		BigInteger numID = null;
+		
+		if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
+
+			paragraph = paraIter.next();
+			numID = paragraph.getNumID();
+
+			if(numID != null){
+
+				// Iterating through the numbers
+				while(numID != null && paraIter.hasNext()){
+
+					EndEvent endEvent = factory.createEndEvent();
+					Documentation doc = factory.createDocumentation();
+					doc.setText(paragraph.getText());
+
+					Process process = factory.createProcess();
+					process.setDefinedAt(useCase);
+					endEvent.getDocumentation().add(doc);
+					process.getOwnedFlowElements().add(endEvent);
+
+					specification.getOwnedProcess().add(process);
+
+					paragraphNotHandled = true;
+					paragraph = paraIter.next();
+					numID = paragraph.getNumID();
+
+				}// end while
+			}//end if
+
+		}
+		
+	}
+
+	private static void handlePreconditions(UseCase useCase) {
+		
+		String[] values = paragraph.getText().split(":");
+		BigInteger numID = null;
+		
+		if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
+
+			paragraph = paraIter.next();
+			numID = paragraph.getNumID();
+
+			if(numID != null){
+
+				// Iterating through the numbers
+				while(numID != null && paraIter.hasNext()){
+
+					StartEvent startEvent = factory.createStartEvent();
+					Documentation doc = factory.createDocumentation();
+					doc.setText(paragraph.getText());
+
+					Process process = factory.createProcess();
+					process.setDefinedAt(useCase);
+					startEvent.getDocumentation().add(doc);
+					process.getOwnedFlowElements().add(startEvent);
+
+					specification.getOwnedProcess().add(process);
+
+					paragraphNotHandled = true;
+					paragraph = paraIter.next();
+					numID = paragraph.getNumID();
+
+				}// end while
+			}//end if
+
+		}
+		
+	}
+
+	private static void handleStakeholdersAndInterest(UseCase useCase) {
+		
+		String[] values = paragraph.getText().split(":");
+		BigInteger numID = null;
+		
+		if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
+
+			paragraph = paraIter.next();
+			numID = paragraph.getNumID();
+
+			// numbering
+			if(numID != null){
+
+				// Iterating through the numbers
+				while(numID != null && paraIter.hasNext()){
+
+					String[] v = paragraph.getText().split(":");
+
+					Interest interest = factory.createInterest();
+
+					Actor interestActor = factory.createActor();
+					interestActor.setName(v[0]);
+
+					Documentation doc = factory.createDocumentation();
+					doc.setText(v[1]);
+
+					interest.setActor(interestActor);
+					interest.getDocumentation().add(doc);
+
+					useCase.getOwnedStakeholderInterest().add(interest);
+
+					specification.getOwnedActor().add(interestActor);
+
+					paragraphNotHandled = true;
+					paragraph = paraIter.next();
+					numID = paragraph.getNumID();
+				}// end while
+			}//end if
+
+		}// end if
+		
+	}
+
+	private static void handlePrimaryActor(UseCase useCase) {
+		
+		String[] values = paragraph.getText().split(":");
+		Actor actor = factory.createActor();
+		actor.setName(values[1]);
+		useCase.setPrimaryActor(actor);
+		specification.getOwnedActor().add(actor);
+			
+	}
 
 	/**
 	 * This extracts a paragraph style.
@@ -635,13 +674,6 @@ public class UseCase2BusinessProcessModelConverter {
 	}
 	 */
 
-	// unused
-	private static void createHighLevelNamedNode(XWPFParagraph paragraph) {
-		// TODO Auto-generated method stub
-
-
-
-	}
 
 	/**
 	 * Saves the model instance and writes it to xmi file
@@ -677,8 +709,6 @@ public class UseCase2BusinessProcessModelConverter {
 
 			e.printStackTrace();
 		}
-
-
 
 	}
 
