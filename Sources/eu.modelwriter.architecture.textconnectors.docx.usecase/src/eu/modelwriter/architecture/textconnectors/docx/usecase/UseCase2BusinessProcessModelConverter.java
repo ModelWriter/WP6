@@ -90,18 +90,7 @@ public class UseCase2BusinessProcessModelConverter {
 
 		headingMap = new HashMap<String,Integer>();
 
-		headingMap.put("null",99);
-		headingMap.put("NoSpacing", 0);
-		headingMap.put("Heading1", 1);
-		headingMap.put("Heading2", 2);
-		headingMap.put("Heading3", 3);
-		headingMap.put("Heading4", 4);
-		headingMap.put("Heading5", 5);
-		headingMap.put("Heading6", 6);
-		headingMap.put("Heading7", 7);
-		headingMap.put("Heading8", 8);
-		headingMap.put("Heading9", 9);
-		headingMap.put("ListParagraph", 99);
+		initializeHeadingMap();
 
 		File file = null; 
 		FileInputStream fis = null; 
@@ -121,7 +110,6 @@ public class UseCase2BusinessProcessModelConverter {
 		factory = UseCaseFactory.eINSTANCE;
 		specification = factory.createSpecification();
 		specification.setName("UseCaseSpecification");
-
 
 		paraList = document.getParagraphs(); 
 		paraIter = paraList.iterator(); 
@@ -246,6 +234,24 @@ public class UseCase2BusinessProcessModelConverter {
 		createXMIFile();
 
 	} 
+
+	private static void initializeHeadingMap() {
+		
+		headingMap.put("null",99);
+		headingMap.put("NoSpacing", 0);
+		headingMap.put("Heading1", 1);
+		headingMap.put("Heading2", 2);
+		headingMap.put("Heading3", 3);
+		headingMap.put("Heading4", 4);
+		headingMap.put("Heading5", 5);
+		headingMap.put("Heading6", 6);
+		headingMap.put("Heading7", 7);
+		headingMap.put("Heading8", 8);
+		headingMap.put("Heading9", 9);
+		headingMap.put("ListParagraph", 99);
+		
+	}
+	
 
 	/*
 	 * 
