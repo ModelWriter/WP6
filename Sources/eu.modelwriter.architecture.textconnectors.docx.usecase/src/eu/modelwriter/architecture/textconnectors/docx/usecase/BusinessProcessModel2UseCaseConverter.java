@@ -1,5 +1,6 @@
 package eu.modelwriter.architecture.textconnectors.docx.usecase;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -55,7 +57,7 @@ public class BusinessProcessModel2UseCaseConverter {
 		XWPFStyles newStyles = document.createStyles();
 		newStyles.setStyles(template.getStyle());
 
-		FileOutputStream out = null;
+		FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/Test UceCase.docx"));
 		
 		try {
 
@@ -216,10 +218,11 @@ public class BusinessProcessModel2UseCaseConverter {
 
 		run.setText("Main Success Scenario (or Basic Flow):");
 		run.setBold(true);
-		run.addBreak();
+		//run.addBreak();
 
 		SequenceFlow sequenceFlow = null;
-
+		FlowNode previousController = null;
+		
 		for(FlowElement flowElement : useCase.getMainFlow().getOwnedFlowElements()){
 
 			if(flowElement instanceof SequenceFlow){
@@ -232,19 +235,23 @@ public class BusinessProcessModel2UseCaseConverter {
 				paragraph = document.createParagraph();
 				run = paragraph.createRun();
 
-				if(!(sourceNode instanceof StartEvent)){
+				if(!(sourceNode instanceof StartEvent) && sourceNode != previousController){
 
 					run = paragraph.createRun();
-					run.setText(sourceNode.getLabel() + ". " + sourceNode.getDocumentation().get(0));
+					run.setText(sourceNode.getLabel() + ". " + 
+								sourceNode.getDocumentation().get(0).getText() + ".");
 
 				}
 
 				if(!(targetNode instanceof EndEvent)){
 
 					run = paragraph.createRun();
-					run.setText(targetNode.getLabel() + ". " + targetNode.getDocumentation().get(0));
+					run.setText(targetNode.getLabel() + ". " + 
+								targetNode.getDocumentation().get(0).getText() + ".");
 
 				}
+				
+				previousController = targetNode;
 
 			}
 
@@ -261,7 +268,7 @@ public class BusinessProcessModel2UseCaseConverter {
 		paragraph.setAlignment(ParagraphAlignment.LEFT);
 		run.setText("Stakeholders and Interests:");
 		run.setBold(true);
-		run.addBreak();
+		//run.addBreak();
 
 		for(Interest interest : ownedStakeholderInterest){
 
@@ -271,7 +278,7 @@ public class BusinessProcessModel2UseCaseConverter {
 			run.setText(interest.getActor().getName() + " : " + 
 					interest.getDocumentation().get(0).getText());
 
-			run.addBreak();
+			//run.addBreak();
 		}
 
 	}
@@ -289,7 +296,7 @@ public class BusinessProcessModel2UseCaseConverter {
 
 		XWPFRun run2 = paragraph.createRun();
 		run2.setText(primaryActor.getName());
-		run2.addBreak();
+		//run2.addBreak();
 	}
 
 	private static void writeHeader(String name) {
@@ -300,9 +307,11 @@ public class BusinessProcessModel2UseCaseConverter {
 		paragraph.setStyle("Heading1");
 		paragraph.setAlignment(ParagraphAlignment.LEFT);
 
-		run.setText(name);
+		run.setText(name.toUpperCase());
 		run.setFontFamily("Calibri Light");
-		run.setStrike(true);
+		// TODO alt çizgi eklenicek
+		run.setUnderline(UnderlinePatterns.SINGLE);
+		run.setColor("000000");
 		run.addBreak();
 
 	}
