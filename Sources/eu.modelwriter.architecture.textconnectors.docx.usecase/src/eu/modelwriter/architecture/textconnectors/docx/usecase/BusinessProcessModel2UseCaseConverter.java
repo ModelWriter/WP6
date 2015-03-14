@@ -39,6 +39,17 @@ import useCase.Process;
 
 public class BusinessProcessModel2UseCaseConverter {
 
+	private final static String PRIMARY_ACTOR = "Primary Actor";
+	private final static String STAKEHOLDERS_AND_INTERESTS = "Stakeholders and Interests";
+	private final static String PRECONDITION = "Preconditions";
+	private final static String SUCCESS_GUARANTEE = "Success Guarantee (Postconditions)";
+	//private final static String POSTCONDITION = "Postcondition";
+	private final static String MAIN_SUCCESS_SCENARIO = "Main Success Scenario (or Basic Flow)";
+	//private final static String BASIC_FLOW = "Basic Flow";
+	private final static String EXTENSIONS = "Extensions (or Alternative Flows)";
+	//private final static String ALTERNATIVE_FLOWS = "Alternative Flows";
+
+	
 	private static Resource resource;
 	private static XWPFDocument document;
 
@@ -136,75 +147,82 @@ public class BusinessProcessModel2UseCaseConverter {
 
 		paragraph.setAlignment(ParagraphAlignment.LEFT);
 
-		run.setText("Extensions (or Alternative Flows):");
+		run.setText(EXTENSIONS + ":");
 		run.setBold(true);
 		run.addBreak();
 
 		SequenceFlow sequenceFlow = null;
 		int tabCount = 0;
 
-		for(Process process : useCase.getAlternativeFlows()){
+		for(Process process : useCase.getOwnedAlternativeFlow()){
 
-			for(FlowElement flowElement : process.getOwnedFlowElements()){
+			if(process.getName().equals(PRECONDITION) || process.getName().equals(SUCCESS_GUARANTEE)){
+				
+				continue;
+				
+			}else{
+				
+				for(FlowElement flowElement : process.getOwnedFlowElements()){
 
-				if(flowElement instanceof SequenceFlow){
+					if(flowElement instanceof SequenceFlow){
 
-					sequenceFlow = (SequenceFlow)flowElement;
+						sequenceFlow = (SequenceFlow)flowElement;
 
-					FlowNode sourceNode = (FlowNode)sequenceFlow.getSource();
-					FlowNode targetNode = (FlowNode)sequenceFlow.getTarget();
+						FlowNode sourceNode = (FlowNode)sequenceFlow.getSource();
+						FlowNode targetNode = (FlowNode)sequenceFlow.getTarget();
 
-					paragraph = document.createParagraph();
-					run = paragraph.createRun();
-
-					if(!(sourceNode instanceof StartEvent)){
-
-						if(sourceNode.getDocumentation().get(0).getTextFormat() != null){
-
-							String[] v = sourceNode.getDocumentation().get(0).getTextFormat()
-									.split(":");
-							tabCount = Integer.parseInt(v[1]);
-						}
-
-						String s = "";
-
-						for(int i = 0; i < tabCount; i++){
-
-							s += '\t';
-						}
-
+						paragraph = document.createParagraph();
 						run = paragraph.createRun();
-						run.setText(s + sourceNode.getLabel() + ". " + 
-								sourceNode.getDocumentation().get(0));
 
-					}
+						if(!(sourceNode instanceof StartEvent)){
 
-					if(!(targetNode instanceof EndEvent)){
+							if(sourceNode.getDocumentation().get(0).getTextFormat() != null){
 
-						if(sourceNode.getDocumentation().get(0).getTextFormat() != null){
+								String[] v = sourceNode.getDocumentation().get(0).getTextFormat()
+										.split(":");
+								tabCount = Integer.parseInt(v[1]);
+							}
 
-							String[] v = sourceNode.getDocumentation().get(0).getTextFormat()
-									.split(":");
-							tabCount = Integer.parseInt(v[1]);
+							String s = "";
+
+							for(int i = 0; i < tabCount; i++){
+
+								s += '\t';
+							}
+
+							run = paragraph.createRun();
+							run.setText(s + sourceNode.getLabel() + ". " + 
+									sourceNode.getDocumentation().get(0));
+
 						}
 
-						String s = "";
+						if(!(targetNode instanceof EndEvent)){
 
-						for(int i = 0; i < tabCount; i++){
+							if(targetNode.getDocumentation().get(0).getTextFormat() != null){
 
-							s += '\t';
-							// TODO CTR ctr = run.getCTR();
-							// ctr.addNewTab();
+								String[] v = sourceNode.getDocumentation().get(0).getTextFormat()
+										.split(":");
+								tabCount = Integer.parseInt(v[1]);
+							}
+
+							String s = "";
+
+							for(int i = 0; i < tabCount; i++){
+
+								s += '\t';
+								// TODO CTR ctr = run.getCTR();
+								// ctr.addNewTab();
+							}
+
+							run = paragraph.createRun();
+							run.setText(s + targetNode.getLabel() + ". " + 
+									targetNode.getDocumentation().get(0));
+
 						}
-
-						run = paragraph.createRun();
-						run.setText(s + targetNode.getLabel() + ". " + 
-								targetNode.getDocumentation().get(0));
 
 					}
 
 				}
-
 			}
 		}
 	}
@@ -223,7 +241,7 @@ public class BusinessProcessModel2UseCaseConverter {
 		SequenceFlow sequenceFlow = null;
 		FlowNode previousController = null;
 		
-		for(FlowElement flowElement : useCase.getMainFlow().getOwnedFlowElements()){
+		for(FlowElement flowElement : useCase.getOwnedMainFlow().getOwnedFlowElements()){
 
 			if(flowElement instanceof SequenceFlow){
 
@@ -275,15 +293,18 @@ public class BusinessProcessModel2UseCaseConverter {
 			paragraph = document.createParagraph();
 			run = paragraph.createRun();
 
-			run.setText(interest.getActor().getName() + " : " + 
-					interest.getDocumentation().get(0).getText());
+			for(Actor interestActor : interest.getActor()){
+				
+				run.setText(interestActor.getName() + " : " + 
+						interest.getDocumentation().get(interest.getActor().indexOf(interestActor)).getText());
+			}
 
 			//run.addBreak();
 		}
 
 	}
 
-	private static void writePrimaryActor(Actor primaryActor) {
+	private static void writePrimaryActor(EList<Actor> eList) {
 
 		XWPFParagraph paragraph = document.createParagraph();
 		XWPFRun run = paragraph.createRun();
@@ -294,8 +315,16 @@ public class BusinessProcessModel2UseCaseConverter {
 		run.setFontFamily("Calibri");
 		run.setBold(true);
 
-		XWPFRun run2 = paragraph.createRun();
-		run2.setText(primaryActor.getName());
+		String actors = "";
+		
+		for(Actor actor : eList){
+			
+			run = paragraph.createRun();
+			actors += actor.getName() + " ";
+		}
+		
+		run.setText(actors.trim().replaceAll(" ", ", "));
+		
 		//run2.addBreak();
 	}
 

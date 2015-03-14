@@ -18,8 +18,14 @@ import useCase.Interest;
 public interface UseCaseValidator {
 	boolean validate();
 
+	boolean validatePrimaryActor(EList<Actor> value);
+
 	boolean validatePrimaryActor(Actor value);
 	boolean validateOwnedStakeholderInterest(EList<Interest> value);
+	boolean validateOwnedMainFlow(useCase.Process value);
+
+	boolean validateOwnedAlternativeFlow(EList<useCase.Process> value);
+
 	boolean validateMainFlow(useCase.Process value);
 	boolean validateAlternativeFlows(EList<useCase.Process> value);
 }

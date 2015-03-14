@@ -2,10 +2,10 @@
  */
 package useCase.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import useCase.Actor;
 import useCase.Interest;
 import useCase.UseCasePackage;
@@ -25,14 +25,14 @@ import useCase.UseCasePackage;
  */
 public class InterestImpl extends ElementImpl implements Interest {
 	/**
-	 * The cached value of the '{@link #getActor() <em>Actor</em>}' reference.
+	 * The cached value of the '{@link #getActor() <em>Actor</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getActor()
 	 * @generated
 	 * @ordered
 	 */
-	protected Actor actor;
+	protected EList<Actor> actor;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -58,37 +58,11 @@ public class InterestImpl extends ElementImpl implements Interest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Actor getActor() {
-		if (actor != null && actor.eIsProxy()) {
-			InternalEObject oldActor = (InternalEObject)actor;
-			actor = (Actor)eResolveProxy(oldActor);
-			if (actor != oldActor) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UseCasePackage.INTEREST__ACTOR, oldActor, actor));
-			}
+	public EList<Actor> getActor() {
+		if (actor == null) {
+			actor = new EObjectResolvingEList<Actor>(Actor.class, this, UseCasePackage.INTEREST__ACTOR);
 		}
 		return actor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Actor basicGetActor() {
-		return actor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setActor(Actor newActor) {
-		Actor oldActor = actor;
-		actor = newActor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UseCasePackage.INTEREST__ACTOR, oldActor, actor));
 	}
 
 	/**
@@ -100,8 +74,7 @@ public class InterestImpl extends ElementImpl implements Interest {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UseCasePackage.INTEREST__ACTOR:
-				if (resolve) return getActor();
-				return basicGetActor();
+				return getActor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,11 +84,13 @@ public class InterestImpl extends ElementImpl implements Interest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case UseCasePackage.INTEREST__ACTOR:
-				setActor((Actor)newValue);
+				getActor().clear();
+				getActor().addAll((Collection<? extends Actor>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -130,7 +105,7 @@ public class InterestImpl extends ElementImpl implements Interest {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case UseCasePackage.INTEREST__ACTOR:
-				setActor((Actor)null);
+				getActor().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -145,7 +120,7 @@ public class InterestImpl extends ElementImpl implements Interest {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case UseCasePackage.INTEREST__ACTOR:
-				return actor != null;
+				return actor != null && !actor.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

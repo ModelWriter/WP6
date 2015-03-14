@@ -6,37 +6,30 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.text.Document;
 
-import org.apache.poi.extractor.ExtractorFactory;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFNum;
 import org.apache.poi.xwpf.usermodel.XWPFNumbering;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
-import org.apache.poi.xwpf.usermodel.XWPFStyle;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTPPr;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRPr;
 
 import useCase.Activity;
 import useCase.Actor;
+import useCase.Documentation;
 import useCase.EndEvent;
 import useCase.Interest;
 import useCase.Process;
@@ -45,7 +38,6 @@ import useCase.Specification;
 import useCase.StartEvent;
 import useCase.UseCase;
 import useCase.UseCaseFactory;
-import useCase.Documentation;
 
 
 public class UseCase2BusinessProcessModelConverter {
@@ -54,12 +46,12 @@ public class UseCase2BusinessProcessModelConverter {
 	private final static String PRIMARY_ACTOR = "Primary Actor";
 	private final static String STAKEHOLDERS_AND_INTERESTS = "Stakeholders and Interests";
 	private final static String PRECONDITION = "Preconditions";
-	private final static String SUCCESS_GUARANTEE = "Success Guarantee";
-	private final static String POSTCONDITION = "Postcondition";
+	private final static String SUCCESS_GUARANTEE = "Success Guarantee (Postconditions)";
+	//private final static String POSTCONDITION = "Postcondition";
 	private final static String MAIN_SUCCESS_SCENARIO = "Main Success Scenario (or Basic Flow)";
-	private final static String BASIC_FLOW = "Basic Flow";
+	//private final static String BASIC_FLOW = "Basic Flow";
 	private final static String EXTENSIONS = "Extensions (or Alternative Flows)";
-	private final static String ALTERNATIVE_FLOWS = "Alternative Flows";
+	//private final static String ALTERNATIVE_FLOWS = "Alternative Flows";
 
 
 	private final static String filename = "C:/Users/2/Desktop/UseCaseDocumentation2.docx"; 
@@ -185,7 +177,7 @@ public class UseCase2BusinessProcessModelConverter {
 
 							for(XWPFRun run : paragraph.getRuns()){
 
-								String runText = run.getText(0);
+								String runText = run.getText(0).trim();
 								String key = values[0] + ":";
 
 								// key-value 
@@ -364,16 +356,16 @@ public class UseCase2BusinessProcessModelConverter {
 		int activityCounter = 0;
 
 		Process process = factory.createProcess();
-		process.setDefinedAt(useCase);
+		//process.setDefinedAt(useCase);
+		process.setName(MAIN_SUCCESS_SCENARIO);
 
 
+		StartEvent startEvent = factory.createStartEvent();
+		process.getOwnedFlowElements().add(startEvent);
+		
 		if(matcher.matches()){
 
-			// Iterating through the numbers
-
-			StartEvent startEvent = factory.createStartEvent();
-			process.getOwnedFlowElements().add(startEvent);
-
+			// Iterating through the numbers			
 			while(matcher.matches() && paragraph != null){
 
 				activityCounter++;
@@ -413,21 +405,58 @@ public class UseCase2BusinessProcessModelConverter {
 					
 
 			}// end while
-
-			EndEvent endEvent = factory.createEndEvent();
-			SequenceFlow sequenceFlow = factory.createSequenceFlow();
-			sequenceFlow.setSource(previousActivity);
-			sequenceFlow.setTarget(endEvent);
-			
-			process.getOwnedFlowElements().add(previousActivity);
-			process.getOwnedFlowElements().add(endEvent);
-			process.getOwnedFlowElements().add(sequenceFlow);
-
-			useCase.setMainFlow(process);
-			specification.getOwnedProcess().add(process);
-
-			paragraphNotHandled = true;
+		
 		}
+		
+		// ordered list
+		else{
+				
+			while(numID != null){
+				
+				activityCounter++;
+				// to-do
+				SequenceFlow sequenceFlow = factory.createSequenceFlow();
+				Activity activity = factory.createActivity();
+
+				activity.setLabel("" + activityCounter);
+
+				Documentation doc = factory.createDocumentation();
+				doc.setText(paragraph.getText());
+				activity.getDocumentation().add(doc);
+
+				if(activityCounter == 1){
+
+					sequenceFlow.setSource(startEvent);
+				}else{
+					sequenceFlow.setSource(previousActivity);
+				}
+
+				sequenceFlow.setTarget(activity);
+
+				previousActivity = activity;
+
+				process.getOwnedFlowElements().add(sequenceFlow);
+				process.getOwnedFlowElements().add(activity);	
+				
+				paragraph = paraIter.next();
+				numID = paragraph.getNumID();
+			}
+		}
+		
+		EndEvent endEvent = factory.createEndEvent();
+		SequenceFlow sequenceFlow = factory.createSequenceFlow();
+		sequenceFlow.setSource(previousActivity);
+		sequenceFlow.setTarget(endEvent);
+		
+		process.getOwnedFlowElements().add(previousActivity);
+		process.getOwnedFlowElements().add(sequenceFlow);
+		process.getOwnedFlowElements().add(endEvent);
+		
+		useCase.setOwnedMainFlow(process);
+		//specification.getOwnedProcess().add(process);
+
+		paragraphNotHandled = true;
+		
 		
 	}
 
@@ -448,7 +477,7 @@ public class UseCase2BusinessProcessModelConverter {
 		Matcher extensionMatcher = extensionPattern.matcher(paragraph.getText());
 		
 		Process extensionProcess = null; 
-		
+		//extensionProcess.setName(EXTENSIONS);
 		if(extensionMatcher.matches()){
 			
 			StartEvent extensionStartEvent = factory.createStartEvent();
@@ -468,12 +497,12 @@ public class UseCase2BusinessProcessModelConverter {
 					
 					if(extensionProcess != null){
 						previousExtensionProcess = extensionProcess;
-						useCase.getAlternativeFlows().add(previousExtensionProcess);
-						specification.getOwnedProcess().add(previousExtensionProcess);
+						useCase.getOwnedAlternativeFlow().add(previousExtensionProcess);
+						
 					}
 					
 					extensionProcess = factory.createProcess();
-					
+					extensionProcess.setName(EXTENSIONS);
 					//extensionProcess.setDefinedAt(useCase);
 					
 					// first process of the extensions part
@@ -495,14 +524,18 @@ public class UseCase2BusinessProcessModelConverter {
 				if(extensionActivityCounter == 1){
 
 					extensionSequenceFlow.setSource(extensionStartEvent);
+					extensionSequenceFlow.setTarget(extensionActivity);
 				}else if(tabCount != 0){
 					extensionSequenceFlow.setSource(previousExtensionActivity);
 					extensionSequenceFlow.setTarget(extensionActivity);
-				}				
+				}
+				
 
 				previousExtensionActivity = extensionActivity;
 
-				extensionProcess.getOwnedFlowElements().add(extensionSequenceFlow);
+				if(extensionSequenceFlow.getSource() != null){
+					extensionProcess.getOwnedFlowElements().add(extensionSequenceFlow);
+				}
 				extensionProcess.getOwnedFlowElements().add(extensionActivity);	
 				
 				if(paraIter.hasNext()){
@@ -527,8 +560,8 @@ public class UseCase2BusinessProcessModelConverter {
 			extensionProcess.getOwnedFlowElements().add(extensionEndEvent);
 
 			//useCase.setMainFlow(extensionProcess);
-			useCase.getAlternativeFlows().add(extensionProcess);
-			specification.getOwnedProcess().add(extensionProcess);
+			previousExtensionProcess = null;
+			useCase.getOwnedAlternativeFlow().add(extensionProcess);
 
 			paragraphNotHandled = true;
 		}
@@ -541,7 +574,7 @@ public class UseCase2BusinessProcessModelConverter {
 		String[] values = paragraph.getText().split(":");
 		BigInteger numID = null;
 		
-		if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
+		if(values.length < 2 || (values.length > 1 && values[1].replaceAll(" ", "").equals(""))){
 
 			paragraph = paraIter.next();
 			numID = paragraph.getNumID();
@@ -556,18 +589,21 @@ public class UseCase2BusinessProcessModelConverter {
 					doc.setText(paragraph.getText());
 
 					Process process = factory.createProcess();
-					process.setDefinedAt(useCase);
+					process.setName(SUCCESS_GUARANTEE);
 					endEvent.getDocumentation().add(doc);
 					process.getOwnedFlowElements().add(endEvent);
-
-					specification.getOwnedProcess().add(process);
-
+					
+					// TODO postcondition için bir taným
+					useCase.getOwnedAlternativeFlow().add(process);
+					
 					paragraphNotHandled = true;
 					paragraph = paraIter.next();
 					numID = paragraph.getNumID();
 
 				}// end while
 			}//end if
+			
+			
 
 		}
 		
@@ -578,7 +614,7 @@ public class UseCase2BusinessProcessModelConverter {
 		String[] values = paragraph.getText().split(":");
 		BigInteger numID = null;
 		
-		if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
+		if(values.length < 2 || (values.length > 1 && values[1].replaceAll(" ", "").equals(""))){
 
 			paragraph = paraIter.next();
 			numID = paragraph.getNumID();
@@ -593,12 +629,13 @@ public class UseCase2BusinessProcessModelConverter {
 					doc.setText(paragraph.getText());
 
 					Process process = factory.createProcess();
-					process.setDefinedAt(useCase);
+					process.setName(PRECONDITION);
 					startEvent.getDocumentation().add(doc);
 					process.getOwnedFlowElements().add(startEvent);
 
-					specification.getOwnedProcess().add(process);
-
+					// TODO precondition için bir taným
+					useCase.getOwnedAlternativeFlow().add(process);
+					
 					paragraphNotHandled = true;
 					paragraph = paraIter.next();
 					numID = paragraph.getNumID();
@@ -615,7 +652,7 @@ public class UseCase2BusinessProcessModelConverter {
 		String[] values = paragraph.getText().split(":");
 		BigInteger numID = null;
 		
-		if(values.length < 2 || (values.length > 1 && values[1].trim() == "")){
+		if(values.length < 2 || (values.length > 1 && values[1].replaceAll(" ", "").equals(""))){
 
 			paragraph = paraIter.next();
 			numID = paragraph.getNumID();
@@ -636,7 +673,7 @@ public class UseCase2BusinessProcessModelConverter {
 					Documentation doc = factory.createDocumentation();
 					doc.setText(v[1]);
 
-					interest.setActor(interestActor);
+					interest.getActor().add(interestActor);
 					interest.getDocumentation().add(doc);
 
 					useCase.getOwnedStakeholderInterest().add(interest);
@@ -656,10 +693,50 @@ public class UseCase2BusinessProcessModelConverter {
 	private static void handlePrimaryActor(UseCase useCase) {
 		
 		String[] values = paragraph.getText().split(":");
-		Actor actor = factory.createActor();
-		actor.setName(values[1]);
-		useCase.setPrimaryActor(actor);
-		specification.getOwnedActor().add(actor);
+		Actor actor = null;
+		BigInteger numID = null; 
+		
+		if(values[1].replaceAll(" ", "").equals("")){
+			
+			paragraph = paraIter.next();
+			numID = paragraph.getNumID();
+			
+			while(numID != null && paraIter.hasNext()){
+				
+				actor = factory.createActor();
+				actor.setName(paragraph.getText().trim());
+				specification.getOwnedActor().add(actor);
+				useCase.getPrimaryActor().add(actor);
+				
+				paragraph = paraIter.next();
+				numID = paragraph.getNumID();
+				paragraphNotHandled = true;
+			}
+		}else{
+			
+			String[] actors = values[1].split(",");
+			
+			if(actors.length > 1){
+			 
+				for(int i = 0; i < actors.length;i++){
+					
+					actor = factory.createActor();
+					actor.setName(actors[i].trim());
+					specification.getOwnedActor().add(actor);
+					useCase.getPrimaryActor().add(actor);
+				}
+
+			}else{
+				
+				actor = factory.createActor();
+				actor.setName(values[1].trim());
+				specification.getOwnedActor().add(actor);
+				useCase.getPrimaryActor().add(actor);
+			}
+			
+		}
+		
+	
 			
 	}
 

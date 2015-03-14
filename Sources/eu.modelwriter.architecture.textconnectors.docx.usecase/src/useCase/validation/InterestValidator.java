@@ -4,6 +4,7 @@
  */
 package useCase.validation;
 
+import org.eclipse.emf.common.util.EList;
 import useCase.Actor;
 import useCase.Documentation;
 
@@ -15,6 +16,8 @@ import useCase.Documentation;
  */
 public interface InterestValidator {
 	boolean validate();
+
+	boolean validateActor(EList<Actor> value);
 
 	boolean validateActor(Actor value);
 

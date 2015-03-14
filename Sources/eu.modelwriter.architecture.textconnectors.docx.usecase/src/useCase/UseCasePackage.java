@@ -186,22 +186,13 @@ public interface UseCasePackage extends EPackage {
 	int SPECÝFÝCATÝON__OWNED_ACTOR = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Process</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPECÝFÝCATÝON__OWNED_PROCESS = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECÝFÝCATÝON_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int SPECÝFÝCATÝON_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Specification</em>' class.
@@ -241,7 +232,7 @@ public interface UseCasePackage extends EPackage {
 	int USE_CASE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Primary Actor</b></em>' reference.
+	 * The feature id for the '<em><b>Primary Actor</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -259,22 +250,22 @@ public interface UseCasePackage extends EPackage {
 	int USE_CASE__OWNED_STAKEHOLDER_INTEREST = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Main Flow</b></em>' reference.
+	 * The feature id for the '<em><b>Owned Main Flow</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__MAÝN_FLOW = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int USE_CASE__OWNED_MAÝN_FLOW = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Alternative Flows</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Alternative Flow</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__ALTERNATÝVE_FLOWS = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int USE_CASE__OWNED_ALTERNATÝVE_FLOW = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Use Case</em>' class.
@@ -360,7 +351,7 @@ public interface UseCasePackage extends EPackage {
 	int INTEREST__DOCUMENTATÝON = ELEMENT__DOCUMENTATÝON;
 
 	/**
-	 * The feature id for the '<em><b>Actor</b></em>' reference.
+	 * The feature id for the '<em><b>Actor</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -746,22 +737,13 @@ public interface UseCasePackage extends EPackage {
 	int PROCESS__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Defined At</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__DEFÝNED_AT = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Flow Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__OWNED_FLOW_ELEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int PROCESS__OWNED_FLOW_ELEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -770,7 +752,7 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int PROCESS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -1399,17 +1381,6 @@ public interface UseCasePackage extends EPackage {
 	EReference getSpecification_OwnedActor();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link useCase.Specification#getOwnedProcess <em>Owned Process</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Process</em>'.
-	 * @see useCase.Specification#getOwnedProcess()
-	 * @see #getSpecification()
-	 * @generated
-	 */
-	EReference getSpecification_OwnedProcess();
-
-	/**
 	 * Returns the meta object for class '{@link useCase.UseCase <em>Use Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1420,10 +1391,10 @@ public interface UseCasePackage extends EPackage {
 	EClass getUseCase();
 
 	/**
-	 * Returns the meta object for the reference '{@link useCase.UseCase#getPrimaryActor <em>Primary Actor</em>}'.
+	 * Returns the meta object for the reference list '{@link useCase.UseCase#getPrimaryActor <em>Primary Actor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Primary Actor</em>'.
+	 * @return the meta object for the reference list '<em>Primary Actor</em>'.
 	 * @see useCase.UseCase#getPrimaryActor()
 	 * @see #getUseCase()
 	 * @generated
@@ -1442,26 +1413,26 @@ public interface UseCasePackage extends EPackage {
 	EReference getUseCase_OwnedStakeholderInterest();
 
 	/**
-	 * Returns the meta object for the reference '{@link useCase.UseCase#getMainFlow <em>Main Flow</em>}'.
+	 * Returns the meta object for the containment reference '{@link useCase.UseCase#getOwnedMainFlow <em>Owned Main Flow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Main Flow</em>'.
-	 * @see useCase.UseCase#getMainFlow()
+	 * @return the meta object for the containment reference '<em>Owned Main Flow</em>'.
+	 * @see useCase.UseCase#getOwnedMainFlow()
 	 * @see #getUseCase()
 	 * @generated
 	 */
-	EReference getUseCase_MainFlow();
+	EReference getUseCase_OwnedMainFlow();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link useCase.UseCase#getAlternativeFlows <em>Alternative Flows</em>}'.
+	 * Returns the meta object for the containment reference list '{@link useCase.UseCase#getOwnedAlternativeFlow <em>Owned Alternative Flow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Alternative Flows</em>'.
-	 * @see useCase.UseCase#getAlternativeFlows()
+	 * @return the meta object for the containment reference list '<em>Owned Alternative Flow</em>'.
+	 * @see useCase.UseCase#getOwnedAlternativeFlow()
 	 * @see #getUseCase()
 	 * @generated
 	 */
-	EReference getUseCase_AlternativeFlows();
+	EReference getUseCase_OwnedAlternativeFlow();
 
 	/**
 	 * Returns the meta object for class '{@link useCase.Actor <em>Actor</em>}'.
@@ -1484,10 +1455,10 @@ public interface UseCasePackage extends EPackage {
 	EClass getInterest();
 
 	/**
-	 * Returns the meta object for the reference '{@link useCase.Interest#getActor <em>Actor</em>}'.
+	 * Returns the meta object for the reference list '{@link useCase.Interest#getActor <em>Actor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Actor</em>'.
+	 * @return the meta object for the reference list '<em>Actor</em>'.
 	 * @see useCase.Interest#getActor()
 	 * @see #getInterest()
 	 * @generated
@@ -1617,17 +1588,6 @@ public interface UseCasePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getProcess();
-
-	/**
-	 * Returns the meta object for the reference '{@link useCase.Process#getDefinedAt <em>Defined At</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Defined At</em>'.
-	 * @see useCase.Process#getDefinedAt()
-	 * @see #getProcess()
-	 * @generated
-	 */
-	EReference getProcess_DefinedAt();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link useCase.Process#getOwnedFlowElements <em>Owned Flow Elements</em>}'.
@@ -1880,14 +1840,6 @@ public interface UseCasePackage extends EPackage {
 		EReference SPECÝFÝCATÝON__OWNED_ACTOR = eINSTANCE.getSpecification_OwnedActor();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Process</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SPECÝFÝCATÝON__OWNED_PROCESS = eINSTANCE.getSpecification_OwnedProcess();
-
-		/**
 		 * The meta object literal for the '{@link useCase.impl.UseCaseImpl <em>Use Case</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1898,7 +1850,7 @@ public interface UseCasePackage extends EPackage {
 		EClass USE_CASE = eINSTANCE.getUseCase();
 
 		/**
-		 * The meta object literal for the '<em><b>Primary Actor</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Primary Actor</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1914,20 +1866,20 @@ public interface UseCasePackage extends EPackage {
 		EReference USE_CASE__OWNED_STAKEHOLDER_INTEREST = eINSTANCE.getUseCase_OwnedStakeholderInterest();
 
 		/**
-		 * The meta object literal for the '<em><b>Main Flow</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Owned Main Flow</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USE_CASE__MAÝN_FLOW = eINSTANCE.getUseCase_MainFlow();
+		EReference USE_CASE__OWNED_MAÝN_FLOW = eINSTANCE.getUseCase_OwnedMainFlow();
 
 		/**
-		 * The meta object literal for the '<em><b>Alternative Flows</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Alternative Flow</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USE_CASE__ALTERNATÝVE_FLOWS = eINSTANCE.getUseCase_AlternativeFlows();
+		EReference USE_CASE__OWNED_ALTERNATÝVE_FLOW = eINSTANCE.getUseCase_OwnedAlternativeFlow();
 
 		/**
 		 * The meta object literal for the '{@link useCase.impl.ActorImpl <em>Actor</em>}' class.
@@ -1950,7 +1902,7 @@ public interface UseCasePackage extends EPackage {
 		EClass INTEREST = eINSTANCE.getInterest();
 
 		/**
-		 * The meta object literal for the '<em><b>Actor</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Actor</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2068,14 +2020,6 @@ public interface UseCasePackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROCESS = eINSTANCE.getProcess();
-
-		/**
-		 * The meta object literal for the '<em><b>Defined At</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROCESS__DEFÝNED_AT = eINSTANCE.getProcess_DefinedAt();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Flow Elements</b></em>' containment reference list feature.

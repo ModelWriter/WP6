@@ -16,18 +16,17 @@ Package useCase <eu.modelwriter.architecture.textconnectors.docx.usecase>
   Class Specification -> NamedElement
     Reference ownedUseCase : UseCase<<0..*>>
     Reference ownedActor : Actor<<0..*>>
-    Reference ownedProcess : Process<<0..*>>
 
   Class UseCase -> NamedElement
-    Reference primaryActor : Actor
+    Reference primaryActor : Actor<<0..*>>
     Reference ownedStakeholderInterest : Interest<<0..*>>
-    Reference mainFlow : Process
-    Reference alternativeFlows : Process<<0..*>>
+    Reference ownedMainFlow : Process
+    Reference ownedAlternativeFlow : Process<<0..*>>
 
   Class Actor -> NamedElement
 
   Class Interest -> Element
-    Reference actor : Actor<<1..1>>
+    Reference actor : Actor<<1..*>>
 
   Class Expression -> Element
 
@@ -48,7 +47,6 @@ Package useCase <eu.modelwriter.architecture.textconnectors.docx.usecase>
   Class Event -> FlowNode
 
   Class Process -> NamedElement
-    Reference definedAt : UseCase
     Reference ownedFlowElements : FlowElement<<0..*>>
 
   Class Documentation -> Element

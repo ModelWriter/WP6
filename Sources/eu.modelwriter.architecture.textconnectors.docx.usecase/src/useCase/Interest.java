@@ -2,6 +2,8 @@
  */
 package useCase;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -21,29 +23,19 @@ package useCase;
  */
 public interface Interest extends Element {
 	/**
-	 * Returns the value of the '<em><b>Actor</b></em>' reference.
+	 * Returns the value of the '<em><b>Actor</b></em>' reference list.
+	 * The list contents are of type {@link useCase.Actor}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Actor</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actor</em>' reference.
-	 * @see #setActor(Actor)
+	 * @return the value of the '<em>Actor</em>' reference list.
 	 * @see useCase.UseCasePackage#getInterest_Actor()
 	 * @model required="true"
 	 * @generated
 	 */
-	Actor getActor();
-
-	/**
-	 * Sets the value of the '{@link useCase.Interest#getActor <em>Actor</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Actor</em>' reference.
-	 * @see #getActor()
-	 * @generated
-	 */
-	void setActor(Actor value);
+	EList<Actor> getActor();
 
 } // Interest

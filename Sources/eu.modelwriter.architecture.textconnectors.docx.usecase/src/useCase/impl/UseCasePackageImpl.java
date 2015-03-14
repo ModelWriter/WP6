@@ -347,15 +347,6 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSpecification_OwnedProcess() {
-		return (EReference)specificationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getUseCase() {
 		return useCaseEClass;
 	}
@@ -383,7 +374,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUseCase_MainFlow() {
+	public EReference getUseCase_OwnedMainFlow() {
 		return (EReference)useCaseEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -392,7 +383,7 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUseCase_AlternativeFlows() {
+	public EReference getUseCase_OwnedAlternativeFlow() {
 		return (EReference)useCaseEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -536,17 +527,8 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcess_DefinedAt() {
-		return (EReference)processEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getProcess_OwnedFlowElements() {
-		return (EReference)processEClass.getEStructuralFeatures().get(1);
+		return (EReference)processEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -721,13 +703,12 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 		specificationEClass = createEClass(SPECÝFÝCATÝON);
 		createEReference(specificationEClass, SPECÝFÝCATÝON__OWNED_USE_CASE);
 		createEReference(specificationEClass, SPECÝFÝCATÝON__OWNED_ACTOR);
-		createEReference(specificationEClass, SPECÝFÝCATÝON__OWNED_PROCESS);
 
 		useCaseEClass = createEClass(USE_CASE);
 		createEReference(useCaseEClass, USE_CASE__PRÝMARY_ACTOR);
 		createEReference(useCaseEClass, USE_CASE__OWNED_STAKEHOLDER_INTEREST);
-		createEReference(useCaseEClass, USE_CASE__MAÝN_FLOW);
-		createEReference(useCaseEClass, USE_CASE__ALTERNATÝVE_FLOWS);
+		createEReference(useCaseEClass, USE_CASE__OWNED_MAÝN_FLOW);
+		createEReference(useCaseEClass, USE_CASE__OWNED_ALTERNATÝVE_FLOW);
 
 		actorEClass = createEClass(ACTOR);
 
@@ -753,7 +734,6 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 		eventEClass = createEClass(EVENT);
 
 		processEClass = createEClass(PROCESS);
-		createEReference(processEClass, PROCESS__DEFÝNED_AT);
 		createEReference(processEClass, PROCESS__OWNED_FLOW_ELEMENTS);
 
 		documentationEClass = createEClass(DOCUMENTATÝON);
@@ -846,18 +826,17 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 		initEClass(specificationEClass, Specification.class, "Specification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSpecification_OwnedUseCase(), this.getUseCase(), null, "ownedUseCase", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_OwnedActor(), this.getActor(), null, "ownedActor", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpecification_OwnedProcess(), this.getProcess(), null, "ownedProcess", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(useCaseEClass, UseCase.class, "UseCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUseCase_PrimaryActor(), this.getActor(), null, "primaryActor", null, 0, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUseCase_PrimaryActor(), this.getActor(), null, "primaryActor", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUseCase_OwnedStakeholderInterest(), this.getInterest(), null, "ownedStakeholderInterest", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUseCase_MainFlow(), this.getProcess(), this.getProcess_DefinedAt(), "mainFlow", null, 0, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUseCase_AlternativeFlows(), this.getProcess(), null, "alternativeFlows", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUseCase_OwnedMainFlow(), this.getProcess(), null, "ownedMainFlow", null, 0, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUseCase_OwnedAlternativeFlow(), this.getProcess(), null, "ownedAlternativeFlow", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(ýnterestEClass, Interest.class, "Interest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInterest_Actor(), this.getActor(), null, "actor", null, 1, 1, Interest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInterest_Actor(), this.getActor(), null, "actor", null, 1, -1, Interest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -878,7 +857,6 @@ public class UseCasePackageImpl extends EPackageImpl implements UseCasePackage {
 		initEClass(eventEClass, Event.class, "Event", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(processEClass, useCase.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcess_DefinedAt(), this.getUseCase(), this.getUseCase_MainFlow(), "definedAt", null, 0, 1, useCase.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcess_OwnedFlowElements(), this.getFlowElement(), null, "ownedFlowElements", null, 0, -1, useCase.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(documentationEClass, Documentation.class, "Documentation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

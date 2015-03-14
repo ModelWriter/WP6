@@ -14,8 +14,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link useCase.UseCase#getPrimaryActor <em>Primary Actor</em>}</li>
  *   <li>{@link useCase.UseCase#getOwnedStakeholderInterest <em>Owned Stakeholder Interest</em>}</li>
- *   <li>{@link useCase.UseCase#getMainFlow <em>Main Flow</em>}</li>
- *   <li>{@link useCase.UseCase#getAlternativeFlows <em>Alternative Flows</em>}</li>
+ *   <li>{@link useCase.UseCase#getOwnedMainFlow <em>Owned Main Flow</em>}</li>
+ *   <li>{@link useCase.UseCase#getOwnedAlternativeFlow <em>Owned Alternative Flow</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,30 +25,20 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface UseCase extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Primary Actor</b></em>' reference.
+	 * Returns the value of the '<em><b>Primary Actor</b></em>' reference list.
+	 * The list contents are of type {@link useCase.Actor}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Primary Actor</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Primary Actor</em>' reference.
-	 * @see #setPrimaryActor(Actor)
+	 * @return the value of the '<em>Primary Actor</em>' reference list.
 	 * @see useCase.UseCasePackage#getUseCase_PrimaryActor()
 	 * @model
 	 * @generated
 	 */
-	Actor getPrimaryActor();
-
-	/**
-	 * Sets the value of the '{@link useCase.UseCase#getPrimaryActor <em>Primary Actor</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Primary Actor</em>' reference.
-	 * @see #getPrimaryActor()
-	 * @generated
-	 */
-	void setPrimaryActor(Actor value);
+	EList<Actor> getPrimaryActor();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Stakeholder Interest</b></em>' containment reference list.
@@ -67,47 +57,45 @@ public interface UseCase extends NamedElement {
 	EList<Interest> getOwnedStakeholderInterest();
 
 	/**
-	 * Returns the value of the '<em><b>Main Flow</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link useCase.Process#getDefinedAt <em>Defined At</em>}'.
+	 * Returns the value of the '<em><b>Owned Main Flow</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Main Flow</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owned Main Flow</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Main Flow</em>' reference.
-	 * @see #setMainFlow(useCase.Process)
-	 * @see useCase.UseCasePackage#getUseCase_MainFlow()
-	 * @see useCase.Process#getDefinedAt
-	 * @model opposite="definedAt"
-	 * @generated
-	 */
-	useCase.Process getMainFlow();
-
-	/**
-	 * Sets the value of the '{@link useCase.UseCase#getMainFlow <em>Main Flow</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Main Flow</em>' reference.
-	 * @see #getMainFlow()
-	 * @generated
-	 */
-	void setMainFlow(useCase.Process value);
-
-	/**
-	 * Returns the value of the '<em><b>Alternative Flows</b></em>' containment reference list.
-	 * The list contents are of type {@link useCase.Process}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Alternative Flows</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Alternative Flows</em>' containment reference list.
-	 * @see useCase.UseCasePackage#getUseCase_AlternativeFlows()
+	 * @return the value of the '<em>Owned Main Flow</em>' containment reference.
+	 * @see #setOwnedMainFlow(useCase.Process)
+	 * @see useCase.UseCasePackage#getUseCase_OwnedMainFlow()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<useCase.Process> getAlternativeFlows();
+	useCase.Process getOwnedMainFlow();
+
+	/**
+	 * Sets the value of the '{@link useCase.UseCase#getOwnedMainFlow <em>Owned Main Flow</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Main Flow</em>' containment reference.
+	 * @see #getOwnedMainFlow()
+	 * @generated
+	 */
+	void setOwnedMainFlow(useCase.Process value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Alternative Flow</b></em>' containment reference list.
+	 * The list contents are of type {@link useCase.Process}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Alternative Flow</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Alternative Flow</em>' containment reference list.
+	 * @see useCase.UseCasePackage#getUseCase_OwnedAlternativeFlow()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<useCase.Process> getOwnedAlternativeFlow();
 
 } // UseCase
