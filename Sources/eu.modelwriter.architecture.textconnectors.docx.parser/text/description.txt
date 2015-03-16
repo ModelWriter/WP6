@@ -8,29 +8,33 @@ This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator
 Package DocModel <eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel>
 
   Class Element
-    Attribute text : EString
-
-  Class Node -> Element
-    Reference ownedNode : Node<<0..*>>
-    Reference nextNode : Node
-    Reference prevNode : Node
-    Reference parentNode : Node
-    Attribute aggregatedRun : XWPFRun<<0..*>>
-
-  Class Document -> NamedElement
-    Reference ownedNode : Node<<0..*>>
-    Attribute document : XWPFDocument
 
   Class NamedElement -> Element
     Attribute name : EString
 
-  Class NamedNode -> Node, NamedElement
-    Attribute paragraf : XWPFParagraph
+  Class Document -> NamedElement
+    Reference ownedNode : Node<<0..*>>
+    Attribute document : XWPFDocument
+    Attribute path : EString
 
-  Class ListedNode -> NamedNode
+  Class Node -> NamedElement
+    Attribute rawText : EString
+    Attribute aggregatedRun : XWPFRun
+    Reference ownedNode : Node<<0..*>>
+    Reference parentNode : Node
+    Attribute paragraph : XWPFParagraph<<0..*>>
+    Reference ownedPart : Part<<0..*>>
+    Reference firstPart : Part
 
-  DataType XWPFRun <org.apache.poi.xwpf.usermodel.XWPFRun>
+  Class Part -> NamedElement
+    Attribute rawText : EString
+    Attribute aggregatedRun : XWPFRun<<0..*>>
+    Reference nextPart : Part
+    Reference prevPart : Part
+    Reference node : Node
 
   DataType XWPFDocument <org.apache.poi.xwpf.usermodel.XWPFDocument>
 
   DataType XWPFParagraph <org.apache.poi.xwpf.usermodel.XWPFParagraph>
+
+  DataType XWPFRun <org.apache.poi.xwpf.usermodel.XWPFRun>

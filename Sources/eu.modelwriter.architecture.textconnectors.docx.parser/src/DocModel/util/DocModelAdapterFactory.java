@@ -72,24 +72,20 @@ public class DocModelAdapterFactory extends AdapterFactoryImpl {
 				return createElementAdapter();
 			}
 			@Override
-			public Adapter caseNode(Node object) {
-				return createNodeAdapter();
+			public Adapter caseNamedElement(NamedElement object) {
+				return createNamedElementAdapter();
 			}
 			@Override
 			public Adapter caseDocument(Document object) {
 				return createDocumentAdapter();
 			}
 			@Override
-			public Adapter caseNamedElement(NamedElement object) {
-				return createNamedElementAdapter();
+			public Adapter caseNode(Node object) {
+				return createNodeAdapter();
 			}
 			@Override
-			public Adapter caseNamedNode(NamedNode object) {
-				return createNamedNodeAdapter();
-			}
-			@Override
-			public Adapter caseListedNode(ListedNode object) {
-				return createListedNodeAdapter();
+			public Adapter casePart(Part object) {
+				return createPartAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -126,16 +122,16 @@ public class DocModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link DocModel.Node <em>Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link DocModel.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see DocModel.Node
+	 * @see DocModel.NamedElement
 	 * @generated
 	 */
-	public Adapter createNodeAdapter() {
+	public Adapter createNamedElementAdapter() {
 		return null;
 	}
 
@@ -154,44 +150,30 @@ public class DocModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link DocModel.NamedElement <em>Named Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link DocModel.Node <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see DocModel.NamedElement
+	 * @see DocModel.Node
 	 * @generated
 	 */
-	public Adapter createNamedElementAdapter() {
+	public Adapter createNodeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link DocModel.NamedNode <em>Named Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link DocModel.Part <em>Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see DocModel.NamedNode
+	 * @see DocModel.Part
 	 * @generated
 	 */
-	public Adapter createNamedNodeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link DocModel.ListedNode <em>Listed Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see DocModel.ListedNode
-	 * @generated
-	 */
-	public Adapter createListedNodeAdapter() {
+	public Adapter createPartAdapter() {
 		return null;
 	}
 

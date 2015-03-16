@@ -68,22 +68,13 @@ public interface DocModelPackage extends EPackage {
 	int ELEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT__TEXT = 0;
-
-	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 1;
+	int ELEMENT_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of operations of the '<em>Element</em>' class.
@@ -95,88 +86,6 @@ public interface DocModelPackage extends EPackage {
 	int ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link DocModel.impl.NodeImpl <em>Node</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see DocModel.impl.NodeImpl
-	 * @see DocModel.impl.DocModelPackageImpl#getNode()
-	 * @generated
-	 */
-	int NODE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__TEXT = ELEMENT__TEXT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Node</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__OWNED_NODE = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Next Node</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__NEXT_NODE = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Prev Node</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__PREV_NODE = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Parent Node</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__PARENT_NODE = ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Aggregated Run</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__AGGREGATED_RUN = ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The number of operations of the '<em>Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link DocModel.impl.NamedElementImpl <em>Named Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -184,16 +93,7 @@ public interface DocModelPackage extends EPackage {
 	 * @see DocModel.impl.DocModelPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__TEXT = ELEMENT__TEXT;
+	int NAMED_ELEMENT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -233,15 +133,6 @@ public interface DocModelPackage extends EPackage {
 	int DOCUMENT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__TEXT = NAMED_ELEMENT__TEXT;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,13 +160,22 @@ public interface DocModelPackage extends EPackage {
 	int DOCUMENT__DOCUMENT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__PATH = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int DOCUMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Document</em>' class.
@@ -287,68 +187,14 @@ public interface DocModelPackage extends EPackage {
 	int DOCUMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link DocModel.impl.NamedNodeImpl <em>Named Node</em>}' class.
+	 * The meta object id for the '{@link DocModel.impl.NodeImpl <em>Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see DocModel.impl.NamedNodeImpl
-	 * @see DocModel.impl.DocModelPackageImpl#getNamedNode()
+	 * @see DocModel.impl.NodeImpl
+	 * @see DocModel.impl.DocModelPackageImpl#getNode()
 	 * @generated
 	 */
-	int NAMED_NODE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_NODE__TEXT = NODE__TEXT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Node</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_NODE__OWNED_NODE = NODE__OWNED_NODE;
-
-	/**
-	 * The feature id for the '<em><b>Next Node</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_NODE__NEXT_NODE = NODE__NEXT_NODE;
-
-	/**
-	 * The feature id for the '<em><b>Prev Node</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_NODE__PREV_NODE = NODE__PREV_NODE;
-
-	/**
-	 * The feature id for the '<em><b>Parent Node</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_NODE__PARENT_NODE = NODE__PARENT_NODE;
-
-	/**
-	 * The feature id for the '<em><b>Aggregated Run</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_NODE__AGGREGATED_RUN = NODE__AGGREGATED_RUN;
+	int NODE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -357,53 +203,25 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_NODE__NAME = NODE_FEATURE_COUNT + 0;
+	int NODE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Paragraf</b></em>' attribute.
+	 * The feature id for the '<em><b>Raw Text</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_NODE__PARAGRAF = NODE_FEATURE_COUNT + 1;
+	int NODE__RAW_TEXT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Named Node</em>' class.
+	 * The feature id for the '<em><b>Aggregated Run</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Named Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_NODE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link DocModel.impl.ListedNodeImpl <em>Listed Node</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see DocModel.impl.ListedNodeImpl
-	 * @see DocModel.impl.DocModelPackageImpl#getListedNode()
-	 * @generated
-	 */
-	int LISTED_NODE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LISTED_NODE__TEXT = NAMED_NODE__TEXT;
+	int NODE__AGGREGATED_RUN = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Node</b></em>' containment reference list.
@@ -412,25 +230,7 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LISTED_NODE__OWNED_NODE = NAMED_NODE__OWNED_NODE;
-
-	/**
-	 * The feature id for the '<em><b>Next Node</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LISTED_NODE__NEXT_NODE = NAMED_NODE__NEXT_NODE;
-
-	/**
-	 * The feature id for the '<em><b>Prev Node</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LISTED_NODE__PREV_NODE = NAMED_NODE__PREV_NODE;
+	int NODE__OWNED_NODE = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Parent Node</b></em>' container reference.
@@ -439,16 +239,62 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LISTED_NODE__PARENT_NODE = NAMED_NODE__PARENT_NODE;
+	int NODE__PARENT_NODE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Aggregated Run</b></em>' attribute list.
+	 * The feature id for the '<em><b>Paragraph</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LISTED_NODE__AGGREGATED_RUN = NAMED_NODE__AGGREGATED_RUN;
+	int NODE__PARAGRAPH = NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Owned Part</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__OWNED_PART = NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>First Part</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__FIRST_PART = NAMED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of structural features of the '<em>Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of operations of the '<em>Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link DocModel.impl.PartImpl <em>Part</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see DocModel.impl.PartImpl
+	 * @see DocModel.impl.DocModelPackageImpl#getPart()
+	 * @generated
+	 */
+	int PART = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -457,44 +303,70 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LISTED_NODE__NAME = NAMED_NODE__NAME;
+	int PART__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Paragraf</b></em>' attribute.
+	 * The feature id for the '<em><b>Raw Text</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LISTED_NODE__PARAGRAF = NAMED_NODE__PARAGRAF;
+	int PART__RAW_TEXT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Listed Node</em>' class.
+	 * The feature id for the '<em><b>Aggregated Run</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LISTED_NODE_FEATURE_COUNT = NAMED_NODE_FEATURE_COUNT + 0;
+	int PART__AGGREGATED_RUN = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Listed Node</em>' class.
+	 * The feature id for the '<em><b>Next Part</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LISTED_NODE_OPERATION_COUNT = NAMED_NODE_OPERATION_COUNT + 0;
+	int PART__NEXT_PART = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '<em>XWPF Run</em>' data type.
+	 * The feature id for the '<em><b>Prev Part</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.apache.poi.xwpf.usermodel.XWPFRun
-	 * @see DocModel.impl.DocModelPackageImpl#getXWPFRun()
 	 * @generated
+	 * @ordered
 	 */
-	int XWPF_RUN = 6;
+	int PART__PREV_PART = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART__NODE = NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of operations of the '<em>Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '<em>XWPF Document</em>' data type.
@@ -504,7 +376,7 @@ public interface DocModelPackage extends EPackage {
 	 * @see DocModel.impl.DocModelPackageImpl#getXWPFDocument()
 	 * @generated
 	 */
-	int XWPF_DOCUMENT = 7;
+	int XWPF_DOCUMENT = 5;
 
 	/**
 	 * The meta object id for the '<em>XWPF Paragraph</em>' data type.
@@ -514,7 +386,17 @@ public interface DocModelPackage extends EPackage {
 	 * @see DocModel.impl.DocModelPackageImpl#getXWPFParagraph()
 	 * @generated
 	 */
-	int XWPF_PARAGRAPH = 8;
+	int XWPF_PARAGRAPH = 6;
+
+	/**
+	 * The meta object id for the '<em>XWPF Run</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.apache.poi.xwpf.usermodel.XWPFRun
+	 * @see DocModel.impl.DocModelPackageImpl#getXWPFRun()
+	 * @generated
+	 */
+	int XWPF_RUN = 7;
 
 
 	/**
@@ -528,80 +410,25 @@ public interface DocModelPackage extends EPackage {
 	EClass getElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link DocModel.Element#getText <em>Text</em>}'.
+	 * Returns the meta object for class '{@link DocModel.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Text</em>'.
-	 * @see DocModel.Element#getText()
-	 * @see #getElement()
+	 * @return the meta object for class '<em>Named Element</em>'.
+	 * @see DocModel.NamedElement
 	 * @generated
 	 */
-	EAttribute getElement_Text();
+	EClass getNamedElement();
 
 	/**
-	 * Returns the meta object for class '{@link DocModel.Node <em>Node</em>}'.
+	 * Returns the meta object for the attribute '{@link DocModel.NamedElement#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Node</em>'.
-	 * @see DocModel.Node
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see DocModel.NamedElement#getName()
+	 * @see #getNamedElement()
 	 * @generated
 	 */
-	EClass getNode();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link DocModel.Node#getOwnedNode <em>Owned Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Node</em>'.
-	 * @see DocModel.Node#getOwnedNode()
-	 * @see #getNode()
-	 * @generated
-	 */
-	EReference getNode_OwnedNode();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link DocModel.Node#getNextNode <em>Next Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Next Node</em>'.
-	 * @see DocModel.Node#getNextNode()
-	 * @see #getNode()
-	 * @generated
-	 */
-	EReference getNode_NextNode();
-
-	/**
-	 * Returns the meta object for the container reference '{@link DocModel.Node#getPrevNode <em>Prev Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Prev Node</em>'.
-	 * @see DocModel.Node#getPrevNode()
-	 * @see #getNode()
-	 * @generated
-	 */
-	EReference getNode_PrevNode();
-
-	/**
-	 * Returns the meta object for the container reference '{@link DocModel.Node#getParentNode <em>Parent Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Parent Node</em>'.
-	 * @see DocModel.Node#getParentNode()
-	 * @see #getNode()
-	 * @generated
-	 */
-	EReference getNode_ParentNode();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link DocModel.Node#getAggregatedRun <em>Aggregated Run</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Aggregated Run</em>'.
-	 * @see DocModel.Node#getAggregatedRun()
-	 * @see #getNode()
-	 * @generated
-	 */
-	EAttribute getNode_AggregatedRun();
+	EAttribute getNamedElement_Name();
 
 	/**
 	 * Returns the meta object for class '{@link DocModel.Document <em>Document</em>}'.
@@ -636,68 +463,167 @@ public interface DocModelPackage extends EPackage {
 	EAttribute getDocument_Document();
 
 	/**
-	 * Returns the meta object for class '{@link DocModel.NamedElement <em>Named Element</em>}'.
+	 * Returns the meta object for the attribute '{@link DocModel.Document#getPath <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Named Element</em>'.
-	 * @see DocModel.NamedElement
+	 * @return the meta object for the attribute '<em>Path</em>'.
+	 * @see DocModel.Document#getPath()
+	 * @see #getDocument()
 	 * @generated
 	 */
-	EClass getNamedElement();
+	EAttribute getDocument_Path();
 
 	/**
-	 * Returns the meta object for the attribute '{@link DocModel.NamedElement#getName <em>Name</em>}'.
+	 * Returns the meta object for class '{@link DocModel.Node <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see DocModel.NamedElement#getName()
-	 * @see #getNamedElement()
+	 * @return the meta object for class '<em>Node</em>'.
+	 * @see DocModel.Node
 	 * @generated
 	 */
-	EAttribute getNamedElement_Name();
+	EClass getNode();
 
 	/**
-	 * Returns the meta object for class '{@link DocModel.NamedNode <em>Named Node</em>}'.
+	 * Returns the meta object for the attribute '{@link DocModel.Node#getRawText <em>Raw Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Named Node</em>'.
-	 * @see DocModel.NamedNode
+	 * @return the meta object for the attribute '<em>Raw Text</em>'.
+	 * @see DocModel.Node#getRawText()
+	 * @see #getNode()
 	 * @generated
 	 */
-	EClass getNamedNode();
+	EAttribute getNode_RawText();
 
 	/**
-	 * Returns the meta object for the attribute '{@link DocModel.NamedNode#getParagraf <em>Paragraf</em>}'.
+	 * Returns the meta object for the attribute '{@link DocModel.Node#getAggregatedRun <em>Aggregated Run</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Paragraf</em>'.
-	 * @see DocModel.NamedNode#getParagraf()
-	 * @see #getNamedNode()
+	 * @return the meta object for the attribute '<em>Aggregated Run</em>'.
+	 * @see DocModel.Node#getAggregatedRun()
+	 * @see #getNode()
 	 * @generated
 	 */
-	EAttribute getNamedNode_Paragraf();
+	EAttribute getNode_AggregatedRun();
 
 	/**
-	 * Returns the meta object for class '{@link DocModel.ListedNode <em>Listed Node</em>}'.
+	 * Returns the meta object for the containment reference list '{@link DocModel.Node#getOwnedNode <em>Owned Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Listed Node</em>'.
-	 * @see DocModel.ListedNode
+	 * @return the meta object for the containment reference list '<em>Owned Node</em>'.
+	 * @see DocModel.Node#getOwnedNode()
+	 * @see #getNode()
 	 * @generated
 	 */
-	EClass getListedNode();
+	EReference getNode_OwnedNode();
 
 	/**
-	 * Returns the meta object for data type '{@link org.apache.poi.xwpf.usermodel.XWPFRun <em>XWPF Run</em>}'.
+	 * Returns the meta object for the container reference '{@link DocModel.Node#getParentNode <em>Parent Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>XWPF Run</em>'.
-	 * @see org.apache.poi.xwpf.usermodel.XWPFRun
-	 * @model instanceClass="org.apache.poi.xwpf.usermodel.XWPFRun"
-	 *        extendedMetaData="name='org.apache.poi.xwpf.usermodel.XWPFRun'"
+	 * @return the meta object for the container reference '<em>Parent Node</em>'.
+	 * @see DocModel.Node#getParentNode()
+	 * @see #getNode()
 	 * @generated
 	 */
-	EDataType getXWPFRun();
+	EReference getNode_ParentNode();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link DocModel.Node#getParagraph <em>Paragraph</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Paragraph</em>'.
+	 * @see DocModel.Node#getParagraph()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EAttribute getNode_Paragraph();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link DocModel.Node#getOwnedPart <em>Owned Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Part</em>'.
+	 * @see DocModel.Node#getOwnedPart()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EReference getNode_OwnedPart();
+
+	/**
+	 * Returns the meta object for the reference '{@link DocModel.Node#getFirstPart <em>First Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>First Part</em>'.
+	 * @see DocModel.Node#getFirstPart()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EReference getNode_FirstPart();
+
+	/**
+	 * Returns the meta object for class '{@link DocModel.Part <em>Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Part</em>'.
+	 * @see DocModel.Part
+	 * @generated
+	 */
+	EClass getPart();
+
+	/**
+	 * Returns the meta object for the attribute '{@link DocModel.Part#getRawText <em>Raw Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Raw Text</em>'.
+	 * @see DocModel.Part#getRawText()
+	 * @see #getPart()
+	 * @generated
+	 */
+	EAttribute getPart_RawText();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link DocModel.Part#getAggregatedRun <em>Aggregated Run</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Aggregated Run</em>'.
+	 * @see DocModel.Part#getAggregatedRun()
+	 * @see #getPart()
+	 * @generated
+	 */
+	EAttribute getPart_AggregatedRun();
+
+	/**
+	 * Returns the meta object for the reference '{@link DocModel.Part#getNextPart <em>Next Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Next Part</em>'.
+	 * @see DocModel.Part#getNextPart()
+	 * @see #getPart()
+	 * @generated
+	 */
+	EReference getPart_NextPart();
+
+	/**
+	 * Returns the meta object for the reference '{@link DocModel.Part#getPrevPart <em>Prev Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Prev Part</em>'.
+	 * @see DocModel.Part#getPrevPart()
+	 * @see #getPart()
+	 * @generated
+	 */
+	EReference getPart_PrevPart();
+
+	/**
+	 * Returns the meta object for the reference '{@link DocModel.Part#getNode <em>Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Node</em>'.
+	 * @see DocModel.Part#getNode()
+	 * @see #getPart()
+	 * @generated
+	 */
+	EReference getPart_Node();
 
 	/**
 	 * Returns the meta object for data type '{@link org.apache.poi.xwpf.usermodel.XWPFDocument <em>XWPF Document</em>}'.
@@ -720,6 +646,17 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getXWPFParagraph();
+
+	/**
+	 * Returns the meta object for data type '{@link org.apache.poi.xwpf.usermodel.XWPFRun <em>XWPF Run</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>XWPF Run</em>'.
+	 * @see org.apache.poi.xwpf.usermodel.XWPFRun
+	 * @model instanceClass="org.apache.poi.xwpf.usermodel.XWPFRun"
+	 * @generated
+	 */
+	EDataType getXWPFRun();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -755,62 +692,22 @@ public interface DocModelPackage extends EPackage {
 		EClass ELEMENT = eINSTANCE.getElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+		 * The meta object literal for the '{@link DocModel.impl.NamedElementImpl <em>Named Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see DocModel.impl.NamedElementImpl
+		 * @see DocModel.impl.DocModelPackageImpl#getNamedElement()
 		 * @generated
 		 */
-		EAttribute ELEMENT__TEXT = eINSTANCE.getElement_Text();
+		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
 
 		/**
-		 * The meta object literal for the '{@link DocModel.impl.NodeImpl <em>Node</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see DocModel.impl.NodeImpl
-		 * @see DocModel.impl.DocModelPackageImpl#getNode()
-		 * @generated
-		 */
-		EClass NODE = eINSTANCE.getNode();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Node</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NODE__OWNED_NODE = eINSTANCE.getNode_OwnedNode();
-
-		/**
-		 * The meta object literal for the '<em><b>Next Node</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NODE__NEXT_NODE = eINSTANCE.getNode_NextNode();
-
-		/**
-		 * The meta object literal for the '<em><b>Prev Node</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NODE__PREV_NODE = eINSTANCE.getNode_PrevNode();
-
-		/**
-		 * The meta object literal for the '<em><b>Parent Node</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NODE__PARENT_NODE = eINSTANCE.getNode_ParentNode();
-
-		/**
-		 * The meta object literal for the '<em><b>Aggregated Run</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NODE__AGGREGATED_RUN = eINSTANCE.getNode_AggregatedRun();
+		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
 		 * The meta object literal for the '{@link DocModel.impl.DocumentImpl <em>Document</em>}' class.
@@ -839,60 +736,128 @@ public interface DocModelPackage extends EPackage {
 		EAttribute DOCUMENT__DOCUMENT = eINSTANCE.getDocument_Document();
 
 		/**
-		 * The meta object literal for the '{@link DocModel.impl.NamedElementImpl <em>Named Element</em>}' class.
+		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see DocModel.impl.NamedElementImpl
-		 * @see DocModel.impl.DocModelPackageImpl#getNamedElement()
 		 * @generated
 		 */
-		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
+		EAttribute DOCUMENT__PATH = eINSTANCE.getDocument_Path();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '{@link DocModel.impl.NodeImpl <em>Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see DocModel.impl.NodeImpl
+		 * @see DocModel.impl.DocModelPackageImpl#getNode()
 		 * @generated
 		 */
-		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+		EClass NODE = eINSTANCE.getNode();
 
 		/**
-		 * The meta object literal for the '{@link DocModel.impl.NamedNodeImpl <em>Named Node</em>}' class.
+		 * The meta object literal for the '<em><b>Raw Text</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see DocModel.impl.NamedNodeImpl
-		 * @see DocModel.impl.DocModelPackageImpl#getNamedNode()
 		 * @generated
 		 */
-		EClass NAMED_NODE = eINSTANCE.getNamedNode();
+		EAttribute NODE__RAW_TEXT = eINSTANCE.getNode_RawText();
 
 		/**
-		 * The meta object literal for the '<em><b>Paragraf</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Aggregated Run</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAMED_NODE__PARAGRAF = eINSTANCE.getNamedNode_Paragraf();
+		EAttribute NODE__AGGREGATED_RUN = eINSTANCE.getNode_AggregatedRun();
 
 		/**
-		 * The meta object literal for the '{@link DocModel.impl.ListedNodeImpl <em>Listed Node</em>}' class.
+		 * The meta object literal for the '<em><b>Owned Node</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see DocModel.impl.ListedNodeImpl
-		 * @see DocModel.impl.DocModelPackageImpl#getListedNode()
 		 * @generated
 		 */
-		EClass LISTED_NODE = eINSTANCE.getListedNode();
+		EReference NODE__OWNED_NODE = eINSTANCE.getNode_OwnedNode();
 
 		/**
-		 * The meta object literal for the '<em>XWPF Run</em>' data type.
+		 * The meta object literal for the '<em><b>Parent Node</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.apache.poi.xwpf.usermodel.XWPFRun
-		 * @see DocModel.impl.DocModelPackageImpl#getXWPFRun()
 		 * @generated
 		 */
-		EDataType XWPF_RUN = eINSTANCE.getXWPFRun();
+		EReference NODE__PARENT_NODE = eINSTANCE.getNode_ParentNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Paragraph</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NODE__PARAGRAPH = eINSTANCE.getNode_Paragraph();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Part</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__OWNED_PART = eINSTANCE.getNode_OwnedPart();
+
+		/**
+		 * The meta object literal for the '<em><b>First Part</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__FIRST_PART = eINSTANCE.getNode_FirstPart();
+
+		/**
+		 * The meta object literal for the '{@link DocModel.impl.PartImpl <em>Part</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see DocModel.impl.PartImpl
+		 * @see DocModel.impl.DocModelPackageImpl#getPart()
+		 * @generated
+		 */
+		EClass PART = eINSTANCE.getPart();
+
+		/**
+		 * The meta object literal for the '<em><b>Raw Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PART__RAW_TEXT = eINSTANCE.getPart_RawText();
+
+		/**
+		 * The meta object literal for the '<em><b>Aggregated Run</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PART__AGGREGATED_RUN = eINSTANCE.getPart_AggregatedRun();
+
+		/**
+		 * The meta object literal for the '<em><b>Next Part</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PART__NEXT_PART = eINSTANCE.getPart_NextPart();
+
+		/**
+		 * The meta object literal for the '<em><b>Prev Part</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PART__PREV_PART = eINSTANCE.getPart_PrevPart();
+
+		/**
+		 * The meta object literal for the '<em><b>Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PART__NODE = eINSTANCE.getPart_Node();
 
 		/**
 		 * The meta object literal for the '<em>XWPF Document</em>' data type.
@@ -913,6 +878,16 @@ public interface DocModelPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType XWPF_PARAGRAPH = eINSTANCE.getXWPFParagraph();
+
+		/**
+		 * The meta object literal for the '<em>XWPF Run</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.apache.poi.xwpf.usermodel.XWPFRun
+		 * @see DocModel.impl.DocModelPackageImpl#getXWPFRun()
+		 * @generated
+		 */
+		EDataType XWPF_RUN = eINSTANCE.getXWPFRun();
 
 	}
 

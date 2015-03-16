@@ -6,10 +6,9 @@ import DocModel.DocModelFactory;
 import DocModel.DocModelPackage;
 import DocModel.Document;
 import DocModel.Element;
-import DocModel.ListedNode;
 import DocModel.NamedElement;
-import DocModel.NamedNode;
 import DocModel.Node;
+import DocModel.Part;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -42,7 +41,7 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass nodeEClass = null;
+	private EClass namedElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -56,28 +55,14 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass namedElementEClass = null;
+	private EClass nodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass namedNodeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass listedNodeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType xwpfRunEDataType = null;
+	private EClass partEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -92,6 +77,13 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * @generated
 	 */
 	private EDataType xwpfParagraphEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType xwpfRunEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -168,8 +160,8 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getElement_Text() {
-		return (EAttribute)elementEClass.getEStructuralFeatures().get(0);
+	public EClass getNamedElement() {
+		return namedElementEClass;
 	}
 
 	/**
@@ -177,53 +169,8 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNode() {
-		return nodeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNode_OwnedNode() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNode_NextNode() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNode_PrevNode() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNode_ParentNode() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getNode_AggregatedRun() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(4);
+	public EAttribute getNamedElement_Name() {
+		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -258,8 +205,8 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamedElement() {
-		return namedElementEClass;
+	public EAttribute getDocument_Path() {
+		return (EAttribute)documentEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -267,8 +214,8 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamedElement_Name() {
-		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
+	public EClass getNode() {
+		return nodeEClass;
 	}
 
 	/**
@@ -276,8 +223,8 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamedNode() {
-		return namedNodeEClass;
+	public EAttribute getNode_RawText() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -285,8 +232,8 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamedNode_Paragraf() {
-		return (EAttribute)namedNodeEClass.getEStructuralFeatures().get(0);
+	public EAttribute getNode_AggregatedRun() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -294,8 +241,8 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getListedNode() {
-		return listedNodeEClass;
+	public EReference getNode_OwnedNode() {
+		return (EReference)nodeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -303,8 +250,89 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getXWPFRun() {
-		return xwpfRunEDataType;
+	public EReference getNode_ParentNode() {
+		return (EReference)nodeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNode_Paragraph() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNode_OwnedPart() {
+		return (EReference)nodeEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNode_FirstPart() {
+		return (EReference)nodeEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPart() {
+		return partEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPart_RawText() {
+		return (EAttribute)partEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPart_AggregatedRun() {
+		return (EAttribute)partEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPart_NextPart() {
+		return (EReference)partEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPart_PrevPart() {
+		return (EReference)partEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPart_Node() {
+		return (EReference)partEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -323,6 +351,15 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 */
 	public EDataType getXWPFParagraph() {
 		return xwpfParagraphEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getXWPFRun() {
+		return xwpfRunEDataType;
 	}
 
 	/**
@@ -354,31 +391,35 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 
 		// Create classes and their features
 		elementEClass = createEClass(ELEMENT);
-		createEAttribute(elementEClass, ELEMENT__TEXT);
-
-		nodeEClass = createEClass(NODE);
-		createEReference(nodeEClass, NODE__OWNED_NODE);
-		createEReference(nodeEClass, NODE__NEXT_NODE);
-		createEReference(nodeEClass, NODE__PREV_NODE);
-		createEReference(nodeEClass, NODE__PARENT_NODE);
-		createEAttribute(nodeEClass, NODE__AGGREGATED_RUN);
-
-		documentEClass = createEClass(DOCUMENT);
-		createEReference(documentEClass, DOCUMENT__OWNED_NODE);
-		createEAttribute(documentEClass, DOCUMENT__DOCUMENT);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
-		namedNodeEClass = createEClass(NAMED_NODE);
-		createEAttribute(namedNodeEClass, NAMED_NODE__PARAGRAF);
+		documentEClass = createEClass(DOCUMENT);
+		createEReference(documentEClass, DOCUMENT__OWNED_NODE);
+		createEAttribute(documentEClass, DOCUMENT__DOCUMENT);
+		createEAttribute(documentEClass, DOCUMENT__PATH);
 
-		listedNodeEClass = createEClass(LISTED_NODE);
+		nodeEClass = createEClass(NODE);
+		createEAttribute(nodeEClass, NODE__RAW_TEXT);
+		createEAttribute(nodeEClass, NODE__AGGREGATED_RUN);
+		createEReference(nodeEClass, NODE__OWNED_NODE);
+		createEReference(nodeEClass, NODE__PARENT_NODE);
+		createEAttribute(nodeEClass, NODE__PARAGRAPH);
+		createEReference(nodeEClass, NODE__OWNED_PART);
+		createEReference(nodeEClass, NODE__FIRST_PART);
+
+		partEClass = createEClass(PART);
+		createEAttribute(partEClass, PART__RAW_TEXT);
+		createEAttribute(partEClass, PART__AGGREGATED_RUN);
+		createEReference(partEClass, PART__NEXT_PART);
+		createEReference(partEClass, PART__PREV_PART);
+		createEReference(partEClass, PART__NODE);
 
 		// Create data types
-		xwpfRunEDataType = createEDataType(XWPF_RUN);
 		xwpfDocumentEDataType = createEDataType(XWPF_DOCUMENT);
 		xwpfParagraphEDataType = createEDataType(XWPF_PARAGRAPH);
+		xwpfRunEDataType = createEDataType(XWPF_RUN);
 	}
 
 	/**
@@ -409,63 +450,45 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		nodeEClass.getESuperTypes().add(this.getElement());
-		documentEClass.getESuperTypes().add(this.getNamedElement());
 		namedElementEClass.getESuperTypes().add(this.getElement());
-		namedNodeEClass.getESuperTypes().add(this.getNode());
-		namedNodeEClass.getESuperTypes().add(this.getNamedElement());
-		listedNodeEClass.getESuperTypes().add(this.getNamedNode());
+		documentEClass.getESuperTypes().add(this.getNamedElement());
+		nodeEClass.getESuperTypes().add(this.getNamedElement());
+		partEClass.getESuperTypes().add(this.getNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getElement_Text(), ecorePackage.getEString(), "text", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNode_OwnedNode(), this.getNode(), this.getNode_ParentNode(), "ownedNode", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_NextNode(), this.getNode(), this.getNode_PrevNode(), "nextNode", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_PrevNode(), this.getNode(), this.getNode_NextNode(), "prevNode", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_ParentNode(), this.getNode(), this.getNode_OwnedNode(), "parentNode", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNode_AggregatedRun(), this.getXWPFRun(), "aggregatedRun", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDocument_OwnedNode(), this.getNode(), null, "ownedNode", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDocument_Document(), this.getXWPFDocument(), "document", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(namedNodeEClass, NamedNode.class, "NamedNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNamedNode_Paragraf(), this.getXWPFParagraph(), "paragraf", null, 0, 1, NamedNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDocument_OwnedNode(), this.getNode(), null, "ownedNode", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDocument_Document(), this.getXWPFDocument(), "document", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDocument_Path(), ecorePackage.getEString(), "path", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(listedNodeEClass, ListedNode.class, "ListedNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNode_RawText(), ecorePackage.getEString(), "rawText", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNode_AggregatedRun(), this.getXWPFRun(), "aggregatedRun", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_OwnedNode(), this.getNode(), this.getNode_ParentNode(), "ownedNode", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_ParentNode(), this.getNode(), this.getNode_OwnedNode(), "parentNode", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNode_Paragraph(), this.getXWPFParagraph(), "paragraph", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_OwnedPart(), this.getPart(), null, "ownedPart", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_FirstPart(), this.getPart(), this.getPart_Node(), "firstPart", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(partEClass, Part.class, "Part", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPart_RawText(), ecorePackage.getEString(), "rawText", null, 0, 1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPart_AggregatedRun(), this.getXWPFRun(), "aggregatedRun", null, 0, -1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPart_NextPart(), this.getPart(), this.getPart_PrevPart(), "nextPart", null, 0, 1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPart_PrevPart(), this.getPart(), this.getPart_NextPart(), "prevPart", null, 0, 1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPart_Node(), this.getNode(), this.getNode_FirstPart(), "node", null, 0, 1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
-		initEDataType(xwpfRunEDataType, XWPFRun.class, "XWPFRun", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(xwpfDocumentEDataType, XWPFDocument.class, "XWPFDocument", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(xwpfParagraphEDataType, XWPFParagraph.class, "XWPFParagraph", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(xwpfRunEDataType, XWPFRun.class, "XWPFRun", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
-		createExtendedMetaDataAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
-		addAnnotation
-		  (xwpfRunEDataType, 
-		   source, 
-		   new String[] {
-			 "name", "org.apache.poi.xwpf.usermodel.XWPFRun"
-		   });
 	}
 
 } //DocModelPackageImpl

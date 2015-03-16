@@ -72,10 +72,10 @@ public class DocModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DocModelPackage.NODE: {
-				Node node = (Node)theEObject;
-				T result = caseNode(node);
-				if (result == null) result = caseElement(node);
+			case DocModelPackage.NAMED_ELEMENT: {
+				NamedElement namedElement = (NamedElement)theEObject;
+				T result = caseNamedElement(namedElement);
+				if (result == null) result = caseElement(namedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -87,29 +87,19 @@ public class DocModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DocModelPackage.NAMED_ELEMENT: {
-				NamedElement namedElement = (NamedElement)theEObject;
-				T result = caseNamedElement(namedElement);
-				if (result == null) result = caseElement(namedElement);
+			case DocModelPackage.NODE: {
+				Node node = (Node)theEObject;
+				T result = caseNode(node);
+				if (result == null) result = caseNamedElement(node);
+				if (result == null) result = caseElement(node);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DocModelPackage.NAMED_NODE: {
-				NamedNode namedNode = (NamedNode)theEObject;
-				T result = caseNamedNode(namedNode);
-				if (result == null) result = caseNode(namedNode);
-				if (result == null) result = caseNamedElement(namedNode);
-				if (result == null) result = caseElement(namedNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DocModelPackage.LISTED_NODE: {
-				ListedNode listedNode = (ListedNode)theEObject;
-				T result = caseListedNode(listedNode);
-				if (result == null) result = caseNamedNode(listedNode);
-				if (result == null) result = caseNode(listedNode);
-				if (result == null) result = caseNamedElement(listedNode);
-				if (result == null) result = caseElement(listedNode);
+			case DocModelPackage.PART: {
+				Part part = (Part)theEObject;
+				T result = casePart(part);
+				if (result == null) result = caseNamedElement(part);
+				if (result == null) result = caseElement(part);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,17 +123,17 @@ public class DocModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Node</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Node</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNode(Node object) {
+	public T caseNamedElement(NamedElement object) {
 		return null;
 	}
 
@@ -163,47 +153,32 @@ public class DocModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNamedElement(NamedElement object) {
+	public T caseNode(Node object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Node</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Node</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNamedNode(NamedNode object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Listed Node</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Listed Node</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseListedNode(ListedNode object) {
+	public T casePart(Part object) {
 		return null;
 	}
 

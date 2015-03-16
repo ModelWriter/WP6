@@ -61,10 +61,9 @@ public class DocModelFactoryImpl extends EFactoryImpl implements DocModelFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case DocModelPackage.NODE: return createNode();
 			case DocModelPackage.DOCUMENT: return createDocument();
-			case DocModelPackage.NAMED_NODE: return createNamedNode();
-			case DocModelPackage.LISTED_NODE: return createListedNode();
+			case DocModelPackage.NODE: return createNode();
+			case DocModelPackage.PART: return createPart();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -78,12 +77,12 @@ public class DocModelFactoryImpl extends EFactoryImpl implements DocModelFactory
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case DocModelPackage.XWPF_RUN:
-				return createXWPFRunFromString(eDataType, initialValue);
 			case DocModelPackage.XWPF_DOCUMENT:
 				return createXWPFDocumentFromString(eDataType, initialValue);
 			case DocModelPackage.XWPF_PARAGRAPH:
 				return createXWPFParagraphFromString(eDataType, initialValue);
+			case DocModelPackage.XWPF_RUN:
+				return createXWPFRunFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -97,25 +96,15 @@ public class DocModelFactoryImpl extends EFactoryImpl implements DocModelFactory
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case DocModelPackage.XWPF_RUN:
-				return convertXWPFRunToString(eDataType, instanceValue);
 			case DocModelPackage.XWPF_DOCUMENT:
 				return convertXWPFDocumentToString(eDataType, instanceValue);
 			case DocModelPackage.XWPF_PARAGRAPH:
 				return convertXWPFParagraphToString(eDataType, instanceValue);
+			case DocModelPackage.XWPF_RUN:
+				return convertXWPFRunToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Node createNode() {
-		NodeImpl node = new NodeImpl();
-		return node;
 	}
 
 	/**
@@ -133,9 +122,9 @@ public class DocModelFactoryImpl extends EFactoryImpl implements DocModelFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedNode createNamedNode() {
-		NamedNodeImpl namedNode = new NamedNodeImpl();
-		return namedNode;
+	public Node createNode() {
+		NodeImpl node = new NodeImpl();
+		return node;
 	}
 
 	/**
@@ -143,27 +132,9 @@ public class DocModelFactoryImpl extends EFactoryImpl implements DocModelFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ListedNode createListedNode() {
-		ListedNodeImpl listedNode = new ListedNodeImpl();
-		return listedNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public XWPFRun createXWPFRunFromString(EDataType eDataType, String initialValue) {
-		return (XWPFRun)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertXWPFRunToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
+	public Part createPart() {
+		PartImpl part = new PartImpl();
+		return part;
 	}
 
 	/**
@@ -199,6 +170,24 @@ public class DocModelFactoryImpl extends EFactoryImpl implements DocModelFactory
 	 * @generated
 	 */
 	public String convertXWPFParagraphToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XWPFRun createXWPFRunFromString(EDataType eDataType, String initialValue) {
+		return (XWPFRun)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXWPFRunToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

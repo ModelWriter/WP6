@@ -14,5 +14,4 @@ package DocModel.validation;
 public interface ElementValidator {
 	boolean validate();
 
-	boolean validateText(String value);
 }

@@ -2,38 +2,41 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="DocModel" nsURI="eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel"
     nsPrefix="eu.modelwriter.architecture.textconnectors.docx.parser">
-  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedNode" upperBound="-1"
-        eType="#//Node" containment="true" eOpposite="#//Node/parentNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nextNode" eType="#//Node"
-        containment="true" eOpposite="#//Node/prevNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="prevNode" eType="#//Node"
-        eOpposite="#//Node/nextNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parentNode" eType="#//Node"
-        eOpposite="#//Node/ownedNode"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedRun" upperBound="-1"
-        eType="#//XWPFRun"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedNode" upperBound="-1"
         eType="#//Node" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="document" eType="#//XWPFDocument"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rawText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedRun" eType="#//XWPFRun"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedNode" upperBound="-1"
+        eType="#//Node" containment="true" eOpposite="#//Node/parentNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentNode" eType="#//Node"
+        eOpposite="#//Node/ownedNode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paragraph" upperBound="-1"
+        eType="#//XWPFParagraph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPart" upperBound="-1"
+        eType="#//Part" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstPart" eType="#//Part"
+        eOpposite="#//Part/node"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedNode" eSuperTypes="#//Node #//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paragraf" eType="#//XWPFParagraph"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ListedNode" eSuperTypes="#//NamedNode"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="XWPFRun" instanceClassName="org.apache.poi.xwpf.usermodel.XWPFRun">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="org.apache.poi.xwpf.usermodel.XWPFRun"/>
-    </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Part" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rawText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedRun" upperBound="-1"
+        eType="#//XWPFRun"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextPart" eType="#//Part"
+        eOpposite="#//Part/prevPart"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prevPart" eType="#//Part"
+        eOpposite="#//Part/nextPart"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//Node" eOpposite="#//Node/firstPart"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="XWPFDocument" instanceClassName="org.apache.poi.xwpf.usermodel.XWPFDocument"/>
   <eClassifiers xsi:type="ecore:EDataType" name="XWPFParagraph" instanceClassName="org.apache.poi.xwpf.usermodel.XWPFParagraph"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="XWPFRun" instanceClassName="org.apache.poi.xwpf.usermodel.XWPFRun"/>
 </ecore:EPackage>

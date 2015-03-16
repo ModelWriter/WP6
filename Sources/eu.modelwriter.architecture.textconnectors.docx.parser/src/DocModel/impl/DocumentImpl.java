@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link DocModel.impl.DocumentImpl#getOwnedNode <em>Owned Node</em>}</li>
  *   <li>{@link DocModel.impl.DocumentImpl#getDocument <em>Document</em>}</li>
+ *   <li>{@link DocModel.impl.DocumentImpl#getPath <em>Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,6 +68,26 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 	 * @ordered
 	 */
 	protected XWPFDocument document = DOCUMENT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PATH_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPath() <em>Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected String path = PATH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,6 +146,27 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getPath() {
+		return path;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPath(String newPath) {
+		String oldPath = path;
+		path = newPath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DocModelPackage.DOCUMENT__PATH, oldPath, path));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -146,6 +188,8 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 				return getOwnedNode();
 			case DocModelPackage.DOCUMENT__DOCUMENT:
 				return getDocument();
+			case DocModelPackage.DOCUMENT__PATH:
+				return getPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,6 +210,9 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 			case DocModelPackage.DOCUMENT__DOCUMENT:
 				setDocument((XWPFDocument)newValue);
 				return;
+			case DocModelPackage.DOCUMENT__PATH:
+				setPath((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -184,6 +231,9 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 			case DocModelPackage.DOCUMENT__DOCUMENT:
 				setDocument(DOCUMENT_EDEFAULT);
 				return;
+			case DocModelPackage.DOCUMENT__PATH:
+				setPath(PATH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -200,6 +250,8 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 				return ownedNode != null && !ownedNode.isEmpty();
 			case DocModelPackage.DOCUMENT__DOCUMENT:
 				return DOCUMENT_EDEFAULT == null ? document != null : !DOCUMENT_EDEFAULT.equals(document);
+			case DocModelPackage.DOCUMENT__PATH:
+				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -216,6 +268,8 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (document: ");
 		result.append(document);
+		result.append(", path: ");
+		result.append(path);
 		result.append(')');
 		return result.toString();
 	}

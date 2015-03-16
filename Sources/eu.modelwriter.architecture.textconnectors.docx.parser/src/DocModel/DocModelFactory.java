@@ -22,15 +22,6 @@ public interface DocModelFactory extends EFactory {
 	DocModelFactory eINSTANCE = DocModel.impl.DocModelFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Node</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Node</em>'.
-	 * @generated
-	 */
-	Node createNode();
-
-	/**
 	 * Returns a new object of class '<em>Document</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40,22 +31,22 @@ public interface DocModelFactory extends EFactory {
 	Document createDocument();
 
 	/**
-	 * Returns a new object of class '<em>Named Node</em>'.
+	 * Returns a new object of class '<em>Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Named Node</em>'.
+	 * @return a new object of class '<em>Node</em>'.
 	 * @generated
 	 */
-	NamedNode createNamedNode();
+	Node createNode();
 
 	/**
-	 * Returns a new object of class '<em>Listed Node</em>'.
+	 * Returns a new object of class '<em>Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Listed Node</em>'.
+	 * @return a new object of class '<em>Part</em>'.
 	 * @generated
 	 */
-	ListedNode createListedNode();
+	Part createPart();
 
 	/**
 	 * Returns the package supported by this factory.

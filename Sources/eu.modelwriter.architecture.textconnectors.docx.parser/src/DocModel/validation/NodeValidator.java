@@ -5,7 +5,9 @@
 package DocModel.validation;
 
 import DocModel.Node;
+import DocModel.Part;
 
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import org.eclipse.emf.common.util.EList;
@@ -19,9 +21,11 @@ import org.eclipse.emf.common.util.EList;
 public interface NodeValidator {
 	boolean validate();
 
+	boolean validateRawText(String value);
+	boolean validateAggregatedRun(XWPFRun value);
 	boolean validateOwnedNode(EList<Node> value);
-	boolean validateNextNode(Node value);
-	boolean validatePrevNode(Node value);
 	boolean validateParentNode(Node value);
-	boolean validateAggregatedRun(EList<XWPFRun> value);
+	boolean validateParagraph(EList<XWPFParagraph> value);
+	boolean validateOwnedPart(EList<Part> value);
+	boolean validateFirstPart(Part value);
 }
