@@ -55,7 +55,7 @@ public class UseCase2BusinessProcessModelConverter {
 	//private final static String ALTERNATIVE_FLOWS = "Alternative Flows";
 
 
-	private final static String filename = "C:/Users/2/Desktop/UseCaseDocumentation2.docx"; 
+	private final static String filename = "testdata/UseCaseDocumentation.docx"; 
 
 	public static UseCaseFactory factory;
 

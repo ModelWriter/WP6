@@ -14,4 +14,12 @@
             genModel="model/ParseTree.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DocumentModel -->
+      <package
+            uri="eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel"
+            class="DocModel.DocModelPackage"
+            genModel="model/DocumentModel.genmodel"/>
+   </extension>
+
 </plugin>
