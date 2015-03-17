@@ -4,16 +4,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.text.Document;
 
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFNumbering;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFStyles;
@@ -25,8 +29,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 
 import useCase.Actor;
+import useCase.Documentation;
 import useCase.EndEvent;
 import useCase.FlowElement;
 import useCase.FlowNode;
@@ -42,14 +48,14 @@ public class BusinessProcessModel2UseCaseConverter {
 	private final static String PRIMARY_ACTOR = "Primary Actor";
 	private final static String STAKEHOLDERS_AND_INTERESTS = "Stakeholders and Interests";
 	private final static String PRECONDITION = "Preconditions";
-	private final static String SUCCESS_GUARANTEE = "Success Guarantee (Postconditions)";
+	private final static String SUCCESS_GUARANTEE = "Success Guarantee (Postcondition)";
 	//private final static String POSTCONDITION = "Postcondition";
 	private final static String MAIN_SUCCESS_SCENARIO = "Main Success Scenario (or Basic Flow)";
 	//private final static String BASIC_FLOW = "Basic Flow";
 	private final static String EXTENSIONS = "Extensions (or Alternative Flows)";
 	//private final static String ALTERNATIVE_FLOWS = "Alternative Flows";
 
-	
+
 	private static Resource resource;
 	private static XWPFDocument document;
 
@@ -64,12 +70,15 @@ public class BusinessProcessModel2UseCaseConverter {
 		XWPFDocument template = new XWPFDocument(new FileInputStream("templates/template.docx"));
 
 		document = new XWPFDocument(); 
+		
 
 		XWPFStyles newStyles = document.createStyles();
 		newStyles.setStyles(template.getStyle());
+		//XWPFNumbering numbering = document.createNumbering();
+		
 
 		FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/Test UceCase.docx"));
-		
+
 		try {
 
 			URI uri = URI.createURI("model/TestDocument.xmi");
@@ -114,10 +123,10 @@ public class BusinessProcessModel2UseCaseConverter {
 
 			document.write(out);
 			out.close();
-			
+
 			final JFrame frame = new JFrame();
 			JOptionPane.showMessageDialog(frame, "Docx file created successfully!");
-			
+
 		}// end of try
 		catch (NullPointerException | IOException e) {
 			e.printStackTrace();
@@ -133,10 +142,74 @@ public class BusinessProcessModel2UseCaseConverter {
 		writeHeader(useCase.getName());
 		writePrimaryActor(useCase.getPrimaryActor());
 		writeStakeholdersAndInterests(useCase.getOwnedStakeholderInterest());
-		//writePreconditions();
-		//writePostconditions();
+		writePreconditions(useCase.getOwnedAlternativeFlow());
+		writePostconditions(useCase.getOwnedAlternativeFlow());
 		writeMainFlow(useCase);
 		writeExtensions(useCase);
+
+	}
+
+	private static void writePostconditions(EList<Process> ownedAlternativeFlow) {
+
+		for(Process process : ownedAlternativeFlow){
+
+			if(process.getName().equals(SUCCESS_GUARANTEE)){
+
+				XWPFParagraph paragraph = document.createParagraph();
+				XWPFRun run = paragraph.createRun();
+
+				paragraph.setAlignment(ParagraphAlignment.LEFT);
+
+				run.setText(SUCCESS_GUARANTEE + ":");
+				run.setBold(true);
+				//run.addBreak();
+
+				for(FlowElement flowElement : process.getOwnedFlowElements()){
+
+					if(flowElement instanceof EndEvent){
+
+						paragraph = document.createParagraph();
+						//paragraph.setStyle("ListParagraph");
+						//paragraph.setNumID(BigInteger.valueOf(2));
+						run = paragraph.createRun();
+						run.setText(flowElement.getDocumentation().get(0).getText());
+						
+						
+					}
+				}
+			}
+		}
+
+	}
+
+	private static void writePreconditions(EList<Process> ownedAlternativeFlow) {
+
+		for(Process process : ownedAlternativeFlow){
+
+			if(process.getName().equals(PRECONDITION)){
+
+				XWPFParagraph paragraph = document.createParagraph();
+				XWPFRun run = paragraph.createRun();
+
+				paragraph.setAlignment(ParagraphAlignment.LEFT);
+
+				run.setText(PRECONDITION + ":");
+				run.setBold(true);
+				//run.addBreak();
+
+				for(FlowElement flowElement : process.getOwnedFlowElements()){
+
+					if(flowElement instanceof StartEvent){
+
+						paragraph = document.createParagraph();
+						//paragraph.setStyle("List Paragraph");
+						//paragraph.setNumID(BigInteger.valueOf(2));
+						run = paragraph.createRun();
+						run.setText(flowElement.getDocumentation().get(0).getText());
+					}
+				}
+			}
+		}
 
 	}
 
@@ -149,19 +222,18 @@ public class BusinessProcessModel2UseCaseConverter {
 
 		run.setText(EXTENSIONS + ":");
 		run.setBold(true);
-		run.addBreak();
+		//run.addBreak();
 
 		SequenceFlow sequenceFlow = null;
 		int tabCount = 0;
+		FlowNode previousController = null;
+
+		boolean flag = false;
 
 		for(Process process : useCase.getOwnedAlternativeFlow()){
 
-			if(process.getName().equals(PRECONDITION) || process.getName().equals(SUCCESS_GUARANTEE)){
-				
-				continue;
-				
-			}else{
-				
+			if(!(process.getName().equals(PRECONDITION)) && !(process.getName().equals(SUCCESS_GUARANTEE))){
+
 				for(FlowElement flowElement : process.getOwnedFlowElements()){
 
 					if(flowElement instanceof SequenceFlow){
@@ -171,64 +243,76 @@ public class BusinessProcessModel2UseCaseConverter {
 						FlowNode sourceNode = (FlowNode)sequenceFlow.getSource();
 						FlowNode targetNode = (FlowNode)sequenceFlow.getTarget();
 
-						paragraph = document.createParagraph();
-						run = paragraph.createRun();
 
-						if(!(sourceNode instanceof StartEvent)){
+						if(!(sourceNode instanceof StartEvent) && sourceNode != previousController){
+
+							paragraph = document.createParagraph();
+							run = paragraph.createRun();
 
 							if(sourceNode.getDocumentation().get(0).getTextFormat() != null){
 
 								String[] v = sourceNode.getDocumentation().get(0).getTextFormat()
 										.split(":");
 								tabCount = Integer.parseInt(v[1]);
-							}
-
-							String s = "";
-
-							for(int i = 0; i < tabCount; i++){
-
-								s += '\t';
-							}
+							}						
 
 							run = paragraph.createRun();
-							run.setText(s + sourceNode.getLabel() + ". " + 
-									sourceNode.getDocumentation().get(0));
+							for(int i = 0; i < tabCount; i++){
 
+								CTR ctr = run.getCTR();
+								ctr.addNewTab();
+							}
+
+							run.setText(sourceNode.getLabel() + ". " + 
+									sourceNode.getDocumentation().get(0).getText() + ".");
 						}
+
 
 						if(!(targetNode instanceof EndEvent)){
 
+							paragraph = document.createParagraph();
+							run = paragraph.createRun();
+
 							if(targetNode.getDocumentation().get(0).getTextFormat() != null){
 
-								String[] v = sourceNode.getDocumentation().get(0).getTextFormat()
+								String[] v = targetNode.getDocumentation().get(0).getTextFormat()
 										.split(":");
 								tabCount = Integer.parseInt(v[1]);
 							}
 
-							String s = "";
-
 							for(int i = 0; i < tabCount; i++){
 
-								s += '\t';
-								// TODO CTR ctr = run.getCTR();
-								// ctr.addNewTab();
+								CTR ctr = run.getCTR();
+								ctr.addNewTab();
 							}
 
-							run = paragraph.createRun();
-							run.setText(s + targetNode.getLabel() + ". " + 
-									targetNode.getDocumentation().get(0));
+							run.setText(targetNode.getLabel() + ". " + 
+									targetNode.getDocumentation().get(0).getText() + ".");
 
 						}
+
+						previousController = targetNode;
 
 					}
 
 				}
+
 			}
 		}
 	}
 
 	private static void writeMainFlow(UseCase useCase) {
 
+		List<Documentation> docList = useCase.getDocumentation();
+		boolean isNumbered = false;
+		
+		for (Documentation documentation : docList) {
+			
+			if(documentation.getTextFormat().equals("ListParagraph")){
+				isNumbered = true;
+			}
+		}
+		
 		XWPFParagraph paragraph = document.createParagraph();
 		XWPFRun run = paragraph.createRun();
 
@@ -240,7 +324,7 @@ public class BusinessProcessModel2UseCaseConverter {
 
 		SequenceFlow sequenceFlow = null;
 		FlowNode previousController = null;
-		
+
 		for(FlowElement flowElement : useCase.getOwnedMainFlow().getOwnedFlowElements()){
 
 			if(flowElement instanceof SequenceFlow){
@@ -250,25 +334,48 @@ public class BusinessProcessModel2UseCaseConverter {
 				FlowNode sourceNode = (FlowNode)sequenceFlow.getSource();
 				FlowNode targetNode = (FlowNode)sequenceFlow.getTarget();
 
-				paragraph = document.createParagraph();
-				run = paragraph.createRun();
-
+				
+				//run = paragraph.createRun();
+				String runText = "";
+				
 				if(!(sourceNode instanceof StartEvent) && sourceNode != previousController){
 
+					paragraph = document.createParagraph();
+
+					if(isNumbered){
+						paragraph.setStyle("ListParagraph");
+						paragraph.setNumID(BigInteger.valueOf(1));
+					}
 					run = paragraph.createRun();
-					run.setText(sourceNode.getLabel() + ". " + 
-								sourceNode.getDocumentation().get(0).getText() + ".");
+					
+					if(!isNumbered){
+						runText += sourceNode.getLabel() + ". " ;
+					}
+					runText += sourceNode.getDocumentation().get(0).getText();
+					
+					run.setText(runText);
 
 				}
 
 				if(!(targetNode instanceof EndEvent)){
 
+					paragraph = document.createParagraph();
 					run = paragraph.createRun();
-					run.setText(targetNode.getLabel() + ". " + 
-								targetNode.getDocumentation().get(0).getText() + ".");
+
+					if(isNumbered){
+						paragraph.setStyle("ListParagraph");
+						paragraph.setNumID(BigInteger.valueOf(1));
+					}
+					
+					if(!isNumbered){
+						runText += targetNode.getLabel() + ". " ;
+					}
+					runText += targetNode.getDocumentation().get(0).getText();
+					
+					run.setText(runText);
 
 				}
-				
+
 				previousController = targetNode;
 
 			}
@@ -291,10 +398,12 @@ public class BusinessProcessModel2UseCaseConverter {
 		for(Interest interest : ownedStakeholderInterest){
 
 			paragraph = document.createParagraph();
+			//paragraph.setStyle("ListParagraph");	
+			//paragraph.setNumID(BigInteger.valueOf(2));
 			run = paragraph.createRun();
 
 			for(Actor interestActor : interest.getActor()){
-				
+
 				run.setText(interestActor.getName() + " : " + 
 						interest.getDocumentation().get(interest.getActor().indexOf(interestActor)).getText());
 			}
@@ -316,15 +425,15 @@ public class BusinessProcessModel2UseCaseConverter {
 		run.setBold(true);
 
 		String actors = "";
-		
+
 		for(Actor actor : eList){
-			
+
 			run = paragraph.createRun();
 			actors += actor.getName() + " ";
 		}
-		
+
 		run.setText(actors.trim().replaceAll(" ", ", "));
-		
+
 		//run2.addBreak();
 	}
 
@@ -336,8 +445,9 @@ public class BusinessProcessModel2UseCaseConverter {
 		paragraph.setStyle("Heading1");
 		paragraph.setAlignment(ParagraphAlignment.LEFT);
 
-		run.setText(name.toUpperCase());
+		run.setText(name);
 		run.setFontFamily("Calibri Light");
+		run.setBold(true);
 		// TODO alt çizgi eklenicek
 		run.setUnderline(UnderlinePatterns.SINGLE);
 		run.setColor("000000");

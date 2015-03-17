@@ -54,4 +54,6 @@ public interface Specification extends NamedElement {
 	 */
 	EList<Actor> getOwnedActor();
 
+	Actor getActorByName(String actorName);
+
 } // Specification

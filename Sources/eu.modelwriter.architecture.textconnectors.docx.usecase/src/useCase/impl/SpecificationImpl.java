@@ -5,12 +5,9 @@ package useCase.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -182,6 +179,19 @@ public class SpecificationImpl extends NamedElementImpl implements Specification
 				return ownedActor != null && !ownedActor.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public Actor getActorByName(String actorName) {
+
+		for (Actor actor : ownedActor) {
+			
+			if(actor.getName().toLowerCase().trim().equals(actorName.toLowerCase().trim())){
+				
+				return actor;
+			}
+		}
+		return null;
 	}
 
 } //SpecificationImpl
