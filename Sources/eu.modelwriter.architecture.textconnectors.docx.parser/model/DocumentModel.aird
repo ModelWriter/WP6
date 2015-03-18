@@ -4,6 +4,9 @@
   <models xmi:type="ecore:EPackage" href="http://www.eclipse.org/emf/2002/Ecore#/"/>
   <models xmi:type="genmodel:GenModel" href="DocumentModel.genmodel#/"/>
   <models xmi:type="markup:Document" href="../testdata/my.textile#/"/>
+  <models xmi:type="ecore:EPackage" href="markup.ecore#/"/>
+  <models xmi:type="markup:Document" href="my.markup#/"/>
+  <models xmi:type="markup:Document" href="my_markdown.markup#/"/>
   <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_h3FqsMp8EeSKtNrA3qVyvg" initialized="true">
     <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_h6wpwMp8EeSKtNrA3qVyvg" name="DocModel class diagram">
       <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_h7MHkMp8EeSKtNrA3qVyvg" source="GMF_DIAGRAMS">
