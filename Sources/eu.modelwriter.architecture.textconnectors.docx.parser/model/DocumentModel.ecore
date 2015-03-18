@@ -12,7 +12,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="document" eType="#//XWPFDocument"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Node">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rawText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedRun" eType="#//XWPFRun"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedNode" upperBound="-1"
@@ -26,7 +26,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="firstPart" eType="#//Part"
         eOpposite="#//Part/node"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Part" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Part">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rawText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedRun" upperBound="-1"
         eType="#//XWPFRun"/>
@@ -39,4 +39,5 @@
   <eClassifiers xsi:type="ecore:EDataType" name="XWPFDocument" instanceClassName="org.apache.poi.xwpf.usermodel.XWPFDocument"/>
   <eClassifiers xsi:type="ecore:EDataType" name="XWPFParagraph" instanceClassName="org.apache.poi.xwpf.usermodel.XWPFParagraph"/>
   <eClassifiers xsi:type="ecore:EDataType" name="XWPFRun" instanceClassName="org.apache.poi.xwpf.usermodel.XWPFRun"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mark"/>
 </ecore:EPackage>
