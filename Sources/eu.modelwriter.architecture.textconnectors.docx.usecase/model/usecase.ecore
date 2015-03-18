@@ -16,8 +16,8 @@
         eType="#//Actor" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UseCase" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryActor" upperBound="-1"
-        eType="#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryActor" unique="false"
+        upperBound="-1" eType="#//Actor"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedStakeholderInterest"
         upperBound="-1" eType="#//Interest" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMainFlow" eType="#//Process"
@@ -27,8 +27,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Interest" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actor" lowerBound="1" upperBound="-1"
-        eType="#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actor" unique="false" lowerBound="1"
+        upperBound="-1" eType="#//Actor"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="FlowElement" abstract="true" eSuperTypes="#//Element"/>
