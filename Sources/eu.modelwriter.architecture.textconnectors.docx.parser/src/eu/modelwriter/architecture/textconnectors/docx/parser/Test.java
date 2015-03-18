@@ -40,7 +40,7 @@ public class Test {
 	    ResourceSet resSet = new ResourceSetImpl();
 	    // create a resource
 	    Resource resource = resSet.createResource(URI.createURI("testdata/my.xmi"));
-	    resource.getContents().add(correspondingModels.iterator().next());
+	    resource.getContents().addAll(correspondingModels);
 	    	    // now save the content.
 	    try {
 	      resource.save(Collections.EMPTY_MAP);
