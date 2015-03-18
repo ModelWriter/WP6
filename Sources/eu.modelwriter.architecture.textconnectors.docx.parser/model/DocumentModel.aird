@@ -123,7 +123,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_f0eHg81BEeScCLNgYiMFJQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_f0LMkc1BEeScCLNgYiMFJQ" fontName="Segoe UI" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f0LMks1BEeScCLNgYiMFJQ" x="-12" y="132" width="120" height="100"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f0LMks1BEeScCLNgYiMFJQ" x="36" y="96" width="120" height="100"/>
           </children>
           <styles xmi:type="notation:DiagramStyle" xmi:id="_h7MHksp8EeSKtNrA3qVyvg"/>
           <edges xmi:type="notation:Edge" xmi:id="_xQZ-EMp8EeSKtNrA3qVyvg" type="4001" element="_xP-gQMp8EeSKtNrA3qVyvg" source="_xQRbMMp8EeSKtNrA3qVyvg" target="_xQYI4Mp8EeSKtNrA3qVyvg">
