@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link DocModel.Element#get›d <em>›d</em>}</li>
+ *   <li>{@link DocModel.Element#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,29 +22,29 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Element extends EObject {
 	/**
-	 * Returns the value of the '<em><b>›d</b></em>' attribute.
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>›d</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>›d</em>' attribute.
-	 * @see #set›d(int)
-	 * @see DocModel.DocModelPackage#getElement_›d()
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(int)
+	 * @see DocModel.DocModelPackage#getElement_Id()
 	 * @model id="true"
 	 * @generated
 	 */
-	int get›d();
+	int getId();
 
 	/**
-	 * Sets the value of the '{@link DocModel.Element#get›d <em>›d</em>}' attribute.
+	 * Sets the value of the '{@link DocModel.Element#getId <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>›d</em>' attribute.
-	 * @see #get›d()
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
 	 * @generated
 	 */
-	void set›d(int value);
+	void setId(int value);
 
 } // Element

@@ -8,7 +8,7 @@ This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator
 Package DocModel <eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel>
 
   Class Element
-    Attribute id : EInt
+    Attribute Id : EInt
 
   Class NamedElement -> Element
     Attribute name : EString

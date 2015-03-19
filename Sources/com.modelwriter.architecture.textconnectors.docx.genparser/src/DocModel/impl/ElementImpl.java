@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link DocModel.impl.ElementImpl#getÝd <em>Ýd</em>}</li>
+ *   <li>{@link DocModel.impl.ElementImpl#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,24 +27,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public abstract class ElementImpl extends MinimalEObjectImpl.Container implements Element {
 	/**
-	 * The default value of the '{@link #getÝd() <em>Ýd</em>}' attribute.
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getÝd()
+	 * @see #getId()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ÝD_EDEFAULT = 0;
+	protected static final int ID_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getÝd() <em>Ýd</em>}' attribute.
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getÝd()
+	 * @see #getId()
 	 * @generated
 	 * @ordered
 	 */
-	protected int id = ÝD_EDEFAULT;
+	protected int ýd = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,8 +70,8 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getÝd() {
-		return id;
+	public int getId() {
+		return ýd;
 	}
 
 	/**
@@ -79,11 +79,11 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setÝd(int newÝd) {
-		int oldÝd = id;
-		id = newÝd;
+	public void setId(int newId) {
+		int oldId = ýd;
+		ýd = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DocModelPackage.ELEMENT__ÝD, oldÝd, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, DocModelPackage.ELEMENT__ID, oldId, ýd));
 	}
 
 	/**
@@ -94,8 +94,8 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DocModelPackage.ELEMENT__ÝD:
-				return getÝd();
+			case DocModelPackage.ELEMENT__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -108,8 +108,8 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DocModelPackage.ELEMENT__ÝD:
-				setÝd((Integer)newValue);
+			case DocModelPackage.ELEMENT__ID:
+				setId((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -123,8 +123,8 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DocModelPackage.ELEMENT__ÝD:
-				setÝd(ÝD_EDEFAULT);
+			case DocModelPackage.ELEMENT__ID:
+				setId(ID_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -138,8 +138,8 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DocModelPackage.ELEMENT__ÝD:
-				return id != ÝD_EDEFAULT;
+			case DocModelPackage.ELEMENT__ID:
+				return ýd != ID_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -154,8 +154,8 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (id: ");
-		result.append(id);
+		result.append(" (Id: ");
+		result.append(ýd);
 		result.append(')');
 		return result.toString();
 	}
