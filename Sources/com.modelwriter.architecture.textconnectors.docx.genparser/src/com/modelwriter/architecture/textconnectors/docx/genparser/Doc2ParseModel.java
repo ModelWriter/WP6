@@ -30,9 +30,9 @@ import DocModel.Paragraph;
 public class Doc2ParseModel {
 
 	private final static String filename = "testdata/SampleRequirementDocument2.docx"; 
-	
-	private final static String output = "model/ParseModel2.xmi";
-	
+
+	private final static String output = "model/ParseModel.xmi";
+
 	public static DocModelFactory factory;
 
 	public static Iterator<XWPFParagraph> paraIter; 
@@ -57,7 +57,7 @@ public class Doc2ParseModel {
 		paragraphStack = new Stack<Paragraph>();
 
 		paragraphLevelMap = new HashMap<Paragraph,Integer>();
-		
+
 		headingMap = new HashMap<String,Integer>();
 
 		initializeHeadingMap();
@@ -80,7 +80,7 @@ public class Doc2ParseModel {
 		String paragraphStyle = "";
 		int id = 0;
 		boolean firstParagraphFlag = true;
-		
+
 		while(paraIter.hasNext()) {
 
 			paragraph = paraIter.next();
@@ -173,13 +173,108 @@ public class Doc2ParseModel {
 			}// end if <heading level>
 			// normal paragraph
 			else if(headingMap.get(paragraphStyle) == 99){
-				
-				
+
+				String[] values = paragraph.getText().split(":");
+
+
+				for(XWPFRun run : paragraph.getRuns()){
+
+					String runText = run.getText(0).trim();
+					String key = values[0] + ":";
+
+					// key-value 
+					if(key.contains(runText) && run.isBold()){
+
+
+						//key-value
+						if(paragraph.getText().contains(":")){
+
+							Paragraph keyValueParagraph = factory.createParagraph();
+							keyValueParagraph.setId(++id);
+							keyValueParagraph.setName(values[0]);
+							keyValueParagraph.setRawText(values[1]);
+							paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+
+						}
+						//header without heading style
+						else{
+
+							Paragraph headerParagraph = factory.createParagraph();
+							headerParagraph.setId(++id);
+							headerParagraph.setName(paragraphText);
+							headerParagraph.setRawText(paragraphText);
+							paragraphStyle = "SubHeader";
+							headerParagraph.setParentNode(paragraphStack.peek());
+						}
+
+						keyValue = true;
+						break;
+
+					}
+					// key-value not bold
+					else if(paragraph.getText().contains(":")){
+
+						Paragraph keyValueParagraph = factory.createParagraph();
+						keyValueParagraph.setId(++id);
+						keyValueParagraph.setName(values[0]);
+						// TODO ya :' nýn yanýna ya da altýna yazýlabilir. 
+						keyValueParagraph.setRawText(values[1]);
+						keyValueParagraph.setParagraph(paragraph);
+
+						//determine heading level or subheader
+						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+						Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
+						XWPFParagraph p = lastParagraph.getParagraph();
+						String name = lastParagraph.getName();
+						// if this pair belongs to named paragraph
+						if(!name.equals("")){
+
+							lastParagraph.getOwnedNode().add(keyValueParagraph);
+						}else{
+
+							paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+
+						}
+					}
+					//
+					else if(numID != null){
+
+						paragraph = paraIter.next();
+						numID = paragraph.getNumID();
+
+						while(numID != null){
+
+							Paragraph numberedrParagraph = factory.createParagraph();
+							numberedrParagraph.setId(++id);
+							numberedrParagraph.setRawText(paragraphText);
+							paragraphStack.peek().getOwnedNode().add(numberedrParagraph);	
+
+							if(paraIter.hasNext()){
+								paragraph = paraIter.next();
+								numID = paragraph.getNumID();
+							}else{
+								break;
+							}
+						}
+
+
+					}
+
+					else{
+						keyValue = false;
+					}
+
+
+				}
 
 				// plain text
 				if(!isKeyValue()){
 
-				
+					Paragraph p = factory.createParagraph();
+					p.setId(++id);
+					p.setRawText(paragraphText);
+					paragraphStack.peek().getOwnedNode().add(p);
+
 				}
 			}
 
@@ -192,11 +287,11 @@ public class Doc2ParseModel {
 		createXMIFile(documentObject);
 
 	}
-	
+
 	private static boolean isKeyValue() {
 		return keyValue;
 	}
-	
+
 	/**
 	 * Requirement Levels left at stack must be removed and 
 	 * added corresponding levels
@@ -218,7 +313,7 @@ public class Doc2ParseModel {
 
 		}
 	}
-	
+
 	/**
 	 * Saves the model instance and writes it to xmi file
 	 * 
@@ -246,7 +341,7 @@ public class Doc2ParseModel {
 			// Save the resource
 			//resource.save(System.out, Collections.EMPTY_MAP); 
 			resource.save(null);
-			
+
 			final JFrame frame = new JFrame();
 			JOptionPane.showMessageDialog(frame, "Model created successfully!");
 
