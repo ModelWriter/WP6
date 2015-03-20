@@ -29,10 +29,17 @@ import DocModel.Paragraph;
 
 public class Doc2ParseModel {
 
+<<<<<<< HEAD
 	private final static String filename = "testdata/SampleRequirementDocument2.docx"; 
 
 	private final static String output = "model/ParseModel.xmi";
 
+=======
+	private final static String filename = "C:/Users/2/Desktop/SampleRequirementDocument.docx"; 
+	
+	private final static String output = "model/ParseModel.xmi";
+	
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 	public static DocModelFactory factory;
 
 	public static Iterator<XWPFParagraph> paraIter; 
@@ -94,7 +101,7 @@ public class Doc2ParseModel {
 			}
 
 			// heading level
-			if(headingMap.get(paragraphStyle) > 0 && headingMap.get(paragraphStyle) < 10){
+			if(headingMap.get(paragraphStyle) > 0 && headingMap.get(paragraphStyle) < 11){
 
 				Paragraph p = factory.createParagraph();
 				p.setId(++id);
@@ -173,9 +180,15 @@ public class Doc2ParseModel {
 			}// end if <heading level>
 			// normal paragraph
 			else if(headingMap.get(paragraphStyle) == 99){
+<<<<<<< HEAD
 
 				String[] values = paragraph.getText().split(":");
 
+=======
+				
+				String[] values = paragraph.getText().split(":");
+				
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 
 				for(XWPFRun run : paragraph.getRuns()){
 
@@ -184,21 +197,37 @@ public class Doc2ParseModel {
 
 					// key-value 
 					if(key.contains(runText) && run.isBold()){
+<<<<<<< HEAD
 
 
 						//key-value
 						if(paragraph.getText().contains(":")){
 
+=======
+						
+
+						//key-value
+						if(paragraph.getText().contains(":")){
+							
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 							Paragraph keyValueParagraph = factory.createParagraph();
 							keyValueParagraph.setId(++id);
 							keyValueParagraph.setName(values[0]);
 							keyValueParagraph.setRawText(values[1]);
 							paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+<<<<<<< HEAD
 
 						}
 						//header without heading style
 						else{
 
+=======
+							
+						}
+						//header without heading style
+						else{
+							
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 							Paragraph headerParagraph = factory.createParagraph();
 							headerParagraph.setId(++id);
 							headerParagraph.setName(paragraphText);
@@ -206,6 +235,7 @@ public class Doc2ParseModel {
 							paragraphStyle = "SubHeader";
 							headerParagraph.setParentNode(paragraphStack.peek());
 						}
+<<<<<<< HEAD
 
 						keyValue = true;
 						break;
@@ -221,6 +251,22 @@ public class Doc2ParseModel {
 						keyValueParagraph.setRawText(values[1]);
 						keyValueParagraph.setParagraph(paragraph);
 
+=======
+						
+						keyValue = true;
+						break;
+						
+					}
+					// key-value not bold
+					else if(paragraph.getText().contains(":")){
+						
+						Paragraph keyValueParagraph = factory.createParagraph();
+						keyValueParagraph.setId(++id);
+						keyValueParagraph.setName(values[0]);
+						keyValueParagraph.setRawText(values[1]);
+						keyValueParagraph.setParagraph(paragraph);
+						
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 						//determine heading level or subheader
 						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
 						Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
@@ -228,27 +274,49 @@ public class Doc2ParseModel {
 						String name = lastParagraph.getName();
 						// if this pair belongs to named paragraph
 						if(!name.equals("")){
+<<<<<<< HEAD
 
 							lastParagraph.getOwnedNode().add(keyValueParagraph);
 						}else{
 
 							paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
 
+=======
+							
+							lastParagraph.getOwnedNode().add(keyValueParagraph);
+						}else{
+							
+							paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+							
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 						}
 					}
 					//
 					else if(numID != null){
+<<<<<<< HEAD
 
 						paragraph = paraIter.next();
 						numID = paragraph.getNumID();
 
 						while(numID != null){
 
+=======
+						
+						paragraph = paraIter.next();
+						numID = paragraph.getNumID();
+						
+						while(numID != null){
+							
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 							Paragraph numberedrParagraph = factory.createParagraph();
 							numberedrParagraph.setId(++id);
 							numberedrParagraph.setRawText(paragraphText);
 							paragraphStack.peek().getOwnedNode().add(numberedrParagraph);	
+<<<<<<< HEAD
 
+=======
+							
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 							if(paraIter.hasNext()){
 								paragraph = paraIter.next();
 								numID = paragraph.getNumID();
@@ -256,16 +324,27 @@ public class Doc2ParseModel {
 								break;
 							}
 						}
+<<<<<<< HEAD
 
 
 					}
 
+=======
+						
+						
+					}
+					
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 					else{
 						keyValue = false;
 					}
 
 
 				}
+<<<<<<< HEAD
+=======
+				
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 
 				// plain text
 				if(!isKeyValue()){
@@ -274,7 +353,10 @@ public class Doc2ParseModel {
 					p.setId(++id);
 					p.setRawText(paragraphText);
 					paragraphStack.peek().getOwnedNode().add(p);
+<<<<<<< HEAD
 
+=======
+>>>>>>> f898ef98eabafdbe7fbf3372949bf316356bace6
 				}
 			}
 
@@ -364,7 +446,9 @@ public class Doc2ParseModel {
 		headingMap.put("Heading7", 7);
 		headingMap.put("Heading8", 8);
 		headingMap.put("Heading9", 9);
-		headingMap.put("ListParagraph", 99);
+		headingMap.put("SubHeader", 11);
+		headingMap.put("ListParagraph", 12);
+		
 
 	}
 
