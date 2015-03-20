@@ -14,5 +14,7 @@ package DocModel.validation;
 public interface ElementValidator {
 	boolean validate();
 
+	boolean validateId(int value);
+
 	boolean validate›d(int value);
 }

@@ -68,13 +68,13 @@ public interface DocModelPackage extends EPackage {
 	int ELEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>›d</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__›D = 0;
+	int ELEMENT__ID = 0;
 
 	/**
 	 * The number of structural features of the '<em>Element</em>' class.
@@ -105,13 +105,13 @@ public interface DocModelPackage extends EPackage {
 	int NAMED_ELEMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>›d</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__›D = ELEMENT__›D;
+	int NAMED_ELEMENT__ID = ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -151,13 +151,13 @@ public interface DocModelPackage extends EPackage {
 	int NODE = 2;
 
 	/**
-	 * The feature id for the '<em><b>›d</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__›D = NAMED_ELEMENT__›D;
+	int NODE__ID = NAMED_ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -224,13 +224,13 @@ public interface DocModelPackage extends EPackage {
 	int DOCUMENT = 3;
 
 	/**
-	 * The feature id for the '<em><b>›d</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__›D = NAMED_ELEMENT__›D;
+	int DOCUMENT__ID = NAMED_ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -306,13 +306,13 @@ public interface DocModelPackage extends EPackage {
 	int MARK = 4;
 
 	/**
-	 * The feature id for the '<em><b>›d</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MARK__›D = ELEMENT__›D;
+	int MARK__ID = ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Node</b></em>' reference.
@@ -352,13 +352,13 @@ public interface DocModelPackage extends EPackage {
 	int PARAGRAPH = 5;
 
 	/**
-	 * The feature id for the '<em><b>›d</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__›D = NODE__›D;
+	int PARAGRAPH__ID = NODE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -470,13 +470,13 @@ public interface DocModelPackage extends EPackage {
 	int PART = 6;
 
 	/**
-	 * The feature id for the '<em><b>›d</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PART__›D = NODE__›D;
+	int PART__ID = NODE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -601,15 +601,15 @@ public interface DocModelPackage extends EPackage {
 	EClass getElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link DocModel.Element#get›d <em>›d</em>}'.
+	 * Returns the meta object for the attribute '{@link DocModel.Element#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>›d</em>'.
-	 * @see DocModel.Element#get›d()
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see DocModel.Element#getId()
 	 * @see #getElement()
 	 * @generated
 	 */
-	EAttribute getElement_›d();
+	EAttribute getElement_Id();
 
 	/**
 	 * Returns the meta object for class '{@link DocModel.NamedElement <em>Named Element</em>}'.
@@ -925,12 +925,12 @@ public interface DocModelPackage extends EPackage {
 		EClass ELEMENT = eINSTANCE.getElement();
 
 		/**
-		 * The meta object literal for the '<em><b>›d</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ELEMENT__›D = eINSTANCE.getElement_›d();
+		EAttribute ELEMENT__ID = eINSTANCE.getElement_Id();
 
 		/**
 		 * The meta object literal for the '{@link DocModel.impl.NamedElementImpl <em>Named Element</em>}' class.
