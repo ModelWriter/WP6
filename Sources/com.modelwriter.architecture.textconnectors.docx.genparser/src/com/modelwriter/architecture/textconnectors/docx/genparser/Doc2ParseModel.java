@@ -9,10 +9,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import org.apache.poi.ss.formula.functions.Replace;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -30,9 +33,9 @@ import DocModel.Paragraph;
 public class Doc2ParseModel {
 
 	private final static String filename = "testdata/SampleRequirementDocument.docx"; 
-	
+
 	private final static String output = "model/ParseModel.xmi";
-	
+
 	public static DocModelFactory factory;
 
 	public static Iterator<XWPFParagraph> paraIter; 
@@ -50,14 +53,16 @@ public class Doc2ParseModel {
 	// Maps requirement level object and their levels
 	private static Map<Paragraph,Integer> paragraphLevelMap;
 
-	public static boolean keyValue;
+	public static boolean isPlainText;
+	
+	private static boolean paragraphNotHandled = false;
 
 	public static void main(String[] args) throws IOException {
 
 		paragraphStack = new Stack<Paragraph>();
 
 		paragraphLevelMap = new HashMap<Paragraph,Integer>();
-		
+
 		headingMap = new HashMap<String,Integer>();
 
 		initializeHeadingMap();
@@ -80,10 +85,17 @@ public class Doc2ParseModel {
 		String paragraphStyle = "";
 		int id = 0;
 		boolean firstParagraphFlag = true;
-		
+
+		// helps to determine parent paragraph
+		boolean assignPrevParentParagraph = false;
+
 		while(paraIter.hasNext()) {
 
-			paragraph = paraIter.next();
+			if(paragraphNotHandled == false){
+				paragraph = paraIter.next();
+			}
+
+			paragraphNotHandled = false;
 
 			paragraphText = paragraph.getText();
 			paragraphStyle = paragraph.getStyle();
@@ -92,14 +104,17 @@ public class Doc2ParseModel {
 			if(paragraphStyle == null){
 				paragraphStyle = "null";
 			}
-
 			// heading level
 			if(headingMap.get(paragraphStyle) > 0 && headingMap.get(paragraphStyle) < 11){
 
 				Paragraph p = factory.createParagraph();
 				p.setId(++id);
+				p.setName(paragraphText);
 				p.setParagraph(paragraph);
 				p.setRawText(paragraphText);
+				
+				// headingten sonra normal paragraflar gelirse o headinge ekle
+				assignPrevParentParagraph = true;
 
 				if(firstParagraphFlag && headingMap.get(paragraphStyle) == 1){					
 
@@ -173,108 +188,151 @@ public class Doc2ParseModel {
 			}// end if <heading level>
 			// normal paragraph
 			else if(headingMap.get(paragraphStyle) == 99){
-				
+
 				String[] values = paragraph.getText().split(":");
-				
+				isPlainText = true;
 
-				for(XWPFRun run : paragraph.getRuns()){
+				if(!paragraphText.equals("")){
 
-					String runText = run.getText(0).trim();
-					String key = values[0] + ":";
+					for(XWPFRun run : paragraph.getRuns()){
 
-					// key-value 
-					if(key.contains(runText) && run.isBold()){
-						
+						String runText = run.getText(0).trim();
+						String key = values[0] + ":";
 
-						//key-value
-						if(paragraph.getText().contains(":")){
+						// key-value 
+						if(key.contains(runText) && run.isBold()){
 							
+							//key-value
+							if(paragraph.getText().contains(":")){
+
+								Paragraph keyValueParagraph = factory.createParagraph();
+								keyValueParagraph.setId(++id);
+								keyValueParagraph.setName(values[0]);
+								
+								// paragraph has numberede list
+								// ex. Main Success Scenario
+								if(values.length < 2 || (values.length > 1 && 
+										values[1].replaceAll(" ", "").equals(""))){
+									
+									handleNumberedList(keyValueParagraph);
+									
+								}
+								// ex. Primary Actor: Student.
+								else{
+								
+									keyValueParagraph.setRawText(values[1]);
+								}
+								assignPrevParentParagraph = false;
+
+								paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+
+							}
+							//header without heading style ex. EM-HLR-....
+							else{
+
+								Paragraph headerParagraph = factory.createParagraph();
+								headerParagraph.setId(++id);
+								headerParagraph.setName(paragraphText);
+								headerParagraph.setRawText(paragraphText);
+								paragraphStyle = "SubHeader";
+								headerParagraph.setParentNode(paragraphStack.peek());
+								
+								// bundan sonra aralýksýz gelen paragraflarý buna ekle
+								assignPrevParentParagraph = false;
+
+							}
+
+							isPlainText = false;
+							break;
+
+						} 
+						// key-value not bold
+						// TODO handle numbered list
+						// ex. Name: Caise Failure.
+						else if(paragraph.getText().contains(":")){
+
+							isPlainText = false;
+
 							Paragraph keyValueParagraph = factory.createParagraph();
 							keyValueParagraph.setId(++id);
 							keyValueParagraph.setName(values[0]);
-							keyValueParagraph.setRawText(values[1]);
-							paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
 							
-						}
-						//header without heading style
-						else{
-							
-							Paragraph headerParagraph = factory.createParagraph();
-							headerParagraph.setId(++id);
-							headerParagraph.setName(paragraphText);
-							headerParagraph.setRawText(paragraphText);
-							paragraphStyle = "SubHeader";
-							headerParagraph.setParentNode(paragraphStack.peek());
-						}
-						
-						keyValue = true;
-						break;
-						
-					}
-					// key-value not bold
-					else if(paragraph.getText().contains(":")){
-						
-						Paragraph keyValueParagraph = factory.createParagraph();
-						keyValueParagraph.setId(++id);
-						keyValueParagraph.setName(values[0]);
-						keyValueParagraph.setRawText(values[1]);
-						keyValueParagraph.setParagraph(paragraph);
-						
-						//determine heading level or subheader
-						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-						Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
-						XWPFParagraph p = lastParagraph.getParagraph();
-						String name = lastParagraph.getName();
-						// if this pair belongs to named paragraph
-						if(!name.equals("")){
-							
-							lastParagraph.getOwnedNode().add(keyValueParagraph);
-						}else{
-							
-							paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
-							
-						}
-					}
-					//
-					else if(numID != null){
-						
-						paragraph = paraIter.next();
-						numID = paragraph.getNumID();
-						
-						while(numID != null){
-							
-							Paragraph numberedrParagraph = factory.createParagraph();
-							numberedrParagraph.setId(++id);
-							numberedrParagraph.setRawText(paragraphText);
-							paragraphStack.peek().getOwnedNode().add(numberedrParagraph);	
-							
-							if(paraIter.hasNext()){
-								paragraph = paraIter.next();
-								numID = paragraph.getNumID();
-							}else{
-								break;
+							if(values.length < 2 || (values.length > 1 && 
+									values[1].replaceAll(" ", "").equals(""))){
+								
+								handleNumberedList(keyValueParagraph);
+								
 							}
+							// ex. Primary Actor: Student.
+							else{
+							
+								keyValueParagraph.setRawText(values[1]);
+							}
+							
+
+							//determine heading level or subheader
+							int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+							Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
+							XWPFParagraph p = lastParagraph.getParagraph();
+							String name = lastParagraph.getName();
+							// if this pair belongs to named paragraph
+							if(!name.equals("")){
+
+								lastParagraph.getOwnedNode().add(keyValueParagraph);
+							}else{
+
+								paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+
+							}
+
 						}
-						
-						
 					}
-					
-					else{
-						keyValue = false;
-					}
-
-
 				}
-				
 
 				// plain text
-				if(!isKeyValue()){
+				if(isPlainText){
 
-					Paragraph p = factory.createParagraph();
-					p.setId(++id);
-					p.setRawText(paragraphText);
-					paragraphStack.peek().getOwnedNode().add(p);
+					if(paragraphText.equals("")){
+						assignPrevParentParagraph = true;
+					}else{
+						Paragraph p = factory.createParagraph();
+						p.setId(++id);
+						p.setRawText(paragraphText);
+
+						if(assignPrevParentParagraph){
+							paragraphStack.peek().getOwnedNode().add(p);
+
+						}else{
+							// TODO refactor to make it understanble and readable
+							paragraphStack.peek().getOwnedNode().get(paragraphStack.peek()
+									.getOwnedNode().size() - 1).getOwnedNode().add(p);
+						}
+					}
+
 				}
+			}
+			
+			//isNumbered() or isListed();
+			// TODO nested lists
+			else if(numID != null){
+
+				while(numID != null){
+
+					Paragraph numberedParagraph = factory.createParagraph();
+					numberedParagraph.setId(++id);
+					numberedParagraph.setRawText(paragraphText);
+					paragraphStack.peek().getOwnedNode().add(numberedParagraph);	
+
+					if(paraIter.hasNext()){
+						paragraph = paraIter.next();
+						numID = paragraph.getNumID();
+						paragraphNotHandled = true;
+					}else{
+						break;
+					}
+				}
+
+
 			}
 
 		}
@@ -286,11 +344,69 @@ public class Doc2ParseModel {
 		createXMIFile(documentObject);
 
 	}
-	
-	private static boolean isKeyValue() {
-		return keyValue;
+
+
+	private static void handleNumberedList(Paragraph keyValueParagraph) {
+
+		BigInteger numID = null;
+		paragraph = paraIter.next();
+		numID = paragraph.getNumID();
+		
+		/** Activity must start with a positive integer and continue with dot('.')
+		 * and there might be a whitespace(only one)
+		 */
+		String mainFlowActivityPattern = "(([1-9][0-9]*[.][ ]?)[A-Z].*)";
+		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
+		Matcher matcher = pattern.matcher(paragraph.getText());
+		
+		
+		if(matcher.matches()){
+
+			// Iterating through the numbers			
+			while(matcher.matches() && paragraph != null){
+
+				String[] v = paragraph.getText().split("\\.");
+
+				Paragraph p = factory.createParagraph();
+				p.setName(v[0]);
+				p.setRawText(v[1]);
+				p.setParentNode(keyValueParagraph);
+				
+				if(paraIter.hasNext()){
+					paragraph = paraIter.next();
+					matcher = pattern.matcher(paragraph.getText());
+				}else{
+					break;
+				}
+					
+
+			}// end while
+		
+		}
+		
+		// ordered list
+		else{
+			int activityCounter = 0;
+			
+			while(numID != null){
+
+				
+				activityCounter++;
+				Paragraph p = factory.createParagraph();
+				p.setName("" + activityCounter);
+				p.setRawText(paragraph.getText());
+				p.setParentNode(keyValueParagraph);
+				
+				paragraph = paraIter.next();
+				numID = paragraph.getNumID();
+			}
+		}
+		
+		paragraphNotHandled = true;
+		
 	}
-	
+
+
 	/**
 	 * Requirement Levels left at stack must be removed and 
 	 * added corresponding levels
@@ -312,7 +428,7 @@ public class Doc2ParseModel {
 
 		}
 	}
-	
+
 	/**
 	 * Saves the model instance and writes it to xmi file
 	 * 
@@ -340,7 +456,7 @@ public class Doc2ParseModel {
 			// Save the resource
 			//resource.save(System.out, Collections.EMPTY_MAP); 
 			resource.save(null);
-			
+
 			final JFrame frame = new JFrame();
 			JOptionPane.showMessageDialog(frame, "Model created successfully!");
 
@@ -365,7 +481,7 @@ public class Doc2ParseModel {
 		headingMap.put("Heading9", 9);
 		headingMap.put("SubHeader", 11);
 		headingMap.put("ListParagraph", 12);
-		
+
 
 	}
 
