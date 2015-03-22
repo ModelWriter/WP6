@@ -32,7 +32,7 @@ import DocModel.Paragraph;
 
 public class Doc2ParseModel {
 
-	private final static String filename = "testdata/SampleRequirementDocument.docx"; 
+	private final static String filename = "testdata/tabbed doc.docx"; 
 
 	private final static String output = "model/ParseModel.xmi";
 
@@ -53,6 +53,11 @@ public class Doc2ParseModel {
 	// Maps requirement level object and their levels
 	private static Map<Paragraph,Integer> paragraphLevelMap;
 
+	// Stores tabbed paragraph levels
+	private static Stack<Paragraph> plainTextStack;
+
+	private static Map<Paragraph,Integer> plaintTextLevelMap;
+	
 	public static boolean isPlainText;
 
 	private static boolean paragraphNotHandled = false;
@@ -60,9 +65,11 @@ public class Doc2ParseModel {
 	public static void main(String[] args) throws IOException {
 
 		paragraphStack = new Stack<Paragraph>();
-
 		paragraphLevelMap = new HashMap<Paragraph,Integer>();
 
+		plainTextStack = new Stack<Paragraph>();
+		plaintTextLevelMap = new HashMap<Paragraph,Integer>();
+		
 		headingMap = new HashMap<String,Integer>();
 
 		initializeHeadingMap();
@@ -191,6 +198,9 @@ public class Doc2ParseModel {
 
 					for(XWPFRun run : paragraph.getRuns()){
 
+						if(run.getText(0) == null){
+							continue;
+						}
 						String runText = run.getText(0).trim();
 						String key = values[0] + ":";
 
@@ -286,7 +296,82 @@ public class Doc2ParseModel {
 					Paragraph p = factory.createParagraph();
 					p.setId(++id);
 					p.setRawText(paragraphText);
+					int tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
+					
+					// Boþsa ekle
+					if(plainTextStack.isEmpty()){
+						
+						plainTextStack.push(p);
+						plaintTextLevelMap.put(p, tabCount);
+							
+					}
+					// yýðýtýn tepesindekinden daha içerdeyse
+					else if(plaintTextLevelMap.get(plainTextStack.peek()) < tabCount){
+						
+						plainTextStack.push(p);
+						plaintTextLevelMap.put(p, tabCount);
+					}
+					// eþitse
+					else if(plaintTextLevelMap.get(plainTextStack.peek()) == tabCount){
+						
+						Paragraph poppedParagraph = plainTextStack.pop();
 
+						if(!plainTextStack.isEmpty()){
+
+							plainTextStack.peek().getOwnedNode().add(poppedParagraph);
+
+						}else{
+
+							if(!isThereNamedParagraph()){
+								paragraphStack.peek().getOwnedNode().add(p);
+
+							}else{
+								
+								int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+								paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(p);
+							}
+						}
+
+						plainTextStack.push(p);
+						plaintTextLevelMap.put(p, tabCount);
+					}
+					// daha az indented para geldiyse
+					else{
+						
+						while(tabCount <= plaintTextLevelMap.get(plainTextStack.peek())){
+
+							Paragraph poppedParagraph = plainTextStack.pop();
+
+							// Higher level paragraph must be added to product
+							if(plaintTextLevelMap.get(poppedParagraph) == 0){
+
+								if(!isThereNamedParagraph()){
+									paragraphStack.peek().getOwnedNode().add(poppedParagraph);
+
+								}else{
+									
+									int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+									paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(p);
+								}
+								break;
+
+							}else{
+
+								plainTextStack.peek().getOwnedNode().add(poppedParagraph);		
+							}
+
+
+						}
+
+						if(!plainTextStack.isEmpty()){
+
+							plainTextStack.push(p);
+							plaintTextLevelMap.put(p, tabCount);
+						}
+					}
+					// TODO empty stack
+					/*
+					 * 
 					if(!isThereNamedParagraph()){
 						paragraphStack.peek().getOwnedNode().add(p);
 
@@ -296,6 +381,7 @@ public class Doc2ParseModel {
 						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(p);
 					}
 
+					 */
 				}
 			}
 
@@ -346,10 +432,18 @@ public class Doc2ParseModel {
 	private static boolean isThereNamedParagraph() {
 		
 		if(paragraphStack.peek().getOwnedNode().size() > 0){
-			return true;
+			int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+			Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
+			
+			if(lastParagraph.getName() != null){
+				return true;
+			}
+			
 		}else{
 			return false;
 		}
+		
+		return false;
 	}
 
 
