@@ -4,7 +4,6 @@ package DocModel;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -178,22 +177,13 @@ public interface DocModelPackage extends EPackage {
 	int NODE__RAW_TEXT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Aggregated Run</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__AGGREGATED_RUN = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Mark</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__MARK = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int NODE__MARK = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class.
@@ -202,7 +192,7 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int NODE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Node</em>' class.
@@ -251,22 +241,13 @@ public interface DocModelPackage extends EPackage {
 	int DOCUMENT__OWNED_PARAGRAPH = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Document</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__DOCUMENT = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__PATH = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int DOCUMENT__PATH = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Mark</b></em>' containment reference list.
@@ -275,7 +256,7 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__OWNED_MARK = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int DOCUMENT__OWNED_MARK = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Document</em>' class.
@@ -284,7 +265,7 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int DOCUMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Document</em>' class.
@@ -379,15 +360,6 @@ public interface DocModelPackage extends EPackage {
 	int PARAGRAPH__RAW_TEXT = NODE__RAW_TEXT;
 
 	/**
-	 * The feature id for the '<em><b>Aggregated Run</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAGRAPH__AGGREGATED_RUN = NODE__AGGREGATED_RUN;
-
-	/**
 	 * The feature id for the '<em><b>Mark</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -406,31 +378,13 @@ public interface DocModelPackage extends EPackage {
 	int PARAGRAPH__OWNED_NODE = NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Parent Node</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAGRAPH__PARENT_NODE = NODE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Paragraph</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAGRAPH__PARAGRAPH = NODE_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Owned Part</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__OWNED_PART = NODE_FEATURE_COUNT + 3;
+	int PARAGRAPH__OWNED_PART = NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>First Part</b></em>' reference.
@@ -439,7 +393,7 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__FÝRST_PART = NODE_FEATURE_COUNT + 4;
+	int PARAGRAPH__FIRST_PART = NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Paragraph</em>' class.
@@ -448,7 +402,7 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH_FEATURE_COUNT = NODE_FEATURE_COUNT + 5;
+	int PARAGRAPH_FEATURE_COUNT = NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Paragraph</em>' class.
@@ -495,15 +449,6 @@ public interface DocModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PART__RAW_TEXT = NODE__RAW_TEXT;
-
-	/**
-	 * The feature id for the '<em><b>Aggregated Run</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PART__AGGREGATED_RUN = NODE__AGGREGATED_RUN;
 
 	/**
 	 * The feature id for the '<em><b>Mark</b></em>' reference.
@@ -558,37 +503,6 @@ public interface DocModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PART_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '<em>XWPF Document</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.apache.poi.xwpf.usermodel.XWPFDocument
-	 * @see DocModel.impl.DocModelPackageImpl#getXWPFDocument()
-	 * @generated
-	 */
-	int XWPF_DOCUMENT = 7;
-
-	/**
-	 * The meta object id for the '<em>XWPF Paragraph</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.apache.poi.xwpf.usermodel.XWPFParagraph
-	 * @see DocModel.impl.DocModelPackageImpl#getXWPFParagraph()
-	 * @generated
-	 */
-	int XWPF_PARAGRAPH = 8;
-
-	/**
-	 * The meta object id for the '<em>XWPF Run</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.apache.poi.xwpf.usermodel.XWPFRun
-	 * @see DocModel.impl.DocModelPackageImpl#getXWPFRun()
-	 * @generated
-	 */
-	int XWPF_RUN = 9;
-
 
 	/**
 	 * Returns the meta object for class '{@link DocModel.Element <em>Element</em>}'.
@@ -654,17 +568,6 @@ public interface DocModelPackage extends EPackage {
 	EAttribute getNode_RawText();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link DocModel.Node#getAggregatedRun <em>Aggregated Run</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Aggregated Run</em>'.
-	 * @see DocModel.Node#getAggregatedRun()
-	 * @see #getNode()
-	 * @generated
-	 */
-	EAttribute getNode_AggregatedRun();
-
-	/**
 	 * Returns the meta object for the reference '{@link DocModel.Node#getMark <em>Mark</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -695,17 +598,6 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDocument_OwnedParagraph();
-
-	/**
-	 * Returns the meta object for the attribute '{@link DocModel.Document#getDocument <em>Document</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Document</em>'.
-	 * @see DocModel.Document#getDocument()
-	 * @see #getDocument()
-	 * @generated
-	 */
-	EAttribute getDocument_Document();
 
 	/**
 	 * Returns the meta object for the attribute '{@link DocModel.Document#getPath <em>Path</em>}'.
@@ -772,28 +664,6 @@ public interface DocModelPackage extends EPackage {
 	EReference getParagraph_OwnedNode();
 
 	/**
-	 * Returns the meta object for the container reference '{@link DocModel.Paragraph#getParentNode <em>Parent Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Parent Node</em>'.
-	 * @see DocModel.Paragraph#getParentNode()
-	 * @see #getParagraph()
-	 * @generated
-	 */
-	EReference getParagraph_ParentNode();
-
-	/**
-	 * Returns the meta object for the attribute '{@link DocModel.Paragraph#getParagraph <em>Paragraph</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Paragraph</em>'.
-	 * @see DocModel.Paragraph#getParagraph()
-	 * @see #getParagraph()
-	 * @generated
-	 */
-	EAttribute getParagraph_Paragraph();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link DocModel.Paragraph#getOwnedPart <em>Owned Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -857,39 +727,6 @@ public interface DocModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPart_Node();
-
-	/**
-	 * Returns the meta object for data type '{@link org.apache.poi.xwpf.usermodel.XWPFDocument <em>XWPF Document</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>XWPF Document</em>'.
-	 * @see org.apache.poi.xwpf.usermodel.XWPFDocument
-	 * @model instanceClass="org.apache.poi.xwpf.usermodel.XWPFDocument"
-	 * @generated
-	 */
-	EDataType getXWPFDocument();
-
-	/**
-	 * Returns the meta object for data type '{@link org.apache.poi.xwpf.usermodel.XWPFParagraph <em>XWPF Paragraph</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>XWPF Paragraph</em>'.
-	 * @see org.apache.poi.xwpf.usermodel.XWPFParagraph
-	 * @model instanceClass="org.apache.poi.xwpf.usermodel.XWPFParagraph"
-	 * @generated
-	 */
-	EDataType getXWPFParagraph();
-
-	/**
-	 * Returns the meta object for data type '{@link org.apache.poi.xwpf.usermodel.XWPFRun <em>XWPF Run</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>XWPF Run</em>'.
-	 * @see org.apache.poi.xwpf.usermodel.XWPFRun
-	 * @model instanceClass="org.apache.poi.xwpf.usermodel.XWPFRun"
-	 * @generated
-	 */
-	EDataType getXWPFRun();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -969,14 +806,6 @@ public interface DocModelPackage extends EPackage {
 		EAttribute NODE__RAW_TEXT = eINSTANCE.getNode_RawText();
 
 		/**
-		 * The meta object literal for the '<em><b>Aggregated Run</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NODE__AGGREGATED_RUN = eINSTANCE.getNode_AggregatedRun();
-
-		/**
 		 * The meta object literal for the '<em><b>Mark</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1001,14 +830,6 @@ public interface DocModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DOCUMENT__OWNED_PARAGRAPH = eINSTANCE.getDocument_OwnedParagraph();
-
-		/**
-		 * The meta object literal for the '<em><b>Document</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENT__DOCUMENT = eINSTANCE.getDocument_Document();
 
 		/**
 		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
@@ -1063,22 +884,6 @@ public interface DocModelPackage extends EPackage {
 		EReference PARAGRAPH__OWNED_NODE = eINSTANCE.getParagraph_OwnedNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Parent Node</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PARAGRAPH__PARENT_NODE = eINSTANCE.getParagraph_ParentNode();
-
-		/**
-		 * The meta object literal for the '<em><b>Paragraph</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAGRAPH__PARAGRAPH = eINSTANCE.getParagraph_Paragraph();
-
-		/**
 		 * The meta object literal for the '<em><b>Owned Part</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1092,7 +897,7 @@ public interface DocModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PARAGRAPH__FÝRST_PART = eINSTANCE.getParagraph_FirstPart();
+		EReference PARAGRAPH__FIRST_PART = eINSTANCE.getParagraph_FirstPart();
 
 		/**
 		 * The meta object literal for the '{@link DocModel.impl.PartImpl <em>Part</em>}' class.
@@ -1127,36 +932,6 @@ public interface DocModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PART__NODE = eINSTANCE.getPart_Node();
-
-		/**
-		 * The meta object literal for the '<em>XWPF Document</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.apache.poi.xwpf.usermodel.XWPFDocument
-		 * @see DocModel.impl.DocModelPackageImpl#getXWPFDocument()
-		 * @generated
-		 */
-		EDataType XWPF_DOCUMENT = eINSTANCE.getXWPFDocument();
-
-		/**
-		 * The meta object literal for the '<em>XWPF Paragraph</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.apache.poi.xwpf.usermodel.XWPFParagraph
-		 * @see DocModel.impl.DocModelPackageImpl#getXWPFParagraph()
-		 * @generated
-		 */
-		EDataType XWPF_PARAGRAPH = eINSTANCE.getXWPFParagraph();
-
-		/**
-		 * The meta object literal for the '<em>XWPF Run</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.apache.poi.xwpf.usermodel.XWPFRun
-		 * @see DocModel.impl.DocModelPackageImpl#getXWPFRun()
-		 * @generated
-		 */
-		EDataType XWPF_RUN = eINSTANCE.getXWPFRun();
 
 	}
 

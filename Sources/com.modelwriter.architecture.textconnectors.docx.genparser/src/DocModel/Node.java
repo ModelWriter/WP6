@@ -2,9 +2,6 @@
  */
 package DocModel;
 
-import org.apache.poi.xwpf.usermodel.XWPFRun;
-
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link DocModel.Node#getRawText <em>Raw Text</em>}</li>
- *   <li>{@link DocModel.Node#getAggregatedRun <em>Aggregated Run</em>}</li>
  *   <li>{@link DocModel.Node#getMark <em>Mark</em>}</li>
  * </ul>
  * </p>
@@ -50,22 +46,6 @@ public interface Node extends NamedElement {
 	 * @generated
 	 */
 	void setRawText(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Aggregated Run</b></em>' attribute list.
-	 * The list contents are of type {@link org.apache.poi.xwpf.usermodel.XWPFRun}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Aggregated Run</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Aggregated Run</em>' attribute list.
-	 * @see DocModel.DocModelPackage#getNode_AggregatedRun()
-	 * @model dataType="DocModel.XWPFRun"
-	 * @generated
-	 */
-	EList<XWPFRun> getAggregatedRun();
 
 	/**
 	 * Returns the value of the '<em><b>Mark</b></em>' reference.

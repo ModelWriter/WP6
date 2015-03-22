@@ -6,21 +6,13 @@ import DocModel.DocModelPackage;
 import DocModel.Document;
 import DocModel.Mark;
 import DocModel.Paragraph;
-
 import java.util.Collection;
-
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,7 +24,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link DocModel.impl.DocumentImpl#getOwnedParagraph <em>Owned Paragraph</em>}</li>
- *   <li>{@link DocModel.impl.DocumentImpl#getDocument <em>Document</em>}</li>
  *   <li>{@link DocModel.impl.DocumentImpl#getPath <em>Path</em>}</li>
  *   <li>{@link DocModel.impl.DocumentImpl#getOwnedMark <em>Owned Mark</em>}</li>
  * </ul>
@@ -50,26 +41,6 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 	 * @ordered
 	 */
 	protected EList<Paragraph> ownedParagraph;
-
-	/**
-	 * The default value of the '{@link #getDocument() <em>Document</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDocument()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final XWPFDocument DOCUMENT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDocument() <em>Document</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDocument()
-	 * @generated
-	 * @ordered
-	 */
-	protected XWPFDocument document = DOCUMENT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
@@ -137,27 +108,6 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public XWPFDocument getDocument() {
-		return document;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDocument(XWPFDocument newDocument) {
-		XWPFDocument oldDocument = document;
-		document = newDocument;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DocModelPackage.DOCUMENT__DOCUMENT, oldDocument, document));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getPath() {
 		return path;
 	}
@@ -212,8 +162,6 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 		switch (featureID) {
 			case DocModelPackage.DOCUMENT__OWNED_PARAGRAPH:
 				return getOwnedParagraph();
-			case DocModelPackage.DOCUMENT__DOCUMENT:
-				return getDocument();
 			case DocModelPackage.DOCUMENT__PATH:
 				return getPath();
 			case DocModelPackage.DOCUMENT__OWNED_MARK:
@@ -234,9 +182,6 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 			case DocModelPackage.DOCUMENT__OWNED_PARAGRAPH:
 				getOwnedParagraph().clear();
 				getOwnedParagraph().addAll((Collection<? extends Paragraph>)newValue);
-				return;
-			case DocModelPackage.DOCUMENT__DOCUMENT:
-				setDocument((XWPFDocument)newValue);
 				return;
 			case DocModelPackage.DOCUMENT__PATH:
 				setPath((String)newValue);
@@ -260,9 +205,6 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 			case DocModelPackage.DOCUMENT__OWNED_PARAGRAPH:
 				getOwnedParagraph().clear();
 				return;
-			case DocModelPackage.DOCUMENT__DOCUMENT:
-				setDocument(DOCUMENT_EDEFAULT);
-				return;
 			case DocModelPackage.DOCUMENT__PATH:
 				setPath(PATH_EDEFAULT);
 				return;
@@ -283,8 +225,6 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 		switch (featureID) {
 			case DocModelPackage.DOCUMENT__OWNED_PARAGRAPH:
 				return ownedParagraph != null && !ownedParagraph.isEmpty();
-			case DocModelPackage.DOCUMENT__DOCUMENT:
-				return DOCUMENT_EDEFAULT == null ? document != null : !DOCUMENT_EDEFAULT.equals(document);
 			case DocModelPackage.DOCUMENT__PATH:
 				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
 			case DocModelPackage.DOCUMENT__OWNED_MARK:
@@ -303,9 +243,7 @@ public class DocumentImpl extends NamedElementImpl implements Document {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (document: ");
-		result.append(document);
-		result.append(", path: ");
+		result.append(" (path: ");
 		result.append(path);
 		result.append(')');
 		return result.toString();

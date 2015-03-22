@@ -5,22 +5,11 @@ package DocModel.impl;
 import DocModel.DocModelPackage;
 import DocModel.Mark;
 import DocModel.Node;
-
-import java.util.Collection;
-
-import org.apache.poi.xwpf.usermodel.XWPFRun;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +19,6 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link DocModel.impl.NodeImpl#getRawText <em>Raw Text</em>}</li>
- *   <li>{@link DocModel.impl.NodeImpl#getAggregatedRun <em>Aggregated Run</em>}</li>
  *   <li>{@link DocModel.impl.NodeImpl#getMark <em>Mark</em>}</li>
  * </ul>
  * </p>
@@ -57,16 +45,6 @@ public abstract class NodeImpl extends NamedElementImpl implements Node {
 	 * @ordered
 	 */
 	protected String rawText = RAW_TEXT_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getAggregatedRun() <em>Aggregated Run</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAggregatedRun()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<XWPFRun> aggregatedRun;
 
 	/**
 	 * The cached value of the '{@link #getMark() <em>Mark</em>}' reference.
@@ -116,18 +94,6 @@ public abstract class NodeImpl extends NamedElementImpl implements Node {
 		rawText = newRawText;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DocModelPackage.NODE__RAW_TEXT, oldRawText, rawText));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<XWPFRun> getAggregatedRun() {
-		if (aggregatedRun == null) {
-			aggregatedRun = new EDataTypeUniqueEList<XWPFRun>(XWPFRun.class, this, DocModelPackage.NODE__AGGREGATED_RUN);
-		}
-		return aggregatedRun;
 	}
 
 	/**
@@ -230,8 +196,6 @@ public abstract class NodeImpl extends NamedElementImpl implements Node {
 		switch (featureID) {
 			case DocModelPackage.NODE__RAW_TEXT:
 				return getRawText();
-			case DocModelPackage.NODE__AGGREGATED_RUN:
-				return getAggregatedRun();
 			case DocModelPackage.NODE__MARK:
 				if (resolve) return getMark();
 				return basicGetMark();
@@ -251,10 +215,6 @@ public abstract class NodeImpl extends NamedElementImpl implements Node {
 			case DocModelPackage.NODE__RAW_TEXT:
 				setRawText((String)newValue);
 				return;
-			case DocModelPackage.NODE__AGGREGATED_RUN:
-				getAggregatedRun().clear();
-				getAggregatedRun().addAll((Collection<? extends XWPFRun>)newValue);
-				return;
 			case DocModelPackage.NODE__MARK:
 				setMark((Mark)newValue);
 				return;
@@ -273,9 +233,6 @@ public abstract class NodeImpl extends NamedElementImpl implements Node {
 			case DocModelPackage.NODE__RAW_TEXT:
 				setRawText(RAW_TEXT_EDEFAULT);
 				return;
-			case DocModelPackage.NODE__AGGREGATED_RUN:
-				getAggregatedRun().clear();
-				return;
 			case DocModelPackage.NODE__MARK:
 				setMark((Mark)null);
 				return;
@@ -293,8 +250,6 @@ public abstract class NodeImpl extends NamedElementImpl implements Node {
 		switch (featureID) {
 			case DocModelPackage.NODE__RAW_TEXT:
 				return RAW_TEXT_EDEFAULT == null ? rawText != null : !RAW_TEXT_EDEFAULT.equals(rawText);
-			case DocModelPackage.NODE__AGGREGATED_RUN:
-				return aggregatedRun != null && !aggregatedRun.isEmpty();
 			case DocModelPackage.NODE__MARK:
 				return mark != null;
 		}
@@ -313,8 +268,6 @@ public abstract class NodeImpl extends NamedElementImpl implements Node {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (rawText: ");
 		result.append(rawText);
-		result.append(", aggregatedRun: ");
-		result.append(aggregatedRun);
 		result.append(')');
 		return result.toString();
 	}

@@ -11,14 +11,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rawText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedRun" upperBound="-1"
-        eType="#//XWPFRun"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mark" eType="#//Mark" eOpposite="#//Mark/node"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParagraph" upperBound="-1"
         eType="#//Paragraph" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="document" eType="#//XWPFDocument"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMark" upperBound="-1"
         eType="#//Mark" containment="true"/>
@@ -28,10 +25,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Paragraph" eSuperTypes="#//Node">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedNode" upperBound="-1"
-        eType="#//Paragraph" containment="true" eOpposite="#//Paragraph/parentNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parentNode" eType="#//Paragraph"
-        eOpposite="#//Paragraph/ownedNode"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paragraph" eType="#//XWPFParagraph"/>
+        eType="#//Paragraph" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPart" upperBound="-1"
         eType="#//Part" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="firstPart" eType="#//Part"
@@ -45,7 +39,4 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//Paragraph"
         eOpposite="#//Paragraph/firstPart"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="XWPFDocument" instanceClassName="org.apache.poi.xwpf.usermodel.XWPFDocument"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="XWPFParagraph" instanceClassName="org.apache.poi.xwpf.usermodel.XWPFParagraph"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="XWPFRun" instanceClassName="org.apache.poi.xwpf.usermodel.XWPFRun"/>
 </ecore:EPackage>

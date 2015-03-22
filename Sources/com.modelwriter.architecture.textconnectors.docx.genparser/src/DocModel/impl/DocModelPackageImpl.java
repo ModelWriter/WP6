@@ -11,17 +11,10 @@ import DocModel.NamedElement;
 import DocModel.Node;
 import DocModel.Paragraph;
 import DocModel.Part;
-
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -79,27 +72,6 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * @generated
 	 */
 	private EClass partEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType xwpfDocumentEDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType xwpfParagraphEDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType xwpfRunEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -221,17 +193,8 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNode_AggregatedRun() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getNode_Mark() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(2);
+		return (EReference)nodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -257,7 +220,7 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDocument_Document() {
+	public EAttribute getDocument_Path() {
 		return (EAttribute)documentEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -266,17 +229,8 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDocument_Path() {
-		return (EAttribute)documentEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getDocument_OwnedMark() {
-		return (EReference)documentEClass.getEStructuralFeatures().get(3);
+		return (EReference)documentEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -320,7 +274,7 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getParagraph_ParentNode() {
+	public EReference getParagraph_OwnedPart() {
 		return (EReference)paragraphEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -329,26 +283,8 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParagraph_Paragraph() {
-		return (EAttribute)paragraphEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getParagraph_OwnedPart() {
-		return (EReference)paragraphEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getParagraph_FirstPart() {
-		return (EReference)paragraphEClass.getEStructuralFeatures().get(4);
+		return (EReference)paragraphEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -392,33 +328,6 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getXWPFDocument() {
-		return xwpfDocumentEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EDataType getXWPFParagraph() {
-		return xwpfParagraphEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EDataType getXWPFRun() {
-		return xwpfRunEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public DocModelFactory getDocModelFactory() {
 		return (DocModelFactory)getEFactoryInstance();
 	}
@@ -450,12 +359,10 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__RAW_TEXT);
-		createEAttribute(nodeEClass, NODE__AGGREGATED_RUN);
 		createEReference(nodeEClass, NODE__MARK);
 
 		documentEClass = createEClass(DOCUMENT);
 		createEReference(documentEClass, DOCUMENT__OWNED_PARAGRAPH);
-		createEAttribute(documentEClass, DOCUMENT__DOCUMENT);
 		createEAttribute(documentEClass, DOCUMENT__PATH);
 		createEReference(documentEClass, DOCUMENT__OWNED_MARK);
 
@@ -464,20 +371,13 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 
 		paragraphEClass = createEClass(PARAGRAPH);
 		createEReference(paragraphEClass, PARAGRAPH__OWNED_NODE);
-		createEReference(paragraphEClass, PARAGRAPH__PARENT_NODE);
-		createEAttribute(paragraphEClass, PARAGRAPH__PARAGRAPH);
 		createEReference(paragraphEClass, PARAGRAPH__OWNED_PART);
-		createEReference(paragraphEClass, PARAGRAPH__FÝRST_PART);
+		createEReference(paragraphEClass, PARAGRAPH__FIRST_PART);
 
 		partEClass = createEClass(PART);
 		createEReference(partEClass, PART__NEXT_PART);
 		createEReference(partEClass, PART__PREV_PART);
 		createEReference(partEClass, PART__NODE);
-
-		// Create data types
-		xwpfDocumentEDataType = createEDataType(XWPF_DOCUMENT);
-		xwpfParagraphEDataType = createEDataType(XWPF_PARAGRAPH);
-		xwpfRunEDataType = createEDataType(XWPF_RUN);
 	}
 
 	/**
@@ -524,12 +424,10 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_RawText(), ecorePackage.getEString(), "rawText", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNode_AggregatedRun(), this.getXWPFRun(), "aggregatedRun", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Mark(), this.getMark(), this.getMark_Node(), "mark", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDocument_OwnedParagraph(), this.getParagraph(), null, "ownedParagraph", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDocument_Document(), this.getXWPFDocument(), "document", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocument_Path(), ecorePackage.getEString(), "path", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_OwnedMark(), this.getMark(), null, "ownedMark", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -537,9 +435,7 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 		initEReference(getMark_Node(), this.getNode(), this.getNode_Mark(), "node", null, 0, 1, Mark.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(paragraphEClass, Paragraph.class, "Paragraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getParagraph_OwnedNode(), this.getParagraph(), this.getParagraph_ParentNode(), "ownedNode", null, 0, -1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getParagraph_ParentNode(), this.getParagraph(), this.getParagraph_OwnedNode(), "parentNode", null, 0, 1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getParagraph_Paragraph(), this.getXWPFParagraph(), "paragraph", null, 0, 1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParagraph_OwnedNode(), this.getParagraph(), null, "ownedNode", null, 0, -1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getParagraph_OwnedPart(), this.getPart(), null, "ownedPart", null, 0, -1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getParagraph_FirstPart(), this.getPart(), this.getPart_Node(), "firstPart", null, 0, 1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -547,11 +443,6 @@ public class DocModelPackageImpl extends EPackageImpl implements DocModelPackage
 		initEReference(getPart_NextPart(), this.getPart(), this.getPart_PrevPart(), "nextPart", null, 0, 1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPart_PrevPart(), this.getPart(), this.getPart_NextPart(), "prevPart", null, 0, 1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPart_Node(), this.getParagraph(), this.getParagraph_FirstPart(), "node", null, 0, 1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		// Initialize data types
-		initEDataType(xwpfDocumentEDataType, XWPFDocument.class, "XWPFDocument", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(xwpfParagraphEDataType, XWPFParagraph.class, "XWPFParagraph", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(xwpfRunEDataType, XWPFRun.class, "XWPFRun", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

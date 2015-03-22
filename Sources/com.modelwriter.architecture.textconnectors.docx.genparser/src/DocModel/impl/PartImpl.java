@@ -249,9 +249,9 @@ public class PartImpl extends NodeImpl implements Part {
 		if (newNode != node) {
 			NotificationChain msgs = null;
 			if (node != null)
-				msgs = ((InternalEObject)node).eInverseRemove(this, DocModelPackage.PARAGRAPH__FÝRST_PART, Paragraph.class, msgs);
+				msgs = ((InternalEObject)node).eInverseRemove(this, DocModelPackage.PARAGRAPH__FIRST_PART, Paragraph.class, msgs);
 			if (newNode != null)
-				msgs = ((InternalEObject)newNode).eInverseAdd(this, DocModelPackage.PARAGRAPH__FÝRST_PART, Paragraph.class, msgs);
+				msgs = ((InternalEObject)newNode).eInverseAdd(this, DocModelPackage.PARAGRAPH__FIRST_PART, Paragraph.class, msgs);
 			msgs = basicSetNode(newNode, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -277,7 +277,7 @@ public class PartImpl extends NodeImpl implements Part {
 				return basicSetPrevPart((Part)otherEnd, msgs);
 			case DocModelPackage.PART__NODE:
 				if (node != null)
-					msgs = ((InternalEObject)node).eInverseRemove(this, DocModelPackage.PARAGRAPH__FÝRST_PART, Paragraph.class, msgs);
+					msgs = ((InternalEObject)node).eInverseRemove(this, DocModelPackage.PARAGRAPH__FIRST_PART, Paragraph.class, msgs);
 				return basicSetNode((Paragraph)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);

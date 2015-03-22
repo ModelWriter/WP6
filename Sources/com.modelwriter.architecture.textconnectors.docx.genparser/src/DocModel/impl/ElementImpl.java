@@ -44,7 +44,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected int ýd = ID_EDEFAULT;
+	protected int id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,7 +71,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	public int getId() {
-		return ýd;
+		return id;
 	}
 
 	/**
@@ -80,10 +80,10 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	public void setId(int newId) {
-		int oldId = ýd;
-		ýd = newId;
+		int oldId = id;
+		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DocModelPackage.ELEMENT__ID, oldId, ýd));
+			eNotify(new ENotificationImpl(this, Notification.SET, DocModelPackage.ELEMENT__ID, oldId, id));
 	}
 
 	/**
@@ -139,7 +139,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DocModelPackage.ELEMENT__ID:
-				return ýd != ID_EDEFAULT;
+				return id != ID_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -155,7 +155,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (Id: ");
-		result.append(ýd);
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}
