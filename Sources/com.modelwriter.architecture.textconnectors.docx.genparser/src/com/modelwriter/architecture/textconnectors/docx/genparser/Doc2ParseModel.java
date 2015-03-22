@@ -86,10 +86,6 @@ public class Doc2ParseModel {
 		int id = 0;
 		boolean firstParagraphFlag = true;
 
-		// helps to determine parent paragraph
-		boolean assignPrevParentParagraph = false;
-		boolean isOrdered = false;
-		
 		while(paraIter.hasNext()) {
 
 			if(paragraphNotHandled == false){
@@ -102,10 +98,6 @@ public class Doc2ParseModel {
 			paragraphStyle = paragraph.getStyle();
 			numID = paragraph.getNumID();
 
-			if(numID == null && !paragraphText.trim().equals("")){
-				isOrdered = false;
-			}
-			
 			if(paragraphStyle == null){
 				paragraphStyle = "null";
 			}
@@ -118,7 +110,6 @@ public class Doc2ParseModel {
 				//p.setParagraph(paragraph);
 				p.setRawText(paragraphText);
 				// headingten sonra normal paragraflar gelirse o headinge ekle
-				assignPrevParentParagraph = true;
 
 				if(firstParagraphFlag && headingMap.get(paragraphStyle) == 1){					
 
@@ -205,27 +196,25 @@ public class Doc2ParseModel {
 
 						// key-value 
 						if(key.contains(runText) && run.isBold()){
-							
+
 							//key-value
 							if(paragraph.getText().contains(":")){
 
 								Paragraph keyValueParagraph = factory.createParagraph();
 								keyValueParagraph.setId(++id);
 								keyValueParagraph.setName(values[0]);
-								
+
 								// paragraph has numberede list
 								// ex. Main Success Scenario
 								if(values.length < 2 || (values.length > 1 && 
 										values[1].replaceAll(" ", "").equals(""))){
-									isOrdered = true;
 									handleNumberedList(keyValueParagraph);
-									
+
 								}
 								// ex. Primary Actor: Student.
 								else{
 									keyValueParagraph.setRawText(values[1]);
 								}
-								assignPrevParentParagraph = false;
 
 								paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
 
@@ -240,9 +229,8 @@ public class Doc2ParseModel {
 								paragraphStyle = "SubHeader";
 								paragraphStack.peek().getOwnedNode().add(headerParagraph);
 								//headerParagraph.setParentNode(paragraphStack.peek());
-								
+
 								// bundan sonra aralýksýz gelen paragraflarý buna ekle
-								assignPrevParentParagraph = false;
 
 							}
 
@@ -260,19 +248,19 @@ public class Doc2ParseModel {
 							Paragraph keyValueParagraph = factory.createParagraph();
 							keyValueParagraph.setId(++id);
 							keyValueParagraph.setName(values[0]);
-							
+
 							if(values.length < 2 || (values.length > 1 && 
 									values[1].replaceAll(" ", "").equals(""))){
-								
+
 								handleNumberedList(keyValueParagraph);
-								
+
 							}
 							// ex. Primary Actor: Student.
 							else{
-							
+
 								keyValueParagraph.setRawText(values[1]);
 							}
-							
+
 							//determine heading level or subheader
 							int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
 							Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
@@ -293,28 +281,24 @@ public class Doc2ParseModel {
 				}
 
 				// plain text
-				if(isPlainText){
+				if(isPlainText && !paragraphText.equals("")){
 
-					if(paragraphText.equals("")){
-						assignPrevParentParagraph = true;
+					Paragraph p = factory.createParagraph();
+					p.setId(++id);
+					p.setRawText(paragraphText);
+
+					if(!isThereNamedParagraph()){
+						paragraphStack.peek().getOwnedNode().add(p);
+
 					}else{
-						Paragraph p = factory.createParagraph();
-						p.setId(++id);
-						p.setRawText(paragraphText);
-
-						if(assignPrevParentParagraph){
-							paragraphStack.peek().getOwnedNode().add(p);
-
-						}else{
-							// TODO refactor to make it understanble and readable
-							paragraphStack.peek().getOwnedNode().get(paragraphStack.peek()
-									.getOwnedNode().size() - 1).getOwnedNode().add(p);
-						}
+						
+						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(p);
 					}
 
 				}
 			}
-			
+
 			//isNumbered() or isListed();
 			// TODO nested lists
 			else if(numID != null){
@@ -323,19 +307,19 @@ public class Doc2ParseModel {
 
 					Paragraph numberedParagraph = factory.createParagraph();
 					numberedParagraph.setId(++id);
-					numberedParagraph.setRawText(paragraphText);
-				
-					if(isOrdered){
-						
+					numberedParagraph.setRawText(paragraph.getText());
+
+					if(isThereNamedParagraph()){
+
 						int lastNamedParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
 						paragraphStack.peek().getOwnedNode().get(lastNamedParagraphIndex)
-							.getOwnedNode().add(numberedParagraph);
-								
+						.getOwnedNode().add(numberedParagraph);
+
 					}else{
-						
+
 						paragraphStack.peek().getOwnedNode().add(numberedParagraph);	
 					}
-					
+
 					if(paraIter.hasNext()){
 						paragraph = paraIter.next();
 						numID = paragraph.getNumID();
@@ -359,20 +343,30 @@ public class Doc2ParseModel {
 	}
 
 
+	private static boolean isThereNamedParagraph() {
+		
+		if(paragraphStack.peek().getOwnedNode().size() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
 	private static void handleNumberedList(Paragraph keyValueParagraph) {
 
 		BigInteger numID = null;
 		paragraph = paraIter.next();
 		numID = paragraph.getNumID();
-		
+
 		/** Activity must start with a positive integer and continue with dot('.')
 		 * and there might be a whitespace(only one)
 		 */
 		String mainFlowActivityPattern = "(([1-9][0-9]*[.][ ]?)[A-Z].*)";
 		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
 		Matcher matcher = pattern.matcher(paragraph.getText());
-		
-	
+
+
 		if(matcher.matches()){
 
 			// Iterating through the numbers			
@@ -385,23 +379,23 @@ public class Doc2ParseModel {
 				p.setRawText(v[1]);
 				keyValueParagraph.getOwnedNode().add(p);
 				//p.setParentNode(keyValueParagraph);
-				
+
 				if(paraIter.hasNext()){
 					paragraph = paraIter.next();
 					matcher = pattern.matcher(paragraph.getText());
 				}else{
 					break;
 				}
-					
+
 
 			}// end while
-		
+
 		}
-		
+
 		// ordered list
 		else{
 			int activityCounter = 0;
-			
+
 			while(numID != null){	
 				activityCounter++;
 				Paragraph p = factory.createParagraph();
@@ -409,14 +403,14 @@ public class Doc2ParseModel {
 				p.setRawText(paragraph.getText());
 				keyValueParagraph.getOwnedNode().add(p);
 				//p.setParentNode(keyValueParagraph);
-				
+
 				paragraph = paraIter.next();
 				numID = paragraph.getNumID();
 			}
 		}
-		
+
 		paragraphNotHandled = true;
-		
+
 	}
 
 

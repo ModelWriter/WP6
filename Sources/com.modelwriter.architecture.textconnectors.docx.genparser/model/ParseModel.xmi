@@ -8,24 +8,24 @@
         <ownedNode Id="6" name="Description " rawText=" Equipments regularly send signals (a frame) to give their state. Signals differ according to the equipment category."/>
         <ownedNode Id="7" name="Priority " rawText=" Optional"/>
         <ownedNode Id="8" rawText="Text under EM-HLR"/>
+        <ownedNode Id="9" rawText="Step 1."/>
+        <ownedNode Id="10" rawText="Step 2."/>
       </ownedNode>
-      <ownedNode Id="9" rawText="Step 1."/>
-      <ownedNode Id="10" rawText="Step 1."/>
       <ownedNode Id="11" name="Main Success Scenario">
         <ownedNode name="1" rawText="Step1 under MSC."/>
         <ownedNode name="2" rawText="Step 2 under MSC."/>
         <ownedNode name="3" rawText="Step3 under MSC."/>
         <ownedNode Id="12" rawText="Step 4."/>
-        <ownedNode Id="13" rawText="Step 4."/>
+        <ownedNode Id="13" rawText="Step 5."/>
         <ownedNode Id="14" rawText="Step 6"/>
       </ownedNode>
       <ownedNode Id="15" name="Primary Actor" rawText=" Me.">
         <ownedNode Id="16" rawText="Plain text under level Primary  Actor."/>
+        <ownedNode Id="17" rawText="Plain Text under level 2.1."/>
+        <ownedNode Id="18" rawText="Plain Text under level 2.1."/>
+        <ownedNode Id="19" rawText="A"/>
+        <ownedNode Id="20" rawText="b"/>
       </ownedNode>
-      <ownedNode Id="17" rawText="Plain Text under level 2.1."/>
-      <ownedNode Id="18" rawText="Plain Text under level 2.1."/>
-      <ownedNode Id="19" rawText="A"/>
-      <ownedNode Id="20" rawText="A"/>
       <ownedNode Id="21" name="EM-HLR-F-REQ-002" rawText="EM-HLR-F-REQ-002">
         <ownedNode Id="22" name="Name " rawText=" Case of failure"/>
         <ownedNode Id="23" name="Description " rawText=" In case of failure assumption (particular signal), advanced analysis should be performed and correlation should be done with other existing information to check the effective failure."/>
@@ -39,8 +39,9 @@
     </ownedNode>
     <ownedNode Id="29" name="2.2 Level B" rawText="2.2 Level B">
       <ownedNode Id="30" name="2.2.1 Level B.1" rawText="2.2.1 Level B.1">
-        <ownedNode Id="31" rawText="Plain text under level 2.2.1."/>
-        <ownedNode Id="32" rawText="Plian text under level 2.2.1."/>
+        <ownedNode Id="31" rawText="Plain text under level 2.2.1.">
+          <ownedNode Id="32" rawText="Plian text under level 2.2.1."/>
+        </ownedNode>
         <ownedNode Id="33" name="EM-HLR-F-REQ-005" rawText="EM-HLR-F-REQ-005">
           <ownedNode Id="34" name="Name " rawText=" Permissions"/>
           <ownedNode Id="35" name="Description " rawText=" The target system should allow administrating the equipments and their categories."/>
