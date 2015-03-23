@@ -1,16 +1,100 @@
 <?xml version="1.0" encoding="ASCII"?>
 <eu.modelwriter.architecture.textconnectors.docx.parser:Document xmlns:eu.modelwriter.architecture.textconnectors.docx.parser="eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel">
-  <ownedParagraph Id="1" name="Heading" rawText="Heading">
-    <ownedNode Id="2" rawText="Indent 0.">
-      <ownedNode Id="3" rawText="&#x9;Indent 1.1.">
-        <ownedNode Id="4" rawText="&#x9;&#x9;Indent level 2.1."/>
-        <ownedNode Id="5" rawText="&#x9;&#x9;Indent level 2.2."/>
+  <ownedParagraph Id="1" name="1 Presentation" rawText="1 Presentation"/>
+  <ownedParagraph Id="2" name="2 Requirements" rawText="2 Requirements">
+    <ownedNode Id="3" name="2.1 Level A" rawText="2.1 Level A">
+      <ownedNode Id="8" rawText="Numbered item under plain text."/>
+      <ownedNode Id="9" rawText="Numbered item under plain text."/>
+      <ownedNode Id="4" rawText="Indent 0.">
+        <ownedNode Id="5" rawText="&#x9;Indent 1.1.">
+          <ownedNode Id="6" rawText="&#x9;&#x9;Indent level 2.1."/>
+          <ownedNode Id="7" rawText="&#x9;&#x9;Indent level 2.2."/>
+        </ownedNode>
+        <ownedNode Id="10" rawText="&#x9;Indent 1.2.">
+          <ownedNode Id="11" rawText="&#x9;&#x9;Indent level 2.3.">
+            <ownedNode Id="12" rawText="&#x9;&#x9;&#x9;Indent level 3.1."/>
+          </ownedNode>
+        </ownedNode>
       </ownedNode>
-      <ownedNode Id="6" rawText="&#x9;Indent 1.2.">
-        <ownedNode Id="7" rawText="&#x9;&#x9;Indent level 2.3.">
-          <ownedNode Id="8" rawText="&#x9;&#x9;&#x9;Indent level 3.1."/>
+      <ownedNode Id="13" rawText="Indent 0."/>
+      <ownedNode Id="14" name="EM-HLR-F-REQ-001" rawText="EM-HLR-F-REQ-001">
+        <ownedNode Id="15" name="Name " rawText=" Equipment state"/>
+        <ownedNode Id="16" name="Description " rawText=" Equipments regularly send signals (a frame) to give their state. Signals differ according to the equipment category."/>
+        <ownedNode Id="17" name="Priority " rawText=" Optional"/>
+        <ownedNode Id="19" rawText="Step 1."/>
+        <ownedNode Id="20" rawText="Step 2."/>
+        <ownedNode Id="21" rawText="Indent 0.">
+          <ownedNode Id="22" rawText="&#x9;Indent 1.1.">
+            <ownedNode Id="23" rawText="&#x9;&#x9;Indent level 2.1."/>
+            <ownedNode Id="24" rawText="&#x9;&#x9;Indent level 2.2."/>
+          </ownedNode>
+          <ownedNode Id="25" rawText="&#x9;Indent 1.2.">
+            <ownedNode Id="26" rawText="&#x9;&#x9;Indent level 2.3.">
+              <ownedNode Id="27" rawText="&#x9;&#x9;&#x9;Indent level 3.1."/>
+            </ownedNode>
+          </ownedNode>
+        </ownedNode>
+      </ownedNode>
+      <ownedNode Id="28" name="Main Success Scenario">
+        <ownedNode name="1" rawText="Step1 under MSC."/>
+        <ownedNode name="2" rawText="Step 2 under MSC."/>
+        <ownedNode name="3" rawText="Step3 under MSC."/>
+        <ownedNode Id="29" rawText="Indent 0.">
+          <ownedNode Id="30" rawText="&#x9;Indent 1.1.">
+            <ownedNode Id="31" rawText="&#x9;&#x9;Indent level 2.1."/>
+          </ownedNode>
+        </ownedNode>
+      </ownedNode>
+      <ownedNode Id="32" name="Primary Actor" rawText=" Me.">
+        <ownedNode Id="34" rawText="Plain Text under level 2.1."/>
+        <ownedNode Id="35" rawText="Plain Text under level 2.1."/>
+        <ownedNode Id="36" rawText="A"/>
+        <ownedNode Id="37" rawText="b"/>
+        <ownedNode Id="33" rawText="Plain text under level Primary  Actor."/>
+      </ownedNode>
+      <ownedNode Id="38" name="EM-HLR-F-REQ-002" rawText="EM-HLR-F-REQ-002">
+        <ownedNode Id="39" name="Name " rawText=" Case of failure"/>
+        <ownedNode Id="40" name="Description " rawText=" In case of failure assumption (particular signal), advanced analysis should be performed and correlation should be done with other existing information to check the effective failure."/>
+        <ownedNode Id="41" name="Priority " rawText=" Mandatory"/>
+      </ownedNode>
+      <ownedNode Id="42" name="EM-HLR-F-REQ-003" rawText="EM-HLR-F-REQ-003">
+        <ownedNode Id="43" name="Name " rawText=" Handle failure"/>
+        <ownedNode Id="44" name="Description " rawText=" If failure is confirmed, a procedure should be presented to the maintenance operator to handle the failure."/>
+        <ownedNode Id="45" name="Priority " rawText=" Mandatory"/>
+      </ownedNode>
+    </ownedNode>
+    <ownedNode Id="46" name="2.2 Level B" rawText="2.2 Level B">
+      <ownedNode Id="47" name="2.2.1 Level B.1" rawText="2.2.1 Level B.1">
+        <ownedNode Id="49" rawText="Plian text under level 2.2.1."/>
+        <ownedNode Id="50" name="EM-HLR-F-REQ-005" rawText="EM-HLR-F-REQ-005">
+          <ownedNode Id="51" name="Name " rawText=" Permissions"/>
+          <ownedNode Id="52" name="Description " rawText=" The target system should allow administrating the equipments and their categories."/>
+          <ownedNode Id="53" name="Priority " rawText=" Mandatory"/>
+          <ownedNode Id="54" name="Refine " rawText=" EM-HLR-F-REQ-002"/>
+          <ownedNode Id="55" rawText="Indent 0"/>
+        </ownedNode>
+        <ownedNode Id="56" name="2.2.1.1 Level B.1.1" rawText="2.2.1.1 Level B.1.1">
+          <ownedNode Id="57" name="EM-HLR-F-REQ-004" rawText="EM-HLR-F-REQ-004">
+            <ownedNode Id="58" name="Name " rawText=" Procedure"/>
+            <ownedNode Id="59" name="Description " rawText=" The procedure differs according to the equipment type."/>
+            <ownedNode Id="60" name="Priority " rawText=" Mandatory"/>
+          </ownedNode>
+        </ownedNode>
+      </ownedNode>
+      <ownedNode Id="61" name="2.2.2 Level B.2" rawText="2.2.2 Level B.2">
+        <ownedNode Id="62" name="EM-HLR-F-REQ-006" rawText="EM-HLR-F-REQ-006">
+          <ownedNode Id="63" name="Name " rawText=" Failures statistich"/>
+          <ownedNode Id="64" name="Description " rawText=" Statistics about failures and incident resolutions should be activated if needed and should be exported as reports if requested by the chief operator."/>
+          <ownedNode Id="65" name="Dependency to " rawText=" EM-HLR-F-REQ-003"/>
+          <ownedNode Id="66" name="Priority " rawText=" Mandatory"/>
         </ownedNode>
       </ownedNode>
     </ownedNode>
   </ownedParagraph>
+  <ownedParagraph Id="67" name="3 Conclusion" rawText="3 Conclusion">
+    <ownedNode Id="68" name="3.1 Level A" rawText="3.1 Level A"/>
+    <ownedNode Id="69" name="3.2 Level B" rawText="3.2 Level B"/>
+    <ownedNode Id="70" name="3.3 Level C" rawText="3.3 Level C"/>
+  </ownedParagraph>
+  <ownedParagraph Id="71" name="4 Summary" rawText="4 Summary"/>
 </eu.modelwriter.architecture.textconnectors.docx.parser:Document>

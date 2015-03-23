@@ -32,7 +32,7 @@ import DocModel.Paragraph;
 
 public class Doc2ParseModel {
 
-	private final static String filename = "testdata/tabbed doc.docx"; 
+	private final static String filename = "testdata/SampleRequirementDocument.docx"; 
 
 	private final static String output = "model/ParseModel.xmi";
 
@@ -61,6 +61,8 @@ public class Doc2ParseModel {
 	public static boolean isPlainText;
 
 	private static boolean paragraphNotHandled = false;
+	
+	private static int tabCount;
 
 	public static void main(String[] args) throws IOException {
 
@@ -111,6 +113,10 @@ public class Doc2ParseModel {
 			// heading level
 			if(headingMap.get(paragraphStyle) > 0 && headingMap.get(paragraphStyle) < 11){
 
+				if(!plainTextStack.isEmpty()){
+					emptyPlainTextStack();
+				}
+				
 				Paragraph p = factory.createParagraph();
 				p.setId(++id);
 				p.setName(paragraphText);
@@ -207,6 +213,9 @@ public class Doc2ParseModel {
 						// key-value 
 						if(key.contains(runText) && run.isBold()){
 
+							if(!plainTextStack.isEmpty()){
+								emptyPlainTextStack();
+							}
 							//key-value
 							if(paragraph.getText().contains(":")){
 
@@ -253,6 +262,10 @@ public class Doc2ParseModel {
 						// ex. Name: Caise Failure.
 						else if(paragraph.getText().contains(":")){
 
+							if(!plainTextStack.isEmpty()){
+								emptyPlainTextStack();
+							}
+							
 							isPlainText = false;
 
 							Paragraph keyValueParagraph = factory.createParagraph();
@@ -296,7 +309,7 @@ public class Doc2ParseModel {
 					Paragraph p = factory.createParagraph();
 					p.setId(++id);
 					p.setRawText(paragraphText);
-					int tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
+					tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
 					
 					// Boþsa ekle
 					if(plainTextStack.isEmpty()){
@@ -359,29 +372,14 @@ public class Doc2ParseModel {
 
 								plainTextStack.peek().getOwnedNode().add(poppedParagraph);		
 							}
-
-
+								
 						}
-
-						if(!plainTextStack.isEmpty()){
-
-							plainTextStack.push(p);
-							plaintTextLevelMap.put(p, tabCount);
-						}
-					}
-					// TODO empty stack
-					/*
-					 * 
-					if(!isThereNamedParagraph()){
-						paragraphStack.peek().getOwnedNode().add(p);
-
-					}else{
 						
-						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(p);
-					}
+						plainTextStack.push(p);
+						plaintTextLevelMap.put(p, tabCount);
 
-					 */
+					}
+		
 				}
 			}
 
@@ -420,6 +418,10 @@ public class Doc2ParseModel {
 
 		}
 
+		if(!plainTextStack.isEmpty()){
+			emptyPlainTextStack();
+		}
+		
 		// At last, stack must be emptied
 		emptyStack();
 
@@ -429,6 +431,50 @@ public class Doc2ParseModel {
 	}
 
 
+	private static void emptyPlainTextStack() {
+		
+		while(!plainTextStack.isEmpty()){
+
+			Paragraph poppedParagraph = plainTextStack.pop();	
+
+			if(plaintTextLevelMap.get(poppedParagraph) == 0){
+
+				if(isThereNamedParagraph()){
+					
+					int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+					paragraphStack.peek().getOwnedNode().get(lastParagraphIndex)
+					.getOwnedNode().add(poppedParagraph);
+				}else{
+					paragraphStack.peek().getOwnedNode().add(poppedParagraph);
+				}
+			}else{
+				
+				plainTextStack.peek().getOwnedNode().add(poppedParagraph);			
+			}
+
+
+		}
+		
+	}
+
+	private static boolean isThereNamedParagraphUnderPlainText(){
+		
+		if(!plainTextStack.isEmpty() && tabCount > 1){
+			
+			int lastParagraphIndex = plainTextStack.peek().getOwnedNode().size() - 1;
+			Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
+			
+			if(lastParagraph.getName() != null){
+				return true;
+			}
+			
+		}else{
+			return false;
+		}
+		
+		return false;
+	}
+	
 	private static boolean isThereNamedParagraph() {
 		
 		if(paragraphStack.peek().getOwnedNode().size() > 0){
