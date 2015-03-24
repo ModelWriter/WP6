@@ -116,12 +116,14 @@ public class Doc2ParseModel {
 			// heading level
 			if(headingMap.get(paragraphStyle) > 0 && headingMap.get(paragraphStyle) < 11){
 
+				//handleHeadingsHierarchy(paragraphStyle,paragraphText,firstParagraphFlag);
+				
 				if(!plainTextStack.isEmpty()){
 					emptyPlainTextStack();
 				}
 
 				Paragraph p = factory.createParagraph();
-				p.setId(++id);
+				//p.setId(++id);
 				p.setName(paragraphText);
 				//p.setParagraph(paragraph);
 				p.setRawText(paragraphText);
@@ -216,58 +218,20 @@ public class Doc2ParseModel {
 						// key-value 
 						if(key.contains(runText) && run.isBold()){
 
-							int tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
+							int tabCount = calculateTabCount(paragraphText);
 							if(tabCount == 0 && !plainTextStack.isEmpty()){
 								emptyPlainTextStack();
 							}
 
-							//key-value
+							//bold key-value
 							if(paragraph.getText().contains(":")){
 
-								Paragraph keyValueParagraph = factory.createParagraph();
-								keyValueParagraph.setId(++id);
-								keyValueParagraph.setName(values[0]);
-
-								// paragraph has numbered list
-								// ex. Main Success Scenario
-								if(values.length < 2 || (values.length > 1 && 
-										values[1].replaceAll(" ", "").equals(""))){
-									handleNumberedList(keyValueParagraph);
-
-								}
-								// ex. Primary Actor: Student.
-								else{
-									keyValueParagraph.setRawText(values[1]);
-								}
-
-								// add para. under tabbed parag.
-								if(paragraphText.length() - paragraphText.replaceAll("\t", "").length() > 1){
-
-									handleTabbedHierarchy(keyValueParagraph);
-
-								}else{
-									paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
-								}
+								handleBoldKeyValuePairs(values,paragraphText);
 							}
 							//header without heading style ex. EM-HLR-....
 							else{
 
-								Paragraph headerParagraph = factory.createParagraph();
-								headerParagraph.setId(++id);
-								headerParagraph.setName(paragraphText);
-								headerParagraph.setRawText(paragraphText);
-								paragraphStyle = "SubHeader";
-
-								if(paragraphText.length() - paragraphText.replaceAll("\t", "").length() > 1){
-
-									Doc2ParseModel.tabCount = tabCount;
-									handleTabbedHierarchy(headerParagraph);
-
-								}else{
-									paragraphStack.peek().getOwnedNode().add(headerParagraph);
-									//headerParagraph.setParentNode(paragraphStack.peek());
-								}
-								// bundan sonra aralýksýz gelen paragraflarý buna ekle
+								handleFullyBoldHeaders(paragraphStyle,paragraphText,tabCount);
 
 							}
 
@@ -280,42 +244,7 @@ public class Doc2ParseModel {
 						// ex. Name: Caise Failure.
 						else if(paragraph.getText().contains(":")){
 
-							if(!plainTextStack.isEmpty()){
-								emptyPlainTextStack();
-							}
-
-							isPlainText = false;
-
-							Paragraph keyValueParagraph = factory.createParagraph();
-							keyValueParagraph.setId(++id);
-							keyValueParagraph.setName(values[0]);
-
-							if(values.length < 2 || (values.length > 1 && 
-									values[1].replaceAll(" ", "").equals(""))){
-
-								handleNumberedList(keyValueParagraph);
-
-							}
-							// ex. Primary Actor: Student.
-							else{
-
-								keyValueParagraph.setRawText(values[1]);
-							}
-
-							//determine heading level or subheader
-							int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-							Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
-							//XWPFParagraph p = lastParagraph.getParagraph();
-							String name = lastParagraph.getName();
-							// if this pair belongs to named paragraph
-							if(!name.equals("")){
-
-								lastParagraph.getOwnedNode().add(keyValueParagraph);
-							}else{
-
-								paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
-
-							}
+							handleKeyValueProperties(values);
 
 						}
 					}
@@ -325,10 +254,10 @@ public class Doc2ParseModel {
 				if(isPlainText && !paragraphText.equals("")){
 
 					Paragraph p = factory.createParagraph();
-					p.setId(++id);
+					//p.setId(++id);
 					p.setRawText(paragraphText);
-					tabCount = p.getRawText().length() - p.getRawText().replaceAll("\t", "").length();
-
+					
+					calculateTabCount(p);
 					handleTabbedHierarchy(p);
 
 				}
@@ -338,46 +267,171 @@ public class Doc2ParseModel {
 			// TODO nested lists
 			else if(numID != null){
 
-				while(numID != null){
-
-					Paragraph numberedParagraph = factory.createParagraph();
-					numberedParagraph.setId(++id);
-					numberedParagraph.setRawText(paragraph.getText());
-
-					if(isThereNamedParagraph()){
-
-						int lastNamedParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-						paragraphStack.peek().getOwnedNode().get(lastNamedParagraphIndex)
-						.getOwnedNode().add(numberedParagraph);
-
-					}else{
-
-						paragraphStack.peek().getOwnedNode().add(numberedParagraph);	
-					}
-
-					if(paraIter.hasNext()){
-						paragraph = paraIter.next();
-						numID = paragraph.getNumID();
-						paragraphNotHandled = true;
-					}else{
-						break;
-					}
-				}
-
-
+				handleNumberedParagraphs(numID);
 			}
 
 		}
+
+		finilize();
+
+		// Create and save the model instance to xmi file
+		createXMIFile(documentObject);
+	}
+
+
+	private static int calculateTabCount(String paragraphText) {
+		return paragraphText.length() - paragraphText.replaceAll("\t", "").length();
+	}
+
+
+	private static void calculateTabCount(Paragraph p) {
+
+		tabCount = p.getRawText().length() - p.getRawText().replaceAll("\t", "").length();
+
+	}
+
+
+	private static void finilize() {
+
+		// if there is any plain text in stack which they have not beed added
+		// to their parent paragraph
+		emptyPlainTextStack();
+
+		// if there is any heading in stack which they have not beed added
+		// to model
+		emptyStack();
+
+	}
+
+
+	private static void handleHeadingsHierarchy(String paragraphStyle, String paragraphText, boolean firstParagraphFlag) {
+
+		
+
+	}
+
+
+	private static void handleKeyValueProperties(String[] values) {
 
 		if(!plainTextStack.isEmpty()){
 			emptyPlainTextStack();
 		}
 
-		// At last, stack must be emptied
-		emptyStack();
+		isPlainText = false;
 
-		// Create and save the model instance to xmi file
-		createXMIFile(documentObject);
+		Paragraph keyValueParagraph = factory.createParagraph();
+		//keyValueParagraph.setId(++id);
+		keyValueParagraph.setName(values[0]);
+
+		if(values.length < 2 || (values.length > 1 && 
+				values[1].replaceAll(" ", "").equals(""))){
+
+			handleNumberedList(keyValueParagraph);
+
+		}
+		// ex. Primary Actor: Student.
+		else{
+
+			keyValueParagraph.setRawText(values[1]);
+		}
+
+		//determine heading level or subheader
+		int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+		Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
+		//XWPFParagraph p = lastParagraph.getParagraph();
+		String name = lastParagraph.getName();
+		// if this pair belongs to named paragraph
+		if(!name.equals("")){
+
+			lastParagraph.getOwnedNode().add(keyValueParagraph);
+		}else{
+
+			paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+
+		}
+
+	}
+
+
+	private static void handleBoldKeyValuePairs(String[] values, String paragraphText) {
+
+		Paragraph keyValueParagraph = factory.createParagraph();
+		//keyValueParagraph.setId(++id);
+		keyValueParagraph.setName(values[0]);
+
+		// paragraph has numbered list
+		// ex. Main Success Scenario
+		if(values.length < 2 || (values.length > 1 && 
+				values[1].replaceAll(" ", "").equals(""))){
+			handleNumberedList(keyValueParagraph);
+
+		}
+		// ex. Primary Actor: Student.
+		else{
+			keyValueParagraph.setRawText(values[1]);
+		}
+
+		// add para. under tabbed parag.
+		if(paragraphText.length() - paragraphText.replaceAll("\t", "").length() > 1){
+
+			handleTabbedHierarchy(keyValueParagraph);
+
+		}else{
+			paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+		}
+
+	}
+
+
+	private static void handleNumberedParagraphs(BigInteger numID) {
+
+		while(numID != null){
+
+			Paragraph numberedParagraph = factory.createParagraph();
+			//numberedParagraph.setId(++id);
+			numberedParagraph.setRawText(paragraph.getText());
+
+			if(isThereNamedParagraph()){
+
+				int lastNamedParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+				paragraphStack.peek().getOwnedNode().get(lastNamedParagraphIndex)
+				.getOwnedNode().add(numberedParagraph);
+
+			}else{
+
+				paragraphStack.peek().getOwnedNode().add(numberedParagraph);	
+			}
+
+			if(paraIter.hasNext()){
+				paragraph = paraIter.next();
+				numID = paragraph.getNumID();
+				paragraphNotHandled = true;
+			}else{
+				break;
+			}
+		}
+
+	}
+
+
+	private static void handleFullyBoldHeaders(String paragraphStyle, String paragraphText, int tabCount2) {
+
+		Paragraph headerParagraph = factory.createParagraph();
+		//headerParagraph.setId(++id);
+		headerParagraph.setName(paragraphText);
+		headerParagraph.setRawText(paragraphText);
+		paragraphStyle = "SubHeader";
+
+		if(paragraphText.length() - paragraphText.replaceAll("\t", "").length() > 1){
+
+			Doc2ParseModel.tabCount = tabCount2;
+			handleTabbedHierarchy(headerParagraph);
+
+		}else{
+			paragraphStack.peek().getOwnedNode().add(headerParagraph);
+			//headerParagraph.setParentNode(paragraphStack.peek());
+		}
+		// bundan sonra aralýksýz gelen paragraflarý buna ekle
 
 	}
 
@@ -440,7 +494,7 @@ public class Doc2ParseModel {
 				// indent sayýsý ayný olsa da eðer çýkarýlan paragraph fully bold ise
 				// onun childýne ekle
 				if(plaintTextLevelMap.get(poppedParagraph) == tabCount && poppedParagraph.getName()!= null){
-					
+
 					poppedParagraph.getOwnedNode().add(p);
 					plainTextStack.peek().getOwnedNode().add(poppedParagraph);		
 					isAdded = true;
