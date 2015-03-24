@@ -30,12 +30,12 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(int)
+	 * @see #setId(String)
 	 * @see DocModel.DocModelPackage#getElement_Id()
 	 * @model id="true"
 	 * @generated
 	 */
-	int getId();
+	String getId();
 
 	/**
 	 * Sets the value of the '{@link DocModel.Element#getId <em>Id</em>}' attribute.
@@ -45,6 +45,6 @@ public interface Element extends EObject {
 	 * @see #getId()
 	 * @generated
 	 */
-	void setId(int value);
+	void setId(String value);
 
 } // Element

@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 import DocModel.DocModelFactory;
@@ -68,18 +70,10 @@ public class Doc2ParseModel {
 	private static int tabCount;
 
 	public static void main(String[] args) throws IOException {
-
-		paragraphStack = new Stack<Paragraph>();
-		paragraphLevelMap = new HashMap<Paragraph,Integer>();
-
-		plainTextStack = new Stack<Paragraph>();
-		plaintTextLevelMap = new HashMap<Paragraph,Integer>();
-
-		headingMap = new HashMap<String,Integer>();
-
+		
+		initializeStaticVariables();
 		initializeHeadingMap();
-
-		factory = DocModelFactory.eINSTANCE;
+		
 		File file = null; 
 		FileInputStream fis = null; 
 		XWPFDocument document = null;
@@ -89,7 +83,6 @@ public class Doc2ParseModel {
 		document = new XWPFDocument(fis); 
 		paraList = document.getParagraphs(); 
 		paraIter = paraList.iterator(); 
-		documentObject = factory.createDocument();
 
 		BigInteger numID = null; 
 		int numberingID = -1;
@@ -98,6 +91,11 @@ public class Doc2ParseModel {
 		int id = 0;
 		boolean firstParagraphFlag = true;
 
+		/*
+		 * for (int i=0; i<100; i++){
+            System.out.println(EcoreUtil.generateUUID());
+        }
+		 */
 		while(paraIter.hasNext()) {
 
 			if(paragraphNotHandled == false){
@@ -123,7 +121,8 @@ public class Doc2ParseModel {
 				}
 
 				Paragraph p = factory.createParagraph();
-				//p.setId(++id);
+				p.setId(EcoreUtil.generateUUID());
+				
 				p.setName(paragraphText);
 				//p.setParagraph(paragraph);
 				p.setRawText(paragraphText);
@@ -254,7 +253,7 @@ public class Doc2ParseModel {
 				if(isPlainText && !paragraphText.equals("")){
 
 					Paragraph p = factory.createParagraph();
-					//p.setId(++id);
+					p.setId(EcoreUtil.generateUUID());
 					p.setRawText(paragraphText);
 					
 					calculateTabCount(p);
@@ -276,6 +275,22 @@ public class Doc2ParseModel {
 
 		// Create and save the model instance to xmi file
 		createXMIFile(documentObject);
+	}
+
+
+	private static void initializeStaticVariables() {
+		
+		paragraphStack = new Stack<Paragraph>();
+		paragraphLevelMap = new HashMap<Paragraph,Integer>();
+
+		plainTextStack = new Stack<Paragraph>();
+		plaintTextLevelMap = new HashMap<Paragraph,Integer>();
+
+		headingMap = new HashMap<String,Integer>();
+		factory = DocModelFactory.eINSTANCE;
+		
+		documentObject = factory.createDocument();
+
 	}
 
 
@@ -320,7 +335,7 @@ public class Doc2ParseModel {
 		isPlainText = false;
 
 		Paragraph keyValueParagraph = factory.createParagraph();
-		//keyValueParagraph.setId(++id);
+		keyValueParagraph.setId(EcoreUtil.generateUUID());
 		keyValueParagraph.setName(values[0]);
 
 		if(values.length < 2 || (values.length > 1 && 
@@ -356,7 +371,7 @@ public class Doc2ParseModel {
 	private static void handleBoldKeyValuePairs(String[] values, String paragraphText) {
 
 		Paragraph keyValueParagraph = factory.createParagraph();
-		//keyValueParagraph.setId(++id);
+		keyValueParagraph.setId(EcoreUtil.generateUUID());
 		keyValueParagraph.setName(values[0]);
 
 		// paragraph has numbered list
@@ -388,7 +403,7 @@ public class Doc2ParseModel {
 		while(numID != null){
 
 			Paragraph numberedParagraph = factory.createParagraph();
-			//numberedParagraph.setId(++id);
+			numberedParagraph.setId(EcoreUtil.generateUUID());
 			numberedParagraph.setRawText(paragraph.getText());
 
 			if(isThereNamedParagraph()){
@@ -417,7 +432,7 @@ public class Doc2ParseModel {
 	private static void handleFullyBoldHeaders(String paragraphStyle, String paragraphText, int tabCount2) {
 
 		Paragraph headerParagraph = factory.createParagraph();
-		//headerParagraph.setId(++id);
+		headerParagraph.setId(EcoreUtil.generateUUID());
 		headerParagraph.setName(paragraphText);
 		headerParagraph.setRawText(paragraphText);
 		paragraphStyle = "SubHeader";
