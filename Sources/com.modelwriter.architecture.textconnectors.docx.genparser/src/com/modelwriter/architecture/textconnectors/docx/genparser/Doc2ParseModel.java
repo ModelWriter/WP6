@@ -33,6 +33,9 @@ import DocModel.Paragraph;
 public class Doc2ParseModel {
 
 	private final static String filename = "testdata/SampleRequirementDocument.docx"; 
+	//private final static String filename = "testdata/tabbed doc.docx"; 
+	//private final static String filename = "testdata/UseCaseDocumentation.docx"; 
+
 
 	private final static String output = "model/ParseModel.xmi";
 
@@ -57,11 +60,11 @@ public class Doc2ParseModel {
 	private static Stack<Paragraph> plainTextStack;
 
 	private static Map<Paragraph,Integer> plaintTextLevelMap;
-	
+
 	public static boolean isPlainText;
 
 	private static boolean paragraphNotHandled = false;
-	
+
 	private static int tabCount;
 
 	public static void main(String[] args) throws IOException {
@@ -71,7 +74,7 @@ public class Doc2ParseModel {
 
 		plainTextStack = new Stack<Paragraph>();
 		plaintTextLevelMap = new HashMap<Paragraph,Integer>();
-		
+
 		headingMap = new HashMap<String,Integer>();
 
 		initializeHeadingMap();
@@ -116,7 +119,7 @@ public class Doc2ParseModel {
 				if(!plainTextStack.isEmpty()){
 					emptyPlainTextStack();
 				}
-				
+
 				Paragraph p = factory.createParagraph();
 				p.setId(++id);
 				p.setName(paragraphText);
@@ -213,9 +216,11 @@ public class Doc2ParseModel {
 						// key-value 
 						if(key.contains(runText) && run.isBold()){
 
-							if(!plainTextStack.isEmpty()){
+							int tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
+							if(tabCount == 0 && !plainTextStack.isEmpty()){
 								emptyPlainTextStack();
 							}
+
 							//key-value
 							if(paragraph.getText().contains(":")){
 
@@ -223,7 +228,7 @@ public class Doc2ParseModel {
 								keyValueParagraph.setId(++id);
 								keyValueParagraph.setName(values[0]);
 
-								// paragraph has numberede list
+								// paragraph has numbered list
 								// ex. Main Success Scenario
 								if(values.length < 2 || (values.length > 1 && 
 										values[1].replaceAll(" ", "").equals(""))){
@@ -235,8 +240,14 @@ public class Doc2ParseModel {
 									keyValueParagraph.setRawText(values[1]);
 								}
 
-								paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+								// add para. under tabbed parag.
+								if(paragraphText.length() - paragraphText.replaceAll("\t", "").length() > 1){
 
+									handleTabbedHierarchy(keyValueParagraph);
+
+								}else{
+									paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+								}
 							}
 							//header without heading style ex. EM-HLR-....
 							else{
@@ -246,9 +257,16 @@ public class Doc2ParseModel {
 								headerParagraph.setName(paragraphText);
 								headerParagraph.setRawText(paragraphText);
 								paragraphStyle = "SubHeader";
-								paragraphStack.peek().getOwnedNode().add(headerParagraph);
-								//headerParagraph.setParentNode(paragraphStack.peek());
 
+								if(paragraphText.length() - paragraphText.replaceAll("\t", "").length() > 1){
+
+									Doc2ParseModel.tabCount = tabCount;
+									handleTabbedHierarchy(headerParagraph);
+
+								}else{
+									paragraphStack.peek().getOwnedNode().add(headerParagraph);
+									//headerParagraph.setParentNode(paragraphStack.peek());
+								}
 								// bundan sonra aralýksýz gelen paragraflarý buna ekle
 
 							}
@@ -265,7 +283,7 @@ public class Doc2ParseModel {
 							if(!plainTextStack.isEmpty()){
 								emptyPlainTextStack();
 							}
-							
+
 							isPlainText = false;
 
 							Paragraph keyValueParagraph = factory.createParagraph();
@@ -309,77 +327,10 @@ public class Doc2ParseModel {
 					Paragraph p = factory.createParagraph();
 					p.setId(++id);
 					p.setRawText(paragraphText);
-					tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
-					
-					// Boþsa ekle
-					if(plainTextStack.isEmpty()){
-						
-						plainTextStack.push(p);
-						plaintTextLevelMap.put(p, tabCount);
-							
-					}
-					// yýðýtýn tepesindekinden daha içerdeyse
-					else if(plaintTextLevelMap.get(plainTextStack.peek()) < tabCount){
-						
-						plainTextStack.push(p);
-						plaintTextLevelMap.put(p, tabCount);
-					}
-					// eþitse
-					else if(plaintTextLevelMap.get(plainTextStack.peek()) == tabCount){
-						
-						Paragraph poppedParagraph = plainTextStack.pop();
+					tabCount = p.getRawText().length() - p.getRawText().replaceAll("\t", "").length();
 
-						if(!plainTextStack.isEmpty()){
+					handleTabbedHierarchy(p);
 
-							plainTextStack.peek().getOwnedNode().add(poppedParagraph);
-
-						}else{
-
-							if(!isThereNamedParagraph()){
-								paragraphStack.peek().getOwnedNode().add(p);
-
-							}else{
-								
-								int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-								paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(p);
-							}
-						}
-
-						plainTextStack.push(p);
-						plaintTextLevelMap.put(p, tabCount);
-					}
-					// daha az indented para geldiyse
-					else{
-						
-						while(tabCount <= plaintTextLevelMap.get(plainTextStack.peek())){
-
-							Paragraph poppedParagraph = plainTextStack.pop();
-
-							// Higher level paragraph must be added to product
-							if(plaintTextLevelMap.get(poppedParagraph) == 0){
-
-								if(!isThereNamedParagraph()){
-									paragraphStack.peek().getOwnedNode().add(poppedParagraph);
-
-								}else{
-									
-									int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-									paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(p);
-								}
-								break;
-
-							}else{
-
-								plainTextStack.peek().getOwnedNode().add(poppedParagraph);		
-							}
-								
-						}
-						
-						plainTextStack.push(p);
-						plaintTextLevelMap.put(p, tabCount);
-
-					}
-		
 				}
 			}
 
@@ -421,7 +372,7 @@ public class Doc2ParseModel {
 		if(!plainTextStack.isEmpty()){
 			emptyPlainTextStack();
 		}
-		
+
 		// At last, stack must be emptied
 		emptyStack();
 
@@ -431,8 +382,103 @@ public class Doc2ParseModel {
 	}
 
 
+	private static void handleTabbedHierarchy(Paragraph p) {
+
+		// Boþsa ekle
+		if(plainTextStack.isEmpty()){
+
+			plainTextStack.push(p);
+			plaintTextLevelMap.put(p, tabCount);
+
+		}
+		// yýðýtýn tepesindekinden daha içerdeyse
+		else if(plaintTextLevelMap.get(plainTextStack.peek()) < tabCount){
+
+			plainTextStack.push(p);
+			plaintTextLevelMap.put(p, tabCount);
+		}
+		// eþitse
+		else if(plaintTextLevelMap.get(plainTextStack.peek()) == tabCount){
+
+			// fully bold header altýnda onunla ayný seviyedeki bir paragraf ise
+			if(plainTextStack.peek().getName() != null){
+
+				plainTextStack.peek().getOwnedNode().add(p);
+			}
+			else{
+				Paragraph poppedParagraph = plainTextStack.pop();
+
+				if(!plainTextStack.isEmpty()){
+
+					plainTextStack.peek().getOwnedNode().add(poppedParagraph);
+
+				}else{
+
+					if(!isThereNamedParagraph()){
+						paragraphStack.peek().getOwnedNode().add(p);
+
+					}else{
+
+						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(p);
+					}
+				}
+
+			}
+
+			plainTextStack.push(p);
+			plaintTextLevelMap.put(p, tabCount);
+		}
+		// daha az indented para geldiyse
+		else{
+			boolean isAdded = false;
+			while(tabCount <= plaintTextLevelMap.get(plainTextStack.peek())){
+
+
+				Paragraph poppedParagraph = plainTextStack.pop();
+
+				// indent sayýsý ayný olsa da eðer çýkarýlan paragraph fully bold ise
+				// onun childýne ekle
+				if(plaintTextLevelMap.get(poppedParagraph) == tabCount && poppedParagraph.getName()!= null){
+					
+					poppedParagraph.getOwnedNode().add(p);
+					plainTextStack.peek().getOwnedNode().add(poppedParagraph);		
+					isAdded = true;
+				}
+				else{
+					// Higher level paragraph must be added to product
+					if(plaintTextLevelMap.get(poppedParagraph) == 0){
+
+						if(!isThereNamedParagraph()){
+							paragraphStack.peek().getOwnedNode().add(poppedParagraph);
+
+						}else{
+
+							int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+							paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(poppedParagraph);
+						}
+						break;
+
+					}else{
+
+						plainTextStack.peek().getOwnedNode().add(poppedParagraph);		
+					}
+				}
+
+			}
+
+			if(!isAdded){
+				plainTextStack.push(p);
+				plaintTextLevelMap.put(p, tabCount);
+			}
+
+		}
+
+	}
+
+
 	private static void emptyPlainTextStack() {
-		
+
 		while(!plainTextStack.isEmpty()){
 
 			Paragraph poppedParagraph = plainTextStack.pop();	
@@ -440,7 +486,7 @@ public class Doc2ParseModel {
 			if(plaintTextLevelMap.get(poppedParagraph) == 0){
 
 				if(isThereNamedParagraph()){
-					
+
 					int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
 					paragraphStack.peek().getOwnedNode().get(lastParagraphIndex)
 					.getOwnedNode().add(poppedParagraph);
@@ -448,47 +494,47 @@ public class Doc2ParseModel {
 					paragraphStack.peek().getOwnedNode().add(poppedParagraph);
 				}
 			}else{
-				
+
 				plainTextStack.peek().getOwnedNode().add(poppedParagraph);			
 			}
 
 
 		}
-		
+
 	}
 
 	private static boolean isThereNamedParagraphUnderPlainText(){
-		
+
 		if(!plainTextStack.isEmpty() && tabCount > 1){
-			
+
 			int lastParagraphIndex = plainTextStack.peek().getOwnedNode().size() - 1;
 			Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
-			
+
 			if(lastParagraph.getName() != null){
 				return true;
 			}
-			
+
 		}else{
 			return false;
 		}
-		
+
 		return false;
 	}
-	
+
 	private static boolean isThereNamedParagraph() {
-		
+
 		if(paragraphStack.peek().getOwnedNode().size() > 0){
 			int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
 			Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
-			
+
 			if(lastParagraph.getName() != null){
 				return true;
 			}
-			
+
 		}else{
 			return false;
 		}
-		
+
 		return false;
 	}
 
@@ -502,6 +548,7 @@ public class Doc2ParseModel {
 		/** Activity must start with a positive integer and continue with dot('.')
 		 * and there might be a whitespace(only one)
 		 */
+		// TODO senaryo oluþtur listeler için
 		String mainFlowActivityPattern = "(([1-9][0-9]*[.][ ]?)[A-Z].*)";
 		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
 		Matcher matcher = pattern.matcher(paragraph.getText());
