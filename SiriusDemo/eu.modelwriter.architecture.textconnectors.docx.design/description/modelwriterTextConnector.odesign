@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="modelwriterTextConnector" version="8.1.0">
+  <ownedViewpoints name="ReqModel" modelFileExtension="*.reqmodel">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Product" domainClass="Product">
+      <defaultLayer name="DefaultLayer">
+        <edgeMappings name="ReqToReqRefine" sourceMapping="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@containerMappings[name='Product']/@subContainerMappings[name='ProductLevel']/@subNodeMappings[name='Requirement1']" targetMapping="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@containerMappings[name='Product']/@subContainerMappings[name='ProductLevel']/@subNodeMappings[name='Requirement1']" targetFinderExpression="[Refine/]">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_chocolate']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="ReqToReqDependency" sourceMapping="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@containerMappings[name='Product']/@subContainerMappings[name='ProductLevel']/@subNodeMappings[name='Requirement1']" targetMapping="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@containerMappings[name='Product']/@subContainerMappings[name='ProductLevel']/@subNodeMappings[name='Requirement1']" targetFinderExpression="[DependencyTo/]">
+          <style targetArrow="InputClosedArrow" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_green']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="Product" labelDirectEdit="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@toolSections.0/@ownedTools[name='directEditLabel']" semanticCandidatesExpression="[self/]" domainClass="Product">
+          <subContainerMappings name="ProductLevel" label="Level" labelDirectEdit="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@toolSections.0/@ownedTools[name='directEditLabel']" semanticCandidatesExpression="[OwnedDefinition/]" domainClass="RequirementLevel" reusedContainerMappings="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@containerMappings[name='Product']/@subContainerMappings[name='ProductLevel']">
+            <subNodeMappings name="Requirement1" labelDirectEdit="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@toolSections.0/@ownedTools[name='directEditLabel']" semanticCandidatesExpression="[OwnedDefinition/]" domainClass="Requirement">
+              <borderedNodeMappings name="Requirement1" labelDirectEdit="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@toolSections.0/@ownedTools[name='directEditLabel']" semanticCandidatesExpression="[OwnedDefinition/]" domainClass="Requirement">
+                <style xsi:type="style:SquareDescription" labelExpression="feature:Name" labelPosition="node" resizeKind="NSEW" width="14" height="3">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+                </style>
+              </borderedNodeMappings>
+              <style xsi:type="style:SquareDescription" labelExpression="feature:Name" labelPosition="node" resizeKind="NSEW" width="14" height="3">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" labelExpression="feature:Name" backgroundStyle="Liquid">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" labelExpression="feature:Name">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="PaletteTools">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="directEditLabel" label="Edit Label" forceRefresh="true">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="Name" valueExpression="var:arg0"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createRequLevel" label="Requirement Level" containerMappings="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@containerMappings[name='Product']/@subContainerMappings[name='ProductLevel']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ReqModel.RequirementLevel" referenceName="OwnedDefinition">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="Name" valueExpression="['Requirement Level - ' + container.OwnedDefinition->filter(RequirementLevel)->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createRequ" label="Requirement" nodeMappings="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@containerMappings[name='Product']/@subContainerMappings[name='ProductLevel']/@subNodeMappings[name='Requirement1']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ReqModel.Requirement" referenceName="OwnedDefinition">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="Name" valueExpression="['Requirement - ' + container.OwnedDefinition->filter(Requirement)->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="createRefinement" label="Refine" edgeMappings="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@edgeMappings[name='ReqToReqRefine']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="Refine" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="createDependencyTo" label="DependencyTo" edgeMappings="//@ownedViewpoints[name='ReqModel']/@ownedRepresentations[name='Product']/@defaultLayer/@edgeMappings[name='ReqToReqDependency']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="DependencyTo" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+  </ownedViewpoints>
+</description:Group>
