@@ -34,10 +34,10 @@ import DocModel.Paragraph;
 
 public class Doc2ParseModel {
 
-	private final static String filename = "testdata/SampleRequirementDocument.docx"; 
+	//private final static String filename = "testdata/SampleRequirementDocument.docx"; 
+	private final static String filename = "testdata/SampleRequirementDocument2.docx"; 
 	//private final static String filename = "testdata/tabbed doc.docx"; 
 	//private final static String filename = "testdata/UseCaseDocumentation.docx"; 
-
 
 	private final static String output = "model/ParseModel.xmi";
 
@@ -45,6 +45,7 @@ public class Doc2ParseModel {
 
 	public static Iterator<XWPFParagraph> paraIter; 
 
+	// current paragraph
 	private static XWPFParagraph paragraph; 
 
 	// Maps styles and their levels
@@ -123,7 +124,7 @@ public class Doc2ParseModel {
 				Paragraph p = factory.createParagraph();
 				p.setId(EcoreUtil.generateUUID());
 				
-				p.setName(paragraphText);
+				p.setName(paragraphText.replaceAll("\t",""));
 				//p.setParagraph(paragraph);
 				p.setRawText(paragraphText);
 				// headingten sonra normal paragraflar gelirse o headinge ekle
@@ -227,7 +228,8 @@ public class Doc2ParseModel {
 
 								handleBoldKeyValuePairs(values,paragraphText);
 							}
-							//header without heading style ex. EM-HLR-....
+							//header without heading style 
+							//ex. EM-HLR-....
 							else{
 
 								handleFullyBoldHeaders(paragraphStyle,paragraphText,tabCount);
@@ -318,14 +320,6 @@ public class Doc2ParseModel {
 
 	}
 
-
-	private static void handleHeadingsHierarchy(String paragraphStyle, String paragraphText, boolean firstParagraphFlag) {
-
-		
-
-	}
-
-
 	private static void handleKeyValueProperties(String[] values) {
 
 		if(!plainTextStack.isEmpty()){
@@ -336,7 +330,7 @@ public class Doc2ParseModel {
 
 		Paragraph keyValueParagraph = factory.createParagraph();
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
-		keyValueParagraph.setName(values[0]);
+		keyValueParagraph.setName(values[0].replaceAll("\t",""));
 
 		if(values.length < 2 || (values.length > 1 && 
 				values[1].replaceAll(" ", "").equals(""))){
@@ -372,7 +366,7 @@ public class Doc2ParseModel {
 
 		Paragraph keyValueParagraph = factory.createParagraph();
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
-		keyValueParagraph.setName(values[0]);
+		keyValueParagraph.setName(values[0].replaceAll("\t",""));
 
 		// paragraph has numbered list
 		// ex. Main Success Scenario
@@ -387,7 +381,7 @@ public class Doc2ParseModel {
 		}
 
 		// add para. under tabbed parag.
-		if(paragraphText.length() - paragraphText.replaceAll("\t", "").length() > 1){
+		if(calculateTabCount(paragraphText) > 1){
 
 			handleTabbedHierarchy(keyValueParagraph);
 
@@ -433,11 +427,11 @@ public class Doc2ParseModel {
 
 		Paragraph headerParagraph = factory.createParagraph();
 		headerParagraph.setId(EcoreUtil.generateUUID());
-		headerParagraph.setName(paragraphText);
+		headerParagraph.setName(paragraphText.replaceAll("\t",""));
 		headerParagraph.setRawText(paragraphText);
 		paragraphStyle = "SubHeader";
 
-		if(paragraphText.length() - paragraphText.replaceAll("\t", "").length() > 1){
+		if(calculateTabCount(paragraphText) > 1){
 
 			Doc2ParseModel.tabCount = tabCount2;
 			handleTabbedHierarchy(headerParagraph);
@@ -612,32 +606,34 @@ public class Doc2ParseModel {
 
 		BigInteger numID = null;
 		paragraph = paraIter.next();
+		String text = paragraph.getText();
 		numID = paragraph.getNumID();
 
 		/** Activity must start with a positive integer and continue with dot('.')
 		 * and there might be a whitespace(only one)
 		 */
 		// TODO senaryo oluþtur listeler için
-		String mainFlowActivityPattern = "(([1-9][0-9]*[.][ ]?)[A-Z].*)";
+		String mainFlowActivityPattern = ".*([(]*([0-9]|[a-zA-Z])+.*[)]*[ ]+[a-zA-Z].*)";
 		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
-		Matcher matcher = pattern.matcher(paragraph.getText());
-
+		Matcher matcher = pattern.matcher(text);
 
 		if(matcher.matches()){
 
 			// Iterating through the numbers			
 			while(matcher.matches() && paragraph != null){
 
-				String[] v = paragraph.getText().split("\\.");
+				// uygun yerden bölmemiz gerekli
+				String[] v = cutString(text);
 
 				Paragraph p = factory.createParagraph();
-				p.setName(v[0]);
+				p.setName(v[0].replaceAll("\t",""));
 				p.setRawText(v[1]);
 				keyValueParagraph.getOwnedNode().add(p);
 				//p.setParentNode(keyValueParagraph);
 
 				if(paraIter.hasNext()){
 					paragraph = paraIter.next();
+					text = paragraph.getText();
 					matcher = pattern.matcher(paragraph.getText());
 				}else{
 					break;
@@ -667,6 +663,20 @@ public class Doc2ParseModel {
 
 		paragraphNotHandled = true;
 
+	}
+
+
+	private static String[] cutString(String text) {
+		// TODO
+		//(\d+[.]?)([ ]?)([\w :;()])+[.$] tam istenilen regex deðil
+		String endsWithDotPattern = "([0-9]+[.][ ]*[a-zA-Z])";
+		String endswithDigitPattern = "([0-9]+[ ]*[a-zA-Z])";
+		
+		/*
+		 * (\d+[.]?){1}([ ]+[\w :;()]+[.$])
+		 */
+		
+		return null;
 	}
 
 

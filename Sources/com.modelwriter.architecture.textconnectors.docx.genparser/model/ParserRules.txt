@@ -11,3 +11,8 @@
 
 
 http://www.regexr.com/
+
+Ordered lists patterns:
+Xx 1.2.Xxx or Xx 1.2. Xxxxx (more than one whitespace will be included)
+Xx 1.2.3 Xxxxx
+				
