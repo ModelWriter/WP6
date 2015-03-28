@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<eu.modelwriter.architecture.textconnectors.docx.parser:Document xmlns:eu.modelwriter.architecture.textconnectors.docx.parser="eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel">
+  <ownedParagraph Id="_1wf44NVjEeSbmJJWiZrbKw" name="Heading Level" rawText="Heading Level">
+    <ownedNode Id="_1wf44dVjEeSbmJJWiZrbKw" name="2.2.1 Level B.1" rawText="2.2.1 Level B.1">
+      <ownedNode Id="_1wf449VjEeSbmJJWiZrbKw" rawText="Plian text under level 2.2.1."/>
+      <ownedNode Id="_1wpC0NVjEeSbmJJWiZrbKw" name="EM-HLR-F-REQ-005" rawText="EM-HLR-F-REQ-005"/>
+    </ownedNode>
+  </ownedParagraph>
+</eu.modelwriter.architecture.textconnectors.docx.parser:Document>

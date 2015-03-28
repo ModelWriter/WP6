@@ -35,11 +35,11 @@ import DocModel.Paragraph;
 public class Doc2ParseModel {
 
 	//private final static String filename = "testdata/SampleRequirementDocument.docx"; 
-	private final static String filename = "testdata/SampleRequirementDocument2.docx"; 
+	//private final static String filename = "testdata/SampleRequirementDocument2.docx"; 
 	//private final static String filename = "testdata/tabbed doc.docx"; 
 	//private final static String filename = "testdata/UseCaseDocumentation.docx"; 
 
-	private final static String output = "model/ParseModel.xmi";
+	private final static String output = "test cases/plain.xmi";
 
 	public static DocModelFactory factory;
 
@@ -70,11 +70,13 @@ public class Doc2ParseModel {
 
 	private static int tabCount;
 
-	public static void main(String[] args) throws IOException {
-		
+	private static Paragraph lastFullyBoldHeaderInPlainTextHierarchy;
+	
+	public static Resource parse(String filename) throws IOException {
+
 		initializeStaticVariables();
 		initializeHeadingMap();
-		
+
 		File file = null; 
 		FileInputStream fis = null; 
 		XWPFDocument document = null;
@@ -116,15 +118,15 @@ public class Doc2ParseModel {
 			if(headingMap.get(paragraphStyle) > 0 && headingMap.get(paragraphStyle) < 11){
 
 				//handleHeadingsHierarchy(paragraphStyle,paragraphText,firstParagraphFlag);
-				
+
 				if(!plainTextStack.isEmpty()){
 					emptyPlainTextStack();
 				}
 
 				Paragraph p = factory.createParagraph();
 				p.setId(EcoreUtil.generateUUID());
-				
-				p.setName(paragraphText.replaceAll("\t",""));
+
+				p.setName(paragraphText.replaceAll("\t","").trim());
 				//p.setParagraph(paragraph);
 				p.setRawText(paragraphText);
 				// headingten sonra normal paragraflar gelirse o headinge ekle
@@ -218,7 +220,7 @@ public class Doc2ParseModel {
 						// key-value 
 						if(key.contains(runText) && run.isBold()){
 
-							int tabCount = calculateTabCount(paragraphText);
+							int tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
 							if(tabCount == 0 && !plainTextStack.isEmpty()){
 								emptyPlainTextStack();
 							}
@@ -232,7 +234,7 @@ public class Doc2ParseModel {
 							//ex. EM-HLR-....
 							else{
 
-								handleFullyBoldHeaders(paragraphStyle,paragraphText,tabCount);
+								handleFullyBoldHeaders(paragraphStyle,paragraphText);
 
 							}
 
@@ -257,7 +259,7 @@ public class Doc2ParseModel {
 					Paragraph p = factory.createParagraph();
 					p.setId(EcoreUtil.generateUUID());
 					p.setRawText(paragraphText);
-					
+
 					calculateTabCount(p);
 					handleTabbedHierarchy(p);
 
@@ -276,12 +278,13 @@ public class Doc2ParseModel {
 		finilize();
 
 		// Create and save the model instance to xmi file
-		createXMIFile(documentObject);
+		Resource r = createXMIFile(documentObject);
+		return r;
 	}
 
 
 	private static void initializeStaticVariables() {
-		
+
 		paragraphStack = new Stack<Paragraph>();
 		paragraphLevelMap = new HashMap<Paragraph,Integer>();
 
@@ -290,14 +293,9 @@ public class Doc2ParseModel {
 
 		headingMap = new HashMap<String,Integer>();
 		factory = DocModelFactory.eINSTANCE;
-		
+
 		documentObject = factory.createDocument();
 
-	}
-
-
-	private static int calculateTabCount(String paragraphText) {
-		return paragraphText.length() - paragraphText.replaceAll("\t", "").length();
 	}
 
 
@@ -330,7 +328,7 @@ public class Doc2ParseModel {
 
 		Paragraph keyValueParagraph = factory.createParagraph();
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
-		keyValueParagraph.setName(values[0].replaceAll("\t",""));
+		keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
 
 		if(values.length < 2 || (values.length > 1 && 
 				values[1].replaceAll(" ", "").equals(""))){
@@ -366,12 +364,25 @@ public class Doc2ParseModel {
 
 		Paragraph keyValueParagraph = factory.createParagraph();
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
-		keyValueParagraph.setName(values[0].replaceAll("\t",""));
+		keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
+		keyValueParagraph.setRawText(values[0]);
+		
+		calculateTabCount(keyValueParagraph);
+		
+		// add para. under tabbed parag.
+		if(tabCount > 1){
 
+			handleTabbedHierarchy(keyValueParagraph);
+
+		}else{
+			paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+		}
+		
 		// paragraph has numbered list
 		// ex. Main Success Scenario
 		if(values.length < 2 || (values.length > 1 && 
 				values[1].replaceAll(" ", "").equals(""))){
+
 			handleNumberedList(keyValueParagraph);
 
 		}
@@ -380,27 +391,27 @@ public class Doc2ParseModel {
 			keyValueParagraph.setRawText(values[1]);
 		}
 
-		// add para. under tabbed parag.
-		if(calculateTabCount(paragraphText) > 1){
 
-			handleTabbedHierarchy(keyValueParagraph);
-
-		}else{
-			paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
-		}
 
 	}
 
 
 	private static void handleNumberedParagraphs(BigInteger numID) {
 
+		int counter = 0;
+		
 		while(numID != null){
-
+			counter++;
 			Paragraph numberedParagraph = factory.createParagraph();
 			numberedParagraph.setId(EcoreUtil.generateUUID());
+			numberedParagraph.setName("" + counter);
 			numberedParagraph.setRawText(paragraph.getText());
 
-			if(isThereNamedParagraph()){
+			if(lastFullyBoldHeaderInPlainTextHierarchy != null){
+				
+				lastFullyBoldHeaderInPlainTextHierarchy.getOwnedNode().add(numberedParagraph);
+			}
+			else if(isThereNamedParagraph()){
 
 				int lastNamedParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
 				paragraphStack.peek().getOwnedNode().get(lastNamedParagraphIndex)
@@ -423,20 +434,22 @@ public class Doc2ParseModel {
 	}
 
 
-	private static void handleFullyBoldHeaders(String paragraphStyle, String paragraphText, int tabCount2) {
+	private static void handleFullyBoldHeaders(String paragraphStyle, String paragraphText) {
 
 		Paragraph headerParagraph = factory.createParagraph();
 		headerParagraph.setId(EcoreUtil.generateUUID());
-		headerParagraph.setName(paragraphText.replaceAll("\t",""));
+		headerParagraph.setName(paragraphText.replaceAll("\t","").trim());
 		headerParagraph.setRawText(paragraphText);
 		paragraphStyle = "SubHeader";
 
-		if(calculateTabCount(paragraphText) > 1){
-
-			Doc2ParseModel.tabCount = tabCount2;
+		calculateTabCount(headerParagraph);
+		if(tabCount > 1){
+			
+			lastFullyBoldHeaderInPlainTextHierarchy = headerParagraph;
 			handleTabbedHierarchy(headerParagraph);
 
 		}else{
+			lastFullyBoldHeaderInPlainTextHierarchy = null;
 			paragraphStack.peek().getOwnedNode().add(headerParagraph);
 			//headerParagraph.setParentNode(paragraphStack.peek());
 		}
@@ -617,13 +630,32 @@ public class Doc2ParseModel {
 		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
 		Matcher matcher = pattern.matcher(text);
 
-		if(matcher.matches()){
+
+
+		// ordered list
+		if(numID != null){
+			int activityCounter = 0;
+
+			while(numID != null){	
+				activityCounter++;
+				Paragraph p = factory.createParagraph();
+				p.setName("" + activityCounter);
+				p.setRawText(paragraph.getText());
+				keyValueParagraph.getOwnedNode().add(p);
+				//p.setParentNode(keyValueParagraph);
+
+				paragraph = paraIter.next();
+				numID = paragraph.getNumID();
+			}
+		}
+		else if(matcher.matches()){
 
 			// Iterating through the numbers			
 			while(matcher.matches() && paragraph != null){
 
 				// uygun yerden bölmemiz gerekli
-				String[] v = cutString(text);
+				//String[] v = cutString(text);
+				String[] v = text.split("\\.");
 
 				Paragraph p = factory.createParagraph();
 				p.setName(v[0].replaceAll("\t",""));
@@ -644,23 +676,6 @@ public class Doc2ParseModel {
 
 		}
 
-		// ordered list
-		else{
-			int activityCounter = 0;
-
-			while(numID != null){	
-				activityCounter++;
-				Paragraph p = factory.createParagraph();
-				p.setName("" + activityCounter);
-				p.setRawText(paragraph.getText());
-				keyValueParagraph.getOwnedNode().add(p);
-				//p.setParentNode(keyValueParagraph);
-
-				paragraph = paraIter.next();
-				numID = paragraph.getNumID();
-			}
-		}
-
 		paragraphNotHandled = true;
 
 	}
@@ -671,11 +686,11 @@ public class Doc2ParseModel {
 		//(\d+[.]?)([ ]?)([\w :;()])+[.$] tam istenilen regex deðil
 		String endsWithDotPattern = "([0-9]+[.][ ]*[a-zA-Z])";
 		String endswithDigitPattern = "([0-9]+[ ]*[a-zA-Z])";
-		
+
 		/*
 		 * (\d+[.]?){1}([ ]+[\w :;()]+[.$])
 		 */
-		
+
 		return null;
 	}
 
@@ -707,7 +722,7 @@ public class Doc2ParseModel {
 	 * 
 	 * @param product
 	 */
-	private static void createXMIFile(Document document) {
+	private static Resource createXMIFile(Document document) {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -729,14 +744,17 @@ public class Doc2ParseModel {
 			// Save the resource
 			//resource.save(System.out, Collections.EMPTY_MAP); 
 			resource.save(null);
-
 			final JFrame frame = new JFrame();
 			JOptionPane.showMessageDialog(frame, "Model created successfully!");
+			return resource;
+
 
 		}catch (IOException e) {
 
 			e.printStackTrace();
 		}
+
+		return null;
 	}
 
 	private static void initializeHeadingMap() {

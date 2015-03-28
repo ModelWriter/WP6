@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<eu.modelwriter.architecture.textconnectors.docx.parser:Document xmlns:eu.modelwriter.architecture.textconnectors.docx.parser="eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel">
+  <ownedParagraph Id="_MFJPYNVTEeSZiMMd5M4rOw" name="Heading Level" rawText="Heading Level">
+    <ownedNode Id="_MFJPYdVTEeSZiMMd5M4rOw" rawText="Text"/>
+    <ownedNode Id="_MFTAYNVTEeSZiMMd5M4rOw" rawText="Text"/>
+    <ownedNode Id="_MFTAYdVTEeSZiMMd5M4rOw" name="Key-Value" rawText="  Text&#x9;">
+      <ownedNode Id="_MFTAYtVTEeSZiMMd5M4rOw" rawText="Text"/>
+      <ownedNode Id="_MFTAY9VTEeSZiMMd5M4rOw" rawText="Text"/>
+      <ownedNode Id="_MFTAZNVTEeSZiMMd5M4rOw" rawText="Text"/>
+    </ownedNode>
+    <ownedNode Id="_MFTAZdVTEeSZiMMd5M4rOw" name="Fully Bold Header" rawText="Fully Bold Header">
+      <ownedNode Id="_MFcKUNVTEeSZiMMd5M4rOw" rawText="Text"/>
+      <ownedNode Id="_MFcKUdVTEeSZiMMd5M4rOw" rawText="Text"/>
+    </ownedNode>
+  </ownedParagraph>
+</eu.modelwriter.architecture.textconnectors.docx.parser:Document>

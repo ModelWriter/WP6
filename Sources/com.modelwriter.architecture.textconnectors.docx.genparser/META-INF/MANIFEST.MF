@@ -19,4 +19,5 @@ Export-Package: DocModel,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Import-Package: junit.framework
+Import-Package: junit.framework,
+ org.junit;version="4.11.0"

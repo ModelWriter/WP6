@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd" xmlns:configuration="http://eclipse.org/rmf/pror/toolextensions/1.0" xmlns:headline="http://pror.org/presentation/headline" xmlns:id="http://pror.org/presentation/id">
+<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd" xmlns:configuration="http://eclipse.org/rmf/pror/toolextensions/1.0" xmlns:headline="http://pror.org/presentation/headline" xmlns:id="http://pror.org/presentation/id" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <THE-HEADER>
-    <REQ-IF-HEADER IDENTIFIER="rmf-60f73724-2cc3-49fe-9032-0ac8e8a13cb5">
+    <REQ-IF-HEADER IDENTIFIER="rmf-d61de469-36e1-4475-b704-854e43b88ecd">
       <COMMENT>Created by: furkan.tanriverdi</COMMENT>
       <CREATION-TIME>2015-03-27T10:16:14.746+02:00</CREATION-TIME>
       <REQ-IF-TOOL-ID>ProR (http://pror.org)</REQ-IF-TOOL-ID>
@@ -15,6 +15,7 @@
         <DATATYPE-DEFINITION-STRING IDENTIFIER="_iTqvo9RZEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:16:14.746+02:00" LONG-NAME="T_String32k" MAX-LENGTH="32000"/>
         <DATATYPE-DEFINITION-STRING IDENTIFIER="_V0JB8NRbEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:29:06.935+02:00" LONG-NAME="T_ID" MAX-LENGTH="10"/>
         <DATATYPE-DEFINITION-STRING IDENTIFIER="_v4_q8NRbEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:32:03.007+02:00" LONG-NAME="T_Headline" MAX-LENGTH="100"/>
+        <DATATYPE-DEFINITION-XHTML IDENTIFIER="_rVzgsNRoEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T12:04:34.977+02:00" LONG-NAME="T_Details"/>
       </DATATYPES>
       <SPEC-TYPES>
         <SPEC-OBJECT-TYPE IDENTIFIER="_iTqvpNRZEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:16:14.746+02:00" LONG-NAME="Requirement Type">
@@ -29,6 +30,11 @@
                 <DATATYPE-DEFINITION-STRING-REF>_V0JB8NRbEeSYdce7_QuJ6g</DATATYPE-DEFINITION-STRING-REF>
               </TYPE>
             </ATTRIBUTE-DEFINITION-STRING>
+            <ATTRIBUTE-DEFINITION-XHTML IDENTIFIER="_mWdR0NRoEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T12:03:21.219+02:00" LONG-NAME="Details">
+              <TYPE>
+                <DATATYPE-DEFINITION-XHTML-REF>_rVzgsNRoEeSYdce7_QuJ6g</DATATYPE-DEFINITION-XHTML-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-XHTML>
           </SPEC-ATTRIBUTES>
         </SPEC-OBJECT-TYPE>
         <SPECIFICATION-TYPE IDENTIFIER="_iTqvptRZEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:16:14.746+02:00" LONG-NAME="Specification Type">
@@ -105,19 +111,27 @@
                 <ATTRIBUTE-DEFINITION-STRING-REF>_iTqvpdRZEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
               </DEFINITION>
             </ATTRIBUTE-VALUE-STRING>
+            <ATTRIBUTE-VALUE-XHTML>
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-XHTML-REF>_mWdR0NRoEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-XHTML-REF>
+              </DEFINITION>
+              <THE-VALUE>
+                <xhtml:div/>
+              </THE-VALUE>
+            </ATTRIBUTE-VALUE-XHTML>
           </VALUES>
           <TYPE>
             <SPEC-OBJECT-TYPE-REF>_iTqvpNRZEeSYdce7_QuJ6g</SPEC-OBJECT-TYPE-REF>
           </TYPE>
         </SPEC-OBJECT>
-        <SPEC-OBJECT IDENTIFIER="_-6fewNRcEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:41:56.436+02:00">
+        <SPEC-OBJECT IDENTIFIER="_-6fewNRcEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-28T13:51:19.836+02:00">
           <VALUES>
             <ATTRIBUTE-VALUE-STRING THE-VALUE="REQ-2">
               <DEFINITION>
                 <ATTRIBUTE-DEFINITION-STRING-REF>_TqBTwNRbEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
               </DEFINITION>
             </ATTRIBUTE-VALUE-STRING>
-            <ATTRIBUTE-VALUE-STRING THE-VALUE="Headers with heading styles must be organized hierarchically.">
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="Headers with heading styles(headings) must be organized hierarchically.">
               <DEFINITION>
                 <ATTRIBUTE-DEFINITION-STRING-REF>_iTqvpdRZEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
               </DEFINITION>
@@ -127,14 +141,14 @@
             <SPEC-OBJECT-TYPE-REF>_iTqvpNRZEeSYdce7_QuJ6g</SPEC-OBJECT-TYPE-REF>
           </TYPE>
         </SPEC-OBJECT>
-        <SPEC-OBJECT IDENTIFIER="_I6x38NRdEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:41:58.440+02:00">
+        <SPEC-OBJECT IDENTIFIER="_I6x38NRdEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-28T13:42:25.657+02:00">
           <VALUES>
             <ATTRIBUTE-VALUE-STRING THE-VALUE="REQ-3">
               <DEFINITION>
                 <ATTRIBUTE-DEFINITION-STRING-REF>_TqBTwNRbEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
               </DEFINITION>
             </ATTRIBUTE-VALUE-STRING>
-            <ATTRIBUTE-VALUE-STRING THE-VALUE="Key-value pairs must be handled.">
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="Key-value pairs must be handled as a child of last heading.">
               <DEFINITION>
                 <ATTRIBUTE-DEFINITION-STRING-REF>_iTqvpdRZEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
               </DEFINITION>
@@ -144,14 +158,14 @@
             <SPEC-OBJECT-TYPE-REF>_iTqvpNRZEeSYdce7_QuJ6g</SPEC-OBJECT-TYPE-REF>
           </TYPE>
         </SPEC-OBJECT>
-        <SPEC-OBJECT IDENTIFIER="_MJtSENRdEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:42:21.704+02:00">
+        <SPEC-OBJECT IDENTIFIER="_MJtSENRdEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-28T13:42:15.045+02:00">
           <VALUES>
             <ATTRIBUTE-VALUE-STRING THE-VALUE="REQ-4">
               <DEFINITION>
                 <ATTRIBUTE-DEFINITION-STRING-REF>_TqBTwNRbEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
               </DEFINITION>
             </ATTRIBUTE-VALUE-STRING>
-            <ATTRIBUTE-VALUE-STRING THE-VALUE="Fully bold headers which have not heading styles must be handled.">
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="Fully bold headers which have not heading styles must be handled as a child of last heading.">
               <DEFINITION>
                 <ATTRIBUTE-DEFINITION-STRING-REF>_iTqvpdRZEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
               </DEFINITION>
@@ -263,14 +277,31 @@
             <SPEC-OBJECT-TYPE-REF>_iTqvpNRZEeSYdce7_QuJ6g</SPEC-OBJECT-TYPE-REF>
           </TYPE>
         </SPEC-OBJECT>
-        <SPEC-OBJECT IDENTIFIER="_cOItENRfEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T11:01:34.027+02:00">
+        <SPEC-OBJECT IDENTIFIER="_cOItENRfEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-28T13:46:25.975+02:00">
           <VALUES>
             <ATTRIBUTE-VALUE-STRING THE-VALUE="REQ-11">
               <DEFINITION>
                 <ATTRIBUTE-DEFINITION-STRING-REF>_TqBTwNRbEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
               </DEFINITION>
             </ATTRIBUTE-VALUE-STRING>
-            <ATTRIBUTE-VALUE-STRING THE-VALUE="Fully bold paragraphs, bold key-value paragraphs and paragraphs with heading styles must be considered as a hierarchic level.">
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="Fully bold paragraphs, bold key-value paragraphs and paragraphs with heading styles must be considered as hierarchic levels.">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-STRING-REF>_iTqvpdRZEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+          </VALUES>
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>_iTqvpNRZEeSYdce7_QuJ6g</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+        </SPEC-OBJECT>
+        <SPEC-OBJECT IDENTIFIER="_pGjyINU9EeSjoKJ2fSc_zw" LAST-CHANGE="2015-03-28T13:29:03.746+02:00">
+          <VALUES>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="REQ-12">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-STRING-REF>_TqBTwNRbEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="Headers with context must be handled(whole document)">
               <DEFINITION>
                 <ATTRIBUTE-DEFINITION-STRING-REF>_iTqvpdRZEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
               </DEFINITION>
@@ -320,6 +351,13 @@
                   <OBJECT>
                     <SPEC-OBJECT-REF>_-6fewNRcEeSYdce7_QuJ6g</SPEC-OBJECT-REF>
                   </OBJECT>
+                  <CHILDREN>
+                    <SPEC-HIERARCHY IDENTIFIER="_pHTZAdU9EeSjoKJ2fSc_zw" LAST-CHANGE="2015-03-28T13:29:03.746+02:00">
+                      <OBJECT>
+                        <SPEC-OBJECT-REF>_pGjyINU9EeSjoKJ2fSc_zw</SPEC-OBJECT-REF>
+                      </OBJECT>
+                    </SPEC-HIERARCHY>
+                  </CHILDREN>
                 </SPEC-HIERARCHY>
                 <SPEC-HIERARCHY IDENTIFIER="_I7d0cdRdEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:41:58.440+02:00">
                   <OBJECT>
@@ -367,11 +405,12 @@
         <configuration:specViewConfigurations>
           <configuration:ProrSpecViewConfiguration specification="_iTqvqtRZEeSYdce7_QuJ6g">
             <configuration:columns>
-              <configuration:Column label="ID" width="100"/>
-              <configuration:Column label="Description" width="470"/>
+              <configuration:Column label="ID" width="72"/>
+              <configuration:Column label="Description" width="420"/>
+              <configuration:Column label="Details" width="200"/>
             </configuration:columns>
             <configuration:leftHeaderColumn>
-              <configuration:Column label="Lead Header Column" width="30"/>
+              <configuration:Column label="Lead Header Column" width="51"/>
             </configuration:leftHeaderColumn>
           </configuration:ProrSpecViewConfiguration>
         </configuration:specViewConfigurations>
@@ -387,7 +426,7 @@
         <configuration:presentationConfigurations>
           <configuration:ProrPresentationConfigurations>
             <configuration:presentationConfigurations>
-              <id:IdConfiguration datatype="_V0JB8NRbEeSYdce7_QuJ6g" prefix="REQ-" count="11"/>
+              <id:IdConfiguration datatype="_V0JB8NRbEeSYdce7_QuJ6g" prefix="REQ-" count="12"/>
               <headline:HeadlineConfiguration datatype="_v4_q8NRbEeSYdce7_QuJ6g" size="14"/>
             </configuration:presentationConfigurations>
           </configuration:ProrPresentationConfigurations>
