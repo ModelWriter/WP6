@@ -34,12 +34,12 @@ import DocModel.Paragraph;
 
 public class Doc2ParseModel {
 
-	//private final static String filename = "testdata/SampleRequirementDocument.docx"; 
-	//private final static String filename = "testdata/SampleRequirementDocument2.docx"; 
-	//private final static String filename = "testdata/tabbed doc.docx"; 
-	//private final static String filename = "testdata/UseCaseDocumentation.docx"; 
+	private final static String SAMPLE = "testdata/SampleRequirementDocument.xmi"; 
+	private final static String SAMPLE2 = "test cases/SampleRequirementDocument2.xmi"; 
+	private final static String TABBED = "test cases/tabbed doc.xmi"; 
+	private final static String USECASE = "test cases/UseCaseDocumentation.xmi"; 
 
-	private final static String output = "test cases/plain.xmi";
+	private final static String output = SAMPLE2;
 
 	public static DocModelFactory factory;
 
@@ -119,9 +119,9 @@ public class Doc2ParseModel {
 
 				//handleHeadingsHierarchy(paragraphStyle,paragraphText,firstParagraphFlag);
 
-				if(!plainTextStack.isEmpty()){
-					emptyPlainTextStack();
-				}
+
+				emptyPlainTextStack();
+
 
 				Paragraph p = factory.createParagraph();
 				p.setId(EcoreUtil.generateUUID());
@@ -221,7 +221,7 @@ public class Doc2ParseModel {
 						if(key.contains(runText) && run.isBold()){
 
 							int tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
-							if(tabCount == 0 && !plainTextStack.isEmpty()){
+							if(tabCount == 0){
 								emptyPlainTextStack();
 							}
 
@@ -320,9 +320,9 @@ public class Doc2ParseModel {
 
 	private static void handleKeyValueProperties(String[] values) {
 
-		if(!plainTextStack.isEmpty()){
-			emptyPlainTextStack();
-		}
+
+		emptyPlainTextStack();
+
 
 		isPlainText = false;
 
@@ -343,19 +343,26 @@ public class Doc2ParseModel {
 		}
 
 		//determine heading level or subheader
-		int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-		Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
-		//XWPFParagraph p = lastParagraph.getParagraph();
-		String name = lastParagraph.getName();
-		// if this pair belongs to named paragraph
-		if(!name.equals("")){
 
-			lastParagraph.getOwnedNode().add(keyValueParagraph);
+		// TODO in this subsection nereye eklicez
+		if(isThereNamedParagraph()){
+
+
+			emptyPlainTextStack();
+
+			int lastNamedParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+			paragraphStack.peek().getOwnedNode().get(lastNamedParagraphIndex)
+			.getOwnedNode().add(keyValueParagraph);
+
 		}else{
 
-			paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+			emptyPlainTextStack();
 
+			paragraphStack.peek().getOwnedNode().add(keyValueParagraph);	
 		}
+
+
+
 
 	}
 
@@ -491,12 +498,12 @@ public class Doc2ParseModel {
 				}else{
 
 					if(!isThereNamedParagraph()){
-						paragraphStack.peek().getOwnedNode().add(p);
+						paragraphStack.peek().getOwnedNode().add(poppedParagraph);
 
 					}else{
 
 						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(p);
+						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(poppedParagraph);
 					}
 				}
 
@@ -555,26 +562,29 @@ public class Doc2ParseModel {
 
 	private static void emptyPlainTextStack() {
 
-		while(!plainTextStack.isEmpty()){
+		if(!plainTextStack.isEmpty()){
 
-			Paragraph poppedParagraph = plainTextStack.pop();	
+			while(!plainTextStack.isEmpty()){
 
-			if(plaintTextLevelMap.get(poppedParagraph) == 0){
+				Paragraph poppedParagraph = plainTextStack.pop();	
 
-				if(isThereNamedParagraph()){
+				if(plaintTextLevelMap.get(poppedParagraph) == 0){
 
-					int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-					paragraphStack.peek().getOwnedNode().get(lastParagraphIndex)
-					.getOwnedNode().add(poppedParagraph);
+					if(isThereNamedParagraph()){
+
+						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex)
+						.getOwnedNode().add(poppedParagraph);
+					}else{
+						paragraphStack.peek().getOwnedNode().add(poppedParagraph);
+					}
 				}else{
-					paragraphStack.peek().getOwnedNode().add(poppedParagraph);
+
+					plainTextStack.peek().getOwnedNode().add(poppedParagraph);			
 				}
-			}else{
 
-				plainTextStack.peek().getOwnedNode().add(poppedParagraph);			
+
 			}
-
-
 		}
 
 	}
@@ -628,6 +638,7 @@ public class Doc2ParseModel {
 		// TODO senaryo oluþtur listeler için
 		String mainFlowActivityPattern = ".*([(]*([0-9]|[a-zA-Z])+.*[)]*[ ]+[a-zA-Z].*)";
 		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
+		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(text);
 
 

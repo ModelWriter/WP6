@@ -49,7 +49,7 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		try {
-			parsedResource = Doc2ParseModel.parse(plain);
+			parsedResource = Doc2ParseModel.parse(SAMPLE_REQUIREMENT_DOCUMENT2);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
