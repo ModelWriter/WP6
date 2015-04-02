@@ -638,7 +638,7 @@ public class Doc2ParseModel {
 		// TODO senaryo oluþtur listeler için
 		String mainFlowActivityPattern = ".*([(]*([0-9]|[a-zA-Z])+.*[)]*[ ]+[a-zA-Z].*)";
 		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
-		Pattern pattern = Pattern.compile(regex);
+		//Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(text);
 
 
