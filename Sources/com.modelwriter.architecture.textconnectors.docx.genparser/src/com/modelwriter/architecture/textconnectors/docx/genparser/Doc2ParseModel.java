@@ -35,11 +35,10 @@ import DocModel.Paragraph;
 public class Doc2ParseModel {
 
 	//private final static String filename = "testdata/SampleRequirementDocument.docx"; 
-	//private final static String filename = "testdata/SampleRequirementDocument2.docx"; 
 	//private final static String filename = "testdata/tabbed doc.docx"; 
 	//private final static String filename = "testdata/UseCaseDocumentation.docx"; 
 
-	private final static String output = "test cases/plain.xmi";
+	private final static String output = "testdata/SampleRequirementDocument.xmi";
 
 	public static DocModelFactory factory;
 

@@ -14,4 +14,12 @@
             genModel="model/DocumentModel.genmodel"/>
    </extension>
 
+	<extension
+   	 point="org.eclipse.core.contenttype.contentTypes">
+  		<file-association
+      content-type="org.eclipse.emf.ecore.xmi"
+      file-extensions="uml"
+      file-names="*"/>
+	</extension>
+	
 </plugin>
