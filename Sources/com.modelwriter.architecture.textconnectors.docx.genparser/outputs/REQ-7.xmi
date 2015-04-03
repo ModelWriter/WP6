@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<eu.modelwriter.architecture.textconnectors.docx.parser:Document xmlns:eu.modelwriter.architecture.textconnectors.docx.parser="eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel">
+  <ownedParagraph Id="_LNzbsNoJEeSi4dUqK8SpSQ" name="Heading Level" rawText="Heading Level">
+    <ownedNode Id="_LNzbsdoJEeSi4dUqK8SpSQ" rawText="Level 0.">
+      <ownedNode Id="_LNzbstoJEeSi4dUqK8SpSQ" rawText="&#x9;Level 1.1.">
+        <ownedNode Id="_LN8loNoJEeSi4dUqK8SpSQ" name="Fully Bold Header" rawText="&#x9;&#x9;Fully Bold Header">
+          <ownedNode Id="_LN8lodoJEeSi4dUqK8SpSQ" rawText="&#x9;&#x9;Text under fully bold header.">
+            <ownedNode Id="_LOGWotoJEeSi4dUqK8SpSQ" name="Key-Value Pair" rawText="&#x9;&#x9;&#x9;&#x9;Key-Value Pair">
+              <ownedNode name="1" rawText="Text "/>
+              <ownedNode name="2" rawText="Text"/>
+              <ownedNode Id="_LOGWo9oJEeSi4dUqK8SpSQ" rawText="&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Text"/>
+            </ownedNode>
+          </ownedNode>
+          <ownedNode Id="_LOGWoNoJEeSi4dUqK8SpSQ" name="1" rawText="Text"/>
+          <ownedNode Id="_LOGWodoJEeSi4dUqK8SpSQ" name="2" rawText="Text "/>
+          <ownedNode Id="_LOGWpNoJEeSi4dUqK8SpSQ" name="1" rawText="Text"/>
+          <ownedNode Id="_LOGWpdoJEeSi4dUqK8SpSQ" rawText="&#x9;&#x9;Text under fully bold header."/>
+        </ownedNode>
+      </ownedNode>
+      <ownedNode Id="_LOPgkNoJEeSi4dUqK8SpSQ" rawText="&#x9;Level 1.2.">
+        <ownedNode Id="_LOPgkdoJEeSi4dUqK8SpSQ" name="Key-Value Pair" rawText=" Value.">
+          <ownedNode Id="_LOPgktoJEeSi4dUqK8SpSQ" rawText="&#x9;&#x9;&#x9;Level 3.1."/>
+        </ownedNode>
+      </ownedNode>
+    </ownedNode>
+    <ownedNode Id="_LOPgk9oJEeSi4dUqK8SpSQ" rawText="Level 0."/>
+  </ownedParagraph>
+</eu.modelwriter.architecture.textconnectors.docx.parser:Document>

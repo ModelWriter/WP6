@@ -38,7 +38,7 @@ public class Doc2ParseModel {
 	//private final static String filename = "testdata/tabbed doc.docx"; 
 	//private final static String filename = "testdata/UseCaseDocumentation.docx"; 
 
-	private final static String output = "testdata/SampleRequirementDocument.xmi";
+	private final static String output = "outputs/REQ-5.xmi";
 
 	public static DocModelFactory factory;
 
@@ -65,7 +65,7 @@ public class Doc2ParseModel {
 
 	public static boolean isPlainText;
 
-	private static boolean paragraphNotHandled = false;
+	private static boolean paragraphNotHandled;
 
 	private static int tabCount;
 
@@ -294,6 +294,9 @@ public class Doc2ParseModel {
 		factory = DocModelFactory.eINSTANCE;
 
 		documentObject = factory.createDocument();
+		paragraphNotHandled = false;
+		lastFullyBoldHeaderInPlainTextHierarchy = null;
+		paragraph = null;
 
 	}
 
@@ -733,7 +736,6 @@ public class Doc2ParseModel {
 		// Create empty resource with the given URI
 		Resource resource = resourceSet.createResource(URI.createURI(output));
 
-
 		// Add Product to contents list of the resource 
 
 		resource.getContents().add(document);
@@ -743,8 +745,8 @@ public class Doc2ParseModel {
 			// Save the resource
 			//resource.save(System.out, Collections.EMPTY_MAP); 
 			resource.save(null);
-			final JFrame frame = new JFrame();
-			JOptionPane.showMessageDialog(frame, "Model created successfully!");
+			//final JFrame frame = new JFrame();
+			//JOptionPane.showMessageDialog(frame, "Model created successfully!");
 			return resource;
 
 

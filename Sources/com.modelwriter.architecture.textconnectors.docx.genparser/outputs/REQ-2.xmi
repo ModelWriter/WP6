@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<eu.modelwriter.architecture.textconnectors.docx.parser:Document xmlns:eu.modelwriter.architecture.textconnectors.docx.parser="eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel">
+  <ownedParagraph Id="_HtjyoNoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level">
+    <ownedNode Id="_HtjyodoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level"/>
+    <ownedNode Id="_HtjyotoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level"/>
+    <ownedNode Id="_HttjoNoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level">
+      <ownedNode Id="_HttjodoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level"/>
+    </ownedNode>
+  </ownedParagraph>
+  <ownedParagraph Id="_HttjotoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level">
+    <ownedNode Id="_Httjo9oKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level">
+      <ownedNode Id="_HttjpNoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level">
+        <ownedNode Id="_HttjpdoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level"/>
+      </ownedNode>
+      <ownedNode Id="_HttjptoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level">
+        <ownedNode Id="_Httjp9oKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level">
+          <ownedNode Id="_HttjqNoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level&#x9;"/>
+        </ownedNode>
+      </ownedNode>
+    </ownedNode>
+    <ownedNode Id="_HttjqdoKEeSi8LwxdsmLUA" name="Heading Level" rawText="Heading Level"/>
+  </ownedParagraph>
+</eu.modelwriter.architecture.textconnectors.docx.parser:Document>
