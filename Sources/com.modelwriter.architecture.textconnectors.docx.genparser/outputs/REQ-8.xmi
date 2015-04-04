@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<eu.modelwriter.architecture.textconnectors.docx.parser:Document xmlns:eu.modelwriter.architecture.textconnectors.docx.parser="eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel">
-  <ownedParagraph Id="_eRiyYNoJEeSj24UmqitgPQ" name="Heading Level" rawText="Heading Level">
-    <ownedNode Id="_eRsjYNoJEeSj24UmqitgPQ" name="Key-Value" rawText=" Some ,Content.">
-      <ownedNode Id="_eRsjYdoJEeSj24UmqitgPQ" rawText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
-    </ownedNode>
-    <ownedNode Id="_eRsjYtoJEeSj24UmqitgPQ" name="Another Styled Header(Key-value, fully bold header or heading)" rawText="Another Styled Header(Key-value, fully bold header or heading)"/>
-  </ownedParagraph>
-</eu.modelwriter.architecture.textconnectors.docx.parser:Document>
