@@ -68,17 +68,17 @@ public class Doc2ParseModel {
 	private static int tabCount;
 
 	private static Paragraph lastFullyBoldHeaderInPlainTextHierarchy;
-	
+
 	public static Resource parse(String filename) throws IOException {
 
 		String output = "outputs/";
-		
+
 		// output file name
 		String[] v = filename.split("/");
 		String[] v2 = v[1].split("\\.");
-		
+
 		output += v2[0] + ".xmi";
-		
+
 		initializeStaticVariables();
 		initializeHeadingMap();
 
@@ -124,9 +124,7 @@ public class Doc2ParseModel {
 
 				//handleHeadingsHierarchy(paragraphStyle,paragraphText,firstParagraphFlag);
 
-				if(!plainTextStack.isEmpty()){
 					emptyPlainTextStack();
-				}
 
 				Paragraph p = factory.createParagraph();
 				p.setId(EcoreUtil.generateUUID());
@@ -226,7 +224,7 @@ public class Doc2ParseModel {
 						if(key.contains(runText) && run.isBold()){
 
 							int tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
-							if(tabCount == 0 && !plainTextStack.isEmpty()){
+							if(tabCount == 0){
 								emptyPlainTextStack();
 							}
 
@@ -328,9 +326,9 @@ public class Doc2ParseModel {
 
 	private static void handleKeyValueProperties(String[] values) {
 
-		if(!plainTextStack.isEmpty()){
+
 			emptyPlainTextStack();
-		}
+
 
 		isPlainText = false;
 
@@ -374,9 +372,9 @@ public class Doc2ParseModel {
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
 		keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
 		keyValueParagraph.setRawText(values[0]);
-		
+
 		calculateTabCount(keyValueParagraph);
-		
+
 		// add para. under tabbed parag.
 		if(tabCount > 1){
 
@@ -385,7 +383,7 @@ public class Doc2ParseModel {
 		}else{
 			paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
 		}
-		
+
 		// paragraph has numbered list
 		// ex. Main Success Scenario
 		if(values.length < 2 || (values.length > 1 && 
@@ -407,16 +405,17 @@ public class Doc2ParseModel {
 	private static void handleNumberedParagraphs(BigInteger numID) {
 
 		int counter = 0;
-		
+		emptyPlainTextStack();
+
 		while(numID != null){
 			counter++;
 			Paragraph numberedParagraph = factory.createParagraph();
 			numberedParagraph.setId(EcoreUtil.generateUUID());
-			//numberedParagraph.setName("" + counter);
+			numberedParagraph.setName("" + counter);
 			numberedParagraph.setRawText(paragraph.getText());
 
 			if(lastFullyBoldHeaderInPlainTextHierarchy != null){
-				
+
 				lastFullyBoldHeaderInPlainTextHierarchy.getOwnedNode().add(numberedParagraph);
 			}
 			else if(isThereNamedParagraph()){
@@ -452,7 +451,7 @@ public class Doc2ParseModel {
 
 		calculateTabCount(headerParagraph);
 		if(tabCount > 1){
-			
+
 			lastFullyBoldHeaderInPlainTextHierarchy = headerParagraph;
 			handleTabbedHierarchy(headerParagraph);
 
@@ -563,26 +562,29 @@ public class Doc2ParseModel {
 
 	private static void emptyPlainTextStack() {
 
-		while(!plainTextStack.isEmpty()){
+		if(!plainTextStack.isEmpty()){
+			
+			while(!plainTextStack.isEmpty()){
 
-			Paragraph poppedParagraph = plainTextStack.pop();	
+				Paragraph poppedParagraph = plainTextStack.pop();	
 
-			if(plaintTextLevelMap.get(poppedParagraph) == 0){
+				if(plaintTextLevelMap.get(poppedParagraph) == 0){
 
-				if(isThereNamedParagraph()){
+					if(isThereNamedParagraph()){
 
-					int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-					paragraphStack.peek().getOwnedNode().get(lastParagraphIndex)
-					.getOwnedNode().add(poppedParagraph);
+						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex)
+						.getOwnedNode().add(poppedParagraph);
+					}else{
+						paragraphStack.peek().getOwnedNode().add(poppedParagraph);
+					}
 				}else{
-					paragraphStack.peek().getOwnedNode().add(poppedParagraph);
+
+					plainTextStack.peek().getOwnedNode().add(poppedParagraph);			
 				}
-			}else{
 
-				plainTextStack.peek().getOwnedNode().add(poppedParagraph);			
+
 			}
-
-
 		}
 
 	}
@@ -607,12 +609,23 @@ public class Doc2ParseModel {
 
 	private static boolean isThereNamedParagraph() {
 
+		String regex = "((\t)*([0-9]+|[*])[a-zA-Z]{0,2})";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = null;
+
 		if(paragraphStack.peek().getOwnedNode().size() > 0){
 			int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
 			Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
 
-			if(lastParagraph.getName() != null){
-				return true;
+
+			if(lastParagraph.getName() != null ){
+
+				matcher = pattern.matcher(lastParagraph.getName());
+				if(!matcher.matches()){
+
+					return true;
+				}
+
 			}
 
 		}else{
