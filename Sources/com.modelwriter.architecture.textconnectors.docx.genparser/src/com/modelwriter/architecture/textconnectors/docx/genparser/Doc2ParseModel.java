@@ -38,8 +38,6 @@ public class Doc2ParseModel {
 	//private final static String filename = "testdata/tabbed doc.docx"; 
 	//private final static String filename = "testdata/UseCaseDocumentation.docx"; 
 
-	private final static String output = "outputs/REQ-5.xmi";
-
 	public static DocModelFactory factory;
 
 	public static Iterator<XWPFParagraph> paraIter; 
@@ -73,6 +71,14 @@ public class Doc2ParseModel {
 	
 	public static Resource parse(String filename) throws IOException {
 
+		String output = "outputs/";
+		
+		// output file name
+		String[] v = filename.split("/");
+		String[] v2 = v[1].split("\\.");
+		
+		output += v2[0] + ".xmi";
+		
 		initializeStaticVariables();
 		initializeHeadingMap();
 
@@ -277,7 +283,7 @@ public class Doc2ParseModel {
 		finilize();
 
 		// Create and save the model instance to xmi file
-		Resource r = createXMIFile(documentObject);
+		Resource r = createXMIFile(documentObject, output);
 		return r;
 	}
 
@@ -406,7 +412,7 @@ public class Doc2ParseModel {
 			counter++;
 			Paragraph numberedParagraph = factory.createParagraph();
 			numberedParagraph.setId(EcoreUtil.generateUUID());
-			numberedParagraph.setName("" + counter);
+			//numberedParagraph.setName("" + counter);
 			numberedParagraph.setRawText(paragraph.getText());
 
 			if(lastFullyBoldHeaderInPlainTextHierarchy != null){
@@ -721,10 +727,11 @@ public class Doc2ParseModel {
 
 	/**
 	 * Saves the model instance and writes it to xmi file
+	 * @param output 
 	 * 
 	 * @param product
 	 */
-	private static Resource createXMIFile(Document document) {
+	private static Resource createXMIFile(Document document, String output) {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
