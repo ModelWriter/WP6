@@ -54,12 +54,42 @@ public class ModelComparisonTest {
 
 	}
 
+	@Test
+	public void testReadyModelsWithoutIds(){
+
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
+		
+		String xmi1 = "comparetest/left/left.xmi";
+		String xmi2 = "comparetest/right/right.xmi";
+		
+		load(xmi1, resourceSet1);
+		load(xmi2, resourceSet2);
+		
+		Comparison comparison = compare(resourceSet1, resourceSet2);
+		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+
+		int counter = 0;
+		System.out.println("----------------");
+		for(org.eclipse.emf.compare.Diff d: differences)
+		{
+			//if(!d.getKind().toString().equals("CHANGE")){
+				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
+				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
+				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
+				counter++;
+			//}
+		}
+
+		assertSame(Integer.valueOf(0), Integer.valueOf(differences.size()));
+	}
+	
 	//Headers with heading styles(headings) must be organized hierarchically.
-	 @Test
+	@Test
 	public void testCompareREQ2(){
 
-		 ResourceSet resourceSet1 = new ResourceSetImpl();
-			ResourceSet resourceSet2 = new ResourceSetImpl();
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
 		// Load ready model
 		String xmi = "testmodels/REQ-2.xmi";
 		load(xmi ,resourceSet1);
@@ -84,15 +114,15 @@ public class ModelComparisonTest {
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
 	}
-	 
+
 
 	// Fully bold headers which have not heading styles must be handled
 	// as a child of last heading.
-	 @Test
+	@Test
 	public void testCompareREQ4(){
 
-		 ResourceSet resourceSet1 = new ResourceSetImpl();
-			ResourceSet resourceSet2 = new ResourceSetImpl();
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
 		// Load ready model
 		String xmi = "testmodels/REQ-4.xmi";
 		load(xmi ,resourceSet1);
@@ -108,12 +138,14 @@ public class ModelComparisonTest {
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
 			if(!d.getKind().toString().equals("CHANGE")){
+				System.out.println("Left object: " + d.getMatch().getLeft().toString());
+				System.out.println("Right object: " + d.getMatch().getRight().toString());
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
 			}
-			
+
 		}
 
 
@@ -121,205 +153,205 @@ public class ModelComparisonTest {
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
 	}
 
-	 
-	
-	
-	 // Listed paragraphs must be handled as a child of last styled paragraph.
-		@Test
-		public void testCompareREQ5(){
 
-			ResourceSet resourceSet1 = new ResourceSetImpl();
-			ResourceSet resourceSet2 = new ResourceSetImpl();
-			
-			// Load ready model
-			String xmi = "testmodels/REQ-5.xmi";
-			load(xmi ,resourceSet1);
-			
-			//parse and load
-			resourceSet2 = load(REQ5);
-			
-			Comparison comparison = compare(resourceSet1,resourceSet2);
-			EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
 
-			int counter = 0;
-			System.out.println("----------------" + xmi);
-			for(org.eclipse.emf.compare.Diff d: differences)
-			{
-				if(!d.getKind().toString().equals("CHANGE")){
-					System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
-					System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
-					System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
-					counter++;
-				}
+
+	// Listed paragraphs must be handled as a child of last styled paragraph.
+	@Test
+	public void testCompareREQ5(){
+
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
+
+		// Load ready model
+		String xmi = "testmodels/REQ-5.xmi";
+		load(xmi ,resourceSet1);
+
+		//parse and load
+		resourceSet2 = load(REQ5);
+
+		Comparison comparison = compare(resourceSet1,resourceSet2);
+		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+
+		int counter = 0;
+		System.out.println("----------------" + xmi);
+		for(org.eclipse.emf.compare.Diff d: differences)
+		{
+			if(!d.getKind().toString().equals("CHANGE")){
+				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
+				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
+				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
+				counter++;
 			}
-
-			assertSame(Integer.valueOf(0), Integer.valueOf(counter));
 		}
-		
-		// Tabbed hierarchy for paragraphs included both styled and 
-		// not styled must be handled.
-		@Test
-		public void testCompareREQ7(){
 
-			ResourceSet resourceSet1 = new ResourceSetImpl();
-			ResourceSet resourceSet2 = new ResourceSetImpl();
-			// Load ready model
-			String xmi = "testmodels/REQ-7.xmi";
-			load(xmi ,resourceSet1);
-			
-			//parse and load
-			resourceSet2 = load(REQ7);
-			
-			Comparison comparison = compare(resourceSet1, resourceSet2);
-			EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
+	}
 
-			int counter = 0;
-			System.out.println("----------------" + xmi);
-			for(org.eclipse.emf.compare.Diff d: differences)
-			{
-				if(!d.getKind().toString().equals("CHANGE")){
-					System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
-					System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
-					System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
-					counter++;
-				}
+	// Tabbed hierarchy for paragraphs included both styled and 
+	// not styled must be handled.
+	@Test
+	public void testCompareREQ7(){
+
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
+		// Load ready model
+		String xmi = "testmodels/REQ-7.xmi";
+		load(xmi ,resourceSet1);
+
+		//parse and load
+		resourceSet2 = load(REQ7);
+
+		Comparison comparison = compare(resourceSet1, resourceSet2);
+		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+
+		int counter = 0;
+		System.out.println("----------------" + xmi);
+		for(org.eclipse.emf.compare.Diff d: differences)
+		{
+			if(!d.getKind().toString().equals("CHANGE")){
+				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
+				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
+				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
+				counter++;
 			}
-
-			assertSame(Integer.valueOf(0), Integer.valueOf(counter));
 		}
-		
-		// If there is a bold key-value pair, every paragraphs until a new fully bold, 
-		// styled with headings or bold key-value paragraph become.
-		@Test
-		public void testCompareREQ8(){
 
-			ResourceSet resourceSet1 = new ResourceSetImpl();
-			ResourceSet resourceSet2 = new ResourceSetImpl();
-			
-			// Load ready model
-			String xmi = "testmodels/REQ-8.xmi";
-			load(xmi ,resourceSet1);
-			
-			//parse and load
-			resourceSet2 = load(REQ8);
-			
-			Comparison comparison = compare(resourceSet1, resourceSet2);
-			EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
+	}
 
-			int counter = 0;
-			System.out.println("----------------" + xmi);
-			for(org.eclipse.emf.compare.Diff d: differences)
-			{
-				if(!d.getKind().toString().equals("CHANGE")){
-					System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
-					System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
-					System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
-					counter++;
-				}
+	// If there is a bold key-value pair, every paragraphs until a new fully bold, 
+	// styled with headings or bold key-value paragraph become.
+	@Test
+	public void testCompareREQ8(){
+
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
+
+		// Load ready model
+		String xmi = "testmodels/REQ-8.xmi";
+		load(xmi ,resourceSet1);
+
+		//parse and load
+		resourceSet2 = load(REQ8);
+
+		Comparison comparison = compare(resourceSet1, resourceSet2);
+		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+
+		int counter = 0;
+		System.out.println("----------------" + xmi);
+		for(org.eclipse.emf.compare.Diff d: differences)
+		{
+			if(!d.getKind().toString().equals("CHANGE")){
+				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
+				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
+				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
+				counter++;
 			}
-
-			assertSame(Integer.valueOf(0), Integer.valueOf(counter));
 		}
-		
-		// If there is a non-bold key-value pair, paragraph must be moved 
-		// under previous styled paragraph.
-		@Test
-		public void testCompareREQ9(){
 
-			ResourceSet resourceSet1 = new ResourceSetImpl();
-			ResourceSet resourceSet2 = new ResourceSetImpl();
-			
-			// Load ready model
-			String xmi = "testmodels/REQ-9.xmi";
-			load(xmi ,resourceSet1);
-			
-			//parse and load
-			resourceSet2 = load(REQ9);
-			
-			Comparison comparison = compare(resourceSet1, resourceSet2);
-			EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
+	}
 
-			int counter = 0;
-			System.out.println("----------------" + xmi);
-			for(org.eclipse.emf.compare.Diff d: differences)
-			{
-				if(!d.getKind().toString().equals("CHANGE")){
-					System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
-					System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
-					System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
-					counter++;
-				}
+	// If there is a non-bold key-value pair, paragraph must be moved 
+	// under previous styled paragraph.
+	@Test
+	public void testCompareREQ9(){
+
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
+
+		// Load ready model
+		String xmi = "testmodels/REQ-9.xmi";
+		load(xmi ,resourceSet1);
+
+		//parse and load
+		resourceSet2 = load(REQ9);
+
+		Comparison comparison = compare(resourceSet1, resourceSet2);
+		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+
+		int counter = 0;
+		System.out.println("----------------" + xmi);
+		for(org.eclipse.emf.compare.Diff d: differences)
+		{
+			if(!d.getKind().toString().equals("CHANGE")){
+				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
+				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
+				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
+				counter++;
 			}
-
-			assertSame(Integer.valueOf(0), Integer.valueOf(counter));
 		}
-		
-		// Fully bold paragraphs, bold key-value paragraphs and paragraphs with heading styles 
-			//must be considered as hierarchic levels.
-		@Test
-		public void testCompareREQ11(){
 
-			ResourceSet resourceSet1 = new ResourceSetImpl();
-			ResourceSet resourceSet2 = new ResourceSetImpl();
-			
-			// Load ready model
-			String xmi = "testmodels/REQ-11.xmi";
-			load(xmi ,resourceSet1);
-			
-			//parse and load
-			resourceSet2 = load(REQ11);
-			
-			Comparison comparison = compare(resourceSet1,resourceSet2);
-			EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
+	}
 
-			int counter = 0;
-			System.out.println("----------------" + xmi);
-			for(org.eclipse.emf.compare.Diff d: differences)
-			{
-				if(!d.getKind().toString().equals("CHANGE")){
-					System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
-					System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
-					System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
-					counter++;
-				}
+	// Fully bold paragraphs, bold key-value paragraphs and paragraphs with heading styles 
+	//must be considered as hierarchic levels.
+	@Test
+	public void testCompareREQ11(){
+
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
+
+		// Load ready model
+		String xmi = "testmodels/REQ-11.xmi";
+		load(xmi ,resourceSet1);
+
+		//parse and load
+		resourceSet2 = load(REQ11);
+
+		Comparison comparison = compare(resourceSet1,resourceSet2);
+		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+
+		int counter = 0;
+		System.out.println("----------------" + xmi);
+		for(org.eclipse.emf.compare.Diff d: differences)
+		{
+			if(!d.getKind().toString().equals("CHANGE")){
+				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
+				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
+				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
+				counter++;
 			}
-
-			assertSame(Integer.valueOf(0), Integer.valueOf(counter));
 		}
-	 
-		
+
+		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
+	}
+
+
 	// Tabbed hierarchy for only not styled paragraphs must be handled.
-		@Test
-		public void testCompareREQ6(){
+	@Test
+	public void testCompareREQ6(){
 
-			ResourceSet resourceSet1 = new ResourceSetImpl();
-			ResourceSet resourceSet2 = new ResourceSetImpl();
-			// Load ready model
-			String xmi = "testmodels/REQ-6.xmi";
-			load(xmi ,resourceSet1);
-			
-			//parse and load
-			resourceSet2 = load(REQ6);
-			
-			Comparison comparison = compare(resourceSet1,resourceSet2);
-			EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
+		// Load ready model
+		String xmi = "testmodels/REQ-6.xmi";
+		load(xmi ,resourceSet1);
 
-			int counter = 0;
-			System.out.println("----------------" + xmi);
-			for(org.eclipse.emf.compare.Diff d: differences)
-			{
-				if(!d.getKind().toString().equals("CHANGE")){
-					System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
-					System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
-					System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
-					counter++;
-				}
+		//parse and load
+		resourceSet2 = load(REQ6);
+
+		Comparison comparison = compare(resourceSet1,resourceSet2);
+		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+
+		int counter = 0;
+		System.out.println("----------------" + xmi);
+		for(org.eclipse.emf.compare.Diff d: differences)
+		{
+			if(!d.getKind().toString().equals("CHANGE")){
+				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
+				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
+				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
+				counter++;
 			}
-
-			assertSame(Integer.valueOf(0), Integer.valueOf(counter));
 		}
 
+		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
+	}
 
+	// TODO REQ-12 is missing
 	private ResourceSet load(String req) {
 
 		try {

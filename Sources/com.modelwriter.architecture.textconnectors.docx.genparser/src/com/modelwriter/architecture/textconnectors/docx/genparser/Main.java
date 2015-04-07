@@ -11,6 +11,7 @@ public class Main {
 	private final static String TABBED_DOCUMENT = "testdata/tabbed doc.docx"; 
 	private final static String USE_CASE_DOCUMENTATION = "testdata/UseCaseDocumentation.docx"; 
 	
+	private static String uctest = "testdata/use case test.docx";
 	//Headers with heading styles(headings) must be organized hierarchically.
 	private static String REQ2 = "testdata/REQ-2.docx";
 
@@ -49,7 +50,7 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		try {
-			parsedResource = Doc2ParseModel.parse(SAMPLE_REQUIREMENT_DOCUMENT);
+			parsedResource = Doc2ParseModel.parse(uctest);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -76,7 +76,6 @@ public class Doc2ParseModel {
 		// output file name
 		String[] v = filename.split("/");
 		String[] v2 = v[1].split("\\.");
-
 		output += v2[0] + ".xmi";
 
 		initializeStaticVariables();
@@ -124,7 +123,9 @@ public class Doc2ParseModel {
 
 				//handleHeadingsHierarchy(paragraphStyle,paragraphText,firstParagraphFlag);
 
+				if(!plainTextStack.isEmpty()){
 					emptyPlainTextStack();
+				}
 
 				Paragraph p = factory.createParagraph();
 				p.setId(EcoreUtil.generateUUID());
@@ -207,6 +208,7 @@ public class Doc2ParseModel {
 			// normal paragraph
 			else if(headingMap.get(paragraphStyle) == 99){
 
+				// TODO refactoring
 				String[] values = paragraph.getText().split(":");
 				isPlainText = true;
 
@@ -224,7 +226,7 @@ public class Doc2ParseModel {
 						if(key.contains(runText) && run.isBold()){
 
 							int tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
-							if(tabCount == 0){
+							if(tabCount == 0 && !plainTextStack.isEmpty()){
 								emptyPlainTextStack();
 							}
 
@@ -259,11 +261,28 @@ public class Doc2ParseModel {
 				// plain text
 				if(isPlainText && !paragraphText.equals("")){
 
+					String mainFlowActivityPattern = "((((\t)*[1-9]|[*])[a-z]?[.][ ]?)[A-Z].*)";	
+					Pattern pattern = Pattern.compile(mainFlowActivityPattern);
+					Matcher matcher = pattern.matcher(paragraphText);
+					
 					Paragraph p = factory.createParagraph();
 					p.setId(EcoreUtil.generateUUID());
-					p.setRawText(paragraphText);
+					
+					// eðer bir ordered list item ise isimlendir ve hierarþiye göre 
+					// uygun node'a ekle
+					if(matcher.matches()){
+						String[] values1 = paragraphText.split("\\.");
+						
+						calculateTabCount(values1[0]);
+						p.setName(values1[0].replaceAll("\t",""));
+						p.setRawText(values1[1]);
+					}else{
+						
+						p.setRawText(paragraphText);
+						calculateTabCount(p.getRawText());
 
-					calculateTabCount(p);
+					}
+
 					handleTabbedHierarchy(p);
 
 				}
@@ -305,9 +324,9 @@ public class Doc2ParseModel {
 	}
 
 
-	private static void calculateTabCount(Paragraph p) {
+	private static void calculateTabCount(String text) {
 
-		tabCount = p.getRawText().length() - p.getRawText().replaceAll("\t", "").length();
+		tabCount = text.length() - text.replaceAll("\t", "").length();
 
 	}
 
@@ -326,9 +345,9 @@ public class Doc2ParseModel {
 
 	private static void handleKeyValueProperties(String[] values) {
 
-
+		if(!plainTextStack.isEmpty()){
 			emptyPlainTextStack();
-
+		}
 
 		isPlainText = false;
 
@@ -373,7 +392,7 @@ public class Doc2ParseModel {
 		keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
 		keyValueParagraph.setRawText(values[0]);
 
-		calculateTabCount(keyValueParagraph);
+		calculateTabCount(keyValueParagraph.getRawText());
 
 		// add para. under tabbed parag.
 		if(tabCount > 1){
@@ -405,7 +424,10 @@ public class Doc2ParseModel {
 	private static void handleNumberedParagraphs(BigInteger numID) {
 
 		int counter = 0;
-		emptyPlainTextStack();
+
+		if(!plainTextStack.isEmpty() && lastFullyBoldHeaderInPlainTextHierarchy == null){
+			emptyPlainTextStack();
+		}
 
 		while(numID != null){
 			counter++;
@@ -449,7 +471,7 @@ public class Doc2ParseModel {
 		headerParagraph.setRawText(paragraphText);
 		paragraphStyle = "SubHeader";
 
-		calculateTabCount(headerParagraph);
+		calculateTabCount(headerParagraph.getRawText());
 		if(tabCount > 1){
 
 			lastFullyBoldHeaderInPlainTextHierarchy = headerParagraph;
@@ -467,6 +489,10 @@ public class Doc2ParseModel {
 
 	private static void handleTabbedHierarchy(Paragraph p) {
 
+		String mainFlowActivityPattern = "(([1-9]|[*])[a-z]?)";	
+		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
+		Matcher matcher;
+		
 		// Boþsa ekle
 		if(plainTextStack.isEmpty()){
 
@@ -483,10 +509,15 @@ public class Doc2ParseModel {
 		// eþitse
 		else if(plaintTextLevelMap.get(plainTextStack.peek()) == tabCount){
 
+			
 			// fully bold header altýnda onunla ayný seviyedeki bir paragraf ise
-			if(plainTextStack.peek().getName() != null){
+			// ayrýca named paragraf ama ordered list elemaný deðil ise ekle
+			if(plainTextStack.peek().getName() != null &&
+					(!(matcher = pattern.matcher(plainTextStack.peek().getName())).matches())
+					){
 
 				plainTextStack.peek().getOwnedNode().add(p);
+
 			}
 			else{
 				Paragraph poppedParagraph = plainTextStack.pop();
@@ -503,7 +534,7 @@ public class Doc2ParseModel {
 					}else{
 
 						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(p);
+						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex).getOwnedNode().add(poppedParagraph);
 					}
 				}
 
@@ -522,7 +553,9 @@ public class Doc2ParseModel {
 
 				// indent sayýsý ayný olsa da eðer çýkarýlan paragraph fully bold ise
 				// onun childýne ekle
-				if(plaintTextLevelMap.get(poppedParagraph) == tabCount && poppedParagraph.getName()!= null){
+				// ayrýca ordered list item olmamalý
+				if(plaintTextLevelMap.get(poppedParagraph) == tabCount && poppedParagraph.getName()!= null &&
+						(!(matcher = pattern.matcher(poppedParagraph.getName())).matches())){
 
 					poppedParagraph.getOwnedNode().add(p);
 					plainTextStack.peek().getOwnedNode().add(poppedParagraph);		
@@ -562,29 +595,26 @@ public class Doc2ParseModel {
 
 	private static void emptyPlainTextStack() {
 
-		if(!plainTextStack.isEmpty()){
-			
-			while(!plainTextStack.isEmpty()){
+		while(!plainTextStack.isEmpty()){
 
-				Paragraph poppedParagraph = plainTextStack.pop();	
+			Paragraph poppedParagraph = plainTextStack.pop();	
 
-				if(plaintTextLevelMap.get(poppedParagraph) == 0){
+			if(plaintTextLevelMap.get(poppedParagraph) == 0){
 
-					if(isThereNamedParagraph()){
+				if(isThereNamedParagraph()){
 
-						int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-						paragraphStack.peek().getOwnedNode().get(lastParagraphIndex)
-						.getOwnedNode().add(poppedParagraph);
-					}else{
-						paragraphStack.peek().getOwnedNode().add(poppedParagraph);
-					}
+					int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+					paragraphStack.peek().getOwnedNode().get(lastParagraphIndex)
+					.getOwnedNode().add(poppedParagraph);
 				}else{
-
-					plainTextStack.peek().getOwnedNode().add(poppedParagraph);			
+					paragraphStack.peek().getOwnedNode().add(poppedParagraph);
 				}
+			}else{
 
-
+				plainTextStack.peek().getOwnedNode().add(poppedParagraph);			
 			}
+
+
 		}
 
 	}
@@ -609,23 +639,19 @@ public class Doc2ParseModel {
 
 	private static boolean isThereNamedParagraph() {
 
-		String regex = "((\t)*([0-9]+|[*])[a-zA-Z]{0,2})";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = null;
+		String mainFlowActivityPattern = "(([1-9]|[*])[a-z]?)";	
+		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
+		Matcher matcher;
 
 		if(paragraphStack.peek().getOwnedNode().size() > 0){
 			int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
 			Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
 
 
-			if(lastParagraph.getName() != null ){
-
-				matcher = pattern.matcher(lastParagraph.getName());
-				if(!matcher.matches()){
-
+			if(lastParagraph.getName() != null &&
+					(!(matcher = pattern.matcher(lastParagraph.getName())).matches())){
+				
 					return true;
-				}
-
 			}
 
 		}else{
@@ -647,16 +673,16 @@ public class Doc2ParseModel {
 		 * and there might be a whitespace(only one)
 		 */
 		// TODO senaryo oluþtur listeler için
-		String mainFlowActivityPattern = ".*([(]*([0-9]|[a-zA-Z])+.*[)]*[ ]+[a-zA-Z].*)";
+		//String mainFlowActivityPattern = ".*([(]*([0-9]|[a-zA-Z])+.*[)]*[ ]+[a-zA-Z].*)";
+		String mainFlowActivityPattern = "((((\t)*[1-9]|[*])[a-z]?[.][ ]?)[A-Z].*)";	
 		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
 		Matcher matcher = pattern.matcher(text);
-
-
 
 		// ordered list
 		if(numID != null){
 			int activityCounter = 0;
 
+			// TODO nested list
 			while(numID != null){	
 				activityCounter++;
 				Paragraph p = factory.createParagraph();
@@ -674,14 +700,17 @@ public class Doc2ParseModel {
 			// Iterating through the numbers			
 			while(matcher.matches() && paragraph != null){
 
+				// TODO tabbed list
 				// uygun yerden bölmemiz gerekli
 				//String[] v = cutString(text);
 				String[] v = text.split("\\.");
 
 				Paragraph p = factory.createParagraph();
+				calculateTabCount(v[0]);
 				p.setName(v[0].replaceAll("\t",""));
 				p.setRawText(v[1]);
-				keyValueParagraph.getOwnedNode().add(p);
+				handleTabbedHierarchy(p);
+				//keyValueParagraph.getOwnedNode().add(p);
 				//p.setParentNode(keyValueParagraph);
 
 				if(paraIter.hasNext()){
