@@ -208,53 +208,41 @@ public class Doc2ParseModel {
 			// normal paragraph
 			else if(headingMap.get(paragraphStyle) == 99){
 
-				// TODO refactoring
-				String[] values = paragraph.getText().split(":");
 				isPlainText = true;
 
 				if(!paragraphText.equals("")){
 
-					for(XWPFRun run : paragraph.getRuns()){
-
-						if(run.getText(0) == null){
-							continue;
+					if(isAllBold()){
+						
+						calculateTabCount(paragraphText);
+						if(tabCount == 0 && !plainTextStack.isEmpty()){
+							emptyPlainTextStack();
 						}
-						String runText = run.getText(0).trim();
-						String key = values[0] + ":";
 
-						// key-value 
-						if(key.contains(runText) && run.isBold()){
+						//bold key-value
+						if(paragraphText.contains(":")){
 
-							int tabCount = paragraphText.length() - paragraphText.replaceAll("\t", "").length();
-							if(tabCount == 0 && !plainTextStack.isEmpty()){
-								emptyPlainTextStack();
-							}
+							String[] values = paragraphText.split(":");
+							handleBoldKeyValuePairs(values,paragraphText);
+						}
+						//header without heading style 
+						//ex. EM-HLR-....
+						else{
 
-							//bold key-value
-							if(paragraph.getText().contains(":")){
-
-								handleBoldKeyValuePairs(values,paragraphText);
-							}
-							//header without heading style 
-							//ex. EM-HLR-....
-							else{
-
-								handleFullyBoldHeaders(paragraphStyle,paragraphText);
-
-							}
-
-							isPlainText = false;
-							break;
-
-						} 
-						// key-value not bold
-						// TODO handle numbered list
-						// ex. Name: Caise Failure.
-						else if(paragraph.getText().contains(":")){
-
-							handleKeyValueProperties(values);
+							handleFullyBoldHeaders(paragraphStyle,paragraphText);
 
 						}
+						
+						isPlainText = false;
+					}
+					
+					// key-value not bold
+					// TODO handle numbered list
+					// ex. Name: Caise Failure.
+					else if(paragraphText.contains(":")){
+
+						String[] values = paragraphText.split(":");
+						handleKeyValueProperties(values);
 					}
 				}
 
@@ -302,6 +290,27 @@ public class Doc2ParseModel {
 		// Create and save the model instance to xmi file
 		Resource r = createXMIFile(documentObject, output);
 		return r;
+	}
+
+
+	private static boolean isAllBold() {
+		
+		int nonBoldRunCounter = 0;
+		
+		for(XWPFRun run : paragraph.getRuns()){
+			
+			if(!run.isBold()){
+				nonBoldRunCounter++;
+			}
+				
+		}
+		
+		if(nonBoldRunCounter > 0){
+			return false;
+		}else{
+			return true;
+		}
+		
 	}
 
 
