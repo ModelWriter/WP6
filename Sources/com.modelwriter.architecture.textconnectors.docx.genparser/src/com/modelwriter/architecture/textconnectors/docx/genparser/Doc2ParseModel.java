@@ -13,6 +13,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -296,7 +297,7 @@ public class Doc2ParseModel {
 	private static boolean isAllBold() {
 
 		int nonBoldRunCounter = 0;
-		
+
 		String text = paragraph.getText();
 		if(text.contains(":")){
 
@@ -315,7 +316,7 @@ public class Doc2ParseModel {
 						nonBoldRunCounter++;
 					}
 				}
-				
+
 			}
 		}
 		else{
@@ -328,7 +329,7 @@ public class Doc2ParseModel {
 
 			}
 
-			
+
 		}
 
 		if(nonBoldRunCounter > 0){
@@ -459,7 +460,8 @@ public class Doc2ParseModel {
 	private static void handleNumberedParagraphs(BigInteger numID) {
 
 		int counter = 0;
-
+		String text = paragraph.getText();
+		
 		if(!plainTextStack.isEmpty() && lastFullyBoldHeaderInPlainTextHierarchy == null){
 			emptyPlainTextStack();
 		}
@@ -469,7 +471,12 @@ public class Doc2ParseModel {
 			Paragraph numberedParagraph = factory.createParagraph();
 			numberedParagraph.setId(EcoreUtil.generateUUID());
 			numberedParagraph.setName("" + counter);
-			numberedParagraph.setRawText(paragraph.getText());
+			numberedParagraph.setRawText(text);
+			
+			if(text.contains(":")){
+				
+				keyValuInOrderedList(text,numberedParagraph);
+			}
 
 			if(lastFullyBoldHeaderInPlainTextHierarchy != null){
 
@@ -488,6 +495,7 @@ public class Doc2ParseModel {
 
 			if(paraIter.hasNext()){
 				paragraph = paraIter.next();
+				text = paragraph.getText();
 				numID = paragraph.getNumID();
 				paragraphNotHandled = true;
 			}else{
@@ -721,12 +729,20 @@ public class Doc2ParseModel {
 			while(numID != null){	
 				activityCounter++;
 				Paragraph p = factory.createParagraph();
+				p.setId(EcoreUtil.generateUUID());
 				p.setName("" + activityCounter);
-				p.setRawText(paragraph.getText());
+				p.setRawText(text);
+
+				if(text.contains(":")){
+
+					keyValuInOrderedList(text,p);
+				}
+
 				keyValueParagraph.getOwnedNode().add(p);
 				//p.setParentNode(keyValueParagraph);
 
 				paragraph = paraIter.next();
+				text = paragraph.getText();
 				numID = paragraph.getNumID();
 			}
 		}
@@ -744,6 +760,12 @@ public class Doc2ParseModel {
 				calculateTabCount(v[0]);
 				p.setName(v[0].replaceAll("\t",""));
 				p.setRawText(v[1]);
+
+				if(text.contains(":")){
+
+					keyValuInOrderedList(text,p);
+				}
+
 				handleTabbedHierarchy(p);
 				//keyValueParagraph.getOwnedNode().add(p);
 				//p.setParentNode(keyValueParagraph);
@@ -763,6 +785,29 @@ public class Doc2ParseModel {
 
 		paragraphNotHandled = true;
 
+	}
+
+
+	private static void keyValuInOrderedList(String text, Paragraph p) {
+		
+		String[] v = text.split(":");
+		Paragraph keyValuePara = factory.createParagraph();
+		keyValuePara.setId(EcoreUtil.generateUUID());
+		keyValuePara.setName(v[0]);
+		
+		if(v.length > 1 && v[1].trim().length() > 0){
+			
+			keyValuePara.setRawText(v[1]);
+		}else{
+			JFrame frame = new JFrame();
+			JOptionPane.showMessageDialog(frame, "Missing Line at the paragraph '" 
+			+ keyValuePara.getName() + "'","Error", JOptionPane.ERROR_MESSAGE, null);
+		}
+		
+
+		p.getOwnedNode().add(keyValuePara);
+		p.setRawText(null);
+		
 	}
 
 

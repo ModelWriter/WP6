@@ -39,6 +39,10 @@ public class Main {
 	//must be considered as hierarchic levels.
 	private static String REQ11 = "testdata/REQ-11.docx";
 	
+	//If not bold and it is in ordered list item, 
+	//paragraph must be handled as a child of that ordered list item 
+	private static String REQ13 = "testdata/REQ-13.docx";
+	
 	private static String number = "testdata/numberin.docx";
 	
 	private static String plain = "testdata/plaint text.docx";

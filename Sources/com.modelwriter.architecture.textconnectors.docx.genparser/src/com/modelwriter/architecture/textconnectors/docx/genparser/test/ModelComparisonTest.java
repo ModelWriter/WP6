@@ -48,6 +48,8 @@ public class ModelComparisonTest {
 	private static String REQ9 = "testdata/REQ-9.docx";
 
 	private static String REQ11 = "testdata/REQ-11.docx";
+	
+	private static String REQ13 = "testdata/REQ-13.docx";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -59,13 +61,13 @@ public class ModelComparisonTest {
 
 		ResourceSet resourceSet1 = new ResourceSetImpl();
 		ResourceSet resourceSet2 = new ResourceSetImpl();
-		
+
 		String xmi1 = "comparetest/left/left.xmi";
 		String xmi2 = "comparetest/right/right.xmi";
-		
+
 		load(xmi1, resourceSet1);
 		load(xmi2, resourceSet2);
-		
+
 		Comparison comparison = compare(resourceSet1, resourceSet2);
 		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
 
@@ -74,16 +76,16 @@ public class ModelComparisonTest {
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
 			//if(!d.getKind().toString().equals("CHANGE")){
-				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
-				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
-				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
-				counter++;
+			System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
+			System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
+			System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
+			counter++;
 			//}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(differences.size()));
 	}
-	
+
 	//Headers with heading styles(headings) must be organized hierarchically.
 	@Test
 	public void testCompareREQ2(){
@@ -169,6 +171,37 @@ public class ModelComparisonTest {
 
 		//parse and load
 		resourceSet2 = load(REQ5);
+
+		Comparison comparison = compare(resourceSet1,resourceSet2);
+		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
+
+		int counter = 0;
+		System.out.println("----------------" + xmi);
+		for(org.eclipse.emf.compare.Diff d: differences)
+		{
+			if(!d.getKind().toString().equals("CHANGE")){
+				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
+				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
+				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
+				counter++;
+			}
+		}
+
+		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
+	}
+
+	// Tabbed hierarchy for only not styled paragraphs must be handled.
+	@Test
+	public void testCompareREQ6(){
+
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
+		// Load ready model
+		String xmi = "testmodels/REQ-6.xmi";
+		load(xmi ,resourceSet1);
+
+		//parse and load
+		resourceSet2 = load(REQ6);
 
 		Comparison comparison = compare(resourceSet1,resourceSet2);
 		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
@@ -319,19 +352,20 @@ public class ModelComparisonTest {
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
 	}
 
-
-	// Tabbed hierarchy for only not styled paragraphs must be handled.
+	//If not bold and it is in ordered list item, 
+	//paragraph must be handled as a child of that ordered list item 
 	@Test
-	public void testCompareREQ6(){
+	public void testCompareREQ13(){
 
 		ResourceSet resourceSet1 = new ResourceSetImpl();
 		ResourceSet resourceSet2 = new ResourceSetImpl();
+
 		// Load ready model
-		String xmi = "testmodels/REQ-6.xmi";
+		String xmi = "testmodels/REQ-13.xmi";
 		load(xmi ,resourceSet1);
 
 		//parse and load
-		resourceSet2 = load(REQ6);
+		resourceSet2 = load(REQ13);
 
 		Comparison comparison = compare(resourceSet1,resourceSet2);
 		EList<org.eclipse.emf.compare.Diff> differences = comparison.getDifferences();
@@ -347,8 +381,9 @@ public class ModelComparisonTest {
 				counter++;
 			}
 		}
-
-		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
+		
+		// just 1 id is different
+		assertSame(Integer.valueOf(1), Integer.valueOf(counter));
 	}
 
 	// TODO REQ-12 is missing
