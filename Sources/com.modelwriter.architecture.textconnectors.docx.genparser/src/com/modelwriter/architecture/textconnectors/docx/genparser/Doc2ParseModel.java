@@ -213,7 +213,7 @@ public class Doc2ParseModel {
 				if(!paragraphText.equals("")){
 
 					if(isAllBold()){
-						
+
 						calculateTabCount(paragraphText);
 						if(tabCount == 0 && !plainTextStack.isEmpty()){
 							emptyPlainTextStack();
@@ -232,10 +232,10 @@ public class Doc2ParseModel {
 							handleFullyBoldHeaders(paragraphStyle,paragraphText);
 
 						}
-						
+
 						isPlainText = false;
 					}
-					
+
 					// key-value not bold
 					// TODO handle numbered list
 					// ex. Name: Caise Failure.
@@ -252,20 +252,20 @@ public class Doc2ParseModel {
 					String mainFlowActivityPattern = "((((\t)*[1-9]|[*])[a-z]?[.][ ]?)[A-Z].*)";	
 					Pattern pattern = Pattern.compile(mainFlowActivityPattern);
 					Matcher matcher = pattern.matcher(paragraphText);
-					
+
 					Paragraph p = factory.createParagraph();
 					p.setId(EcoreUtil.generateUUID());
-					
+
 					// eðer bir ordered list item ise isimlendir ve hierarþiye göre 
 					// uygun node'a ekle
 					if(matcher.matches()){
 						String[] values1 = paragraphText.split("\\.");
-						
+
 						calculateTabCount(values1[0]);
 						p.setName(values1[0].replaceAll("\t",""));
 						p.setRawText(values1[1]);
 					}else{
-						
+
 						p.setRawText(paragraphText);
 						calculateTabCount(p.getRawText());
 
@@ -294,23 +294,47 @@ public class Doc2ParseModel {
 
 
 	private static boolean isAllBold() {
-		
+
 		int nonBoldRunCounter = 0;
-		
-		for(XWPFRun run : paragraph.getRuns()){
-			
-			if(!run.isBold()){
-				nonBoldRunCounter++;
-			}
+
+		String text = paragraph.getText();
+		if(text.contains(":")){
+
+			String[] values = text.split(":");
+			String key = values[0];
+
+			for(XWPFRun run : paragraph.getRuns()){
+
+				if(run.getText(0) == null){
+					continue;
+				}else{
+					String runText = run.getText(0).trim();
+					if((key.contains(runText) || runText.contains(key)) && !run.isBold()){
+						nonBoldRunCounter++;
+					}
+				}
 				
+			}
 		}
-		
+		else{
+
+			for(XWPFRun run : paragraph.getRuns()){
+
+				if(!run.isBold()){
+					nonBoldRunCounter++;
+				}
+
+			}
+
+			
+		}
+
 		if(nonBoldRunCounter > 0){
 			return false;
 		}else{
 			return true;
 		}
-		
+
 	}
 
 
@@ -501,7 +525,7 @@ public class Doc2ParseModel {
 		String mainFlowActivityPattern = "(([1-9]|[*])[a-z]?)";	
 		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
 		Matcher matcher;
-		
+
 		// Boþsa ekle
 		if(plainTextStack.isEmpty()){
 
@@ -518,7 +542,7 @@ public class Doc2ParseModel {
 		// eþitse
 		else if(plaintTextLevelMap.get(plainTextStack.peek()) == tabCount){
 
-			
+
 			// fully bold header altýnda onunla ayný seviyedeki bir paragraf ise
 			// ayrýca named paragraf ama ordered list elemaný deðil ise ekle
 			if(plainTextStack.peek().getName() != null &&
@@ -659,8 +683,8 @@ public class Doc2ParseModel {
 
 			if(lastParagraph.getName() != null &&
 					(!(matcher = pattern.matcher(lastParagraph.getName())).matches())){
-				
-					return true;
+
+				return true;
 			}
 
 		}else{
