@@ -296,12 +296,12 @@ public class Doc2ParseModel {
 	private static boolean isAllBold() {
 
 		int nonBoldRunCounter = 0;
-
+		
 		String text = paragraph.getText();
 		if(text.contains(":")){
 
 			String[] values = text.split(":");
-			String key = values[0];
+			String key = values[0] + ":";
 
 			for(XWPFRun run : paragraph.getRuns()){
 
@@ -309,7 +309,9 @@ public class Doc2ParseModel {
 					continue;
 				}else{
 					String runText = run.getText(0).trim();
-					if((key.contains(runText) || runText.contains(key)) && !run.isBold()){
+					if(key.contains(runText) && run.isBold()){
+						return true;
+					}else{
 						nonBoldRunCounter++;
 					}
 				}
