@@ -11,9 +11,9 @@ Development Projects
  
 ###Installation Details:
 Eclipse Luna 4.4.2 Modelling Tools
-1. Apache POI can be installed from the [download page](https://poi.apache.org/download.html). (used version is 3.9)
-2. Mylyn Intent, can be installed from Eclipse Marketplace.
-3. e(fx)clipse, can be installed from the [update site](http://download.eclipse.org/efxclipse/runtime-released/1.1.0/site).
-4. RMF and the Rtf(rich text support), can be installed from the [formalmind Studio Update Site](http://update.formalmind.com/essentials).
+ 1. Apache POI can be installed from the [download page](https://poi.apache.org/download.html). (used version is 3.9)
+ 2. Mylyn Intent, can be installed from Eclipse Marketplace.
+ 3. e(fx)clipse, can be installed from the [update site](http://download.eclipse.org/efxclipse/runtime-released/1.1.0/site).
+ 4. RMF and the Rtf(rich text support), can be installed from the [formalmind Studio Update Site](http://update.formalmind.com/essentials).
 
 
