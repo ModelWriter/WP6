@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/eu.modelwriter.models.concepts/src-gen" editDirectory="/eu.modelwriter.models.concepts.edit/src-gen"
+    editorDirectory="/eu.modelwriter.models.concepts.editor/src-gen" modelPluginID="eu.modelwriter.models.concepts"
+    modelName="Concepts" editPluginClass="eu.modelwriter.models.concepts.provider.ConceptsEditPlugin"
+    editorPluginClass="eu.modelwriter.models.concepts.presentation.ConceptsEditorPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/eu.modelwriter.models.concepts.tests/src-gen"
+    testSuiteClass="eu.modelwriter.models.concepts.tests.ConceptsAllTests" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" language="" operationReflection="true"
+    importOrganizing="true">
+  <foreignModel>Concepts.ecore</foreignModel>
+  <genPackages prefix="Concepts" basePackage="eu.modelwriter.models" disposableProviderFactory="true"
+      ecorePackage="Concepts.ecore#/">
+    <genDataTypes ecoreDataType="Concepts.ecore#//EMFResource"/>
+    <genClasses ecoreClass="Concepts.ecore#//ConceptsRoot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptsRoot/javaConcepts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptsRoot/ecoreResources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptsRoot/types"/>
+    </genClasses>
+    <genClasses ecoreClass="Concepts.ecore#//JavaConceptsContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Concepts.ecore#//JavaConceptsContainer/concepts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Concepts.ecore#//JavaConceptsContainer/contexts"/>
+    </genClasses>
+    <genClasses ecoreClass="Concepts.ecore#//resourcesConcepts">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Concepts.ecore#//resourcesConcepts/ecoreResource"/>
+    </genClasses>
+    <genClasses ecoreClass="Concepts.ecore#//Concept"/>
+    <genClasses ecoreClass="Concepts.ecore#//ContextPackage"/>
+    <genClasses ecoreClass="Concepts.ecore#//ConceptClass">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptClass/context"/>
+    </genClasses>
+    <genClasses ecoreClass="Concepts.ecore#//ConceptVariable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptVariable/returnType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptVariable/context"/>
+    </genClasses>
+    <genClasses ecoreClass="Concepts.ecore#//ConceptMethod">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptMethod/returnType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptMethod/parameters"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptMethod/context"/>
+    </genClasses>
+    <genClasses ecoreClass="Concepts.ecore#//ConceptParameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptParameter/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Concepts.ecore#//ConceptParameter/context"/>
+    </genClasses>
+    <genClasses ecoreClass="Concepts.ecore#//Type">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Concepts.ecore#//Type/referencedClass"/>
+    </genClasses>
+    <genClasses ecoreClass="Concepts.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Concepts.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Concepts.ecore#//DerivedConcept"/>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated Concepts -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="eu.modelwriter.models.concepts.presentation.ConceptsModelWizardID"
+            name="%_UI_ConceptsModelWizard_label"
+            class="eu.modelwriter.models.concepts.presentation.ConceptsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ConceptsModelFile.gif">
+         <description>%_UI_ConceptsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated Concepts -->
+      <editor
+            id="eu.modelwriter.models.concepts.presentation.ConceptsEditorID"
+            name="%_UI_ConceptsEditor_label"
+            icon="icons/full/obj16/ConceptsModelFile.gif"
+            extensions="concepts"
+            class="eu.modelwriter.models.concepts.presentation.ConceptsEditor"
+            contributorClass="eu.modelwriter.models.concepts.presentation.ConceptsActionBarContributor">
+      </editor>
+   </extension>
+</plugin>
