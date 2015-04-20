@@ -252,6 +252,16 @@
               id="777424b6-abac-483a-b0d3-5780832f52c5" name="Filters (Mapping &amp; text)"/>
           <ownedFunctions xsi:type="org.polarsys.capella.core.data.la:LogicalFunction"
               id="463fb539-777c-4929-834a-9bdf4d2e91de" name="Semantic Consistency Checking&#xD;&#xA;(2 versions of the same document)"/>
+          <ownedFunctions xsi:type="org.polarsys.capella.core.data.la:LogicalFunction"
+              id="2ea4278d-e880-49b2-9100-75ae61aeba16" name="Office Open XML (.docx)"/>
+          <ownedFunctions xsi:type="org.polarsys.capella.core.data.la:LogicalFunction"
+              id="adeb7264-0dc7-4737-8f11-37c43bed92a3" name="Lightweight Markup Languages"/>
+          <ownedFunctions xsi:type="org.polarsys.capella.core.data.la:LogicalFunction"
+              id="626852d4-f5bc-4d97-907e-e89870c7e2cb" name="Requirement Management (ReqIF)"/>
+          <ownedFunctions xsi:type="org.polarsys.capella.core.data.la:LogicalFunction"
+              id="0f2ec3a0-e08f-4f30-a52b-7c0f6a6cbde7" name="System/Software Modeling (SysML, IDEF0, BPMN)"/>
+          <ownedFunctions xsi:type="org.polarsys.capella.core.data.la:LogicalFunction"
+              id="9289f37f-a096-4d9b-8a0b-567f72263304" name="Software Documentation"/>
           <ownedFunctionRealizations xsi:type="org.polarsys.capella.core.data.fa:FunctionRealization"
               id="37880657-f1d1-4f27-aecf-4a4baedbd8a7" targetElement="#226c2aef-33a7-40a4-b4db-4bd35e832997"
               sourceElement="#7ab6eaee-0493-4ef7-9a97-93db55df6774"/>
@@ -562,6 +572,12 @@
           id="762ca2d9-56e1-4d8c-b86f-051180938f40" name="Logical Actors">
         <ownedLogicalActors xsi:type="org.polarsys.capella.core.data.la:LogicalActor"
             id="0534f398-6908-40cb-95af-eb94300f7631" name="Authoring Tool">
+          <ownedFunctionalAllocation xsi:type="org.polarsys.capella.core.data.fa:ComponentFunctionalAllocation"
+              id="08f43eae-2e1a-4efe-90f0-d2ca0f52c02e" targetElement="#2ea4278d-e880-49b2-9100-75ae61aeba16"
+              sourceElement="#0534f398-6908-40cb-95af-eb94300f7631"/>
+          <ownedFunctionalAllocation xsi:type="org.polarsys.capella.core.data.fa:ComponentFunctionalAllocation"
+              id="6e720106-2a6c-449f-8b28-a7a6df04a501" targetElement="#adeb7264-0dc7-4737-8f11-37c43bed92a3"
+              sourceElement="#0534f398-6908-40cb-95af-eb94300f7631"/>
           <ownedFeatures xsi:type="org.polarsys.capella.core.data.fa:ComponentPort"
               id="086b7453-7ba0-4b82-9148-82b3b02e56b4" name="CP 1" orientation="OUT"
               kind="FLOW"/>
@@ -571,6 +587,12 @@
         </ownedLogicalActors>
         <ownedLogicalActors xsi:type="org.polarsys.capella.core.data.la:LogicalActor"
             id="e44c45d3-8034-492c-b2ab-cd4b047dd948" name="Graphical Designer">
+          <ownedFunctionalAllocation xsi:type="org.polarsys.capella.core.data.fa:ComponentFunctionalAllocation"
+              id="79c7ce07-b52b-49b7-9354-83f34fe5efdb" targetElement="#626852d4-f5bc-4d97-907e-e89870c7e2cb"
+              sourceElement="#e44c45d3-8034-492c-b2ab-cd4b047dd948"/>
+          <ownedFunctionalAllocation xsi:type="org.polarsys.capella.core.data.fa:ComponentFunctionalAllocation"
+              id="995180cc-63cb-4a44-8902-ecbf71e5c4dc" targetElement="#0f2ec3a0-e08f-4f30-a52b-7c0f6a6cbde7"
+              sourceElement="#e44c45d3-8034-492c-b2ab-cd4b047dd948"/>
           <ownedFeatures xsi:type="org.polarsys.capella.core.data.fa:ComponentPort"
               id="9e06c188-cff1-4213-94ae-ff0cb07b84d4" name="CP 1" orientation="OUT"
               kind="FLOW"/>
@@ -583,6 +605,9 @@
         </ownedLogicalActors>
         <ownedLogicalActors xsi:type="org.polarsys.capella.core.data.la:LogicalActor"
             id="68150574-cb81-48c4-b847-54e539089996" name="Source Code IDE">
+          <ownedFunctionalAllocation xsi:type="org.polarsys.capella.core.data.fa:ComponentFunctionalAllocation"
+              id="db52954a-d029-45b1-96d6-c882d1486a1c" targetElement="#9289f37f-a096-4d9b-8a0b-567f72263304"
+              sourceElement="#68150574-cb81-48c4-b847-54e539089996"/>
           <ownedFeatures xsi:type="org.polarsys.capella.core.data.fa:ComponentPort"
               id="60c3066a-9563-49d2-ba0c-486251d37ecd" name="CP 1" orientation="OUT"
               kind="FLOW"/>
