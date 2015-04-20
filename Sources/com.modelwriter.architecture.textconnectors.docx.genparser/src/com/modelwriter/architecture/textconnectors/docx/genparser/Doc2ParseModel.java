@@ -19,6 +19,8 @@ import javax.swing.JOptionPane;
 
 import org.apache.poi.ss.formula.functions.Replace;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFNum;
+import org.apache.poi.xwpf.usermodel.XWPFNumbering;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.eclipse.emf.common.util.URI;
@@ -69,6 +71,14 @@ public class Doc2ParseModel {
 	private static int tabCount;
 
 	private static Paragraph lastFullyBoldHeaderInPlainTextHierarchy;
+	
+	private static String orderedListItemPattern;	
+	
+	private static Pattern pattern;
+	
+	private static Matcher matcher; 
+	
+	private static XWPFNumbering numbering = null; 
 
 	public static Resource parse(String filename) throws IOException {
 
@@ -88,7 +98,8 @@ public class Doc2ParseModel {
 		List<XWPFParagraph> paraList = null; 
 		file = new File(filename); 
 		fis = new FileInputStream(file); 
-		document = new XWPFDocument(fis); 
+		document = new XWPFDocument(fis);
+		numbering = document.getNumbering();
 		paraList = document.getParagraphs(); 
 		paraIter = paraList.iterator(); 
 
@@ -250,9 +261,7 @@ public class Doc2ParseModel {
 				// plain text
 				if(isPlainText && !paragraphText.equals("")){
 
-					String mainFlowActivityPattern = "((((\t)*[1-9]|[*])[a-z]?[.][ ]?)[A-Z].*)";	
-					Pattern pattern = Pattern.compile(mainFlowActivityPattern);
-					Matcher matcher = pattern.matcher(paragraphText);
+					matcher = pattern.matcher(paragraphText);
 
 					Paragraph p = factory.createParagraph();
 					p.setId(EcoreUtil.generateUUID());
@@ -356,6 +365,8 @@ public class Doc2ParseModel {
 		paragraphNotHandled = false;
 		lastFullyBoldHeaderInPlainTextHierarchy = null;
 		paragraph = null;
+		orderedListItemPattern = "((((\t)*[1-9]|[*])[a-z]?[.][ ]?)[A-Z].*)";
+		pattern = Pattern.compile(orderedListItemPattern);
 
 	}
 
@@ -381,21 +392,36 @@ public class Doc2ParseModel {
 
 	private static void handleKeyValueProperties(String[] values) {
 
+		/*
 		if(!plainTextStack.isEmpty()){
 			emptyPlainTextStack();
-		}
+		}*/
 
 		isPlainText = false;
 
+		calculateTabCount(values[0]);
+
 		Paragraph keyValueParagraph = factory.createParagraph();
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
-		keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
+		
+		// TODO ismi ayarla ordered list item için
+		if((matcher = pattern.matcher(values[0])).matches()){
+			
+			String[] v = values[0].split("\\.");
+			keyValueParagraph.setName(v[0].replaceAll("\t","").trim());
+			keyValueParagraph.setRawText(v[1]);
+		}else{
+			
+			keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
+		}
+
+		handleTabbedHierarchy(keyValueParagraph);
 
 		if(values.length < 2 || (values.length > 1 && 
 				values[1].replaceAll(" ", "").equals(""))){
 
 			handleNumberedList(keyValueParagraph);
-
+			emptyOnlyOrderedListItems();
 		}
 		// ex. Primary Actor: Student.
 		else{
@@ -403,21 +429,60 @@ public class Doc2ParseModel {
 			keyValueParagraph.setRawText(values[1]);
 		}
 
+		
+		/*
 		//determine heading level or subheader
-		int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
-		Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
-		//XWPFParagraph p = lastParagraph.getParagraph();
-		String name = lastParagraph.getName();
-		// if this pair belongs to named paragraph
-		if(!name.equals("")){
+		if(isThereNamedParagraph()){
 
-			lastParagraph.getOwnedNode().add(keyValueParagraph);
-		}else{
+			int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+			Paragraph lastParagraph = paragraphStack.peek().getOwnedNode().get(lastParagraphIndex);
+			//XWPFParagraph p = lastParagraph.getParagraph();
+			String name = lastParagraph.getName();
+
+				lastParagraph.getOwnedNode().add(keyValueParagraph);
+		}
+		else{
 
 			paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
 
-		}
+		}*/
 
+	}
+
+
+	private static void emptyOnlyOrderedListItems() {
+		
+		// TODO tamamla
+		String mainFlowActivityPattern = "(([1-9]|[*])[a-z]?)";	
+		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
+		Matcher matcher;
+		
+		Paragraph poppedParagraph = plainTextStack.pop();
+		matcher = pattern.matcher(poppedParagraph.getName());
+		do{
+
+			if(plaintTextLevelMap.get(poppedParagraph) == 0){
+
+				if(isThereNamedParagraph()){
+
+					int lastParagraphIndex = paragraphStack.peek().getOwnedNode().size() - 1;
+					paragraphStack.peek().getOwnedNode().get(lastParagraphIndex)
+					.getOwnedNode().add(poppedParagraph);
+				}else{
+					paragraphStack.peek().getOwnedNode().add(poppedParagraph);
+				}
+			}else{
+
+				plainTextStack.peek().getOwnedNode().add(poppedParagraph);			
+			}
+
+			if((matcher = pattern.matcher(plainTextStack.peek().getName())).matches()){
+				
+				poppedParagraph = plainTextStack.pop();
+				matcher = pattern.matcher(poppedParagraph.getName());
+			}
+			
+		}while(matcher.matches());
 	}
 
 
@@ -461,7 +526,7 @@ public class Doc2ParseModel {
 
 		int counter = 0;
 		String text = paragraph.getText();
-		
+
 		if(!plainTextStack.isEmpty() && lastFullyBoldHeaderInPlainTextHierarchy == null){
 			emptyPlainTextStack();
 		}
@@ -472,9 +537,9 @@ public class Doc2ParseModel {
 			numberedParagraph.setId(EcoreUtil.generateUUID());
 			numberedParagraph.setName("" + counter);
 			numberedParagraph.setRawText(text);
-			
+
 			if(text.contains(":")){
-				
+
 				keyValuInOrderedList(text,numberedParagraph);
 			}
 
@@ -711,22 +776,39 @@ public class Doc2ParseModel {
 		paragraph = paraIter.next();
 		String text = paragraph.getText();
 		numID = paragraph.getNumID();
+		XWPFNum num = null; 
+        int numberingID = -1; 
 
 		/** Activity must start with a positive integer and continue with dot('.')
 		 * and there might be a whitespace(only one)
 		 */
 		// TODO senaryo oluþtur listeler için
 		//String mainFlowActivityPattern = ".*([(]*([0-9]|[a-zA-Z])+.*[)]*[ ]+[a-zA-Z].*)";
-		String mainFlowActivityPattern = "((((\t)*[1-9]|[*])[a-z]?[.][ ]?)[A-Z].*)";	
-		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
-		Matcher matcher = pattern.matcher(text);
+		matcher = pattern.matcher(text);
 
 		// ordered list
 		if(numID != null){
 			int activityCounter = 0;
 
 			// TODO nested list
-			while(numID != null){	
+			while(numID != null){
+				
+				//new numbering system
+				if(numID.intValue() != numberingID) { 
+                    num = numbering.getNum(numID); 
+                    numberingID = numID.intValue(); 
+                    activityCounter = 0;
+                   /*
+                    *  System.out.println("Getting details of the new numbering system " + numberingID); 
+                    System.out.println("It's abstract numID is " + num.getCTNum().getAbstractNumId().getVal().intValue()); 
+                    */
+                } 
+                /*
+                 * else { 
+                    System.out.println("Iterating through the numbers.");
+                    
+                } 
+                 */
 				activityCounter++;
 				Paragraph p = factory.createParagraph();
 				p.setId(EcoreUtil.generateUUID());
@@ -737,8 +819,10 @@ public class Doc2ParseModel {
 
 					keyValuInOrderedList(text,p);
 				}
-
-				keyValueParagraph.getOwnedNode().add(p);
+				
+				 
+				 keyValueParagraph.getOwnedNode().add(p);
+				
 				//p.setParentNode(keyValueParagraph);
 
 				paragraph = paraIter.next();
@@ -774,6 +858,7 @@ public class Doc2ParseModel {
 					paragraph = paraIter.next();
 					text = paragraph.getText();
 					matcher = pattern.matcher(paragraph.getText());
+					
 				}else{
 					break;
 				}
@@ -789,25 +874,25 @@ public class Doc2ParseModel {
 
 
 	private static void keyValuInOrderedList(String text, Paragraph p) {
-		
+
 		String[] v = text.split(":");
 		Paragraph keyValuePara = factory.createParagraph();
 		keyValuePara.setId(EcoreUtil.generateUUID());
 		keyValuePara.setName(v[0]);
-		
+
 		if(v.length > 1 && v[1].trim().length() > 0){
-			
+
 			keyValuePara.setRawText(v[1]);
 		}else{
 			JFrame frame = new JFrame();
 			JOptionPane.showMessageDialog(frame, "Missing Line at the paragraph '" 
-			+ keyValuePara.getName() + "'","Error", JOptionPane.ERROR_MESSAGE, null);
+					+ keyValuePara.getName() + "'","Error", JOptionPane.ERROR_MESSAGE, null);
 		}
-		
+
 
 		p.getOwnedNode().add(keyValuePara);
 		p.setRawText(null);
-		
+
 	}
 
 

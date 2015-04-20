@@ -46,7 +46,6 @@ public class Main {
 	private static String number = "testdata/numberin.docx";
 	
 	private static String plain = "testdata/plaint text.docx";
-
 	
 	public static Resource parsedResource;
 
@@ -54,7 +53,7 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		try {
-			parsedResource = Doc2ParseModel.parse(uctest);
+			parsedResource = Doc2ParseModel.parse(plain);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

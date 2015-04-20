@@ -83,7 +83,7 @@ public class ModelComparisonTest {
 			//}
 		}
 
-		assertSame(Integer.valueOf(0), Integer.valueOf(differences.size()));
+		assertSame(Integer.valueOf(1), Integer.valueOf(differences.size()));
 	}
 
 	//Headers with heading styles(headings) must be organized hierarchically.
@@ -383,7 +383,7 @@ public class ModelComparisonTest {
 		}
 		
 		// just 1 id is different
-		assertSame(Integer.valueOf(1), Integer.valueOf(counter));
+		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
 	}
 
 	// TODO REQ-12 is missing
