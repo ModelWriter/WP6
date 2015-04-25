@@ -71,13 +71,13 @@ public class Doc2ParseModel {
 	private static int tabCount;
 
 	private static Paragraph lastFullyBoldHeaderInPlainTextHierarchy;
-	
+
 	private static String orderedListItemPattern;	
-	
+
 	private static Pattern pattern;
-	
+
 	private static Matcher matcher; 
-	
+
 	private static XWPFNumbering numbering = null; 
 
 	public static Resource parse(String filename) throws IOException {
@@ -373,10 +373,25 @@ public class Doc2ParseModel {
 
 	private static void calculateTabCount(String text) {
 
+		text = trimEndingWhiteSpacesAndTabs(text);
 		tabCount = text.length() - text.replaceAll("\t", "").length();
 
 	}
 
+
+	// Trims white spaces and tab characters at the end of the paragraph.
+	private static String trimEndingWhiteSpacesAndTabs(String temp) {
+
+		while(temp.substring(temp.length() - 1).equals("\t") || temp.substring(temp.length() - 1).equals(" ")){
+
+			if(temp.substring(temp.length() - 1).equals(" ")){
+				temp = temp.substring(0, temp.length()-1);
+			}
+
+			temp = temp.replaceAll("\t$", "");
+		}
+		return temp;
+	}
 
 	private static void finilize() {
 
@@ -403,15 +418,15 @@ public class Doc2ParseModel {
 
 		Paragraph keyValueParagraph = factory.createParagraph();
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
-		
+
 		// TODO ismi ayarla ordered list item için
 		if((matcher = pattern.matcher(values[0])).matches()){
-			
+
 			String[] v = values[0].split("\\.");
 			keyValueParagraph.setName(v[0].replaceAll("\t","").trim());
 			keyValueParagraph.setRawText(v[1]);
 		}else{
-			
+
 			keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
 		}
 
@@ -429,7 +444,7 @@ public class Doc2ParseModel {
 			keyValueParagraph.setRawText(values[1]);
 		}
 
-		
+
 		/*
 		//determine heading level or subheader
 		if(isThereNamedParagraph()){
@@ -451,12 +466,12 @@ public class Doc2ParseModel {
 
 
 	private static void emptyOnlyOrderedListItems() {
-		
+
 		// TODO tamamla
 		String mainFlowActivityPattern = "(([1-9]|[*])[a-z]?)";	
 		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
 		Matcher matcher;
-		
+
 		Paragraph poppedParagraph = plainTextStack.pop();
 		matcher = pattern.matcher(poppedParagraph.getName());
 		do{
@@ -477,11 +492,11 @@ public class Doc2ParseModel {
 			}
 
 			if((matcher = pattern.matcher(plainTextStack.peek().getName())).matches()){
-				
+
 				poppedParagraph = plainTextStack.pop();
 				matcher = pattern.matcher(poppedParagraph.getName());
 			}
-			
+
 		}while(matcher.matches());
 	}
 
@@ -777,7 +792,7 @@ public class Doc2ParseModel {
 		String text = paragraph.getText();
 		numID = paragraph.getNumID();
 		XWPFNum num = null; 
-        int numberingID = -1; 
+		int numberingID = -1; 
 
 		/** Activity must start with a positive integer and continue with dot('.')
 		 * and there might be a whitespace(only one)
@@ -792,23 +807,23 @@ public class Doc2ParseModel {
 
 			// TODO nested list
 			while(numID != null){
-				
+
 				//new numbering system
 				if(numID.intValue() != numberingID) { 
-                    num = numbering.getNum(numID); 
-                    numberingID = numID.intValue(); 
-                    activityCounter = 0;
-                   /*
-                    *  System.out.println("Getting details of the new numbering system " + numberingID); 
+					num = numbering.getNum(numID); 
+					numberingID = numID.intValue(); 
+					activityCounter = 0;
+					/*
+					 *  System.out.println("Getting details of the new numbering system " + numberingID); 
                     System.out.println("It's abstract numID is " + num.getCTNum().getAbstractNumId().getVal().intValue()); 
-                    */
-                } 
-                /*
-                 * else { 
+					 */
+				} 
+				/*
+				 * else { 
                     System.out.println("Iterating through the numbers.");
-                    
+
                 } 
-                 */
+				 */
 				activityCounter++;
 				Paragraph p = factory.createParagraph();
 				p.setId(EcoreUtil.generateUUID());
@@ -819,10 +834,10 @@ public class Doc2ParseModel {
 
 					keyValuInOrderedList(text,p);
 				}
-				
-				 
-				 keyValueParagraph.getOwnedNode().add(p);
-				
+
+
+				keyValueParagraph.getOwnedNode().add(p);
+
 				//p.setParentNode(keyValueParagraph);
 
 				paragraph = paraIter.next();
@@ -858,7 +873,7 @@ public class Doc2ParseModel {
 					paragraph = paraIter.next();
 					text = paragraph.getText();
 					matcher = pattern.matcher(paragraph.getText());
-					
+
 				}else{
 					break;
 				}
