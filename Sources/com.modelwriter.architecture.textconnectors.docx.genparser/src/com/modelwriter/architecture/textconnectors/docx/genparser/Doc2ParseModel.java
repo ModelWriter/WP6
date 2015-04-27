@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2015 UNIT Information Technologies R&D
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    A. Furkan Tanriverdi (UNIT) - initial API and implementation
+ *******************************************************************************/
+
+
 package com.modelwriter.architecture.textconnectors.docx.genparser;
 
 import java.io.File;
@@ -36,10 +48,6 @@ import DocModel.Node;
 import DocModel.Paragraph;
 
 public class Doc2ParseModel {
-
-	//private final static String filename = "testdata/SampleRequirementDocument.docx"; 
-	//private final static String filename = "testdata/tabbed doc.docx"; 
-	//private final static String filename = "testdata/UseCaseDocumentation.docx"; 
 
 	public static DocModelFactory factory;
 
