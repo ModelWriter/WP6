@@ -10,25 +10,28 @@
  *******************************************************************************/
 package com.modelwriter.architecture.textconnectors.docx.genparser.test;
 
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.AttributeChange;
 import org.eclipse.emf.compare.Comparison;
-import org.eclipse.emf.compare.DifferenceKind;
-import org.eclipse.emf.compare.DifferenceSource;
 import org.eclipse.emf.compare.EMFCompare;
-import org.eclipse.emf.compare.Match;
-import org.eclipse.emf.compare.diff.DefaultDiffEngine;
-import org.eclipse.emf.compare.diff.DiffBuilder;
-import org.eclipse.emf.compare.diff.IDiffEngine;
-import org.eclipse.emf.compare.diff.IDiffProcessor;
+import org.eclipse.emf.compare.ReferenceChange;
+import org.eclipse.emf.compare.match.DefaultComparisonFactory;
+import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory;
+import org.eclipse.emf.compare.match.DefaultMatchEngine;
+import org.eclipse.emf.compare.match.IComparisonFactory;
+import org.eclipse.emf.compare.match.IMatchEngine;
+import org.eclipse.emf.compare.match.eobject.IEObjectMatcher;
+import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl;
+import org.eclipse.emf.compare.match.impl.MatchEngineFactoryRegistryImpl;
 import org.eclipse.emf.compare.scope.IComparisonScope;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.compare.utils.UseIdentifiers;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -90,7 +93,7 @@ public class ModelComparisonTest {
 			//}
 		}
 
-		assertSame(Integer.valueOf(0), Integer.valueOf(differences.size()));
+		assertSame(Integer.valueOf(1), Integer.valueOf(differences.size()));
 	}
 
 	//Headers with heading styles(headings) must be organized hierarchically.
@@ -113,14 +116,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			
-			// if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			//}
-			 
+			}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -412,7 +413,6 @@ public class ModelComparisonTest {
 	public Comparison compare(ResourceSet resourceSet1, ResourceSet resourceSet2)
 	{
 
-		/*
 		//Creating the comparison scope
 		IComparisonScope scope = EMFCompare.createDefaultScope(resourceSet1, resourceSet2);
 
@@ -426,28 +426,7 @@ public class ModelComparisonTest {
 		EMFCompare comparator = EMFCompare.builder().setMatchEngineFactoryRegistry(matchEngineRegistry).build();
 
 		// Compare the two models
-		
 		return comparator.compare(scope);
-		
-		*/
-		
-		
-		IComparisonScope scope = EMFCompare.createDefaultScope(resourceSet1, resourceSet2);
-		
-		
-		IDiffProcessor customDiffProcessor = new DiffBuilder() {
-			@Override
-			public void attributeChange(Match match, EAttribute attribute, Object value, DifferenceKind kind, DifferenceSource source) {
-				if (attribute == EcorePackage.Literals.EATTRIBUTE__ID) {
-					super.attributeChange(match, attribute, value, kind, source);
-				}
-			}
-		};
-
-		IDiffEngine diffEngine = new DefaultDiffEngine(customDiffProcessor);
-		
-		return EMFCompare.builder().setDiffEngine(diffEngine).build().compare(scope);
-		
 	}
 
 	public static void load(String absolutePath, ResourceSet resourceSet) {

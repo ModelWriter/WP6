@@ -51,10 +51,9 @@ public class Doc2ParseModel {
 
 	public static DocModelFactory factory;
 
-	// All paragraphs in document
 	public static Iterator<XWPFParagraph> paraIter; 
 
-	// Current paragraph
+	// current paragraph
 	private static XWPFParagraph paragraph; 
 
 	// Maps styles and their levels
@@ -71,21 +70,16 @@ public class Doc2ParseModel {
 	// Stores tabbed paragraph levels
 	private static Stack<Paragraph> plainTextStack;
 
-	// Stores paragraph hierarchy
 	private static Map<Paragraph,Integer> plaintTextLevelMap;
 
-    // If the paragraph is not styled
 	public static boolean isPlainText;
 
-	// To understand it the iterated paragraph is not parsed
 	private static boolean paragraphNotHandled;
 
-	// Indent level of a paragraph
 	private static int tabCount;
 
 	private static Paragraph lastFullyBoldHeaderInPlainTextHierarchy;
 
-	// Regular expression pattern for ordered list items
 	private static String orderedListItemPattern;	
 
 	private static Pattern pattern;
@@ -93,11 +87,9 @@ public class Doc2ParseModel {
 	private static Matcher matcher; 
 
 	private static XWPFNumbering numbering = null; 
-	
-	private static boolean firstParagraphFlag = true;
 
 	public static Resource parse(String filename) throws IOException {
-		
+
 		String output = "outputs/";
 
 		// output file name
@@ -120,12 +112,17 @@ public class Doc2ParseModel {
 		paraIter = paraList.iterator(); 
 
 		BigInteger numID = null; 
-		//int numberingID = -1;
+		int numberingID = -1;
 		String paragraphText = "";
 		String paragraphStyle = "";
-		//int id = 0;
-		
+		int id = 0;
+		boolean firstParagraphFlag = true;
 
+		/*
+		 * for (int i=0; i<100; i++){
+            System.out.println(EcoreUtil.generateUUID());
+        }
+		 */
 		while(paraIter.hasNext()) {
 
 			if(paragraphNotHandled == false){
@@ -144,7 +141,88 @@ public class Doc2ParseModel {
 			// heading level
 			if(headingMap.get(paragraphStyle) > 0 && headingMap.get(paragraphStyle) < 11){
 
-				handleHeadingLevel(paragraphStyle,paragraphText,firstParagraphFlag);
+				//handleHeadingsHierarchy(paragraphStyle,paragraphText,firstParagraphFlag);
+
+				if(!plainTextStack.isEmpty()){
+					emptyPlainTextStack();
+				}
+
+				Paragraph p = factory.createParagraph();
+				p.setId(EcoreUtil.generateUUID());
+
+				p.setName(paragraphText.replaceAll("\t","").trim());
+				//p.setParagraph(paragraph);
+				p.setRawText(paragraphText);
+				// headingten sonra normal paragraflar gelirse o headinge ekle
+
+				if(firstParagraphFlag && headingMap.get(paragraphStyle) == 1){					
+
+					paragraphStack.push(p);
+					paragraphLevelMap.put(p, headingMap.get(paragraphStyle));
+					firstParagraphFlag = false;
+				}
+
+				// If the current paragraph's level is lower than the peek's level 
+				else if(headingMap.get(paragraphStyle) > paragraphLevelMap.get(paragraphStack.peek())){
+
+					paragraphStack.push(p);
+					paragraphLevelMap.put(p, headingMap.get(paragraphStyle));
+				}
+
+				// If the current paragraph's level is equal to the peek's level 
+				else if(headingMap.get(paragraphStyle) == paragraphLevelMap.get(paragraphStack.peek())){
+
+					Paragraph poppedParagraph = paragraphStack.pop();
+
+					if(!paragraphStack.isEmpty()){
+
+						paragraphStack.peek().getOwnedNode().add(poppedParagraph);
+
+					}else{
+
+						documentObject.getOwnedParagraph().add(poppedParagraph);
+					}
+
+					if(headingMap.get(paragraphStyle) == 1){
+						documentObject.getOwnedParagraph().add(p);
+					}
+
+					paragraphStack.push(p);
+					paragraphLevelMap.put(p, headingMap.get(paragraphStyle));
+
+				}
+
+				// If the current paragraph's level is higher than the peek's level 
+				// then pop the requirement level and add it to peek's level is higher than
+				// current paragraph's level
+				else{											
+
+					while(headingMap.get(paragraphStyle) <= paragraphLevelMap.get(paragraphStack.peek())){
+
+						Paragraph poppedParagraph = paragraphStack.pop();
+
+						// Higher level paragraph must be added to product
+						if(paragraphLevelMap.get(poppedParagraph) == 1){
+
+							documentObject.getOwnedParagraph().add(poppedParagraph);
+							break;
+
+						}else{
+
+							paragraphStack.peek().getOwnedNode().add(poppedParagraph);		
+						}
+
+
+					}
+
+					if(headingMap.get(paragraphStyle) == 1){
+						documentObject.getOwnedParagraph().add(p);
+					}
+
+					paragraphStack.push(p);
+					paragraphLevelMap.put(p, headingMap.get(paragraphStyle));
+
+				}
 
 			}// end if <heading level>
 			// normal paragraph
@@ -230,92 +308,6 @@ public class Doc2ParseModel {
 		// Create and save the model instance to xmi file
 		Resource r = createXMIFile(documentObject, output);
 		return r;
-	}
-
-
-	private static void handleHeadingLevel(String paragraphStyle, String paragraphText, boolean firstParagraphFlag2) {
-		
-		if(!plainTextStack.isEmpty()){
-			emptyPlainTextStack();
-		}
-
-		Paragraph p = factory.createParagraph();
-		p.setId(EcoreUtil.generateUUID());
-
-		p.setName(paragraphText.replaceAll("\t","").trim());
-		//p.setParagraph(paragraph);
-		p.setRawText(paragraphText);
-		// headingten sonra normal paragraflar gelirse o headinge ekle
-
-		if(firstParagraphFlag && headingMap.get(paragraphStyle) == 1){					
-
-			paragraphStack.push(p);
-			paragraphLevelMap.put(p, headingMap.get(paragraphStyle));
-			firstParagraphFlag = false;
-		}
-
-		// If the current paragraph's level is lower than the peek's level 
-		else if(headingMap.get(paragraphStyle) > paragraphLevelMap.get(paragraphStack.peek())){
-
-			paragraphStack.push(p);
-			paragraphLevelMap.put(p, headingMap.get(paragraphStyle));
-		}
-
-		// If the current paragraph's level is equal to the peek's level 
-		else if(headingMap.get(paragraphStyle) == paragraphLevelMap.get(paragraphStack.peek())){
-
-			Paragraph poppedParagraph = paragraphStack.pop();
-
-			if(!paragraphStack.isEmpty()){
-
-				paragraphStack.peek().getOwnedNode().add(poppedParagraph);
-
-			}else{
-
-				documentObject.getOwnedParagraph().add(poppedParagraph);
-			}
-
-			if(headingMap.get(paragraphStyle) == 1){
-				documentObject.getOwnedParagraph().add(p);
-			}
-
-			paragraphStack.push(p);
-			paragraphLevelMap.put(p, headingMap.get(paragraphStyle));
-
-		}
-
-		// If the current paragraph's level is higher than the peek's level 
-		// then pop the requirement level and add it to peek's level is higher than
-		// current paragraph's level
-		else{											
-
-			while(headingMap.get(paragraphStyle) <= paragraphLevelMap.get(paragraphStack.peek())){
-
-				Paragraph poppedParagraph = paragraphStack.pop();
-
-				// Higher level paragraph must be added to product
-				if(paragraphLevelMap.get(poppedParagraph) == 1){
-
-					documentObject.getOwnedParagraph().add(poppedParagraph);
-					break;
-
-				}else{
-
-					paragraphStack.peek().getOwnedNode().add(poppedParagraph);		
-				}
-
-
-			}
-
-			if(headingMap.get(paragraphStyle) == 1){
-				documentObject.getOwnedParagraph().add(p);
-			}
-
-			paragraphStack.push(p);
-			paragraphLevelMap.put(p, headingMap.get(paragraphStyle));
-
-		}
-		
 	}
 
 
@@ -927,8 +919,7 @@ public class Doc2ParseModel {
 	}
 
 
-	/*
-	 * private static String[] cutString(String text) {
+	private static String[] cutString(String text) {
 		// TODO
 		//(\d+[.]?)([ ]?)([\w :;()])+[.$] tam istenilen regex deðil
 		String endsWithDotPattern = "([0-9]+[.][ ]*[a-zA-Z])";
@@ -936,11 +927,10 @@ public class Doc2ParseModel {
 
 		/*
 		 * (\d+[.]?){1}([ ]+[\w :;()]+[.$])
-		 *
+		 */
 
 		return null;
 	}
-	 */
 
 
 	/**

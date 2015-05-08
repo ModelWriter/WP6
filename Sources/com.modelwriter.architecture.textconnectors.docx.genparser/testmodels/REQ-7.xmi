@@ -1,31 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
 <eu.modelwriter.architecture.textconnectors.docx.parser:Document xmlns:eu.modelwriter.architecture.textconnectors.docx.parser="eu.modelwriter.architecture.textconnectors.docx.parser.documentmodel">
-<<<<<<< HEAD
-  <ownedParagraph Id="_1oDQkNatEeS0MOChMKE9yQ" name="Heading Level" rawText="Heading Level">
-    <ownedNode Id="_1oDQkdatEeS0MOChMKE9yQ" rawText="Level 0.">
-      <ownedNode Id="_1oMagNatEeS0MOChMKE9yQ" rawText="&#x9;Level 1.1.">
-        <ownedNode Id="_1oMagdatEeS0MOChMKE9yQ" name="Fully Bold Header" rawText="&#x9;&#x9;Fully Bold Header">
-          <ownedNode Id="_1oMagtatEeS0MOChMKE9yQ" rawText="&#x9;&#x9;Text under fully bold header.">
-            <ownedNode Id="_1oWLgtatEeS0MOChMKE9yQ" name="Key-Value Pair" rawText="&#x9;&#x9;&#x9;&#x9;Key-Value Pair">
-              <ownedNode name="1" rawText="Text "/>
-              <ownedNode name="2" rawText="Text"/>
-              <ownedNode Id="_1ofVcNatEeS0MOChMKE9yQ" rawText="&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Text"/>
-            </ownedNode>
-          </ownedNode>
-          <ownedNode Id="_1oWLgNatEeS0MOChMKE9yQ" name="1" rawText="Text"/>
-          <ownedNode Id="_1oWLgdatEeS0MOChMKE9yQ" name="2" rawText="Text "/>
-          <ownedNode Id="_1ofVcdatEeS0MOChMKE9yQ" name="1" rawText="Text"/>
-          <ownedNode Id="_1ofVctatEeS0MOChMKE9yQ" rawText="&#x9;&#x9;Text under fully bold header."/>
-        </ownedNode>
-      </ownedNode>
-      <ownedNode Id="_1ofVc9atEeS0MOChMKE9yQ" rawText="&#x9;Level 1.2.">
-        <ownedNode Id="_1ofVdNatEeS0MOChMKE9yQ" name="Key-Value Pair" rawText=" Value.">
-          <ownedNode Id="_1ofVddatEeS0MOChMKE9yQ" rawText="&#x9;&#x9;&#x9;Level 3.1."/>
-        </ownedNode>
-      </ownedNode>
-    </ownedNode>
-    <ownedNode Id="_1ofVdtatEeS0MOChMKE9yQ" rawText="Level 0."/>
-=======
   <ownedParagraph Id="_0dn8AOXbEeSxO_zIRFm1sw" name="Heading Level" rawText="Heading Level">
     <ownedNode Id="_0dn8AeXbEeSxO_zIRFm1sw" rawText="Level 0.">
       <ownedNode Id="_0dn8AuXbEeSxO_zIRFm1sw" rawText="&#x9;Level 1.1.">
@@ -57,6 +31,5 @@
       </ownedNode>
     </ownedNode>
     <ownedNode Id="_0dxF8eXbEeSxO_zIRFm1sw" rawText="Level 0."/>
->>>>>>> emfcomparison
   </ownedParagraph>
 </eu.modelwriter.architecture.textconnectors.docx.parser:Document>
