@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd" xmlns:configuration="http://eclipse.org/rmf/pror/toolextensions/1.0" xmlns:headline="http://pror.org/presentation/headline" xmlns:id="http://pror.org/presentation/id" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd" xmlns:configuration="http://eclipse.org/rmf/pror/toolextensions/1.0" xmlns:headline="http://pror.org/presentation/headline" xmlns:id="http://pror.org/presentation/id" xmlns:rtf="http://pror.org/presentation/rtf" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <THE-HEADER>
-    <REQ-IF-HEADER IDENTIFIER="rmf-d61de469-36e1-4475-b704-854e43b88ecd">
+    <REQ-IF-HEADER IDENTIFIER="7e005d8f-c941-4b43-aa10-91656230507f">
       <COMMENT>Created by: furkan.tanriverdi</COMMENT>
       <CREATION-TIME>2015-03-27T10:16:14.746+02:00</CREATION-TIME>
       <REQ-IF-TOOL-ID>ProR (http://pror.org)</REQ-IF-TOOL-ID>
@@ -99,7 +99,7 @@
             <SPEC-OBJECT-TYPE-REF>_iTqvpNRZEeSYdce7_QuJ6g</SPEC-OBJECT-TYPE-REF>
           </TYPE>
         </SPEC-OBJECT>
-        <SPEC-OBJECT IDENTIFIER="_x61KYNRcEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:43:58.898+02:00">
+        <SPEC-OBJECT IDENTIFIER="_x61KYNRcEeSYdce7_QuJ6g" LAST-CHANGE="2015-04-08T16:30:18.227+03:00">
           <VALUES>
             <ATTRIBUTE-VALUE-STRING THE-VALUE="REQ-1">
               <DEFINITION>
@@ -311,6 +311,23 @@
             <SPEC-OBJECT-TYPE-REF>_iTqvpNRZEeSYdce7_QuJ6g</SPEC-OBJECT-TYPE-REF>
           </TYPE>
         </SPEC-OBJECT>
+        <SPEC-OBJECT IDENTIFIER="_9ANc0N3zEeSXP-pTMT_CCA" LAST-CHANGE="2015-04-08T16:34:11.445+03:00">
+          <VALUES>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="REQ-13">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-STRING-REF>_TqBTwNRbEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="If not bold and it is in ordered list item, paragraph must be handled as a child of that ordered list item ">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-STRING-REF>_iTqvpdRZEeSYdce7_QuJ6g</ATTRIBUTE-DEFINITION-STRING-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+          </VALUES>
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>_iTqvpNRZEeSYdce7_QuJ6g</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+        </SPEC-OBJECT>
       </SPEC-OBJECTS>
       <SPECIFICATIONS>
         <SPECIFICATION IDENTIFIER="_iTqvqtRZEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:16:14.746+02:00" LONG-NAME="Specification Document">
@@ -374,6 +391,11 @@
                         <SPEC-OBJECT-REF>_8jL-QNReEeSYdce7_QuJ6g</SPEC-OBJECT-REF>
                       </OBJECT>
                     </SPEC-HIERARCHY>
+                    <SPEC-HIERARCHY IDENTIFIER="_9A9Dsd3zEeSXP-pTMT_CCA" LAST-CHANGE="2015-04-08T16:34:11.445+03:00">
+                      <OBJECT>
+                        <SPEC-OBJECT-REF>_9ANc0N3zEeSXP-pTMT_CCA</SPEC-OBJECT-REF>
+                      </OBJECT>
+                    </SPEC-HIERARCHY>
                   </CHILDREN>
                 </SPEC-HIERARCHY>
                 <SPEC-HIERARCHY IDENTIFIER="_MKcR4dRdEeSYdce7_QuJ6g" LAST-CHANGE="2015-03-27T10:42:21.704+02:00">
@@ -405,9 +427,9 @@
         <configuration:specViewConfigurations>
           <configuration:ProrSpecViewConfiguration specification="_iTqvqtRZEeSYdce7_QuJ6g">
             <configuration:columns>
-              <configuration:Column label="ID" width="72"/>
+              <configuration:Column label="ID" width="96"/>
               <configuration:Column label="Description" width="420"/>
-              <configuration:Column label="Details" width="200"/>
+              <configuration:Column label="Details" width="304"/>
             </configuration:columns>
             <configuration:leftHeaderColumn>
               <configuration:Column label="Lead Header Column" width="51"/>
@@ -426,8 +448,9 @@
         <configuration:presentationConfigurations>
           <configuration:ProrPresentationConfigurations>
             <configuration:presentationConfigurations>
-              <id:IdConfiguration datatype="_V0JB8NRbEeSYdce7_QuJ6g" prefix="REQ-" count="12"/>
+              <id:IdConfiguration datatype="_V0JB8NRbEeSYdce7_QuJ6g" prefix="REQ-" count="13"/>
               <headline:HeadlineConfiguration datatype="_v4_q8NRbEeSYdce7_QuJ6g" size="14"/>
+              <rtf:RtfConfiguration datatype="_rVzgsNRoEeSYdce7_QuJ6g"/>
             </configuration:presentationConfigurations>
           </configuration:ProrPresentationConfigurations>
         </configuration:presentationConfigurations>

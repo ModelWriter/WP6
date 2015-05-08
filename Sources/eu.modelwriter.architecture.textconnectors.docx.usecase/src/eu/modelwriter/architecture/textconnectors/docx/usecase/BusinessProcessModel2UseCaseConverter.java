@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2015 UNIT Information Technologies R&D
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    A. Furkan Tanriverdi (UNIT) - initial API and implementation
+ *******************************************************************************/
 package eu.modelwriter.architecture.textconnectors.docx.usecase;
 
 import java.io.File;
@@ -14,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.text.Document;
 
+import org.apache.poi.xwpf.usermodel.Borders;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -55,7 +66,7 @@ public class BusinessProcessModel2UseCaseConverter {
 	private final static String EXTENSIONS = "Extensions (or Alternative Flows)";
 	//private final static String ALTERNATIVE_FLOWS = "Alternative Flows";
 
-
+	private static int headerCounter = 0;
 	private static Resource resource;
 	private static XWPFDocument document;
 
@@ -77,7 +88,7 @@ public class BusinessProcessModel2UseCaseConverter {
 		//XWPFNumbering numbering = document.createNumbering();
 		
 
-		FileOutputStream out = new FileOutputStream(new File("C:/Users/2/Desktop/Test UceCase.docx"));
+		FileOutputStream out = new FileOutputStream(new File("model/Test UceCase.docx"));
 
 		try {
 
@@ -170,7 +181,7 @@ public class BusinessProcessModel2UseCaseConverter {
 
 						paragraph = document.createParagraph();
 						//paragraph.setStyle("ListParagraph");
-						//paragraph.setNumID(BigInteger.valueOf(2));
+						//paragraph.setNumID(BigInteger.valueOf(1));
 						run = paragraph.createRun();
 						run.setText(flowElement.getDocumentation().get(0).getText());
 						
@@ -256,12 +267,16 @@ public class BusinessProcessModel2UseCaseConverter {
 								tabCount = Integer.parseInt(v[1]);
 							}						
 
-							run = paragraph.createRun();
-							for(int i = 0; i < tabCount; i++){
-
+							if(tabCount > 0){
 								CTR ctr = run.getCTR();
-								ctr.addNewTab();
+								
+								for(int i = 0; i < tabCount; i++){
+
+									
+									ctr.addNewTab();
+								}
 							}
+							
 
 							run.setText(sourceNode.getLabel() + ". " + 
 									sourceNode.getDocumentation().get(0).getText() + ".");
@@ -280,10 +295,14 @@ public class BusinessProcessModel2UseCaseConverter {
 								tabCount = Integer.parseInt(v[1]);
 							}
 
-							for(int i = 0; i < tabCount; i++){
-
+							if(tabCount > 0){
 								CTR ctr = run.getCTR();
-								ctr.addNewTab();
+								
+								for(int i = 0; i < tabCount; i++){
+
+									
+									ctr.addNewTab();
+								}
 							}
 
 							run.setText(targetNode.getLabel() + ". " + 
@@ -443,15 +462,19 @@ public class BusinessProcessModel2UseCaseConverter {
 		XWPFRun run = paragraph.createRun();
 
 		paragraph.setStyle("Heading1");
+		paragraph.setNumID(BigInteger.valueOf(2));
 		paragraph.setAlignment(ParagraphAlignment.LEFT);
+		headerCounter++;
 
 		run.setText(name);
 		run.setFontFamily("Calibri Light");
 		run.setBold(true);
 		// TODO alt çizgi eklenicek
-		run.setUnderline(UnderlinePatterns.SINGLE);
+		//run.setUnderline(UnderlinePatterns.SINGLE);
+		paragraph.setBorderBottom(Borders.BASIC_THIN_LINES);	
+
 		run.setColor("000000");
-		run.addBreak();
+		//run.addBreak();
 
 	}
 

@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2015 UNIT Information Technologies R&D
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    A. Furkan Tanriverdi (UNIT) - initial API and implementation
+ *******************************************************************************/
 package eu.modelwriter.architecture.textconnectors.docx.usecase;
 
 import java.io.File;
@@ -382,11 +392,25 @@ public class UseCase2BusinessProcessModelConverter {
 				Activity activity = factory.createActivity();
 
 				String[] v = paragraph.getText().split("\\.");
-
 				activity.setLabel(v[0]);
+				
 
 				Documentation doc = factory.createDocumentation();
-				doc.setText(v[1]);
+				
+				// if there is more than one sentence
+				if(v.length > 2){
+					
+					String content = "";
+					for(int i = 1 ; i < v.length ; i++){
+					
+						content += v[i] + ".";
+					}
+					doc.setText(content);
+					
+				}else{
+					doc.setText(v[1] + ".");
+				}
+				
 				activity.getDocumentation().add(doc);
 
 				if(activityCounter == 1){
@@ -525,7 +549,43 @@ public class UseCase2BusinessProcessModelConverter {
 				extensionActivity.setLabel(v[0].substring(tabCount));
 
 				Documentation doc = factory.createDocumentation();
-				doc.setText(v[1]);
+				
+				// if there is more than one sentence
+				if(v.length > 2){
+					
+					String content = "";
+					for(int i = 1 ; i < v.length ; i++){
+					
+						if(v[i].trim().equals("")){
+							continue;
+						}
+						else if(!v[i].contains(":")){
+							content += v[i] + ".";
+						}else{
+							content += v[i];
+						}
+					}
+					doc.setText(content);
+					
+				}else{
+					if(!v[1].contains(":")){
+						
+						doc.setText(v[1] + ".");
+					}else {
+						
+						String[] v2 = v[1].split(":");
+						
+						String concat = v2[0] + ":";
+						
+						if(v2.length > 1 || (v2.length > 2 && !v2[1].trim().equals(""))){
+						
+							concat += v2[1] + ".";
+							doc.setText(concat);
+						}
+						
+						doc.setText(concat);
+					}
+				}
 				doc.setTextFormat("tab count:"+tabCount);
 				extensionActivity.getDocumentation().add(doc);
 
@@ -622,6 +682,20 @@ public class UseCase2BusinessProcessModelConverter {
 			
 			
 
+		}else{
+			
+			Process process = factory.createProcess();
+			process.setName(SUCCESS_GUARANTEE);
+			
+			EndEvent endEvent = factory.createEndEvent();
+			Documentation doc = factory.createDocumentation();
+			doc.setText(values[1]);
+
+			endEvent.getDocumentation().add(doc);
+			process.getOwnedFlowElements().add(endEvent);
+			
+			// TODO postcondition için bir taným
+			useCase.getOwnedAlternativeFlow().add(process);
 		}
 		
 	}
@@ -661,6 +735,20 @@ public class UseCase2BusinessProcessModelConverter {
 				}// end while
 			}//end if
 
+		}else{
+			
+			Process process = factory.createProcess();
+			process.setName(PRECONDITION);
+			
+			StartEvent startEvent = factory.createStartEvent();
+			Documentation doc = factory.createDocumentation();
+			doc.setText(values[1]);
+			
+			startEvent.getDocumentation().add(doc);
+			process.getOwnedFlowElements().add(startEvent);
+
+			// TODO precondition için bir taným
+			useCase.getOwnedAlternativeFlow().add(process);
 		}
 		
 	}

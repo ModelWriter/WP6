@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2015 UNIT Information Technologies R&D
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    A. Furkan Tanriverdi (UNIT) - initial API and implementation
+ *******************************************************************************/
 package com.modelwriter.architecture.textconnectors.docx.genparser;
 
 import java.io.IOException;
@@ -11,6 +21,7 @@ public class Main {
 	private final static String TABBED_DOCUMENT = "testdata/tabbed doc.docx"; 
 	private final static String USE_CASE_DOCUMENTATION = "testdata/UseCaseDocumentation.docx"; 
 	
+	private static String uctest = "testdata/use case test.docx";
 	//Headers with heading styles(headings) must be organized hierarchically.
 	private static String REQ2 = "testdata/REQ-2.docx";
 
@@ -38,10 +49,13 @@ public class Main {
 	//must be considered as hierarchic levels.
 	private static String REQ11 = "testdata/REQ-11.docx";
 	
+	//If not bold and it is in ordered list item, 
+	//paragraph must be handled as a child of that ordered list item 
+	private static String REQ13 = "testdata/REQ-13.docx";
+	
 	private static String number = "testdata/numberin.docx";
 	
 	private static String plain = "testdata/plaint text.docx";
-
 	
 	public static Resource parsedResource;
 
@@ -49,7 +63,7 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		try {
-			parsedResource = Doc2ParseModel.parse(REQ5);
+			parsedResource = Doc2ParseModel.parse(plain);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
