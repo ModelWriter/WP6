@@ -23,13 +23,13 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 
 public class TableExtractor {
 
-	private final static String filename = "testdata/5 NEDEN  2014-0971.docx"; 
-	
+	private final static String filename = "testdata/table2.docx"; 
+
 	// current paragraph
 	private static XWPFParagraph paragraph; 
-	
+
 	public static void main(String[] args) throws IOException {
-		
+
 		File file = null; 
 		FileInputStream fis = null; 
 		XWPFDocument document = null;
@@ -37,22 +37,27 @@ public class TableExtractor {
 		file = new File(filename); 
 		fis = new FileInputStream(file); 
 		document = new XWPFDocument(fis); 
-		
+
 		Iterator<IBodyElement> bodyElementIterator = document.getBodyElementsIterator();
 		while(bodyElementIterator.hasNext()) {
-		  IBodyElement element = bodyElementIterator.next();
-		  
-		  if("PARAGRAPH".equalsIgnoreCase(element.getElementType().name())){
-			  System.out.println(element.getElementType().toString());
-		  }
-		  
-		  else if("TABLE".equalsIgnoreCase(element.getElementType().name())) {
-			     List<XWPFTable> tableList =  element.getBody().getTables();
-			     for (XWPFTable table: tableList){
-			        System.out.println("Total Number of Rows of Table:"+table.getNumberOfRows());
-				System.out.println(table.getText());
-			     }
-			  }
+			IBodyElement element = bodyElementIterator.next();
+
+			if("PARAGRAPH".equalsIgnoreCase(element.getElementType().name())){
+				
+				List<XWPFParagraph> pList = element.getBody().getParagraphs();
+				
+					for (XWPFParagraph p: pList){
+						System.out.println(p.getText());
+					}
+			}
+
+			else if("TABLE".equalsIgnoreCase(element.getElementType().name())) {
+				List<XWPFTable> tableList =  element.getBody().getTables();
+				for (XWPFTable table: tableList){
+					System.out.println("Total Number of Rows of Table:"+table.getNumberOfRows());
+					System.out.println(table.getText());
+				}
+			}
 		}
 
 	}
