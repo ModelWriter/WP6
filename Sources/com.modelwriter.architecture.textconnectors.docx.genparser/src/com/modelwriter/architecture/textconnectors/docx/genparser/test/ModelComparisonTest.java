@@ -10,17 +10,15 @@
  *******************************************************************************/
 package com.modelwriter.architecture.textconnectors.docx.genparser.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertSame;
 
 import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.compare.AttributeChange;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
-import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.compare.match.DefaultComparisonFactory;
 import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory;
 import org.eclipse.emf.compare.match.DefaultMatchEngine;
@@ -31,7 +29,6 @@ import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl;
 import org.eclipse.emf.compare.match.impl.MatchEngineFactoryRegistryImpl;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.compare.utils.UseIdentifiers;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -93,7 +90,7 @@ public class ModelComparisonTest {
 			//}
 		}
 
-		assertSame(Integer.valueOf(1), Integer.valueOf(differences.size()));
+		assertSame(Integer.valueOf(0), Integer.valueOf(differences.size()));
 	}
 
 	//Headers with heading styles(headings) must be organized hierarchically.
@@ -116,12 +113,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			if(!d.getKind().toString().equals("CHANGE")){
+			//if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			}
+			//}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -149,14 +146,14 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			if(!d.getKind().toString().equals("CHANGE")){
+			//if(!d.getKind().toString().equals("CHANGE")){
 				System.out.println("Left object: " + d.getMatch().getLeft().toString());
 				System.out.println("Right object: " + d.getMatch().getRight().toString());
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			}
+			//}
 
 		}
 
@@ -189,12 +186,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			if(!d.getKind().toString().equals("CHANGE")){
+			//if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			}
+			//}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -220,12 +217,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			if(!d.getKind().toString().equals("CHANGE")){
+			//if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			}
+			//}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -252,12 +249,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			if(!d.getKind().toString().equals("CHANGE")){
+			//if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			}
+			//}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -285,12 +282,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			if(!d.getKind().toString().equals("CHANGE")){
+			//if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			}
+			//}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -318,12 +315,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			if(!d.getKind().toString().equals("CHANGE")){
+			//if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			}
+			//}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -351,12 +348,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			if(!d.getKind().toString().equals("CHANGE")){
+			//if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			}
+			//}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -384,12 +381,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			if(!d.getKind().toString().equals("CHANGE")){
+			//if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			}
+			//}
 		}
 		
 		// just 1 id is different
@@ -417,6 +414,7 @@ public class ModelComparisonTest {
 		IComparisonScope scope = EMFCompare.createDefaultScope(resourceSet1, resourceSet2);
 
 		//Configuring the comparison
+		
 		IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.NEVER);
 		IComparisonFactory comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory());
 		IMatchEngine.Factory matchEngineFactory = new MatchEngineFactoryImpl(matcher, comparisonFactory);
@@ -427,6 +425,22 @@ public class ModelComparisonTest {
 
 		// Compare the two models
 		return comparator.compare(scope);
+	
+		
+		
+		/*
+		IDiffProcessor customDiffProcessor = new DiffBuilder() {
+			@Override
+			public void attributeChange(Match match, EAttribute attribute, Object value, DifferenceKind kind, DifferenceSource source) {
+				if (attribute != DocModel.DocModelPackage.Literals.ELEMENT__ID) {
+					super.attributeChange(match, attribute, value, kind, source);
+				}
+			}
+		};
+
+		IDiffEngine diffEngine = new DefaultDiffEngine(customDiffProcessor);
+		return EMFCompare.builder().setDiffEngine(diffEngine).build().compare(scope);
+		*/
 	}
 
 	public static void load(String absolutePath, ResourceSet resourceSet) {
