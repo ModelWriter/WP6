@@ -48,8 +48,9 @@ public class RunManipulator {
 		paraList = document.getParagraphs(); 
 		paraIter = paraList.iterator(); 
 		List<List<XWPFRun>> partAndRun = new ArrayList<List<XWPFRun>>();
-
-
+		
+		Stack<XWPFRun> runStack = new Stack<XWPFRun>();
+		
 		while(paraIter.hasNext()) {
 
 			paragraph = paraIter.next();
@@ -59,131 +60,165 @@ public class RunManipulator {
 			runIter = paragraph.getRuns().iterator();
 
 			String paragraphText = paragraph.getText();
-
 			List<String> partList = getPartList(paragraphText);
-			Stack<XWPFRun> runStack;
+			
 			List<XWPFRun> runList;
 
 			String runConcat = "";
-			runStack = new Stack<XWPFRun>();
+			
 			int partIndex = 0;
 			int position = 0;
 			int runCount = 0;
 			String partText = "";
 			String cuttedText = "";
-			boolean nextRunFlag = true;
-
+			boolean nextRunFlag = false;
+			
 			XWPFRun prevRun = null;
 			XWPFRun currentRun = null;
 			XWPFRun tempRun = null;
-
-			while(runIter.hasNext() ){
+			XWPFRun lastRun = null;
+			
+			while(runIter.hasNext() || (partIndex <= partList.size()-1 && partList.get(partIndex) != "")){
 
 				prevRun = currentRun;
-				//if(nextRunFlag){
-				currentRun = runIter.next();			
-				//}else{
-				//currentRun = tempRun;
-				//nextRunFlag = true;
-				//}
-				runCount++;
+				
+				if(runIter.hasNext()){
+					currentRun = runIter.next();
+					runCount++;
+					
+					if(!cuttedText.equals("")){
+						String newText = cuttedText;
+						cuttedText = "";
+						newText += currentRun.toString();
+						currentRun.setText(newText,0);
+					}
+					
+					
 
+					runConcat += currentRun.toString();
+					partText = partList.get(partIndex);
 
-				if(!cuttedText.equals("")){
-					String newText = cuttedText;
-					cuttedText = "";
-					newText += currentRun.toString();
-					currentRun.setText(newText,0);
-				}
+					if(nextRunFlag){
+						currentRun.setText(runConcat, 0);
+						nextRunFlag = false;
+					}
+					
+					if(runConcat.equals(partText)){
 
-				runConcat += currentRun.toString();
-				partText = partList.get(partIndex);
-
-				if(runConcat.equals(partText)){
-
-					currentRun.setText(runConcat, 0);
-					runStack.add(currentRun);	
-					runConcat = "";
-					partIndex++;
-					emptyStackToList(runStack, partAndRun);
-				}
-
-				else if(runConcat.contains(partText)){
-					boolean flag = false;
-
-					if(currentRun.toString().contains(":")){
-
-						String[] values = currentRun.toString().split(":");
-						currentRun.setText(values[0],0);
-
-						runStack.add(currentRun);
-
-						// TODO values[1] null olabilir
-						cuttedText = values[1];
-
+						
+						runStack.add(currentRun);	
+						runConcat = "";
+						partIndex++;
 						emptyStackToList(runStack, partAndRun);
 					}
-					else if(currentRun.toString().contains(",")){
 
-						String[] values = currentRun.toString().split(",");
-						currentRun.setText(values[0] + ",",0);
+					else if(runConcat.contains(partText)){
+						boolean flag = false;
 
+						if(currentRun.toString().contains(":")){
 
-						runStack.add(currentRun);
-						emptyStackToList(runStack, partAndRun);
+							String[] values = currentRun.toString().split(":");
+							currentRun.setText(values[0],0);
 
-						if(values.length > 2){
+							runStack.add(currentRun);
 
-							for(int i = 1; i < values.length-1; i++){
-
-								//runCount++;
-								//tempRun = runIter.next();
-								XWPFRun newRun = createNewRun(values[1],currentRun);
-								newRun.setText(values[i], 0);
-								runMap.put(4, newRun);
-								runStack.add(newRun);
-								emptyStackToList(runStack, partAndRun);
-								partIndex++;
-								flag = true;
-								//nextRunFlag = false;
-
-							}
-							runConcat = values[values.length-1];
-
-						}else{
+							// TODO values[1] null olabilir
 							cuttedText = values[1];
+
+							emptyStackToList(runStack, partAndRun);
+						}
+						else if(currentRun.toString().contains(",")){
+
+							String[] values = currentRun.toString().split(",");
+							//String[] values = runConcat.split(",");
+							
+							if(values[0].equals("")){
+								currentRun.setText("," + values[1],0);
+							}else{
+								currentRun.setText(values[0] + ",",0);
+							}
+							
+							runStack.add(currentRun);
+							emptyStackToList(runStack, partAndRun);
+
+							if(values.length > 2){
+
+								for(int i = 1; i < values.length-1; i++){
+
+									runCount++;
+									//tempRun = runIter.next();
+									XWPFRun newRun = createNewRun(values[i],currentRun);
+									//newRun.setText(values[i], 0);
+									runMap.put(runCount, newRun);
+									runStack.add(newRun);
+									emptyStackToList(runStack, partAndRun);
+									partIndex++;
+									flag = true;
+									
+									//nextRunFlag = false;
+
+								}
+								runConcat = values[values.length-1];
+								nextRunFlag = true;
+								
+							}else{
+								if(values.length > 1){
+									cuttedText = values[1];
+								}
+								//runConcat = values[1];
+							}
 
 						}
 
-
-
+						if(!flag){
+							runConcat = "";
+						}
+						partIndex++;
 					}
 
-					if(!flag){
-						runConcat = "";
-					}
+					else{
+						//currentRun.setText(runConcat, 0);
+						runStack.add(currentRun);
+					}	
+					
+				}else{
+					
+					XWPFRun newRun = createNewRun(partList.get(partIndex), currentRun);
+					handle(runCount,newRun,runMap);
+					runStack.add(newRun);
+					emptyStackToList(runStack, partAndRun);
 					partIndex++;
+					runCount++;
 				}
-
-				else{
-					runStack.add(currentRun);
-				}			
+		
 			}
 
 		}
-		organizeRuns(runMap);
+		organizeRuns(runMap,runStack,partAndRun);
 		print(partAndRun);
 
 	}
 
-	private static void organizeRuns(Map<Integer, XWPFRun> runMap) {
+	private static void addCuttedTextToMap(int runCount, String cuttedText,
+			XWPFRun currentRun) {
+		
+	}
+
+	private static void handle(int runCount, XWPFRun xwpfRun, Map<Integer, XWPFRun> runMap) {
+		
+		runMap.put(runCount, xwpfRun);
+	}
+
+	private static void organizeRuns(Map<Integer, XWPFRun> runMap, Stack<XWPFRun> runStack, List<List<XWPFRun>> partAndRun) {
 
 		for (Entry<Integer, XWPFRun> entry : runMap.entrySet())
 		{
 			XWPFRun run = paragraph.insertNewRun(entry.getKey());
-			CTRPr rPr = run.getCTR().isSetRPr() ? run.getCTR().getRPr() : run.getCTR().addNewRPr();
+			CTRPr rPr = entry.getValue().getCTR().isSetRPr() ? entry.getValue().getCTR().getRPr() : entry.getValue().getCTR().addNewRPr();
 			rPr.set(entry.getValue().getCTR().getRPr());
-			run.setText(entry.getValue().getText(0));
+			run.setText(entry.getValue().toString(),0);
+			//runStack.add(run);
+			//emptyStackToList(runStack,partAndRun);
 		}
 
 	}
@@ -195,7 +230,7 @@ public class RunManipulator {
 		XWPFRun newRun = newParagraph.createRun();
 		CTRPr rPr = newRun.getCTR().isSetRPr() ? newRun.getCTR().getRPr() : newRun.getCTR().addNewRPr();
 		rPr.set(currentRun.getCTR().getRPr());
-		newRun.setText(currentRun.getText(0));
+		newRun.setText(string,0);
 
 		return newRun;
 		/*
