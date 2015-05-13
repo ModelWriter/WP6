@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.UUID;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,6 +43,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
+import com.modelwriter.architecture.textconnectors.docx.genparser.notifymanager.MappingManager;
+
 import DocModel.DocModelFactory;
 import DocModel.Document;
 import DocModel.Node;
@@ -49,6 +52,10 @@ import DocModel.Paragraph;
 
 public class Doc2ParseModel {
 
+	public static MappingManager mappingManager;
+	
+	public static RunManipulator runManipulator;
+	
 	public static DocModelFactory factory;
 
 	public static Iterator<XWPFParagraph> paraIter; 
@@ -112,17 +119,12 @@ public class Doc2ParseModel {
 		paraIter = paraList.iterator(); 
 
 		BigInteger numID = null; 
-		int numberingID = -1;
+		//int numberingID = -1;
 		String paragraphText = "";
 		String paragraphStyle = "";
-		int id = 0;
+		//int id = 0;
 		boolean firstParagraphFlag = true;
 
-		/*
-		 * for (int i=0; i<100; i++){
-            System.out.println(EcoreUtil.generateUUID());
-        }
-		 */
 		while(paraIter.hasNext()) {
 
 			if(paragraphNotHandled == false){
@@ -141,6 +143,7 @@ public class Doc2ParseModel {
 			// heading level
 			if(headingMap.get(paragraphStyle) > 0 && headingMap.get(paragraphStyle) < 11){
 
+				//TODO
 				//handleHeadingsHierarchy(paragraphStyle,paragraphText,firstParagraphFlag);
 
 				if(!plainTextStack.isEmpty()){
@@ -153,6 +156,8 @@ public class Doc2ParseModel {
 				p.setName(paragraphText.replaceAll("\t","").trim());
 				//p.setParagraph(paragraph);
 				p.setRawText(paragraphText);
+				mappingManager.mapRuns(p.getId(), paragraph.getRuns());
+				
 				// headingten sonra normal paragraflar gelirse o headinge ekle
 
 				if(firstParagraphFlag && headingMap.get(paragraphStyle) == 1){					
@@ -244,6 +249,7 @@ public class Doc2ParseModel {
 
 							String[] values = paragraphText.split(":");
 							handleBoldKeyValuePairs(values,paragraphText);
+							
 						}
 						//header without heading style 
 						//ex. EM-HLR-....
@@ -273,6 +279,7 @@ public class Doc2ParseModel {
 
 					Paragraph p = factory.createParagraph();
 					p.setId(EcoreUtil.generateUUID());
+					mappingManager.mapRuns(p.getId(), paragraph.getRuns());
 
 					// eðer bir ordered list item ise isimlendir ve hierarþiye göre 
 					// uygun node'a ekle
@@ -327,7 +334,8 @@ public class Doc2ParseModel {
 					continue;
 				}else{
 					String runText = run.getText(0).trim();
-					if(key.contains(runText) && run.isBold()){
+					// key runtext yer deðiþtirildi
+					if(runText.contains(key) && run.isBold()){
 						return true;
 					}else{
 						nonBoldRunCounter++;
@@ -360,15 +368,15 @@ public class Doc2ParseModel {
 
 	private static void initializeStaticVariables() {
 
+		runManipulator = new RunManipulator();
+		mappingManager = new MappingManager();
+		
 		paragraphStack = new Stack<Paragraph>();
 		paragraphLevelMap = new HashMap<Paragraph,Integer>();
-
 		plainTextStack = new Stack<Paragraph>();
 		plaintTextLevelMap = new HashMap<Paragraph,Integer>();
-
 		headingMap = new HashMap<String,Integer>();
 		factory = DocModelFactory.eINSTANCE;
-
 		documentObject = factory.createDocument();
 		paragraphNotHandled = false;
 		lastFullyBoldHeaderInPlainTextHierarchy = null;
@@ -426,6 +434,7 @@ public class Doc2ParseModel {
 
 		Paragraph keyValueParagraph = factory.createParagraph();
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
+		mappingManager.mapRuns(keyValueParagraph.getId(), paragraph.getRuns());
 
 		// TODO ismi ayarla ordered list item için
 		if((matcher = pattern.matcher(values[0])).matches()){
@@ -475,7 +484,6 @@ public class Doc2ParseModel {
 
 	private static void emptyOnlyOrderedListItems() {
 
-		// TODO tamamla
 		String mainFlowActivityPattern = "(([1-9]|[*])[a-z]?)";	
 		Pattern pattern = Pattern.compile(mainFlowActivityPattern);
 		Matcher matcher;
@@ -511,11 +519,27 @@ public class Doc2ParseModel {
 
 	private static void handleBoldKeyValuePairs(String[] values, String paragraphText) {
 
+		/*
 		Paragraph keyValueParagraph = factory.createParagraph();
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
 		keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
 		keyValueParagraph.setRawText(values[0]);
+		*/
+		//TODO run manipulation
+		Map<String, List<XWPFRun>> partAndRun = null;
+		try {
+			partAndRun = RunManipulator.maipulateRuns(paragraph);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (String key : partAndRun.keySet()) {
+			
+		}
+		//mappingManager.mapRuns(keyValueParagraph.getId(), paragraph.getRuns());
 
+		/*
 		calculateTabCount(keyValueParagraph.getRawText());
 
 		// add para. under tabbed parag.
@@ -540,7 +564,7 @@ public class Doc2ParseModel {
 			keyValueParagraph.setRawText(values[1]);
 		}
 
-
+	*/
 
 	}
 
@@ -560,10 +584,11 @@ public class Doc2ParseModel {
 			numberedParagraph.setId(EcoreUtil.generateUUID());
 			numberedParagraph.setName("" + counter);
 			numberedParagraph.setRawText(text);
+			mappingManager.mapRuns(numberedParagraph.getId(), paragraph.getRuns());
 
 			if(text.contains(":")){
 
-				keyValuInOrderedList(text,numberedParagraph);
+				keyValueInOrderedList(text,numberedParagraph);
 			}
 
 			if(lastFullyBoldHeaderInPlainTextHierarchy != null){
@@ -601,6 +626,7 @@ public class Doc2ParseModel {
 		headerParagraph.setName(paragraphText.replaceAll("\t","").trim());
 		headerParagraph.setRawText(paragraphText);
 		paragraphStyle = "SubHeader";
+		mappingManager.mapRuns(headerParagraph.getId(), paragraph.getRuns());
 
 		calculateTabCount(headerParagraph.getRawText());
 		if(tabCount > 1){
@@ -837,10 +863,11 @@ public class Doc2ParseModel {
 				p.setId(EcoreUtil.generateUUID());
 				p.setName("" + activityCounter);
 				p.setRawText(text);
+				mappingManager.mapRuns(p.getId(), paragraph.getRuns());
 
 				if(text.contains(":")){
 
-					keyValuInOrderedList(text,p);
+					keyValueInOrderedList(text,p);
 				}
 
 
@@ -870,7 +897,7 @@ public class Doc2ParseModel {
 
 				if(text.contains(":")){
 
-					keyValuInOrderedList(text,p);
+					keyValueInOrderedList(text,p);
 				}
 
 				handleTabbedHierarchy(p);
@@ -895,42 +922,29 @@ public class Doc2ParseModel {
 
 	}
 
-
-	private static void keyValuInOrderedList(String text, Paragraph p) {
+	private static void keyValueInOrderedList(String text, Paragraph p) {
 
 		String[] v = text.split(":");
-		Paragraph keyValuePara = factory.createParagraph();
-		keyValuePara.setId(EcoreUtil.generateUUID());
-		keyValuePara.setName(v[0]);
+		Paragraph keyValueParagraph = factory.createParagraph();
+		keyValueParagraph.setId(EcoreUtil.generateUUID());
+		keyValueParagraph.setName(v[0]);
+		mappingManager.mapRuns(keyValueParagraph.getId(), paragraph.getRuns());
 
 		if(v.length > 1 && v[1].trim().length() > 0){
 
-			keyValuePara.setRawText(v[1]);
+			keyValueParagraph.setRawText(v[1]);
 		}else{
 			JFrame frame = new JFrame();
 			JOptionPane.showMessageDialog(frame, "Missing Line at the paragraph '" 
-					+ keyValuePara.getName() + "'","Error", JOptionPane.ERROR_MESSAGE, null);
+					+ keyValueParagraph.getName() + "'","Error", JOptionPane.ERROR_MESSAGE, null);
 		}
 
 
-		p.getOwnedNode().add(keyValuePara);
+		p.getOwnedNode().add(keyValueParagraph);
 		p.setRawText(null);
 
 	}
 
-
-	private static String[] cutString(String text) {
-		// TODO
-		//(\d+[.]?)([ ]?)([\w :;()])+[.$] tam istenilen regex deðil
-		String endsWithDotPattern = "([0-9]+[.][ ]*[a-zA-Z])";
-		String endswithDigitPattern = "([0-9]+[ ]*[a-zA-Z])";
-
-		/*
-		 * (\d+[.]?){1}([ ]+[\w :;()]+[.$])
-		 */
-
-		return null;
-	}
 
 
 	/**

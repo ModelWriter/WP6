@@ -20,11 +20,11 @@ public class Main {
 	private final static String SAMPLE_REQUIREMENT_DOCUMENT2 = "testdata/SampleRequirementDocument2.docx"; 
 	private final static String TABBED_DOCUMENT = "testdata/tabbed doc.docx"; 
 	private final static String USE_CASE_DOCUMENTATION = "testdata/UseCaseDocumentation.docx"; 
+	private final static String RUN_MANIPULATION = "testdata/RunManipulatorTest.docx";
 	
 	private static String uctest = "testdata/use case test.docx";
 	//Headers with heading styles(headings) must be organized hierarchically.
 	private static String REQ2 = "testdata/REQ-2.docx";
-
 	// Fully bold headers which have not heading styles must be handled
 	// as a child of last heading.
 	private static String REQ4 = "testdata/REQ-4.docx";
@@ -63,7 +63,7 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		try {
-			parsedResource = Doc2ParseModel.parse(plain);
+			parsedResource = Doc2ParseModel.parse(RUN_MANIPULATION);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
