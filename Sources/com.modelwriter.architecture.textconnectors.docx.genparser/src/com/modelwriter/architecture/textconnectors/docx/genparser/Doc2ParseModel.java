@@ -49,6 +49,7 @@ import DocModel.DocModelFactory;
 import DocModel.Document;
 import DocModel.Node;
 import DocModel.Paragraph;
+import DocModel.Part;
 
 public class Doc2ParseModel {
 
@@ -519,52 +520,66 @@ public class Doc2ParseModel {
 
 	private static void handleBoldKeyValuePairs(String[] values, String paragraphText) {
 
-		/*
-		Paragraph keyValueParagraph = factory.createParagraph();
-		keyValueParagraph.setId(EcoreUtil.generateUUID());
-		keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
-		keyValueParagraph.setRawText(values[0]);
-		*/
-		//TODO run manipulation
-		Map<String, List<XWPFRun>> partAndRun = null;
-		try {
-			partAndRun = RunManipulator.maipulateRuns(paragraph);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for (String key : partAndRun.keySet()) {
-			
-		}
-		//mappingManager.mapRuns(keyValueParagraph.getId(), paragraph.getRuns());
-
-		/*
-		calculateTabCount(keyValueParagraph.getRawText());
-
-		// add para. under tabbed parag.
-		if(tabCount > 1){
-
-			handleTabbedHierarchy(keyValueParagraph);
-
-		}else{
-			paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
-		}
-
-		// paragraph has numbered list
-		// ex. Main Success Scenario
+		// has ordered list?
 		if(values.length < 2 || (values.length > 1 && 
 				values[1].replaceAll(" ", "").equals(""))){
 
+			Paragraph keyValueParagraph = factory.createParagraph();
+			keyValueParagraph.setId(EcoreUtil.generateUUID());
+			keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
+			keyValueParagraph.setRawText(values[0]);
+			
+			calculateTabCount(keyValueParagraph.getRawText());
+			
+			if(tabCount > 1){
+
+				handleTabbedHierarchy(keyValueParagraph);
+
+			}else{
+				paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+			}
+			
 			handleNumberedList(keyValueParagraph);
 
 		}
-		// ex. Primary Actor: Student.
+		// separated with commas ?
 		else{
-			keyValueParagraph.setRawText(values[1]);
-		}
+			
+			boolean firstPartFlag = true;
+			Map<String, List<XWPFRun>> partAndRun = null;
+			Paragraph keyValueParagraph = null;
+			
+			try {
+				partAndRun = RunManipulator.maipulateRuns(paragraph);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			for (String key : partAndRun.keySet()) {
+				
+				if(firstPartFlag){
+					keyValueParagraph = factory.createParagraph();
+					keyValueParagraph.setId(EcoreUtil.generateUUID());
+					keyValueParagraph.setName(key);
+					keyValueParagraph.setRawText(key);
+					mappingManager.mapRuns(keyValueParagraph.getId(), partAndRun.get(key));
+					firstPartFlag = false;
+					
+					
+				}else{
+					
+					Part part = factory.createPart();
+					part.setId(EcoreUtil.generateUUID());
+					part.setName(key.trim());
+					part.setRawText(key);
+					keyValueParagraph.getOwnedPart().add(part);
+					mappingManager.mapRuns(part.getId(), partAndRun.get(key));
 
-	*/
+				}
+					
+			}
+		}
 
 	}
 
