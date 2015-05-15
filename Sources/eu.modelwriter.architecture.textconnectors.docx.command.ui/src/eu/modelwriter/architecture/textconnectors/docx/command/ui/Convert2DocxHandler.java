@@ -158,19 +158,6 @@ public class Convert2DocxHandler extends AbstractHandler implements IHandler {
 
 	}
 	
-	/**
-	 * Refreshes the project, so new file can be seen when added.
-	 */
-	protected void refresh(IPath path) {
-		try {
-			IResource dfile = ResourcesPlugin.getWorkspace().getRoot().getProject();
-			dfile.refreshLocal(IResource.DEPTH_INFINITE, null);
-			
-			//WorkbenchSelector.getSelectionProject().refreshLocal(IResource.DEPTH_INFINITE, null);
-		} catch (CoreException e) {
-			e.printStackTrace();
-		}
-	}
 	
 
 }
