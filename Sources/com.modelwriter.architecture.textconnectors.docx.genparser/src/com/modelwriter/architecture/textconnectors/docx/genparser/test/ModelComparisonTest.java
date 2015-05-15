@@ -82,12 +82,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------");
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			//if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 			System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 			System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 			System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 			counter++;
-			//}
+			}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(differences.size()));
@@ -113,12 +113,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			//if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			//}
+			}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -146,14 +146,14 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			//if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 				System.out.println("Left object: " + d.getMatch().getLeft().toString());
 				System.out.println("Right object: " + d.getMatch().getRight().toString());
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			//}
+			}
 
 		}
 
@@ -186,12 +186,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			//if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			//}
+			}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -217,12 +217,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			//if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			//}
+			}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -249,12 +249,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			//if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			//}
+			}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -282,12 +282,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			//if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			//}
+			}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -315,12 +315,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			//if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			//}
+			}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -348,12 +348,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			//if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			//}
+			}
 		}
 
 		assertSame(Integer.valueOf(0), Integer.valueOf(counter));
@@ -381,12 +381,12 @@ public class ModelComparisonTest {
 		System.out.println("----------------" + xmi);
 		for(org.eclipse.emf.compare.Diff d: differences)
 		{
-			//if(!d.getKind().toString().equals("CHANGE")){
+			if(!d.getKind().toString().equals("CHANGE")){
 				System.err.println("d.getKind(): "+((org.eclipse.emf.compare.Diff) d).getKind());
 				System.err.println("d.getMatch(): " + ((org.eclipse.emf.compare.Diff) d).getMatch());
 				System.err.println("State: " + ((org.eclipse.emf.compare.Diff) d).getState());
 				counter++;
-			//}
+			}
 		}
 		
 		// just 1 id is different

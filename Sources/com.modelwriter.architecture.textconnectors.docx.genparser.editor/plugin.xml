@@ -17,22 +17,90 @@
 
 <plugin>
 
-   <extension point="org.eclipse.ui.newWizards">
+   <extension
+         point="org.eclipse.core.runtime.applications"
+         id="DocumentModelEditorAdvisorApplication">
       <!-- @generated DocumentModel -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="DocModel.presentation.DocModelModelWizardID"
-            name="%_UI_DocModelModelWizard_label"
-            class="DocModel.presentation.DocModelModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/DocModelModelFile.gif">
-         <description>%_UI_DocModelModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
+      <application>
+         <run class="DocModel.presentation.DocumentModelEditorAdvisor$Application"/>
+      </application>
    </extension>
 
+
+   <extension point="org.eclipse.ui.perspectives">
+      <!-- @generated DocumentModel -->
+      <perspective
+            name="%_UI_Perspective_label"
+            class="DocModel.presentation.DocumentModelEditorAdvisor$Perspective"
+            id="DocModel.presentation.DocumentModelEditorAdvisorPerspective">
+      </perspective>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands">
+      <!-- @generated DocumentModel -->
+      <command
+            name="%_UI_Menu_OpenURI_label"
+            description="%_UI_Menu_OpenURI_description"
+            categoryId="org.eclipse.ui.category.file"
+            id="DocModel.presentation.DocumentModelEditorAdvisorOpenURICommand"/>
+      <command
+            name="%_UI_Menu_Open_label"
+            description="%_UI_Menu_Open_description"
+            categoryId="org.eclipse.ui.category.file"
+            id="DocModel.presentation.DocumentModelEditorAdvisorOpenCommand"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.bindings">
+      <!-- @generated DocumentModel -->
+      <key
+            commandId="DocModel.presentation.DocumentModelEditorAdvisorOpenURICommand"
+            sequence="M1+U"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="DocModel.presentation.DocumentModelEditorAdvisorOpenCommand"
+            sequence="M1+O"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.actionSets">
+      <!-- @generated DocumentModel -->
+      <actionSet
+            label="%_UI_DocumentModelEditorAdvisor_ActionSet_label"
+            visible="true"
+            id="DocumentModelEditorAdvisorActionSet">
+         <action
+               label="%_UI_Menu_About_label"
+               class="DocModel.presentation.DocumentModelEditorAdvisor$AboutAction"
+               menubarPath="help/additions"
+               id="DocModel.presentation.DocumentModelEditorAdvisorAboutAction"/>
+         <action
+               label="%_UI_Menu_OpenURI_label"
+               definitionId="DocModel.presentation.DocumentModelEditorAdvisorOpenURICommand"
+               class="DocModel.presentation.DocumentModelEditorAdvisor$OpenURIAction"
+               menubarPath="file/additions"
+               id="DocModel.presentation.DocumentModelEditorAdvisorOpenURIAction"/>
+         <action
+               label="%_UI_Menu_Open_label"
+               definitionId="DocModel.presentation.DocumentModelEditorAdvisorOpenCommand"
+               class="DocModel.presentation.DocumentModelEditorAdvisor$OpenAction"
+               menubarPath="file/additions"
+               id="DocModel.presentation.DocumentModelEditorAdvisorOpenAction"/>
+      </actionSet>
+   </extension>
+
+   <extension point="org.eclipse.ui.actionSets">
+      <!-- @generated DocumentModel -->
+      <actionSet
+            label="%_UI_DocModelModelWizard_ActionSet_label"
+            visible="true"
+            id="DocModel.presentation.DocModelActionBarContributorActionSet">
+         <action
+               label="%_UI_DocModelModelWizard_label"
+               class="DocModel.presentation.DocModelActionBarContributor$NewAction"
+               menubarPath="file/new/additions"
+               id="DocModel.presentation.DocModelActionBarContributorNewAction"/>
+      </actionSet>
+   </extension>
    <extension point="org.eclipse.ui.editors">
       <!-- @generated DocumentModel -->
       <editor

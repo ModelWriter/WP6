@@ -127,8 +127,10 @@ public class RunManipulator {
 						runStack.add(currentRun);
 
 						// TODO values[1] null olabilir
-						cuttedText = values[1];
-
+						if(values.length == 2){
+							cuttedText = values[1];	
+						}
+						
 						emptyStackToList(runStack,partList.get(partIndex).toString());
 					}
 					else if(currentRun.toString().contains(",")){
@@ -178,6 +180,11 @@ public class RunManipulator {
 							//runConcat = values[1];
 						}
 
+					}
+					// yeni eklendi
+					else{
+						runStack.add(currentRun);
+						emptyStackToList(runStack, partList.get(partIndex).toString());
 					}
 
 					if(!flag){

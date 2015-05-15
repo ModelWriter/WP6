@@ -14,6 +14,8 @@ import java.io.IOException;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
+import com.modelwriter.architecture.textconnectors.docx.genparser.notifymanager.MappingManager;
+
 public class Main {
 
 	private final static String SAMPLE_REQUIREMENT_DOCUMENT = "testdata/SampleRequirementDocument.docx"; 
@@ -62,13 +64,31 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		// Doc2Model main
+		/*
+		 * MappingManager mappingManager = MappingManager.getInstance();
+		
 		try {
-			parsedResource = Doc2ParseModel.parse(RUN_MANIPULATION);
-
+			parsedResource = Doc2ParseModel.parse(uctest);
+			
+			mappingManager.printMap();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 */
+		
+		
+		// ModelObserver main
+		/*
+		 * ModelObserver observ = new ModelObserver();
+	    observ.doStuff();
+		 */
+	    
+		// MyContentAdapter main
+		MyContentAdapter observ = new MyContentAdapter();
+		observ.doStuff();
+	    
 
 	}
 

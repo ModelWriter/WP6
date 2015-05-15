@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -54,9 +55,9 @@ import DocModel.Part;
 public class Doc2ParseModel {
 
 	public static MappingManager mappingManager;
-	
+
 	public static RunManipulator runManipulator;
-	
+
 	public static DocModelFactory factory;
 
 	public static Iterator<XWPFParagraph> paraIter; 
@@ -158,7 +159,7 @@ public class Doc2ParseModel {
 				//p.setParagraph(paragraph);
 				p.setRawText(paragraphText);
 				mappingManager.mapRuns(p.getId(), paragraph.getRuns());
-				
+
 				// headingten sonra normal paragraflar gelirse o headinge ekle
 
 				if(firstParagraphFlag && headingMap.get(paragraphStyle) == 1){					
@@ -250,7 +251,7 @@ public class Doc2ParseModel {
 
 							String[] values = paragraphText.split(":");
 							handleBoldKeyValuePairs(values,paragraphText);
-							
+
 						}
 						//header without heading style 
 						//ex. EM-HLR-....
@@ -327,7 +328,7 @@ public class Doc2ParseModel {
 		if(text.contains(":")){
 
 			String[] values = text.split(":");
-			String key = values[0] + ":";
+			String key = values[0]; // + ":"
 
 			for(XWPFRun run : paragraph.getRuns()){
 
@@ -336,7 +337,9 @@ public class Doc2ParseModel {
 				}else{
 					String runText = run.getText(0).trim();
 					// key runtext yer deðiþtirildi
-					if(runText.contains(key) && run.isBold()){
+					// key -> key.replaceAll()
+					if((runText.contains(key.replaceAll("\t", "")) || key.replaceAll("\t", "").contains(runText)) 
+							&& run.isBold()){
 						return true;
 					}else{
 						nonBoldRunCounter++;
@@ -370,8 +373,8 @@ public class Doc2ParseModel {
 	private static void initializeStaticVariables() {
 
 		runManipulator = new RunManipulator();
-		mappingManager = new MappingManager();
-		
+		mappingManager = MappingManager.getInstance();
+
 		paragraphStack = new Stack<Paragraph>();
 		paragraphLevelMap = new HashMap<Paragraph,Integer>();
 		plainTextStack = new Stack<Paragraph>();
@@ -528,9 +531,9 @@ public class Doc2ParseModel {
 			keyValueParagraph.setId(EcoreUtil.generateUUID());
 			keyValueParagraph.setName(values[0].replaceAll("\t","").trim());
 			keyValueParagraph.setRawText(values[0]);
-			
+
 			calculateTabCount(keyValueParagraph.getRawText());
-			
+
 			if(tabCount > 1){
 
 				handleTabbedHierarchy(keyValueParagraph);
@@ -538,27 +541,31 @@ public class Doc2ParseModel {
 			}else{
 				paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
 			}
-			
+
 			handleNumberedList(keyValueParagraph);
 
 		}
 		// separated with commas ?
 		else{
+
 			
 			boolean firstPartFlag = true;
 			Map<String, List<XWPFRun>> partAndRun = null;
+			List<Part> tempList = new ArrayList<Part>();
 			Paragraph keyValueParagraph = null;
-			
+
+			calculateTabCount(values[0]);
+
 			try {
 				partAndRun = RunManipulator.maipulateRuns(paragraph);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			for (String key : partAndRun.keySet()) {
-				
-				if(firstPartFlag){
+
+				if(values[0].contains(key)){
 					keyValueParagraph = factory.createParagraph();
 					keyValueParagraph.setId(EcoreUtil.generateUUID());
 					keyValueParagraph.setName(key);
@@ -566,21 +573,42 @@ public class Doc2ParseModel {
 					mappingManager.mapRuns(keyValueParagraph.getId(), partAndRun.get(key));
 					firstPartFlag = false;
 					
-					
+					if(tabCount > 1){
+
+						handleTabbedHierarchy(keyValueParagraph);
+
+					}else{
+						paragraphStack.peek().getOwnedNode().add(keyValueParagraph);		
+					}
+
+
 				}else{
-					
+
 					Part part = factory.createPart();
 					part.setId(EcoreUtil.generateUUID());
 					part.setName(key.trim());
 					part.setRawText(key);
-					keyValueParagraph.getOwnedPart().add(part);
+					tempList.add(part);
+					//keyValueParagraph.getOwnedPart().add(part);
 					mappingManager.mapRuns(part.getId(), partAndRun.get(key));
 
 				}
-					
+
 			}
+			
+			emptyParts(tempList,keyValueParagraph);
 		}
 
+	}
+
+
+	private static void emptyParts(List<Part> tempList,
+			Paragraph keyValueParagraph) {
+		
+		for (Part part : tempList) {
+			keyValueParagraph.getOwnedPart().add(part);
+		}
+		
 	}
 
 
