@@ -38,6 +38,7 @@ import org.apache.poi.xwpf.usermodel.XWPFNumbering;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -97,15 +98,26 @@ public class Doc2ParseModel {
 
 	private static XWPFNumbering numbering = null; 
 
-	public static Resource parse(String filename) throws IOException {
+	public static Resource parse(XWPFDocument d, Resource r) throws IOException {
 
 		String output = "outputs/";
 
 		// output file name
-		String[] v = filename.split("/");
+		/*
+		 * String[] v = filename.split("/");
 		String[] v2 = v[1].split("\\.");
 		output += v2[0] + ".xmi";
+		 */
 
+		
+		// try to load the file into resource
+		r.load(null);
+
+		// Write content of resource file
+		//resource.save(System.out, Collections.EMPTY_MAP);
+
+		documentObject = (Document) r.getContents().get(0);
+		
 		initializeStaticVariables();
 		initializeHeadingMap();
 
@@ -113,9 +125,9 @@ public class Doc2ParseModel {
 		FileInputStream fis = null; 
 		XWPFDocument document = null;
 		List<XWPFParagraph> paraList = null; 
-		file = new File(filename); 
-		fis = new FileInputStream(file); 
-		document = new XWPFDocument(fis);
+		//file = new File(filename); 
+		//fis = new FileInputStream(file); 
+		document = d;
 		numbering = document.getNumbering();
 		paraList = document.getParagraphs(); 
 		paraIter = paraList.iterator(); 
@@ -315,8 +327,10 @@ public class Doc2ParseModel {
 		finilize();
 
 		// Create and save the model instance to xmi file
-		Resource r = createXMIFile(documentObject, output);
-		return r;
+		Resource resource = createXMIFile(documentObject, output);
+		return resource;
+		//return documentObject;
+	
 	}
 
 

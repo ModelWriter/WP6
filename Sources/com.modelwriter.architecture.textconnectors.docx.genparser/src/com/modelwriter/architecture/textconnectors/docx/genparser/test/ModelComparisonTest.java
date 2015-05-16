@@ -396,7 +396,9 @@ public class ModelComparisonTest {
 	// TODO REQ-12 is missing
 	private ResourceSet load(String req) {
 
-		try {
+		//TODO test için editle doc2parse'ý
+		/*
+		 * try {
 			ResourceSet resourceSet = new ResourceSetImpl();
 			resourceSet = Doc2ParseModel.parse(req).getResourceSet();
 			return resourceSet;
@@ -404,6 +406,7 @@ public class ModelComparisonTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 */
 		return null;
 	}
 

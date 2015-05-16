@@ -86,8 +86,10 @@ public class Main {
 		 */
 	    
 		// MyContentAdapter main
-		MyContentAdapter observ = new MyContentAdapter();
+		/*
+		 * MyContentAdapter observ = new MyContentAdapter();
 		observ.doStuff();
+		 */
 	    
 
 	}

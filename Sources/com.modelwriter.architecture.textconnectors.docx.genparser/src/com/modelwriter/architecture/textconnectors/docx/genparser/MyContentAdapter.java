@@ -21,10 +21,17 @@ public class MyContentAdapter extends EContentAdapter {
 
 		doc = factory.createDocument();
 		
-		observeLibrary();
+		observeModel();
+	}
+	
+	public MyContentAdapter(Document d){
+		
+		doc = d;
+		
+		observeModel();
 	}
 	// start observing a Library model
-    public void observeLibrary(){
+    public void observeModel(){
         doc.eAdapters().add(this);
     }
 
