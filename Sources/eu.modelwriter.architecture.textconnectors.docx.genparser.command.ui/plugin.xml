@@ -56,6 +56,23 @@
                   </with>
                </visibleWhen>
             </command>
+            <command
+                  commandId="eu.modelwriter.architecture.textconnectors.docx.genparser.command.ui.docmodel2reqifmodel"
+                  label="Convert to ReqIF Model"
+                  style="push">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                     <iterate
+                           ifEmpty="false">
+                        <reference
+                              definitionId="eu.modelwriter.architecture.textconnectors.docx.genparser.command.ui.test.docmodel">
+                        </reference>
+                     </iterate>
+                  </with>
+               </visibleWhen>
+            </command>
          </menu>
       </menuContribution>
    </extension>
@@ -64,7 +81,12 @@
       <command
             defaultHandler="eu.modelwriter.architecture.textconnectors.docx.genparser.command.ui.Convert2DocModelHandler"
             id="eu.modelwriter.architecture.textconnectors.docx.genparser.command.ui.docx2docmodel"
-            name="Load Docx to ReqModel">
+            name="Load Docx toDocModel">
+      </command>
+      <command
+            defaultHandler="eu.modelwriter.architecture.textconnectors.docx.genparser.command.ui.Convert2ReqIFModelHandler"
+            id="eu.modelwriter.architecture.textconnectors.docx.genparser.command.ui.docmodel2reqifmodel"
+            name="Convert DocModel to ReqIF Model (.reqif)">
       </command>
    </extension>
 

@@ -23,7 +23,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.compare;bundle-version="3.1.2",
  org.eclipse.emf.common,
- org.eclipse.compare
+ org.eclipse.compare,
+ org.eclipse.rmf.reqif10;bundle-version="0.11.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: junit.framework,
  org.eclipse.emf.ecore.xmi.impl,

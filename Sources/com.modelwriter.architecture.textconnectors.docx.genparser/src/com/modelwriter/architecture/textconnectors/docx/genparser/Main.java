@@ -18,7 +18,7 @@ import com.modelwriter.architecture.textconnectors.docx.genparser.notifymanager.
 
 public class Main {
 
-	private final static String SAMPLE_REQUIREMENT_DOCUMENT = "testdata/SampleRequirementDocument.docx"; 
+	private final static String SAMPLE_REQUIREMENT_DOCUMENT = "testdata/SampleRequirementDocument0.docx"; 
 	private final static String SAMPLE_REQUIREMENT_DOCUMENT2 = "testdata/SampleRequirementDocument2.docx"; 
 	private final static String TABBED_DOCUMENT = "testdata/tabbed doc.docx"; 
 	private final static String USE_CASE_DOCUMENTATION = "testdata/UseCaseDocumentation.docx"; 
@@ -65,18 +65,17 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		// Doc2Model main
-		/*
-		 * MappingManager mappingManager = MappingManager.getInstance();
+		MappingManager mappingManager = MappingManager.getInstance();
 		
 		try {
-			parsedResource = Doc2ParseModel.parse(uctest);
+			parsedResource = Doc2ParseModel.parse(null,null,USE_CASE_DOCUMENTATION);
 			
 			mappingManager.printMap();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 */
+		 
 		
 		
 		// ModelObserver main

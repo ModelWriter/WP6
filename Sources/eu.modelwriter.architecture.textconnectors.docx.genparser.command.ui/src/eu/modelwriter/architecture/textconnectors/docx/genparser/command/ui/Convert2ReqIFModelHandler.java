@@ -6,11 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
-import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.eclipse.core.commands.AbstractHandler;
@@ -20,6 +18,7 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -29,30 +28,29 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.rmf.reqif10.SpecObject;
+import org.eclipse.rmf.reqif10.Specification;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import DocModel.Document;
-import DocModel.presentation.DocModelObserver;
 
-import com.modelwriter.architecture.textconnectors.docx.genparser.Doc2ParseModel;
-import com.modelwriter.architecture.textconnectors.docx.genparser.MyContentAdapter;
+import com.modelwriter.architecture.textconnectors.docx.genparser.DocModel2ReqIFModelConvertor;
 
 
-public class Convert2DocModelHandler extends AbstractHandler implements
+
+public class Convert2ReqIFModelHandler extends AbstractHandler implements
 IHandler {
 
-	private static DocModelObserver observer;
-	private static MyContentAdapter observerMy;
+	
+	@SuppressWarnings("unchecked")
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public Object execute(ExecutionEvent event) {
+		// TODO Auto-generated method stub
 
-
-		XWPFDocument document = null;
+		
+		XWPFDocument document = new XWPFDocument();
 		FileOutputStream out = null;
-
-		Shell shell = HandlerUtil.getActiveShell(event);
+		
+		// Shell shell = HandlerUtil.getActiveShell(event);
 		ISelection sel = HandlerUtil.getActiveMenuSelection(event);
 		IStructuredSelection selection = (IStructuredSelection) sel;
 
@@ -74,14 +72,34 @@ IHandler {
 				if(!iresource.getName().contains(".docmodel")){
 
 					final JFrame frame = new JFrame();
-					JOptionPane.showMessageDialog(frame, "WRONG FILE TYPE! (expected type: .reqmodel)");
+					JOptionPane.showMessageDialog(frame, "WRONG FILE TYPE! (expected type: .docmodel)");
 
 				}else{
 
 
-					// GETTING DOCMODEL RESOURCE
+					// cast exception
+					//Resource r = (Resource)iresource.getLocation().toFile();
+					//Resource r = (Resource)iresource;
 					String locationString = iresource.getLocation().toString();
 					String loc = "file:///" + locationString;
+
+					IPath path = iresource.getFullPath();
+
+					String[] locationParts = locationString.split("/");
+
+					String newLoc = "";
+
+					for(int i = 0;i < locationParts.length; i++){
+
+						if(!locationParts[i].equals(iresource.getName())){
+
+							newLoc += locationParts[i] + "/";
+						}else{
+							String[] name = locationParts[i].split("\\.");							
+							newLoc += ".reqif";
+						}
+					}
+
 
 					URI uri = URI.createURI(loc);
 
@@ -97,54 +115,19 @@ IHandler {
 					extensionFactoryMap.put("xmi", new XMIResourceFactoryImpl());
 
 
-					// GETTING DOCX FILE
-					FileDialog fsd = new FileDialog(shell);
-					fsd.setFilterExtensions(new String[] {"*.docx"});
-					fsd.setText("Select A Docx File...");
-					fsd.open();
-
-					String fileName = fsd.getFileName();
-					String path = fsd.getFilterPath();
-					//TODO path'i set et doc object için
-					File docxFile = new File(path + "\\" + fileName);
 					try {
-						document = new XWPFDocument(new FileInputStream(docxFile.getAbsoluteFile()));
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}					
-
-					try {
-
-						Resource r = resourceSet.createResource(uri);
 						
-							Document d = (Document) Doc2ParseModel.parse(document,r,null).getContents().get(0);
-							r.getContents().add(d);
-							r.getContents().remove(0);
-							r.save(null);
-							//observer = new DocModelObserver(d);
-							observerMy = new MyContentAdapter(d);
-
-
-							//observerMy.doStuff();
-							//r = Doc2ParseModel.parse(document,r);
-
-
-							//createXMIFile((Document)r.getContents().get(0),loc);
-
-
-							final JFrame frame = new JFrame();
-							JOptionPane.showMessageDialog(frame, "Requirement File created successfully!");
-							
+						Specification spec = DocModel2ReqIFModelConvertor.convert((Resource)resourceSet.createResource(uri));
 						
-						
+						createXMIFile(spec,newLoc);
+						 
 
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						//Product p = Docx2ReqModelConverter.Convert(f);
+						final JFrame frame = new JFrame();
+						JOptionPane.showMessageDialog(frame, "ReqIF model created successfully!");
+						//iresource.refreshLocal(IResource.DEPTH_INFINITE, null);
+						//refresh(path);
+
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -166,7 +149,7 @@ IHandler {
 	 * 
 	 * @param product
 	 */
-	private static void createXMIFile(Document document, String location) {
+	private static void createXMIFile(Specification spec, String location) {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -181,7 +164,7 @@ IHandler {
 
 		// Add Product to contents list of the resource 
 
-		resource.getContents().add(document);
+		resource.getContents().add(spec);
 
 		try{
 
@@ -189,15 +172,15 @@ IHandler {
 			//resource.save(System.out, Collections.EMPTY_MAP); 
 			resource.save(null);
 			final JFrame frame = new JFrame();
-			JOptionPane.showMessageDialog(frame, "Document Model was created successfully!");
+			JOptionPane.showMessageDialog(frame, "ReqIF Model created successfully!");
 
 		}catch (IOException e) {
 
 			e.printStackTrace();
 		}
-
-
-
+		
+		
+				
 	}
 
 }

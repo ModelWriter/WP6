@@ -1,21 +1,17 @@
-package com.modelwriter.architecture.textconnectors.docx.genparser;
-
-import java.awt.print.Book;
+package DocModel.presentation;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.swt.internal.Library;
 
 import DocModel.DocModelFactory;
-import DocModel.DocModelPackage;
 import DocModel.Document;
 import DocModel.Paragraph;
 
-public class MyContentAdapter extends EContentAdapter {
+public class DocModelObserver extends EContentAdapter {
 
 	private Document doc;
 	
-	public MyContentAdapter(){
+	public DocModelObserver(){
 		
 		DocModelFactory factory = DocModelFactory.eINSTANCE;
 
@@ -24,7 +20,7 @@ public class MyContentAdapter extends EContentAdapter {
 		observeModel();
 	}
 	
-	public MyContentAdapter(Document d){
+	public DocModelObserver(Document d){
 		
 		doc = d;
 		
@@ -76,16 +72,13 @@ public class MyContentAdapter extends EContentAdapter {
     
     public void doStuff() {
 	    DocModelFactory factory = DocModelFactory.eINSTANCE;
-	    System.out.println("1-Number of P : " + doc.getOwnedParagraph().size());
 	    Paragraph p = factory.createParagraph();
 	    p.setName("deneme");
 	    System.out.println("I'm adding a paragraph.");
 	    doc.getOwnedParagraph().add(p);
-	    System.out.println("2-Number of P : " + doc.getOwnedParagraph().size());
 	    System.out.println("I'm changing a entry");
 	    doc.getOwnedParagraph().get(0).setName("deneme 2 asd");
 	    System.out.println("I'm deleting a entry");
 	    doc.getOwnedParagraph().remove(0);
-	    System.out.println("3-Number of P : " + doc.getOwnedParagraph().size());
 	  }
 }

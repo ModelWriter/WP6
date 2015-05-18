@@ -397,16 +397,15 @@ public class ModelComparisonTest {
 	private ResourceSet load(String req) {
 
 		//TODO test için editle doc2parse'ý
-		/*
-		 * try {
+		try {
 			ResourceSet resourceSet = new ResourceSetImpl();
-			resourceSet = Doc2ParseModel.parse(req).getResourceSet();
+			resourceSet = Doc2ParseModel.parse(null,null,req).getResourceSet();
 			return resourceSet;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 */
+		 
 		return null;
 	}
 

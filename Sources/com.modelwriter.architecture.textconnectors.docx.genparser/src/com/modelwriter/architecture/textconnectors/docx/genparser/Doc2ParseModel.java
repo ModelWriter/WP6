@@ -98,25 +98,41 @@ public class Doc2ParseModel {
 
 	private static XWPFNumbering numbering = null; 
 
-	public static Resource parse(XWPFDocument d, Resource r) throws IOException {
-
+	public static Resource parse(XWPFDocument d, Resource r, String filename) throws IOException {
+		
+		
+		
+		/////////////////////////////////////////////////////////////
+		// If filename equals to null, it will be used for testing //
+		/////////////////////////////////////////////////////////////
+		
+		
 		String output = "outputs/";
-
+		
+		// TEST
 		// output file name
-		/*
-		 * String[] v = filename.split("/");
-		String[] v2 = v[1].split("\\.");
-		output += v2[0] + ".xmi";
-		 */
+		if(filename != null){
+			
+			String[] v = filename.split("/");
+			String[] v2 = v[1].split("\\.");
+			output += v2[0] + ".xmi";
+			
+		}else{
+			// try to load the file into resource
+			r.load(null);
+			documentObject = (Document) r.getContents().get(0);
+		}
+			
+		
+		 
 
 		
-		// try to load the file into resource
-		r.load(null);
+		
+		
 
 		// Write content of resource file
 		//resource.save(System.out, Collections.EMPTY_MAP);
 
-		documentObject = (Document) r.getContents().get(0);
 		
 		initializeStaticVariables();
 		initializeHeadingMap();
@@ -124,10 +140,15 @@ public class Doc2ParseModel {
 		File file = null; 
 		FileInputStream fis = null; 
 		XWPFDocument document = null;
-		List<XWPFParagraph> paraList = null; 
-		//file = new File(filename); 
-		//fis = new FileInputStream(file); 
-		document = d;
+		List<XWPFParagraph> paraList = null;
+		if(filename != null){
+			file = new File(filename); 
+			fis = new FileInputStream(file);
+			document = new XWPFDocument(fis);
+		}else{
+			document = d;
+
+		}
 		numbering = document.getNumbering();
 		paraList = document.getParagraphs(); 
 		paraIter = paraList.iterator(); 
