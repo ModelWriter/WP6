@@ -123,7 +123,7 @@ IHandler {
 							r.getContents().remove(0);
 							r.save(null);
 							//observer = new DocModelObserver(d);
-							observerMy = new MyContentAdapter(d);
+							//observerMy = new MyContentAdapter(d);
 
 
 							//observerMy.doStuff();

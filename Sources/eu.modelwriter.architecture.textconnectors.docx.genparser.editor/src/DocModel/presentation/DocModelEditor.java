@@ -120,7 +120,9 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import DocModel.Document;
+import DocModel.Node;
 import DocModel.Paragraph;
+import DocModel.Part;
 import DocModel.provider.DocModelItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -384,31 +386,99 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				handleDocumentNotification(n);
 			} else if (notifier instanceof Paragraph) {
 				handleParagraphNotification(n);
+			}/*
+			else if(notifier instanceof Node){
+				handleNodeNotification(n);
+			}*/
+			else if(notifier instanceof Part){
+				handlePartNotification(n);
 			}
 		}
 
-		// output a message about new books
+		
+		private void handlePartNotification(Notification n) {
+			int featureID = n.getFeatureID(Document.class);
+			// rawText must be considered as name
+			if(featureID == DocModel.DocModelPackage.PART__NAME){
+				String old = n.getOldStringValue();
+				String newOne = n.getNewStringValue();
+				System.out.println("Changing Part name as : " + newOne + " (old name:"+old);
+			
+			}else if(featureID == DocModel.DocModelPackage.PART__NEXT_PART){
+				Part p = (Part) n.getNewValue(); 
+				System.out.println("New Part was added to the Part as its NEXT " + p.getName());
+			}else if(featureID == DocModel.DocModelPackage.PART__PREV_PART){
+				Part p = (Part) n.getNewValue(); 
+				System.out.println("New Part was added to the Part as its PREVIOUS " + p.getName());
+			
+			}
+			
+		}
+
+
+		/*
+		 * private void handleNodeNotification(Notification n) {
+			int featureID = n.getFeatureID(Document.class);
+			if(featureID == DocModel.DocModelPackage.)
+			
+		}
+		 */
+
+
 		private void handleDocumentNotification(Notification n){
 			int featureID = n.getFeatureID(Document.class);
 			if (featureID == DocModel.DocModelPackage.DOCUMENT__OWNED_PARAGRAPH){
+				// adding a new paragraph
 				if (n.getEventType() == Notification.ADD){
 					Paragraph p = (Paragraph) n.getNewValue(); 
 					System.out.println("New Paragraph was added to the Document: " + p.getName());
 				}
+				// removing an old paragraph
 				else if(n.getEventType() == Notification.REMOVE){
 					Paragraph p = (Paragraph) n.getOldValue();
 					System.out.println("Paragraph was deleted from the Document: " + p.getName());
 				}
+			}else if(featureID == DocModel.DocModelPackage.DOCUMENT__NAME){
+				String old = n.getOldStringValue();
+				String newOne = n.getNewStringValue();
+				System.out.println("Changing Document name as : " + newOne + " (old name:"+old);
 			}
 		}
 
-		// output a message about a book´s availability
+		
 		private void handleParagraphNotification(Notification n){
+			
 			int featureID = n.getFeatureID(Paragraph.class);
+			// changing the name of the paragraph
+			// p.rawText must be equals the p.name
 			if (featureID == DocModel.DocModelPackage.PARAGRAPH__NAME){
 				String old = n.getOldStringValue();
 				String newOne = n.getNewStringValue();
 				System.out.println("old name : '" + old + "' is now : '" + newOne + "'");
+			}else if(featureID == DocModel.DocModelPackage.PARAGRAPH__OWNED_NODE){
+				// adding a new paragraph(node)
+				if (n.getEventType() == Notification.ADD){
+					Paragraph p = (Paragraph) n.getNewValue(); 
+					System.out.println("New Paragraph(Node) was added to the Paragraph: " + p.getName());
+				}
+				// removing an old paragraph(node)
+				else if(n.getEventType() == Notification.REMOVE){
+					Paragraph p = (Paragraph) n.getOldValue();
+					System.out.println("Paragraph(Node) was deleted from the Paragraph: " + p.getName());
+				}
+				
+			}else if(featureID == DocModel.DocModelPackage.PARAGRAPH__OWNED_PART){
+				// adding a new part
+				if (n.getEventType() == Notification.ADD){
+					Part p = (Part) n.getNewValue(); 
+					System.out.println("New Part was added to the Paragraph: " + p.getName());
+				}
+				// removing an old paragraph(node)
+				else if(n.getEventType() == Notification.REMOVE){
+					Part p = (Part) n.getNewValue(); 
+					System.out.println("Paragraph(Node) was deleted from the Paragraph: " + p.getName());
+				}
+				
 			}
 		}
 	};
