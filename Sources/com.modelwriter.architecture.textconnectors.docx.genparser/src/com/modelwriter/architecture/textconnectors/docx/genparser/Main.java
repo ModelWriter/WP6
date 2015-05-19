@@ -68,7 +68,7 @@ public class Main {
 		MappingManager mappingManager = MappingManager.getInstance();
 		
 		try {
-			parsedResource = Doc2ParseModel.parse(null,null,USE_CASE_DOCUMENTATION);
+			parsedResource = Doc2ParseModel.parse(null,null,uctest);
 			
 			mappingManager.printMap();
 		} catch (IOException e) {

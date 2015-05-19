@@ -18,6 +18,7 @@ Export-Package: DocModel,
  DocModel.impl,
  DocModel.util,
  com.modelwriter.architecture.textconnectors.docx.genparser,
+ com.modelwriter.architecture.textconnectors.docx.genparser.notifymanager,
  org.apache.poi.xwpf.usermodel
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

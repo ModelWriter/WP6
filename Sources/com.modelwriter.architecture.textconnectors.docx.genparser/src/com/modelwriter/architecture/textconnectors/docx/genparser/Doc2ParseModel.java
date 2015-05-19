@@ -149,6 +149,10 @@ public class Doc2ParseModel {
 			document = d;
 
 		}
+		
+	
+		mappingManager.setDocument(document);
+		
 		numbering = document.getNumbering();
 		paraList = document.getParagraphs(); 
 		paraIter = paraList.iterator(); 
@@ -192,7 +196,8 @@ public class Doc2ParseModel {
 				//p.setParagraph(paragraph);
 				p.setRawText(paragraphText);
 				mappingManager.mapRuns(p.getId(), paragraph.getRuns());
-
+				mappingManager.mapParagraph(p.getId(), paragraph);
+				
 				// headingten sonra normal paragraflar gelirse o headinge ekle
 
 				if(firstParagraphFlag && headingMap.get(paragraphStyle) == 1){					
@@ -315,7 +320,8 @@ public class Doc2ParseModel {
 					Paragraph p = factory.createParagraph();
 					p.setId(EcoreUtil.generateUUID());
 					mappingManager.mapRuns(p.getId(), paragraph.getRuns());
-
+					mappingManager.mapParagraph(p.getId(), paragraph);
+					
 					// eðer bir ordered list item ise isimlendir ve hierarþiye göre 
 					// uygun node'a ekle
 					if(matcher.matches()){
@@ -474,7 +480,8 @@ public class Doc2ParseModel {
 		Paragraph keyValueParagraph = factory.createParagraph();
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
 		mappingManager.mapRuns(keyValueParagraph.getId(), paragraph.getRuns());
-
+		mappingManager.mapParagraph(keyValueParagraph.getId(), paragraph);
+		
 		// TODO ismi ayarla ordered list item için
 		if((matcher = pattern.matcher(values[0])).matches()){
 
@@ -606,6 +613,7 @@ public class Doc2ParseModel {
 					keyValueParagraph.setName(key);
 					keyValueParagraph.setRawText(key);
 					mappingManager.mapRuns(keyValueParagraph.getId(), partAndRun.get(key));
+					mappingManager.mapParagraph(keyValueParagraph.getId(), paragraph);
 					firstPartFlag = false;
 					
 					if(tabCount > 1){
@@ -626,7 +634,7 @@ public class Doc2ParseModel {
 					tempList.add(part);
 					//keyValueParagraph.getOwnedPart().add(part);
 					mappingManager.mapRuns(part.getId(), partAndRun.get(key));
-
+					//mappingManager.mapPart(part.getId(), part);
 				}
 
 			}
@@ -663,7 +671,8 @@ public class Doc2ParseModel {
 			numberedParagraph.setName("" + counter);
 			numberedParagraph.setRawText(text);
 			mappingManager.mapRuns(numberedParagraph.getId(), paragraph.getRuns());
-
+			mappingManager.mapParagraph(numberedParagraph.getId(), paragraph);
+			
 			if(text.contains(":")){
 
 				keyValueInOrderedList(text,numberedParagraph);
@@ -705,7 +714,8 @@ public class Doc2ParseModel {
 		headerParagraph.setRawText(paragraphText);
 		paragraphStyle = "SubHeader";
 		mappingManager.mapRuns(headerParagraph.getId(), paragraph.getRuns());
-
+		mappingManager.mapParagraph(headerParagraph.getId(), paragraph);
+		
 		calculateTabCount(headerParagraph.getRawText());
 		if(tabCount > 1){
 
@@ -942,7 +952,8 @@ public class Doc2ParseModel {
 				p.setName("" + activityCounter);
 				p.setRawText(text);
 				mappingManager.mapRuns(p.getId(), paragraph.getRuns());
-
+				mappingManager.mapParagraph(p.getId(), paragraph);
+				
 				if(text.contains(":")){
 
 					keyValueInOrderedList(text,p);
@@ -1007,7 +1018,8 @@ public class Doc2ParseModel {
 		keyValueParagraph.setId(EcoreUtil.generateUUID());
 		keyValueParagraph.setName(v[0]);
 		mappingManager.mapRuns(keyValueParagraph.getId(), paragraph.getRuns());
-
+		mappingManager.mapParagraph(keyValueParagraph.getId(), paragraph);
+		
 		if(v.length > 1 && v[1].trim().length() > 0){
 
 			keyValueParagraph.setRawText(v[1]);

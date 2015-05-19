@@ -124,9 +124,8 @@ import DocModel.Node;
 import DocModel.Paragraph;
 import DocModel.Part;
 import DocModel.provider.DocModelItemProviderAdapterFactory;
-
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
-
+import com.modelwriter.architecture.textconnectors.docx.genparser.notifymanager.MappingManager;
 
 /**
  * This is an example of a DocModel model editor.
@@ -399,10 +398,12 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			int featureID = n.getFeatureID(Document.class);
 			// rawText must be considered as name
 			if(featureID == DocModel.DocModelPackage.PART__NAME){
+				Part p = (Part)n.getNotifier();
 				String old = n.getOldStringValue();
 				String newOne = n.getNewStringValue();
-				System.out.println("Changing Part name as : " + newOne + " (old name:"+old);
-			
+				System.out.println("Changing Part name(id:" + p.getId()+ ") as : " + newOne + " (old name:"+old);
+				//MappingManager map = MappingManager.getInstance();
+				//map.changePartName(p.getId(),newOne);
 			}else if(featureID == DocModel.DocModelPackage.PART__NEXT_PART){
 				Part p = (Part) n.getNewValue(); 
 				System.out.println("New Part was added to the Part as its NEXT " + p.getName());
@@ -430,7 +431,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				// adding a new paragraph
 				if (n.getEventType() == Notification.ADD){
 					Paragraph p = (Paragraph) n.getNewValue(); 
-					p.setId(EcoreUtil.generateUUID());
+					//p.setId(EcoreUtil.generateUUID());
 					System.out.println("New Paragraph was added to the Document: " + p.getName());
 				}
 				// removing an old paragraph
@@ -452,27 +453,33 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			// changing the name of the paragraph
 			// p.rawText must be equals the p.name
 			if (featureID == DocModel.DocModelPackage.PARAGRAPH__NAME){
+				Paragraph p = (Paragraph)n.getNotifier();
 				String old = n.getOldStringValue();
 				String newOne = n.getNewStringValue();
 				System.out.println("old name : '" + old + "' is now : '" + newOne + "'");
+				//MappingManager map = MappingManager.getInstance();
+				//map.changeParagraphName(p.getId(),newOne);
 			}else if(featureID == DocModel.DocModelPackage.PARAGRAPH__OWNED_NODE){
 				// adding a new paragraph(node)
 				if (n.getEventType() == Notification.ADD){
 					Paragraph p = (Paragraph) n.getNewValue(); 
-					p.setId(EcoreUtil.generateUUID());
+					//p.setId(EcoreUtil.generateUUID());
 					System.out.println("New Paragraph(Node) was added to the Paragraph: " + p.getName());
 				}
+				
 				// removing an old paragraph(node)
 				else if(n.getEventType() == Notification.REMOVE){
 					Paragraph p = (Paragraph) n.getOldValue();
 					System.out.println("Paragraph(Node) was deleted from the Paragraph: " + p.getName());
+					MappingManager map = MappingManager.getInstance();
+					map.removeParagraph(p.getId());
 				}
 				
 			}else if(featureID == DocModel.DocModelPackage.PARAGRAPH__OWNED_PART){
 				// adding a new part
 				if (n.getEventType() == Notification.ADD){
 					Part p = (Part) n.getNewValue(); 
-					p.setId(EcoreUtil.generateUUID());
+					//p.setId(EcoreUtil.generateUUID());
 					System.out.println("New Part was added to the Paragraph: " + p.getName());
 				}
 				// removing an old paragraph(node)

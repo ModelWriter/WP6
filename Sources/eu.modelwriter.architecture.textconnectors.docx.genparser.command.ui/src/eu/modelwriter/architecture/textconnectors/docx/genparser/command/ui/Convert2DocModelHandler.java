@@ -38,6 +38,7 @@ import DocModel.presentation.DocModelObserver;
 
 import com.modelwriter.architecture.textconnectors.docx.genparser.Doc2ParseModel;
 import com.modelwriter.architecture.textconnectors.docx.genparser.MyContentAdapter;
+import com.modelwriter.architecture.textconnectors.docx.genparser.notifymanager.MappingManager;
 
 
 public class Convert2DocModelHandler extends AbstractHandler implements
@@ -48,9 +49,8 @@ IHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-
+		MappingManager map = MappingManager.getInstance();
 		XWPFDocument document = null;
-		FileOutputStream out = null;
 
 		Shell shell = HandlerUtil.getActiveShell(event);
 		ISelection sel = HandlerUtil.getActiveMenuSelection(event);
@@ -107,6 +107,9 @@ IHandler {
 					String path = fsd.getFilterPath();
 					//TODO path'i set et doc object için
 					File docxFile = new File(path + "\\" + fileName);
+					String absolutePath = docxFile.getAbsolutePath();
+					map.setDocumentPath(absolutePath);
+					
 					try {
 						document = new XWPFDocument(new FileInputStream(docxFile.getAbsoluteFile()));
 					} catch (IOException e1) {
