@@ -394,8 +394,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				handlePartNotification(n);
 			}
 		}
-
-		
+	
 		private void handlePartNotification(Notification n) {
 			int featureID = n.getFeatureID(Document.class);
 			// rawText must be considered as name
@@ -431,6 +430,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				// adding a new paragraph
 				if (n.getEventType() == Notification.ADD){
 					Paragraph p = (Paragraph) n.getNewValue(); 
+					p.setId(EcoreUtil.generateUUID());
 					System.out.println("New Paragraph was added to the Document: " + p.getName());
 				}
 				// removing an old paragraph
@@ -459,6 +459,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				// adding a new paragraph(node)
 				if (n.getEventType() == Notification.ADD){
 					Paragraph p = (Paragraph) n.getNewValue(); 
+					p.setId(EcoreUtil.generateUUID());
 					System.out.println("New Paragraph(Node) was added to the Paragraph: " + p.getName());
 				}
 				// removing an old paragraph(node)
@@ -471,6 +472,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				// adding a new part
 				if (n.getEventType() == Notification.ADD){
 					Part p = (Part) n.getNewValue(); 
+					p.setId(EcoreUtil.generateUUID());
 					System.out.println("New Part was added to the Paragraph: " + p.getName());
 				}
 				// removing an old paragraph(node)
