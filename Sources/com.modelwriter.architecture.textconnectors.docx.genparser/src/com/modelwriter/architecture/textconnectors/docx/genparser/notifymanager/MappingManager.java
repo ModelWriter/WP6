@@ -13,12 +13,15 @@ import org.eclipse.emf.ecore.EObject;
 import DocModel.Paragraph;
 import DocModel.Part;
 
+
 public class MappingManager {
 	
 	private static Map<String, List<XWPFRun>> map = new HashMap<String, List<XWPFRun>>();
 
 	private static Map<String, XWPFParagraph> objectMap = new HashMap<String, XWPFParagraph>();
 	
+	private static Map<String, Paragraph> modelMap = new HashMap<String, Paragraph>();
+			
 	private static String documentPath = "";
 	// Singleton
 	private static MappingManager instance = null;
@@ -93,11 +96,43 @@ public class MappingManager {
 		docInstance.getParagraphs().remove(p);
 		 */
 		XWPFParagraph p = objectMap.get(id);
+		Paragraph paragraph = modelMap.get(id);
+		
+		if(paragraph.getOwnedNode().size()>0){
+			deleteContainments(paragraph);
+		}
+		
 		int position = docInstance.getPosOfParagraph(p);
 		docInstance.removeBodyElement( position );
 		map.remove(id);
 		objectMap.remove(id);	
+		modelMap.remove(id);
 
+	}
+
+	private void deleteContainments(Paragraph paragraph) {
+		
+		
+		
+		if(paragraph.getOwnedNode().size() > 0){
+			for(Paragraph para : paragraph.getOwnedNode()){
+
+				deleteContainments(para);
+			}
+		}
+		
+		delete(paragraph.getId());
+
+	}
+
+	private void delete(String id) {
+		
+		XWPFParagraph p = objectMap.get(id);
+		int position = docInstance.getPosOfParagraph(p);
+		docInstance.removeBodyElement( position );
+		map.remove(id);
+		objectMap.remove(id);	
+		modelMap.remove(id);
 	}
 
 	public String getDocumentPath() {
@@ -106,6 +141,11 @@ public class MappingManager {
 
 	public void setDocumentPath(String documentPath) {
 		MappingManager.documentPath = documentPath;
+	}
+
+	public void mapDocModelPara(String id, Paragraph paragraph) {
+		
+		modelMap.put(id, paragraph);
 	}
 
 	
