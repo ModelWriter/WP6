@@ -10,9 +10,6 @@
  *******************************************************************************/
 package eu.modelwriter.architecture.textconnectors.docx.genparser.command.ui;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
@@ -23,7 +20,6 @@ import javax.swing.JOptionPane;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -31,17 +27,17 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.rmf.reqif10.SpecObject;
-import org.eclipse.rmf.reqif10.Specification;
+import org.eclipse.rmf.reqif10.ReqIF;
+import org.eclipse.rmf.reqif10.ReqIF10Package;
+import org.eclipse.rmf.reqif10.impl.ReqIF10FactoryImpl;
 import org.eclipse.ui.handlers.HandlerUtil;
-
 
 import com.modelwriter.architecture.textconnectors.docx.genparser.DocModel2ReqIFModelConvertor;
 
@@ -97,7 +93,7 @@ IHandler {
 
 					String[] locationParts = locationString.split("/");
 
-					String newLoc = "";
+					String newLoc = "file:///";
 
 					for(int i = 0;i < locationParts.length; i++){
 
@@ -106,11 +102,11 @@ IHandler {
 							newLoc += locationParts[i] + "/";
 						}else{
 							String[] name = locationParts[i].split("\\.");							
-							newLoc += ".reqif";
+							newLoc += name[0] + ".reqif";
 						}
 					}
 
-
+					// getting doc model
 					URI uri = URI.createURI(loc);
 
 					ResourceSet resourceSet = new ResourceSetImpl();
@@ -127,14 +123,12 @@ IHandler {
 
 					try {
 						
-						Specification spec = DocModel2ReqIFModelConvertor.convert((Resource)resourceSet.createResource(uri));
+						ReqIF reqif = DocModel2ReqIFModelConvertor.convert((Resource)resourceSet.createResource(uri));
 						
-						createXMIFile(spec,newLoc);
+						createXMIFile(reqif,newLoc);
 						 
 
 						//Product p = Docx2ReqModelConverter.Convert(f);
-						final JFrame frame = new JFrame();
-						JOptionPane.showMessageDialog(frame, "ReqIF model created successfully!");
 						//iresource.refreshLocal(IResource.DEPTH_INFINITE, null);
 						//refresh(path);
 
@@ -155,17 +149,17 @@ IHandler {
 	}
 
 	/**
-	 * Saves the model instance and writes it to xmi file
+	 * Saves the model instance and writes it to reqif file
 	 * 
 	 * @param product
 	 */
-	private static void createXMIFile(Specification spec, String location) {
+	private static void createXMIFile(ReqIF reqif, String location) {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		// Register XML Factory implementation using xmi extension
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-				"xmi", new  XMLResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap().put("reqif", new ReqIF10FactoryImpl());
+		EPackage.Registry.INSTANCE.put(ReqIF10Package.eNS_URI, ReqIF10Package.eINSTANCE);
 
 
 		// Create empty resource with the given URI
@@ -174,7 +168,7 @@ IHandler {
 
 		// Add Product to contents list of the resource 
 
-		resource.getContents().add(spec);
+		resource.getContents().add(reqif);
 
 		try{
 
