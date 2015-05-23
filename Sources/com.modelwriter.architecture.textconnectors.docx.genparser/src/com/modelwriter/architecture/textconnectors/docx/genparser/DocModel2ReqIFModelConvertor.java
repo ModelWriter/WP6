@@ -13,6 +13,7 @@ package com.modelwriter.architecture.textconnectors.docx.genparser;
 import java.io.IOException;
 import java.util.Iterator;
 
+import org.eclipse.acceleo.profiler.ProfileResource;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.rmf.reqif10.AttributeDefinitionString;
@@ -28,13 +29,17 @@ import org.eclipse.rmf.reqif10.SpecObject;
 import org.eclipse.rmf.reqif10.SpecObjectType;
 import org.eclipse.rmf.reqif10.Specification;
 import org.eclipse.rmf.reqif10.SpecificationType;
+import org.eclipse.rmf.reqif10.pror.configuration.Column;
 import org.eclipse.rmf.reqif10.pror.configuration.ProrPresentationConfiguration;
+import org.eclipse.rmf.reqif10.pror.configuration.ProrSpecViewConfiguration;
 import org.eclipse.rmf.reqif10.pror.configuration.ProrToolExtension;
+import org.eclipse.rmf.reqif10.pror.configuration.impl.ColumnImpl;
 import org.eclipse.rmf.reqif10.pror.configuration.impl.ProrSpecViewConfigurationImpl;
 import org.eclipse.rmf.reqif10.pror.configuration.impl.ProrToolExtensionImpl;
 
 import DocModel.Document;
 import DocModel.Paragraph;
+
 
 public class DocModel2ReqIFModelConvertor {
 
@@ -47,21 +52,37 @@ public class DocModel2ReqIFModelConvertor {
 		ReqIF reqif = factory.createReqIF();
 		ReqIFContent reqifContent = factory.createReqIFContent();
 		Specification specification = factory.createSpecification();
-		SpecObjectType sot = factory.createSpecObjectType();
-		SpecificationType st = factory.createSpecificationType();
+		SpecObjectType specObjectType = factory.createSpecObjectType();
+		SpecificationType specificationType = factory.createSpecificationType();
 		
-		ReqIFToolExtension reqifTool = factory.createReqIFToolExtension();
-		ProrToolExtension prorExtension = new ProrToolExtensionImpl();
-		
-		reqif.getToolExtensions().add(reqifTool);
-	
-		
+		// HEADER
 		ReqIFHeader header = factory.createReqIFHeader();
 		header.setComment("Created by: furkan.tanriverdi");
 		header.setReqIFVersion("1.0.1");
 		header.setReqIFToolId("ProR (http://pror.org)");
 		header.setSourceToolId("ProR (http://pror.org)");
 		reqif.setTheHeader(header);
+		
+		// VIEW
+		ReqIFToolExtension reqifTool = factory.createReqIFToolExtension();
+		ProrToolExtension prorExtension = new ProrToolExtensionImpl();
+		SpecView view = new SpecView();
+		com.modelwriter.architecture.textconnectors.docx.genparser.Column columnId = new com.modelwriter.architecture.textconnectors.docx.genparser.Column();
+		columnId.setLabel("ID");
+		columnId.setWidth(150);
+		
+		com.modelwriter.architecture.textconnectors.docx.genparser.Column columnDecsription = new com.modelwriter.architecture.textconnectors.docx.genparser.Column();
+		columnDecsription.setLabel("Description");
+		columnDecsription.setWidth(400);
+		
+		view.getColumns().add(columnId);
+		view.getColumns().add(columnDecsription);
+		
+		prorExtension.getSpecViewConfigurations().add(view);
+		reqifTool.getExtensions().add(prorExtension);
+		reqif.getToolExtensions().add(reqifTool);
+	
+		
 		
 		// DATA DEFINITION
 		DatatypeDefinitionString id = factory.createDatatypeDefinitionString();
@@ -74,30 +95,32 @@ public class DocModel2ReqIFModelConvertor {
 		reqifContent.getDatatypes().add(id);
 		
 		// ATTRIBUTE DEFINITION
-		AttributeDefinitionString ad_desc = factory.createAttributeDefinitionString();
-		ad_desc.setLongName("Description");
-		ad_desc.setType(description);
+		AttributeDefinitionString attributeDefinitionStringDescription = factory.createAttributeDefinitionString();
+		attributeDefinitionStringDescription.setLongName("Description");
+		attributeDefinitionStringDescription.setType(description);
 		
-		AttributeDefinitionString ad_id = factory.createAttributeDefinitionString();
-		ad_id.setLongName("ID");
-		ad_id.setType(id);
+		AttributeDefinitionString attributeDefinitionStringId = factory.createAttributeDefinitionString();
+		attributeDefinitionStringId.setLongName("ID");
+		attributeDefinitionStringId.setType(id);
 
-		// SpecObjectType
-		sot.setLongName("Requirement Type");
-		sot.setIdentifier("id");
+		// specObjectType
+		specObjectType.setLongName("Requirement Type");
+		specObjectType.setIdentifier("id");
 	
-		sot.getSpecAttributes().add(ad_desc);
-		sot.getSpecAttributes().add(ad_id);
+		specObjectType.getSpecAttributes().add(attributeDefinitionStringDescription);
+		specObjectType.getSpecAttributes().add(attributeDefinitionStringId);
 		
 		// Specification Type
-		st.setIdentifier("id");
-		st.setLongName("Specification Type");
+		specificationType.setIdentifier("id");
+		specificationType.setLongName("Specification Type");
+		specificationType.setDesc("Document");
+	
 		
-		st.getSpecAttributes().add(ad_desc);
-		st.getSpecAttributes().add(ad_id);
+		//specificationType.getSpecAttributes().add(ad_desc);
+		//specificationType.getSpecAttributes().add(ad_id);
 		
-		reqifContent.getSpecTypes().add(st);
-		reqifContent.getSpecTypes().add(sot);
+		reqifContent.getSpecTypes().add(specificationType);
+		reqifContent.getSpecTypes().add(specObjectType);
 		
 		try {
 
@@ -115,25 +138,33 @@ public class DocModel2ReqIFModelConvertor {
 					Document d = (Document)o;
 									
 					specification.setIdentifier("id");
-					specification.setLongName("Document");										
+					specification.setLongName("Document");	
+					specification.setDesc("Use Cases");
+					specification.setType(specificationType);
 					
-					specification.setType(st);
-										
+									
 					reqifContent.getSpecifications().add(specification);
 					
 				}else if(o instanceof Paragraph){
 					Paragraph p = (Paragraph)o;
 					
 					SpecHierarchy sh = factory.createSpecHierarchy();
-					AttributeValueString aValue = factory.createAttributeValueString();
-					aValue.setDefinition(ad_desc);
-					aValue.setTheValue("aasdasd");
+					AttributeValueString attributeValueDesc = factory.createAttributeValueString();
+					attributeValueDesc.setDefinition(attributeDefinitionStringDescription);
+					attributeValueDesc.setTheValue(p.getRawText());
+					
+					AttributeValueString attributeValueId = factory.createAttributeValueString();
+					attributeValueId.setDefinition(attributeDefinitionStringId);
+					attributeValueId.setTheValue(p.getId());
 					
 					SpecObject so = factory.createSpecObject();
-					so.setIdentifier(p.getId());
-					so.setLongName(p.getRawText());														
+					//so.setIdentifier(p.getId());
+					//so.setLongName(p.getRawText());
+					//so.setDesc(p.getRawText());
 					
-					so.getValues().add(aValue);
+					so.getValues().add(attributeValueId);
+					so.getValues().add(attributeValueDesc);
+					so.setType(specObjectType);
 					
 					sh.setEditable(false);
 					sh.setObject(so);
@@ -149,7 +180,8 @@ public class DocModel2ReqIFModelConvertor {
 		catch (NullPointerException | IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		view.setSpecification(specification);	
 		reqif.setCoreContent(reqifContent);
 	
 		return reqif;
