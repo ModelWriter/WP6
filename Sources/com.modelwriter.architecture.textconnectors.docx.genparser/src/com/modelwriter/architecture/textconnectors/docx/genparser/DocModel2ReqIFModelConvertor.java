@@ -56,7 +56,7 @@ public class DocModel2ReqIFModelConvertor {
 		SpecObjectType specObjectType = factory.createSpecObjectType();
 		SpecificationType specificationType = factory.createSpecificationType();
 		
-		// HEADER
+		// Header
 		ReqIFHeader header = factory.createReqIFHeader();
 		header.setComment("Created by: furkan.tanriverdi");
 		header.setReqIFVersion("1.0.1");
@@ -64,20 +64,23 @@ public class DocModel2ReqIFModelConvertor {
 		header.setSourceToolId("ProR (http://pror.org)");
 		reqif.setTheHeader(header);
 		
-		// VIEW
+		// setting the view
 		ReqIFToolExtension reqifTool = factory.createReqIFToolExtension();
 		ProrToolExtension prorExtension = new ProrToolExtensionImpl();
 		SpecView view = new SpecView();
 		
-		com.modelwriter.architecture.textconnectors.docx.genparser.Column columnId = new com.modelwriter.architecture.textconnectors.docx.genparser.Column();
+		com.modelwriter.architecture.textconnectors.docx.genparser.Column columnId 
+		= new com.modelwriter.architecture.textconnectors.docx.genparser.Column();
 		columnId.setLabel("ID");
 		columnId.setWidth(250);
 		
-		com.modelwriter.architecture.textconnectors.docx.genparser.Column columnDecsription = new com.modelwriter.architecture.textconnectors.docx.genparser.Column();
+		com.modelwriter.architecture.textconnectors.docx.genparser.Column columnDecsription 
+		= new com.modelwriter.architecture.textconnectors.docx.genparser.Column();
 		columnDecsription.setLabel("Description");
 		columnDecsription.setWidth(250);
 		
-		com.modelwriter.architecture.textconnectors.docx.genparser.Column columnPrimaryActor = new com.modelwriter.architecture.textconnectors.docx.genparser.Column();
+		com.modelwriter.architecture.textconnectors.docx.genparser.Column columnPrimaryActor
+		= new com.modelwriter.architecture.textconnectors.docx.genparser.Column();
 		columnPrimaryActor.setLabel("Primary Actor");
 		columnPrimaryActor.setWidth(150);
 		
@@ -88,10 +91,8 @@ public class DocModel2ReqIFModelConvertor {
 		prorExtension.getSpecViewConfigurations().add(view);
 		reqifTool.getExtensions().add(prorExtension);
 		reqif.getToolExtensions().add(reqifTool);
-	
 		
-		
-		// DATA DEFINITION
+		// Data type definitions
 		DatatypeDefinitionString id = factory.createDatatypeDefinitionString();
 		id.setLongName("T_ID");
 		
@@ -106,15 +107,18 @@ public class DocModel2ReqIFModelConvertor {
 		reqifContent.getDatatypes().add(primaryActor);
 		
 		// ATTRIBUTE DEFINITION
-		AttributeDefinitionString attributeDefinitionStringId = factory.createAttributeDefinitionString();
+		AttributeDefinitionString attributeDefinitionStringId = 
+				factory.createAttributeDefinitionString();
 		attributeDefinitionStringId.setLongName("ID");
 		attributeDefinitionStringId.setType(id);
 		
-		AttributeDefinitionString attributeDefinitionStringDescription = factory.createAttributeDefinitionString();
+		AttributeDefinitionString attributeDefinitionStringDescription = 
+				factory.createAttributeDefinitionString();
 		attributeDefinitionStringDescription.setLongName("Description");
 		attributeDefinitionStringDescription.setType(description);
 		
-		AttributeDefinitionString attributeDefinitionStringPrimaryActor = factory.createAttributeDefinitionString();
+		AttributeDefinitionString attributeDefinitionStringPrimaryActor = 
+				factory.createAttributeDefinitionString();
 		attributeDefinitionStringPrimaryActor.setLongName("Primary Actor");
 		attributeDefinitionStringPrimaryActor.setType(primaryActor);
 		
@@ -128,15 +132,9 @@ public class DocModel2ReqIFModelConvertor {
 		specObjectType.getSpecAttributes().add(attributeDefinitionStringPrimaryActor);
 		
 		// Specification Type
-		//specificationType.setIdentifier("id");
 		specificationType.setLongName("Specification Type");
 		specificationType.setDesc("Use Case Document");
-		
-	
-		
-		//specificationType.getSpecAttributes().add(ad_desc);
-		//specificationType.getSpecAttributes().add(ad_id);
-		
+
 		reqifContent.getSpecTypes().add(specificationType);
 		reqifContent.getSpecTypes().add(specObjectType);
 		
@@ -168,20 +166,22 @@ public class DocModel2ReqIFModelConvertor {
 						
 						SpecHierarchy sh = factory.createSpecHierarchy();
 						
-						AttributeValueString attributeValueId = factory.createAttributeValueString();
+						AttributeValueString attributeValueId = 
+								factory.createAttributeValueString();
 						attributeValueId.setDefinition(attributeDefinitionStringId);
 						attributeValueId.setTheValue(useCaseParagraph.getId());
 						
-						AttributeValueString attributeValueDesc = factory.createAttributeValueString();
+						AttributeValueString attributeValueDesc = 
+								factory.createAttributeValueString();
 						attributeValueDesc.setDefinition(attributeDefinitionStringDescription);
 						attributeValueDesc.setTheValue(values[1]);						
 								
-						AttributeValueString attributeValuePrimaryActor = factory.createAttributeValueString();
+						AttributeValueString attributeValuePrimaryActor = 
+								factory.createAttributeValueString();
 						attributeValuePrimaryActor.setDefinition(attributeDefinitionStringPrimaryActor);
 						attributeValuePrimaryActor.setTheValue(getPrimaryActor(useCaseParagraph));	
 						
 						SpecObject so = factory.createSpecObject();
-						//so.setDesc(values[0]);
 						so.setLongName(values[0]);
 						so.getValues().add(attributeValueId);
 						so.getValues().add(attributeValueDesc);
@@ -196,10 +196,8 @@ public class DocModel2ReqIFModelConvertor {
 						
 					}
 					
-				}
-				
+				}	
 			}
-
 
 		}// end of try
 		catch (NullPointerException | IOException e) {
@@ -212,13 +210,16 @@ public class DocModel2ReqIFModelConvertor {
 		return reqif;
 	}
 
+	/*
+	 * Returns the concatenation of actors of the usecase
+	 */
 	private static String getPrimaryActor(Paragraph useCaseParagraph) {
 		
 		String actors = "";
 		
 		for (Paragraph p : useCaseParagraph.getOwnedNode()) {
 			
-			if(p.getName() != null && p.getName().contains("Primary Actor")){
+			if(p.getName() != null && p.getName().toLowerCase().contains("actor")){
 				
 				if(p.getOwnedPart().size() != 0){
 					int counter = 0;

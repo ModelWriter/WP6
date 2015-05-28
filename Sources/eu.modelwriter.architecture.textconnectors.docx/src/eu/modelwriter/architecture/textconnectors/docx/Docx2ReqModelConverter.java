@@ -559,7 +559,6 @@ public class Docx2ReqModelConverter {
 		// Create empty resource with the given URI
 		Resource resource = resourceSet.createResource(URI.createURI("model/SimpleRequirementMM.xmi"));
 
-
 		// Add Product to contents list of the resource 
 
 		resource.getContents().add(product);
@@ -575,6 +574,4 @@ public class Docx2ReqModelConverter {
 			e.printStackTrace();
 		}
 	}
-
-
 }

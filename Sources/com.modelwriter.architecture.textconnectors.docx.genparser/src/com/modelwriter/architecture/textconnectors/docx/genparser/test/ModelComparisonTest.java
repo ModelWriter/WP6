@@ -63,7 +63,8 @@ public class ModelComparisonTest {
 
 	}
 
-	@Test
+	/*
+	 * @Test
 	public void testReadyModelsWithoutIds(){
 
 		ResourceSet resourceSet1 = new ResourceSetImpl();
@@ -93,6 +94,7 @@ public class ModelComparisonTest {
 		assertSame(Integer.valueOf(0), Integer.valueOf(differences.size()));
 	}
 
+	 */
 	//Headers with heading styles(headings) must be organized hierarchically.
 	@Test
 	public void testCompareREQ2(){
@@ -396,19 +398,18 @@ public class ModelComparisonTest {
 	// TODO REQ-12 is missing
 	private ResourceSet load(String req) {
 
-		//TODO test için editle doc2parse'ý
 		try {
 			ResourceSet resourceSet = new ResourceSetImpl();
 			resourceSet = Doc2ParseModel.parse(null,null,req).getResourceSet();
 			return resourceSet;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		 
 		return null;
 	}
 
+	@SuppressWarnings("deprecation")
 	public Comparison compare(ResourceSet resourceSet1, ResourceSet resourceSet2)
 	{
 
@@ -416,7 +417,6 @@ public class ModelComparisonTest {
 		IComparisonScope scope = EMFCompare.createDefaultScope(resourceSet1, resourceSet2);
 
 		//Configuring the comparison
-		
 		IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.NEVER);
 		IComparisonFactory comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory());
 		IMatchEngine.Factory matchEngineFactory = new MatchEngineFactoryImpl(matcher, comparisonFactory);
@@ -445,11 +445,10 @@ public class ModelComparisonTest {
 		*/
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void load(String absolutePath, ResourceSet resourceSet) {
 
 		URI uri = URI.createFileURI(absolutePath);
-
-		//resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 
 		// register UML
 		Map packageRegistry = resourceSet.getPackageRegistry();

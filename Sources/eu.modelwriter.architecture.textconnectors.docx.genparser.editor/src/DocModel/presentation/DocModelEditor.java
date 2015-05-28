@@ -374,66 +374,35 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	 */
 	protected boolean updateProblemIndication = true;
 
-	
+
 	/**
 	 * This listens for EMF instance changes.
 	 */
 	protected EContentAdapter changeOnModelNotifier =
 			new EContentAdapter() {
-		
-		
+
+
 		//override the notifyChanged method
 		public void notifyChanged(Notification n){
-
-			//System.out.println("changeOnModelNotifier");
 			
-			super.notifyChanged(n); // the superclass handles adding/removing this Adapter to new Books
-
-			// find out the type of the notifier which could be either 'Book' or 'Library'
+			// the superclass handles adding/removing this Adapter to new Books
+			super.notifyChanged(n); 
+			
+			// find out the type of the notifier which could be 'Document', 'Paragraph',
+			//'Part' or 'Node'
 			Object notifier = n.getNotifier();
 			if (notifier instanceof Document) {
 				handleDocumentNotification(n);
 			} else if (notifier instanceof Paragraph) {
 				handleParagraphNotification(n);
-			}/*
+			}
 			else if(notifier instanceof Node){
 				handleNodeNotification(n);
-			}*/
+			}
 			else if(notifier instanceof Part){
 				handlePartNotification(n);
 			}
 		}
-	
-		private void handlePartNotification(Notification n) {
-			int featureID = n.getFeatureID(Document.class);
-			// rawText must be considered as name
-			if(featureID == DocModel.DocModelPackage.PART__NAME){
-				Part p = (Part)n.getNotifier();
-				String old = n.getOldStringValue();
-				String newOne = n.getNewStringValue();
-				System.out.println("Changing Part name(id:" + p.getId()+ ") as : " + newOne + " (old name:"+old);
-				//MappingManager map = MappingManager.getInstance();
-				//map.changePartName(p.getId(),newOne);
-			}else if(featureID == DocModel.DocModelPackage.PART__NEXT_PART){
-				Part p = (Part) n.getNewValue(); 
-				System.out.println("New Part was added to the Part as its NEXT " + p.getName());
-			}else if(featureID == DocModel.DocModelPackage.PART__PREV_PART){
-				Part p = (Part) n.getNewValue(); 
-				System.out.println("New Part was added to the Part as its PREVIOUS " + p.getName());
-			
-			}
-			
-		}
-
-
-		/*
-		 * private void handleNodeNotification(Notification n) {
-			int featureID = n.getFeatureID(Document.class);
-			if(featureID == DocModel.DocModelPackage.)
-			
-		}
-		 */
-
 
 		private void handleDocumentNotification(Notification n){
 			int featureID = n.getFeatureID(Document.class);
@@ -442,23 +411,25 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				if (n.getEventType() == Notification.ADD){
 					Paragraph p = (Paragraph) n.getNewValue(); 
 					//p.setId(EcoreUtil.generateUUID());
-					System.out.println("New Paragraph was added to the Document: " + p.getName());
+					System.out.println("New Paragraph was added to the Document: " 
+					+ p.getName());
 				}
 				// removing an old paragraph
 				else if(n.getEventType() == Notification.REMOVE){
 					Paragraph p = (Paragraph) n.getOldValue();
-					System.out.println("Paragraph was deleted from the Document: " + p.getName());
+					System.out.println("Paragraph was deleted from the Document: " 
+					+ p.getName());
 				}
 			}else if(featureID == DocModel.DocModelPackage.DOCUMENT__NAME){
 				String old = n.getOldStringValue();
 				String newOne = n.getNewStringValue();
-				System.out.println("Changing Document name as : " + newOne + " (old name:"+old);
+				System.out.println("Changing Document name as : " + newOne + " (old name:"
+				+old);
 			}
 		}
 
-		
 		private void handleParagraphNotification(Notification n){
-			
+
 			int featureID = n.getFeatureID(Paragraph.class);
 			// changing the name of the paragraph
 			// p.rawText must be equals the p.name
@@ -474,17 +445,20 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				if (n.getEventType() == Notification.ADD){
 					Paragraph p = (Paragraph) n.getNewValue(); 
 					//p.setId(EcoreUtil.generateUUID());
-					System.out.println("New Paragraph(Node) was added to the Paragraph: " + p.getName());
+					System.out.println("New Paragraph(Node) was added to the Paragraph: "
+					+ p.getName());
 				}
-				
+
 				// removing an old paragraph(node)
 				else if(n.getEventType() == Notification.REMOVE){
 					Paragraph p = (Paragraph) n.getOldValue();
-					System.out.println("Paragraph(Node) was deleted from the Paragraph: " + p.getName());
+					System.out.println("Paragraph(Node) was deleted from the Paragraph: "
+					+ p.getName());
+					// Removes all corresponding objects
 					MappingManager map = MappingManager.getInstance();
 					map.removeParagraph(p.getId());
 				}
-				
+
 			}else if(featureID == DocModel.DocModelPackage.PARAGRAPH__OWNED_PART){
 				// adding a new part
 				if (n.getEventType() == Notification.ADD){
@@ -495,13 +469,53 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				// removing an old paragraph(node)
 				else if(n.getEventType() == Notification.REMOVE){
 					Part p = (Part) n.getNewValue(); 
-					System.out.println("Paragraph(Node) was deleted from the Paragraph: " + p.getName());
+					System.out.println("Paragraph(Node) was deleted from the Paragraph: " 
+					+ p.getName());
 				}
-				
+
 			}
 		}
+
+		private void handlePartNotification(Notification n) {
+			int featureID = n.getFeatureID(Document.class);
+			// rawText must be considered as name
+			if(featureID == DocModel.DocModelPackage.PART__NAME){
+				Part p = (Part)n.getNotifier();
+				String old = n.getOldStringValue();
+				String newOne = n.getNewStringValue();
+				System.out.println("Changing Part name(id:" + p.getId()+ ") as : "
+				+ newOne + " (old name:"+old);
+				//MappingManager map = MappingManager.getInstance();
+				//map.changePartName(p.getId(),newOne);
+			}else if(featureID == DocModel.DocModelPackage.PART__NEXT_PART){
+				Part p = (Part) n.getNewValue(); 
+				System.out.println("New Part was added to the Part as its NEXT "
+				+ p.getName());
+			}else if(featureID == DocModel.DocModelPackage.PART__PREV_PART){
+				Part p = (Part) n.getNewValue(); 
+				System.out.println("New Part was added to the Part as its PREVIOUS "
+				+ p.getName());
+
+			}
+
+		}
+
+
+		private void handleNodeNotification(Notification n) {
+			int featureID = n.getFeatureID(Document.class);
+			if(featureID == DocModel.DocModelPackage.NODE__NAME){
+				Node node = (Node)n.getNotifier();
+				String old = n.getOldStringValue();
+				String newOne = n.getNewStringValue();
+				System.out.println("Changing Node name(id:" + node.getId()+ ") as : "
+				+ newOne + " (old name:"+old);
+			}
+
+		}
+
+
 	};
-	
+
 	/**
 	 * Adapter used to update the problem indication when resources are demanded loaded.
 	 * <!-- begin-user-doc -->
@@ -512,9 +526,9 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			new EContentAdapter() {
 		@Override
 		public void notifyChanged(Notification notification) {
-			
+
 			//System.out.println("problemIndicationAdapter");
-			
+
 			if (notification.getNotifier() instanceof Resource) {
 				switch (notification.getFeatureID(Resource.class)) {
 				case Resource.RESOURCE__IS_LOADED:
@@ -1077,7 +1091,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 		if (diagnostic.getSeverity() != Diagnostic.OK) {
 			resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
 		}
-		
+
 		editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
 		editingDomain.getResourceSet().eAdapters().add(changeOnModelNotifier);
 	}

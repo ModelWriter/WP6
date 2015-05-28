@@ -107,7 +107,7 @@ IHandler {
 					extensionFactoryMap.put("xmi", new XMIResourceFactoryImpl());
 
 
-					// GETTING DOCX FILE
+					// Getting docx file from file dialog
 					FileDialog fsd = new FileDialog(shell);
 					fsd.setFilterExtensions(new String[] {"*.docx"});
 					fsd.setText("Select A Docx File...");
@@ -134,23 +134,7 @@ IHandler {
 							Document d = (Document) Doc2ParseModel.parse(document,r,null).getContents().get(0);
 							r.getContents().add(d);
 							r.getContents().remove(0);
-							r.save(null);
-							//observer = new DocModelObserver(d);
-							//observerMy = new MyContentAdapter(d);
-
-
-							//observerMy.doStuff();
-							//r = Doc2ParseModel.parse(document,r);
-
-
-							//createXMIFile((Document)r.getContents().get(0),loc);
-
-
-							final JFrame frame = new JFrame();
-							JOptionPane.showMessageDialog(frame, "Requirement File created successfully!");
-							
-						
-						
+							r.save(null);			
 
 					} catch (FileNotFoundException e) {
 						// TODO Auto-generated catch block
@@ -175,9 +159,10 @@ IHandler {
 	}
 
 	/**
-	 * Saves the model instance and writes it to xmi file
+	 * Gets the .docx file and converts it to .docmodel
 	 * 
-	 * @param product
+	 * @param Document document
+	 * @param String location
 	 */
 	private static void createXMIFile(Document document, String location) {
 
