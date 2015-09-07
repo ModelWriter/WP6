@@ -1,0 +1,14 @@
+EMF
+GEF
+diagram
+Session
+semantic
+model
+representation
+table
+viewpoint
+domain
+file
+service
+Modeling
+Resource
