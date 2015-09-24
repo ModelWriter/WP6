@@ -15,7 +15,7 @@ public class JavaConceptsFinder {
 	private static JavaConceptsDataStructure jcds;
 
 	public JavaConceptsFinder() {
-		JavaConceptsFinder.textileFilesBasePath = "OriginalDocuments/";
+		JavaConceptsFinder.textileFilesBasePath = "EcoreConcepts-JavaConcepts-Annotator/OriginalDocuments/";
 		JavaConceptsFinder.textileFile = textileFilesBasePath + "developer/" + "Architecture.textile";
 	}
 

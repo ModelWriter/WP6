@@ -16,7 +16,7 @@ public class EcoreConceptsFinder {
 	private static String ecoreConceptsParseredFile;
 
 	public EcoreConceptsFinder() {
-		EcoreConceptsFinder.textileFilesBasePath = "OriginalDocuments/";
+		EcoreConceptsFinder.textileFilesBasePath = "EcoreConcepts-JavaConcepts-Annotator/OriginalDocuments/";
 		EcoreConceptsFinder.textileFile = textileFilesBasePath + "developer/" + "Architecture.textile";
 	}
 	

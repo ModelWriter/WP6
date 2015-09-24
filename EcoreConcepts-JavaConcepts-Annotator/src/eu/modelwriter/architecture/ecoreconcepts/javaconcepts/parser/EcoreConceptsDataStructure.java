@@ -16,7 +16,7 @@ public class EcoreConceptsDataStructure {
 	private static ArrayList<Integer> lineNumbers;
 	
 	public EcoreConceptsDataStructure(){
-		EcoreConceptsDataStructure.modelsBasePath = "ModelsContents/";
+		EcoreConceptsDataStructure.modelsBasePath = "EcoreConcepts-JavaConcepts-Annotator/ModelsContents/";
 		//EcoreConceptsDataStructure.ecoreConceptsParseredFile = modelsBasePath + "EcoreConceptsParsered.txt";
 		EcoreConceptsDataStructure.ecoreConceptsParseredFile = modelsBasePath + "EcoreConcepts.txt";
 		EcoreConceptsDataStructure.dataStructure = new HashMap<String, ArrayList<Integer>>();

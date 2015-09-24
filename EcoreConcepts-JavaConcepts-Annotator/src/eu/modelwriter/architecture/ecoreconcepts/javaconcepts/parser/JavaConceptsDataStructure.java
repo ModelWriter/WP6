@@ -16,7 +16,7 @@ public class JavaConceptsDataStructure implements Serializable {
 	private static ArrayList<Integer> lineNumbers;
 	
 	public JavaConceptsDataStructure(){
-		JavaConceptsDataStructure.modelsBasePath = "ModelsContents/";
+		JavaConceptsDataStructure.modelsBasePath = "EcoreConcepts-JavaConcepts-Annotator/ModelsContents/";
 		JavaConceptsDataStructure.javaConceptsParseredFile = modelsBasePath + "JavaConceptsParsered.txt";
 		JavaConceptsDataStructure.dataStructure = new HashMap<String, ArrayList<Integer>>();
 	}

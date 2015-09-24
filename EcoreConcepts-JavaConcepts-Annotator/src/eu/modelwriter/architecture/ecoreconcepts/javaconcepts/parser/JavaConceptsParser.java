@@ -16,7 +16,7 @@ public class JavaConceptsParser {
 	private static Matcher matcher;
 
 	public JavaConceptsParser() {
-		JavaConceptsParser.basePath = "ModelsContents/";
+		JavaConceptsParser.basePath = "EcoreConcepts-JavaConcepts-Annotator/ModelsContents/";
 		JavaConceptsParser.javaConceptsFile = basePath + "JavaConcepts.txt";
 		JavaConceptsParser.javaConceptsParseredFile = basePath + "JavaConceptsParsered.txt";
 		JavaConceptsParser.pattern = Pattern.compile("\\p{javaJavaIdentifierStart}\\p{javaJavaIdentifierPart}*$");

@@ -16,7 +16,7 @@ public class EcoreConceptsParser {
 	private static Matcher matcher;
 
 	public EcoreConceptsParser() {
-		EcoreConceptsParser.basePath = "ModelsContents/";
+		EcoreConceptsParser.basePath = "EcoreConcepts-JavaConcepts-Annotator/ModelsContents/";
 		EcoreConceptsParser.ecoreConceptsFile = basePath + "EcoreConcepts.txt";
 		EcoreConceptsParser.ecoreConceptsParseredFile = basePath + "EcoreConceptsParsered.txt";
 		EcoreConceptsParser.pattern = Pattern.compile("\\p{javaJavaIdentifierStart}\\p{javaJavaIdentifierPart}*$");
