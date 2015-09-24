@@ -34,7 +34,7 @@ public class TextileFilesAnnotator {
 			//new EcoreConceptsFinder().search();
 			new TextileFilesAnnotator().annotate();
 		} catch (FileNotFoundException e) {
-			System.out.println("Error while opening a file");
+			System.out.println("Error while opening a file" + e);
 		} catch (IOException e) {
 			System.out.println("I/O Error");
 		} catch (Exception e){
