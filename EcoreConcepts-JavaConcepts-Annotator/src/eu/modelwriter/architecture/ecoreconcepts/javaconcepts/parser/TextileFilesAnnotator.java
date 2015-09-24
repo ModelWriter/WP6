@@ -21,7 +21,6 @@ public class TextileFilesAnnotator {
 	public TextileFilesAnnotator() {
 		TextileFilesAnnotator.modelsBasePath = "ModelsContents/";
 		TextileFilesAnnotator.termsToAnnotateFile = modelsBasePath + "TermsToAnnotate.txt";
-		//TextileFilesAnnotator.dataStructure = new HashMap<String, Boolean>();
 		TextileFilesAnnotator.textileFilesBasePath = "OriginalDocuments/";
 		TextileFilesAnnotator.textileFile = textileFilesBasePath + "developer/" + "Architecture.textile";
 		TextileFilesAnnotator.textileAnnotatedFilesBasePath = "PartiallyAnnotatedDocuments/";
@@ -66,13 +65,11 @@ public class TextileFilesAnnotator {
 		String delim = " ";
 		int i;
 		ArrayList<Integer> arrayListLines;
-		// + "-" + "_" + "," + "." + "(" + ")" + "@" + ":" + "{" + "}" + "*";
 		
 		while ((ligne = bfr.readLine()) != null) {
 			st = new StringTokenizer(ligne, delim);
 			while (st.hasMoreTokens()){
 				token = st.nextToken();
-				//bfw.write(token + " ");
 				if (TextileFilesAnnotator.dataStructure.containsKey(token)) {
 					i=0;
 					// [EMF{MW:/JavaConcepts-line={}
