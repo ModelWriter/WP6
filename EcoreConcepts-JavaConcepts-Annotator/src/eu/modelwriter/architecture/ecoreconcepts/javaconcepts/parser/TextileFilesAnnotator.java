@@ -19,11 +19,11 @@ public class TextileFilesAnnotator {
 	private static String textileAnnotatedFile;
 
 	public TextileFilesAnnotator() {
-		TextileFilesAnnotator.modelsBasePath = "ModelsContents/";
+		TextileFilesAnnotator.modelsBasePath = "EcoreConcepts-JavaConcepts-Annotator/ModelsContents/";
 		TextileFilesAnnotator.termsToAnnotateFile = modelsBasePath + "TermsToAnnotate.txt";
-		TextileFilesAnnotator.textileFilesBasePath = "OriginalDocuments/";
+		TextileFilesAnnotator.textileFilesBasePath = "EcoreConcepts-JavaConcepts-Annotator/OriginalDocuments/";
 		TextileFilesAnnotator.textileFile = textileFilesBasePath + "developer/" + "Architecture.textile";
-		TextileFilesAnnotator.textileAnnotatedFilesBasePath = "PartiallyAnnotatedDocuments/";
+		TextileFilesAnnotator.textileAnnotatedFilesBasePath = "EcoreConcepts-JavaConcepts-Annotator/PartiallyAnnotatedDocuments/";
 		TextileFilesAnnotator.textileAnnotatedFile = textileAnnotatedFilesBasePath + "developer/" + "ArchitectureAutomaticallyAnnotated.textile";
 	}
 
